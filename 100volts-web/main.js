@@ -3,7 +3,14 @@ import javascriptLogo from './javascript.svg'
 import viteLogo from '/vite.svg'
 import { setupCounter } from './counter.js'
 
+const express= require("express");
+const path=require("path");
 
+const app=express();
+
+app.get("/*",(req,res)=>{
+    res.sendFile(path.resolve("static/pages","test.html"))
+})
 /*
 document.querySelector('#app').innerHTML = `
   <div>
