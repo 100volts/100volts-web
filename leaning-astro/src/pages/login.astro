@@ -1,5 +1,5 @@
 ---
-
+const pageName = "Login";
 ---
 
 <!doctype html>
@@ -65,14 +65,14 @@
   </head>
   <body>
     <div class="login-container">
-      <h2>Login</h2>
-      <form action="/login" method="post">
-        <label for="username">Username</label>
+      <h2>{pageName}</h2>
+      <form method="post">
+        <label for="email">Email</label>
         <div class="log-field">
           <input
             type="text"
-            id="username"
-            name="username"
+            id="email"
+            name="email"
             required
           />
         </div>
@@ -89,5 +89,6 @@
         <input type="submit" value="Login" />
       </form>
     </div>
+    <script src="./skripts/user-verification.js"></script>
   </body>
 </html>
