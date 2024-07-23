@@ -1,0 +1,15 @@
+---
+import Main from "../layouts/Main.astro";
+---
+
+<script>
+  const jwtToken = localStorage.getItem("jwtToken");
+  if (!jwtToken) {
+    location.href = "./login";
+  }
+</script>
+<Main>
+  <body>
+    <h1>Astro</h1>
+  </body>
+</Main>
