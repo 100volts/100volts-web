@@ -24,7 +24,7 @@ form.addEventListener('submit', async(e)=>{
   console.log(response);   
     if(response.ok) {
       console.log(datat);
-      location.href= 'about';
+      location.href= '/';
     }
     
     const result=document.querySelector('#result');
