@@ -18,8 +18,11 @@ form.addEventListener('submit', async(e)=>{
   });
   const datat = await response.json();
   const { access_token } = datat;
+  const { role } = datat;
   
   localStorage.setItem('jwtToken', access_token);
+  localStorage.setItem('role', role);
+
 
   console.log(response);   
     if(response.ok) {
