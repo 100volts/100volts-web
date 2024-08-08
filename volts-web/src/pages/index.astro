@@ -1,20 +1,4 @@
 ---
-const token = await fetch(
-  "http://localhost:8081/api/vi/auth/authenticate",
-  {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      email: "plamen@mail.com",
-      password: "12345678",
-    }),
-  }
-);
-const tokenjson = await token.json();
-const { access_token } = tokenjson;
-const { role } = tokenjson;
 import Header from "../../components/Header.astro";
 import Main from "../layouts/Main.astro";
 ---

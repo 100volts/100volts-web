@@ -1,7 +1,42 @@
 ---
 import Main from "../layouts/Main.astro";
+
+const pageName = "Login";
 ---
 
+<script>
+  try {
+    if (localStorage.getItem("volts_token")) {
+      window.location.href = "/";
+    }
+  } catch (error) {}
+</script>
 <Main>
-  <h1>Log in</h1>
+  <title>Login Page</title>
+  <div class="login-container">
+    <h2>{pageName}</h2>
+    <form method="post">
+      <label for="email">Email</label>
+      <div class="log-field">
+        <input
+          type="text"
+          id="email"
+          name="email"
+          required
+        />
+      </div>
+      <label for="password">Password</label>
+      <div class="log-field">
+        <input
+          type="password"
+          id="password"
+          name="password"
+          required
+        />
+      </div>
+
+      <input type="submit" value="Login" />
+    </form>
+  </div>
+  <script src="./api/login.js"></script>
 </Main>

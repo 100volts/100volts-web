@@ -82,6 +82,15 @@
         href="https://ivorum.github.io/volts-documentation/"
         >Docs</a
       >
+      <script>
+        try {
+          if (localStorage.getItem("volts_token")) {
+            document.write("<a href='/login'>Acount</a>");
+          } else {
+            document.write("<a href='/login'>Login</a>");
+          }
+        } catch (error) {}
+      </script>
       <a href="/login">Login</a>
     </div>
   </nav>
