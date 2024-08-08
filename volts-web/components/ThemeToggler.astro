@@ -25,28 +25,18 @@
     padding: 5px 10px;
     transition: all 0.2s ease-in-out;
   }
-
   button:hover {
-    /* make the button smaller (scale down) when hovered */
     transform: scale(0.9);
   }
-
   button:active {
-    /** returns the button to its standard size when active */
     transform: scale(1);
   }
-
   .sun {
-    /* Hide the sun icon by default. Assuming a light theme by default */
     fill: transparent;
   }
-
-  /** If a parent element has a .dark class, target the .sun icon and make it black (shows the icon) */
   :global(.dark) .sun {
     fill: black;
   }
-
-  /** If a parent element has a .dark class, target the .moon icon and make it transparent (hides the icon) */
   :global(.dark) .moon {
     fill: transparent;
   }
@@ -65,11 +55,13 @@
   if (toggle) {
     toggle.addEventListener("click", () => {
       rootEl.classList.toggle(DARK_THEME_CLASS);
+
       const colourMode = rootEl.classList.contains(
         DARK_THEME_CLASS
       )
         ? DARK_THEME
         : LIGHT_THEME;
+
       window.localStorage.setItem(COLOUR_MODE, colourMode);
     });
   }
