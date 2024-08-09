@@ -24,16 +24,18 @@ form.addEventListener("submit", async (e) => {
 
   localStorage.setItem("volts_token", access_token);
   localStorage.setItem("volts_user_role", role);
-
-  console.log(response);
+  
+  
   if (response.ok) {
     console.log(datat);
     location.href = "/";
   }
-
+  /*
+  console.log(response);
   const result = document.querySelector("#result");
 
   console.log(result);
   console.log(data.get("email"));
   console.log(data.get("pass"));
+    */
 });

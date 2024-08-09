@@ -28,13 +28,18 @@ import ThemeToggler from "./ThemeToggler.astro";
   nav {
     display: flex;
     align-items: center;
-    justify-content: start;
+    justify-content: center;
   }
   nav a {
     padding: 1em 0.5em;
     color: var(--black);
     border-bottom: 4px solid transparent;
     text-decoration: none;
+  }
+  .nava {
+    display: flex;
+    gap: 10px;
+    padding: 1em 0.5em;
   }
   nav a.active {
     text-decoration: none;
@@ -86,16 +91,23 @@ import ThemeToggler from "./ThemeToggler.astro";
         href="https://ivorum.github.io/volts-documentation/"
         >Docs</a
       >
-      <script>
-        try {
+      <div class="nava">
+        <script is:inline>
           if (localStorage.getItem("volts_token")) {
-            document.write("<a href='/login'>Acount</a>");
+            document.write(
+              "<a style='     color: var(--black); border-bottom: 4px solid transparent; text-decoration: none;' href='/acount'>Acount</a>"
+            );
+            document.write(
+              "<a style='     color: var(--black); border-bottom: 4px solid transparent; text-decoration: none;' href='/workplaces'>Workplaces</a>"
+            );
           } else {
-            document.write("<a href='/login'>Login</a>");
+            document.write(
+              "<a style='     color: var(--black); border-bottom: 4px solid transparent; text-decoration: none;' href='/login'>Login</a>"
+            );
           }
-        } catch (error) {}
-      </script>
-      <a href="/login">Login</a>
+        </script>
+      </div>
+      <a href="/about">About</a>
       <ThemeToggler />
     </div>
   </nav>
