@@ -4,7 +4,7 @@ import Main from "../layouts/Main.astro";
 
 <Main>
   <h1>Wellcome to your profile</h1>
-  <script>
+  <script is:inline>
     let userFirstName;
     let userLastName;
     let userEmail;
@@ -30,9 +30,11 @@ import Main from "../layouts/Main.astro";
       userEmail = email;
     }
 
-    await getUserData();
-    console.log("fist name:", userFirstName);
-    console.log("last name:", userLastName);
-    console.log("emai:", userEmail);
+    getUserData().then((result) => {
+      console.log("fist name:", userFirstName);
+      console.log("last name:", userLastName);
+      console.log("emai:", userEmail);
+      document.write(`<a>${userFirstName}</a>`);
+    });
   </script>
 </Main>
