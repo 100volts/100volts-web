@@ -17,7 +17,7 @@ const { title, subtitle, poster } = Astro.props.frontmatter;
       src={poster}
       alt=""
       width="100%"
-      hidden="480px"
+      height="480px"
       class="figure__image"
     />
     <figcaption>
@@ -28,3 +28,12 @@ const { title, subtitle, poster } = Astro.props.frontmatter;
   <h2>{subtitle}</h2>
   <slot />
 </Main>
+
+<style>
+  .figure {
+    margin: 0;
+  }
+  .figure__image {
+    max-width: 100%;
+  }
+</style>
