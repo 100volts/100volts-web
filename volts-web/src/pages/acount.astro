@@ -1,5 +1,8 @@
 ---
 import Main from "../layouts/Main.astro";
+let pageUserName = "";
+let lastuserName = "";
+let pageEmail = "";
 ---
 
 <Main title="Acount">
@@ -34,7 +37,12 @@ import Main from "../layouts/Main.astro";
       console.log("fist name:", userFirstName);
       console.log("last name:", userLastName);
       console.log("emai:", userEmail);
-      document.write(`<a>${userFirstName}</a>`);
+      pageUserName = userFirstName;
+      pageLastName = userLastName;
+      pageEmail = userEmail;
     });
   </script>
+  <a>First name:</a>
+  <a>Last name: </a>
+  <a>Email:</a>
 </Main>
