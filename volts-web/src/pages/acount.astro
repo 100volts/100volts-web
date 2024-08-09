@@ -4,4 +4,35 @@ import Main from "../layouts/Main.astro";
 
 <Main>
   <h1>Wellcome to your profile</h1>
+  <script>
+    let userFirstName;
+    let userLastName;
+    let userEmail;
+
+    async function getUserData() {
+      const userToken = localStorage.getItem("volts_token");
+      const response = await fetch(
+        "http://localhost:8081/api/v1/company/user",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${userToken}`,
+          },
+        }
+      );
+      const datat = await response.json();
+      const { first_name } = datat;
+      const { last_name } = datat;
+      const { email } = datat;
+      userFirstName = first_name;
+      userLastName = last_name;
+      userEmail = email;
+    }
+
+    await getUserData();
+    console.log("fist name:", userFirstName);
+    console.log("last name:", userLastName);
+    console.log("emai:", userEmail);
+  </script>
 </Main>
