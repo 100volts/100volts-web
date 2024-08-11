@@ -1,7 +1,18 @@
 ---
 import Main from "../layouts/Main.astro";
+import Cards from "../../components/Cards.astro";
 ---
 
 <Main title="Volts">
   <body> Main pages </body>
+  <Cards
+    cards={[
+      {
+        to: "/about",
+        gradientFrom: "#1D438A",
+        gradientTo: "#00BFB2",
+        title: "About",
+      },
+    ]}
+  />
 </Main>
