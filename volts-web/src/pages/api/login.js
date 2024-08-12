@@ -24,9 +24,6 @@ form.addEventListener("submit", async (e) => {
   const { access_token } = datat;
   const { role } = datat;
 
-  // Access the "name" field from package.json
-  console.log(pkg.version); 
-
   localStorage.setItem("volts_token", access_token);
   localStorage.setItem("volts_user_role", role);
   
