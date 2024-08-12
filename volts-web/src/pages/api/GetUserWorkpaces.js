@@ -1,5 +1,5 @@
 import pkg from "../../../package.json" assert { type: "json" };
-import Company from "../../layouts/Company.astro"
+import Company from "../../../components/Company.astro"
     const address = pkg["volts-server"];
 
     async function getUserData() {
@@ -20,7 +20,7 @@ import Company from "../../layouts/Company.astro"
             document.getElementById('company_name').innerText = company_name
             //document.getElementById('company_name').innerText = CompanyButton({companyName:company_name,companyUrl:company_name,layout:Company });
         }catch (error) {
-            document.getElementById('result').innerText = 'Failed to fetch data: ' + error.message;
+            document.getElementById('company_name').innerText = 'Failed to fetch data: ' + error.message;
         }
     }
 
