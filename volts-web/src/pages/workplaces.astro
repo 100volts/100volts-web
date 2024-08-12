@@ -1,5 +1,6 @@
 ---
 import Main from "../layouts/Main.astro";
+import Companys from "../../components/Companys.astro";
 ---
 
 <Main title="Workspaces">
@@ -7,5 +8,12 @@ import Main from "../layouts/Main.astro";
   <script src="./api/GetUserWorkpaces.js"></script>
   <dir class="Workplaces">
     <button><a id="company_name"></a></button>
+    <Companys
+      companies={[
+        {
+          companyName: "markeli",
+        },
+      ]}
+    />
   </dir>
 </Main>

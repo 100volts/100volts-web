@@ -1,0 +1,14 @@
+---
+import type { Props as CompanyProps } from "./Company.astro";
+import Company from "./Company.astro";
+
+type Props = {
+  companies: CompanyProps[];
+};
+
+const { companies } = Astro.props;
+---
+
+<div class="cards">
+  {companies.map((company) => <Company {...company} />)}
+</div>
