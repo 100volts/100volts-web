@@ -1,0 +1,12 @@
+---
+import Main from "../layouts/Main.astro";
+
+type Props = {
+  companyName: string;
+};
+const { companyName } = Astro.props;
+---
+
+<Main title={companyName}>
+  Hello {companyName}
+</Main>

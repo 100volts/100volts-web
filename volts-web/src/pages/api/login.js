@@ -1,12 +1,14 @@
 const form = document.querySelector("form");
+import pkg from '../../../package.json' assert { type: 'json' };
 //var cors = require('cors');
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const data = new FormData(form);
+  const address=pkg["volts-server"]; 
 
   const response = await fetch(
-    "http://localhost:8081/api/vi/auth/authenticate",
+    `http://${address}:8081/api/vi/auth/authenticate`,
     {
       method: "POST",
       headers: {
@@ -21,6 +23,9 @@ form.addEventListener("submit", async (e) => {
   const datat = await response.json();
   const { access_token } = datat;
   const { role } = datat;
+
+  // Access the "name" field from package.json
+  console.log(pkg.version); 
 
   localStorage.setItem("volts_token", access_token);
   localStorage.setItem("volts_user_role", role);
