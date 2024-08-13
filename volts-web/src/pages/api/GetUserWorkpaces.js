@@ -17,6 +17,8 @@ import Company from "../../../components/Company.astro"
             );
             const datat = await response.json();
             const { company_name } = datat;
+            localStorage.setItem("volts_user_role", role);
+
             document.getElementById('company_name').innerText = company_name
             //document.getElementById('company_name').innerText = CompanyButton({companyName:company_name,companyUrl:company_name,layout:Company });
         }catch (error) {
