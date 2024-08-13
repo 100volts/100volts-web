@@ -6,15 +6,6 @@ import Companys from "../../components/Companys.astro";
 <Main title="Workspaces">
   <h1>Wellcome to your workpalces</h1>
   <div id="workplaces"></div>
-  <Companys
-    id="Workplaces"
-    companies={[
-      {
-        companyName: "markeli123",
-      },
-    ]}
-  />
-
   <script is:inline>
     if (
       localStorage.getItem("company_name") &&
@@ -22,11 +13,14 @@ import Companys from "../../components/Companys.astro";
     ) {
       const cname = localStorage.getItem("company_name");
       document.getElementById("workplaces").innerText =
-        `Hello ${cname}`;
-      document.write(
-        `<Companys companies={[ {companyName:${cname},},]}/>`
-      );
-      console.log("all is done");
+        `Hello123 ${cname}`;
+      let a = document.createElement("a");
+      a.href = "/workplaces-dashboar";
+      let img = document.createElement("img");
+      img.src = "/workplaces/Markeli.png";
+      img.alt = "Workplase Banner";
+      a.appendChild(img);
+      document.getElementById("workplaces").appendChild(a);
     }
   </script>
 </Main>

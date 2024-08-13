@@ -1,0 +1,24 @@
+---
+import Main from "../layouts/Main.astro";
+---
+
+<Main title="Volts">
+  <script is:inline>
+    if (localStorage.getItem("company_name")) {
+      document.write(
+        `<div style='background-image: url("../../public/workplaces/Markeli.png"); height: 250px;'> 
+        </div>
+        <h1 style='padding:20px;''>
+             ${localStorage.getItem("company_name")}</h1> `
+      );
+    }
+  </script>
+  <body> </body>
+</Main>
+
+<style>
+  .workplase-banner {
+    background-color: brown;
+    padding:;
+  }
+</style>
