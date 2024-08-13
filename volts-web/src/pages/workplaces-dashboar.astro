@@ -1,13 +1,13 @@
 ---
 import Main from "../layouts/Main.astro";
-import App from "./chart/ChartDisplaytest";
+import AddElmeterButton from "../../components/react/AddElmeterButton";
 ---
 
 <Main title="Volts">
   <script is:inline>
     if (localStorage.getItem("company_name")) {
       document.write(
-        `<div style='background-image: url("../../public/workplaces/Markeli.png"); height: 250px;'> 
+        `<div style='background-image: url("/workplaces/Markeli.png"); height: 250px;'> 
         </div>
         <h1 style='padding:20px;''>
              ${localStorage.getItem("company_name")}</h1> `
@@ -19,6 +19,9 @@ import App from "./chart/ChartDisplaytest";
       <canvas id="acquisitions"></canvas>
     </div>
     <script src="./chart/acquisitions.js"></script>
+    <div class="elmeter">
+      <AddElmeterButton client:load />
+    </div>
   </body>
 </Main>
 
