@@ -5,15 +5,28 @@ import Companys from "../../components/Companys.astro";
 
 <Main title="Workspaces">
   <h1>Wellcome to your workpalces</h1>
-  <script src="./api/GetUserWorkpaces.js"></script>
-  <dir class="Workplaces">
-    <button><a id="company_name"></a></button>
-    <Companys
-      companies={[
-        {
-          companyName: "markeli",
-        },
-      ]}
-    />
-  </dir>
+  <div id="workplaces"></div>
+  <Companys
+    id="Workplaces"
+    companies={[
+      {
+        companyName: "markeli123",
+      },
+    ]}
+  />
+
+  <script is:inline>
+    if (
+      localStorage.getItem("company_name") &&
+      document.getElementById("workplaces") != null
+    ) {
+      const cname = localStorage.getItem("company_name");
+      document.getElementById("workplaces").innerText =
+        `Hello ${cname}`;
+      document.write(
+        `<Companys companies={[ {companyName:${cname},},]}/>`
+      );
+      console.log("all is done");
+    }
+  </script>
 </Main>
