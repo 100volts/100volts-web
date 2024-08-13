@@ -1,0 +1,33 @@
+---
+import Main from "../layouts/Main.astro";
+import AddElmeterButton from "../../components/react/AddElmeterButton";
+---
+
+<Main title="Volts">
+  <script is:inline>
+    if (localStorage.getItem("company_name")) {
+      document.write(
+        `<div style='background-image: url("/workplaces/Markeli.png"); height: 250px;'> 
+        </div>
+        <h1 style='padding:20px;''>
+             ${localStorage.getItem("company_name")}</h1> `
+      );
+    }
+  </script>
+  <body>
+    <div>
+      <canvas id="acquisitions"></canvas>
+    </div>
+    <script src="./chart/acquisitions.js"></script>
+    <div class="elmeter">
+      <AddElmeterButton client:load />
+    </div>
+  </body>
+</Main>
+
+<style>
+  .workplase-banner {
+    background-color: brown;
+    padding:;
+  }
+</style>
