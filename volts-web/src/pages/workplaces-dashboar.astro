@@ -1,5 +1,6 @@
 ---
 import Main from "../layouts/Main.astro";
+import App from "./chart/ChartDisplaytest";
 ---
 
 <Main title="Volts">
@@ -13,7 +14,12 @@ import Main from "../layouts/Main.astro";
       );
     }
   </script>
-  <body> </body>
+  <body>
+    <div>
+      <canvas id="acquisitions"></canvas>
+    </div>
+    <script src="./chart/acquisitions.js"></script>
+  </body>
 </Main>
 
 <style>
