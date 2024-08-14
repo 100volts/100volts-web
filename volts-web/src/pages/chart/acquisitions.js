@@ -27,3 +27,11 @@ import Chart from 'chart.js/auto'
     }
   );
 })();
+
+/*
+How to call the simple chart 
+<div>
+      <canvas id="acquisitions"></canvas>
+    </div>
+    <script src="./chart/acquisitions.js"></script>
+*/

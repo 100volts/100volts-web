@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import { addElmeter, elmeters } from '../../src/pages/elmeterStore';
+import { addElmeter, elmeters } from '../datastore/elmeterStore';
 import { useStore } from '@nanostores/react';
 
 export default function AddElMeter(){

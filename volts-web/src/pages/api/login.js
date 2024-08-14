@@ -1,7 +1,6 @@
 const form = document.querySelector("form");
 import pkg from '../../../package.json' assert { type: 'json' };
-import Company from "../../../components/Company.astro"
-    const address = pkg["volts-server"];
+const address = pkg["volts-server"];
 //var cors = require('cors');
 
 form.addEventListener("submit", async (e) => {
