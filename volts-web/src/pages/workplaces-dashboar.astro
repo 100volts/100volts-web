@@ -1,6 +1,6 @@
 ---
 import Main from "../layouts/Main.astro";
-import GetLastMeterData from "../components/react/GetLastMeterData";
+import GetElectricMeterLastData from "./api/GetElectricMeterLastData.jsx";
 //<GetLastMeterData client:only />
 ---
 
@@ -17,8 +17,7 @@ import GetLastMeterData from "../components/react/GetLastMeterData";
   </script>
   <body>
     <div id="elmeter" class="elmeter">
-      <script src="./api/GetElectricMeterLastData.js"
-      ></script>
+      <GetElectricMeterLastData client:only />
     </div>
   </body>
 </Main>

@@ -1,12 +1,9 @@
-import pkg from "../../../package.json" assert { type: "json" };
-import Company from "../../../components/Company.astro"
-    const address = pkg["volts-server"];
 
-    async function getUserData() {
+export default async function getUserData() {
         try{
             const userToken = localStorage.getItem("volts_token");
             const response = await fetch(
-              `http://${address}:8081/api/v1/company/by/user`,
+              `http://192.168.0.102:8081/api/v1/company/by/user`,
               {
                 method: "GET",
                 headers: {
@@ -21,8 +18,7 @@ import Company from "../../../components/Company.astro"
 
             document.getElementById('company_name').innerText = company_name
             //document.getElementById('company_name').innerText = CompanyButton({companyName:company_name,companyUrl:company_name,layout:Company });
-        }catch (error) {
-            document.getElementById('company_name').innerText = 'Failed to fetch data: ' + error.message;
+        }catch (error) {//TODO add error handling
         }
     }
 

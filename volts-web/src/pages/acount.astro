@@ -1,10 +1,11 @@
 ---
 import Main from "../layouts/Main.astro";
+import ComapanyUserData from "./api/ComapanyUserData.jsx";
 ---
 
 <Main title="Acount">
   <h1>Acconut</h1>
-  <script src="./api/comapanyUserData.js"></script>
+  <ComapanyUserData client:only />
   <div id="user-data">
     Name: <a id="first_name"></a><br />
     Last name: <a id="last_name"></a><br />
