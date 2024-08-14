@@ -1,6 +1,6 @@
 ---
 import Main from "../layouts/Main.astro";
-import AddElmeterButton from "../../components/react/AddElmeterButton";
+import GetLastMeterData from "../components/react/GetLastMeterData";
 ---
 
 <Main title="Volts">
@@ -15,12 +15,8 @@ import AddElmeterButton from "../../components/react/AddElmeterButton";
     }
   </script>
   <body>
-    <div>
-      <canvas id="acquisitions"></canvas>
-    </div>
-    <script src="./chart/acquisitions.js"></script>
-    <div class="elmeter">
-      <AddElmeterButton client:load />
+    <div id="elmeter" class="elmeter">
+      <GetLastMeterData client:only />
     </div>
     <div class="table">
       <ReactTableTest client:load />
