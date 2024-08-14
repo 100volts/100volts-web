@@ -51,10 +51,22 @@ async function getElmeterDataFromAddress(elmeterAddress) {
           },
         );
         const datat = await response.json();
-        const {name}=datat
+        const {name,address,electric_meter_data}=datat
+        const {merterId,voltagell1,voltagell2,voltagell3,currentl1,currentl2,currentl3,activepowerl1,activepowerl2,activepowerl3,pfl1,pfl2,pfl3,totalActivePpower,totalActiveEnergyImportTariff1,totalActiveEnergyImportTariff2}=electric_meter_data
         let a = document.createElement("a");
-        a.innerHTML = name;
+        a.innerHTML = `<h2>${name} Address: ${address}</h2> <br>
+        <table>
+        <tr><td>Name</td><td>L1</td><td>L2</td><td>L3</td></tr>
+        <tr><td>Voltage:</td><td>${voltagell1}</td><td>${voltagell2}</td><td>${voltagell3}</td><td>V</td></tr>
+        <tr><td>Curent:</td><td>${currentl1}</td><td>${currentl2}</td><td>${currentl3}</td><td>A</td></tr>
+        <tr><td>Active Power</td><td>${activepowerl1}</td><td>${activepowerl2}</td><td>${activepowerl3}</td>W</tr>
+        <tr><td>pfl1</td><td>${pfl1}</td><td>${pfl2}</td><td>${pfl3}</td></tr>
+        <tr><td>Total Active Power: </td><td>${totalActivePpower}</td></tr>
+        </table>
+
+        `;
         document.getElementById('elmeter').appendChild(a);
+        document.getElementById('elmeter').appendChild(document.createElement("br"));
         document.getElementById('elmeter').appendChild(document.createElement("br"));
 
         console.log(datat)

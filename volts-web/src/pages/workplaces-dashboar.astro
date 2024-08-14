@@ -1,6 +1,7 @@
 ---
 import Main from "../layouts/Main.astro";
 import GetLastMeterData from "../components/react/GetLastMeterData";
+//<GetLastMeterData client:only />
 ---
 
 <Main title="Volts">
@@ -16,10 +17,8 @@ import GetLastMeterData from "../components/react/GetLastMeterData";
   </script>
   <body>
     <div id="elmeter" class="elmeter">
-      <GetLastMeterData client:only />
-    </div>
-    <div class="table">
-      <ReactTableTest client:load />
+      <script src="./api/GetElectricMeterLastData.js"
+      ></script>
     </div>
   </body>
 </Main>
