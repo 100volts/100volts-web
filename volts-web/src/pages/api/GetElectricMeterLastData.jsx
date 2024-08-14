@@ -1,8 +1,7 @@
-import { useStore } from '@nanostores/react'; 
 import pkg from "../../../package.json";
 const urladdress = pkg["volts-server"];
 
-async function getElmeterData() {
+export default async function getElmeterData() {
     try{
         const userToken = localStorage.getItem("volts_token");
         const companyName = localStorage.getItem("company_name");

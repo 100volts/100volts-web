@@ -1,6 +1,6 @@
 ---
 import Main from "../layouts/Main.astro";
-
+import UserLogin from "./api/UserLogin";
 const pageName = "Login";
 ---
 
@@ -38,5 +38,5 @@ const pageName = "Login";
       <input type="submit" value="Login" />
     </form>
   </div>
-  <script src="./api/login.js"></script>
+  <UserLogin client:only />
 </Main>

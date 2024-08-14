@@ -1,11 +1,9 @@
-import pkg from "../../../package.json" assert { type: "json" };
-    const address = pkg["volts-server"];
 
-    async function getUserData() {
+export default async function getUserData() {
         try{
             const userToken = localStorage.getItem("volts_token");
             const response = await fetch(
-              `http://${address}:8081/api/v1/company/user`,
+              `http://192.168.0.102:8081/api/v1/company/user`,
               {
                 method: "GET",
                 headers: {
@@ -22,8 +20,10 @@ import pkg from "../../../package.json" assert { type: "json" };
             document.getElementById('last_name').innerText = last_name;
             document.getElementById('first_name').innerText = first_name;
         }catch (error) {
-            document.getElementById('result').innerText = 'Failed to fetch data: ' + error.message;
+            
         }
     }
 
+
+    
     getUserData();

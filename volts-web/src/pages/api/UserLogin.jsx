@@ -1,15 +1,15 @@
 const form = document.querySelector("form");
-import pkg from '../../../package.json' assert { type: 'json' };
-const address = pkg["volts-server"];
+//import pkg from '../../../package.json' assert { type: 'json' };
+//const address = pkg["volts-server"];
 //var cors = require('cors');
 
-form.addEventListener("submit", async (e) => {
+ form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const data = new FormData(form);
 
 
   const response = await fetch(
-    `http://${address}:8081/api/vi/auth/authenticate`,
+    `http://192.168.0.102:8081/api/vi/auth/authenticate`,
     {
       method: "POST",
       headers: {
@@ -43,12 +43,11 @@ form.addEventListener("submit", async (e) => {
     */
 });
 
-
-    async function getUserData() {
+export default async function getUserData() {
         try{
             const userToken = localStorage.getItem("volts_token");
             const response = await fetch(
-              `http://${address}:8081/api/v1/company/by/user`,
+              `http://192.168.0.102:8081/api/v1/company/by/user`,
               {
                 method: "GET",
                 headers: {
@@ -64,7 +63,7 @@ form.addEventListener("submit", async (e) => {
             //document.getElementById('company_name').innerText = company_name
             //document.getElementById('company_name').innerText = CompanyButton({companyName:company_name,companyUrl:company_name,layout:Company });
         }catch (error) {
-            document.getElementById('company_name').innerText = 'Failed to fetch data: ' + error.message;
+            //TODO add error handling
         }
     }
 
