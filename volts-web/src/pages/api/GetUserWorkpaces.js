@@ -1,5 +1,4 @@
 import pkg from "../../../package.json" assert { type: "json" };
-import Company from "../../../components/Company.astro"
     const address = pkg["volts-server"];
 
     async function getUserData() {
