@@ -16,10 +16,11 @@ const { title, subtitle, poster } = Astro.props.frontmatter;
     <img
       src={poster}
       alt=""
-      width="100%"
+      width="880px"
       height="480px"
       class="figure__image"
     />
+    <br />
     <figcaption class="figure__caption">
       Poster image from {title.toLocaleLowerCase()}
     </figcaption>
@@ -31,6 +32,9 @@ const { title, subtitle, poster } = Astro.props.frontmatter;
 
 <style>
   .figure {
+    display: flex;
+    justify-content: center;
+    flex-flow: column wrap;
     margin: 0;
   }
   .figure__image {
