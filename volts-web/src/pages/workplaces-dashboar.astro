@@ -1,30 +1,46 @@
 ---
 import Main from "../layouts/Main.astro";
 import GetElectricMeterLastData from "./api/GetElectricMeterLastData.jsx";
+import WorplaysMeters from "./api/WorplaysMeters"
 //<GetLastMeterData client:only />
+// <GetElectricMeterLastData client:only />
 ---
 
-<Main title="Volts">
-  <script is:inline>
-    if (localStorage.getItem("company_name")) {
-      document.write(
-        `<div style='background-image: url("/workplaces/Markeli.png"); height: 250px;'> 
-        </div>
-        <h1 style='padding:20px;''>
-             ${localStorage.getItem("company_name")}</h1> `
-      );
-    }
-  </script>
-  <body>
+<Main title="Volts" >
+
+  <body class="workplaces__c">
+    <div id="workplaces" class="workplaces__c"></div>
     <div id="elmeter" class="elmeter">
-      <GetElectricMeterLastData client:only />
+      <WorplaysMeters client:only/>
     </div>
   </body>
+  
+  <script is:inline class="workplaces__c">
+    if (
+      localStorage.getItem("company_name") &&
+      document.getElementById("workplaces") != null
+    ) {
+      const cname = localStorage.getItem("company_name");
+      let a = document.createElement("a");
+      a.href = "/workplaces-dashboar";
+      let img = document.createElement("img");
+      img.src = "/workplaces/Markeli.png";
+      img.alt = "Workplase Banner";
+      a.appendChild(img);
+      document.getElementById("workplaces").appendChild(a);
+    }
+  </script>
 </Main>
 
 <style>
   .workplase-banner {
     background-color: brown;
     padding:;
+  }
+  
+  .workplaces__c{
+    display: flex;
+    justify-items: center;
+    justify-content: center
   }
 </style>
