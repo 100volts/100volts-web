@@ -2,7 +2,6 @@
 import Main from "../layouts/Main.astro";
 import UserLogin from "./api/UserLogin";
 const pageName = "Login";
-import GetUserWorkpaces from "./api/GetUserWorkpaces"
 ---
 
 <script>
@@ -40,5 +39,4 @@ import GetUserWorkpaces from "./api/GetUserWorkpaces"
     </form>
   </div>
   <UserLogin client:only />
-  <GetUserWorkpaces client:only />
 </Main>
