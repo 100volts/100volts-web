@@ -22,6 +22,16 @@ export default async function getUserData() {
         }catch (error) {
             
         }
+
+        return(
+          <>
+              <div id="user-data">
+                Name: <a id="first_name"></a><br />
+                Last name: <a id="last_name"></a><br />
+                Email: <a id="email"></a><br />
+              </div>
+          </>
+        )
     }
 
 
