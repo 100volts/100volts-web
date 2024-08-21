@@ -95,10 +95,11 @@ import ThemeToggler from "./ThemeToggler.astro";
         <script is:inline>
           if (localStorage.getItem("volts_token")) {
             document.write(
-              "<a style='     color: var(--black); border-bottom: 4px solid transparent; text-decoration: none;' href='/acount'>Acount</a>"
+              `<a style='color: var(--black); border-bottom: 4px solid transparent; text-decoration: none;' href='/acount'>
+                Acount</a>`
             );
             document.write(
-              "<a style='     color: var(--black); border-bottom: 4px solid transparent; text-decoration: none;' href='/workplaces'>Workplaces</a>"
+              "<a style='color: var(--black); border-bottom: 4px solid transparent; text-decoration: none;' href='/workplaces'>Workplaces</a>"
             );
           } else {
             document.write(

@@ -105,13 +105,15 @@ const ElmeterDataComponent = () => {
       {data.map((elmeter, index) => (
         <div key={index}>
             <h2>{elmeter.name} - {elmeter.address}</h2>
-            <table key={elmeter}>
+            <table >
+            <tbody>
             <tr><td>Name</td><td>L1</td><td>L2</td><td>L3</td></tr>
             <tr><td>Voltage:</td><td>{elmeter.electric_meter_data.voltagell1}</td><td>{elmeter.electric_meter_data.voltagell2}</td><td>{elmeter.electric_meter_data.voltagell3}</td><td>V</td></tr>
             <tr><td>Curent:</td><td>{elmeter.electric_meter_data.currentl1}</td><td>{elmeter.electric_meter_data.currentl2}</td><td>{elmeter.electric_meter_data.currentl3}</td><td>A</td></tr>
             <tr><td>Active Power</td><td>{elmeter.electric_meter_data.activepowerl1}</td><td>{elmeter.electric_meter_data.activepowerl2}</td><td>{elmeter.electric_meter_data.activepowerl3}</td>W</tr>
             <tr><td>pfl1</td><td>{elmeter.electric_meter_data.pfl1}</td><td>{elmeter.electric_meter_data.pfl2}</td><td>{elmeter.electric_meter_data.pfl3}</td></tr>
             <tr><td>Total Active Power: </td><td>{elmeter.electric_meter_data.totalActivePpower}</td></tr>
+            </tbody>
             </table>
         </div>
       ))}

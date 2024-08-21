@@ -1,40 +1,45 @@
 
 export default async function getUserData() {
-        try{
-            const userToken = localStorage.getItem("volts_token");
-            const response = await fetch(
-              `http://localhost:8081/api/v1/company/by/user`,
-              {
-                method: "GET",
-                headers: {
-                  "Content-Type": "application/json",
-                  Authorization: `Bearer ${userToken}`,
-                },
-              }
-            );
-            const datat = await response.json();
-            const { company_name } = datat;
-            //localStorage.setItem("volts_user_role", role);
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
 
-            document.getElementById('company_name').innerText = company_name
 
-            const now = new Date();
-            const timestamp = now.getTime(); // Returns the timestamp in milliseconds
-            //console.log(`Current timestamp: ${timestamp}`);
-
-            document.getElementById('company_name').innerText = CompanyButton({companyName:company_name,companyUrl:company_name,layout:Company });
-        }catch (error) {//TODO add error handling
+  const getWorkplaceData = async () => {
+    try {
+      const userToken = localStorage.getItem('volts_token');
+      const companyName = localStorage.getItem('company_name');
+      const response = await fetch(
+        `http://localhost:8081/api/v1/company/by/user`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${userToken}`,
+          },
         }
-    }
+      );
+      const datat = await response.json();
+      const { company_name } = datat;
 
-    /*
-    function CompanyButton({ companyName, companyUrl, layout }) {
-        return (
-            <button onClick={layout}>
-                <a id="company_name" href={companyUrl} target="_blank">{companyName}</a>
-            </button>
-        );
+      setData(company_name);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
     }
+  };
 
-    */
-    await getUserData();
+  useEffect(() => {
+    getWorkplaceData();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+
+  return (<>
+
+    <a href="/workplaces-dashboar">
+      <img src="/workplaces/Markeli.png"></img>
+    </a>
+  </>);
+}
