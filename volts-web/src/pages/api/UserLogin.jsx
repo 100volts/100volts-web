@@ -9,7 +9,7 @@ const form = document.querySelector("form");
 
 
   const response = await fetch(
-    `http://localhost:8081/api/vi/auth/authenticate`,
+    `http://192.168.0.102:8081/api/vi/auth/authenticate`,
     {
       method: "POST",
       headers: {

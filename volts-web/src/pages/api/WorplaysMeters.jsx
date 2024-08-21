@@ -11,7 +11,7 @@ const ElmeterDataComponent = () => {
       const userToken = localStorage.getItem('volts_token');
       const companyName = localStorage.getItem('company_name');
       const response = await fetch(
-        'http://localhost:8081/elmeter/company/address/list',
+        'http://192.168.0.102:8081/elmeter/company/address/list',
         {
           method: 'POST',
           headers: {
@@ -45,7 +45,7 @@ const ElmeterDataComponent = () => {
     try {
       const userToken = localStorage.getItem('volts_token');
       const companyName = localStorage.getItem('company_name');
-      const response = await fetch('http://localhost:8081/elmeter/data/last', {
+      const response = await fetch('http://192.168.0.102:8081/elmeter/data/last', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
