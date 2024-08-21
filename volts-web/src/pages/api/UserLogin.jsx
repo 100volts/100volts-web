@@ -47,7 +47,7 @@ export default async function getUserData() {
         try{
             const userToken = localStorage.getItem("volts_token");
             const response = await fetch(
-              `http://localhost:8081/api/v1/company/by/user`,
+              `http://192.168.0.102:8081/api/v1/company/by/user`,
               {
                 method: "GET",
                 headers: {
