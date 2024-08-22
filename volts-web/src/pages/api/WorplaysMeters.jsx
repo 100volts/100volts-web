@@ -113,6 +113,7 @@ const ElmeterDataComponent = () => {
             <tr><td>Active Power</td><td>{elmeter.electric_meter_data.activepowerl1}</td><td>{elmeter.electric_meter_data.activepowerl2}</td><td>{elmeter.electric_meter_data.activepowerl3}</td>W</tr>
             <tr><td>pfl1</td><td>{elmeter.electric_meter_data.pfl1}</td><td>{elmeter.electric_meter_data.pfl2}</td><td>{elmeter.electric_meter_data.pfl3}</td></tr>
             <tr><td>Total Active Power: </td><td>{elmeter.electric_meter_data.totalActivePpower}</td></tr>
+            <tr><td>Total Active Energy: </td><td>{elmeter.electric_meter_data.totalActiveEnergyImportTariff1}</td></tr>
             </tbody>
             </table>
         </div>
