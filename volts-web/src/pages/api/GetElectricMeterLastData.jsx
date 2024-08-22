@@ -59,9 +59,9 @@ async function getElmeterDataFromAddress(elmeterAddress) {
         <tr><td>Voltage:</td><td>${voltagell1}</td><td>${voltagell2}</td><td>${voltagell3}</td><td>V</td></tr>
         <tr><td>Curent:</td><td>${currentl1}</td><td>${currentl2}</td><td>${currentl3}</td><td>A</td></tr>
         <tr><td>Active Power</td><td>${activepowerl1}</td><td>${activepowerl2}</td><td>${activepowerl3}</td>W</tr>
-        <tr><td>pfl1</td><td>${pfl1}</td><td>${pfl2}</td><td>${pfl3}</td></tr>
-        <tr><td>Total Total Active Power: </td><td>${totalActivePpower}</td></tr>
-        <tr><td>Total Total Active Energy: </td><td>${totalActiveEnergyImportTariff1}</td></tr>
+        <tr><td>Pfl1</td><td>${pfl1}</td><td>${pfl2}</td><td>${pfl3}</td></tr>
+        <tr><td>Total Active Power: </td><td>${totalActivePpower}</td></tr>
+        <tr><td>Total Active Energy: </td><td>${totalActiveEnergyImportTariff1}</td></tr>
         </table>
 
         `;
