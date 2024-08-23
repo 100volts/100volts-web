@@ -129,6 +129,10 @@ const ElmeterDataComponent = () => {
               <td>Total Active Power: </td>
               <td>{elmeter.electric_meter_data.totalActivePpower}</td>
             </tr>
+            <tr>
+              <td>Total Active Energy: </td>
+              <td>{elmeter.electric_meter_data.totalActiveEnergyImportTariff1}</td>
+            </tr>
             </tbody>
             </table>
         </div>
