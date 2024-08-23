@@ -140,9 +140,12 @@ const ElmeterDataComponent = () => {
             </tbody>
             </table>
             <div  style={{display: "flex", justifyItems:"center", alignItems: "flex-start", flexWrap: "nowrap"}}>
-              <Example/>
-              <Example/>
-              <Example/>
+              <div className='pie_chart_with_needle'  style={{display: "flex", justifyItems:"center", alignItems: "flex-start", flexWrap: "nowrap"}}>
+                <Example/>
+                <Example/>
+                <Example/>
+              </div>
+              <div className='dayly_read_tarrif'></div>
             </div>
             </div>
         </div>
