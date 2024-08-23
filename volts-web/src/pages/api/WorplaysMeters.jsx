@@ -86,13 +86,14 @@ const ElmeterDataComponent = () => {
   if (error) return <div>Error: {error}</div>;
  // const chart=new Example();
   //console.log(chart)
+  //<h1>Elmeter Data</h1>
   return (
     <div>
-      <h1>Elmeter Data</h1>
-      <br></br>  
+      <br></br> 
       {data.map((elmeter, index) => (
-        <div key={index}>
+        <div key={index}  >
             <h2>{elmeter.name} - {elmeter.address}</h2>
+            <div style={{display: "flex", justifyItems:"center", alignItems: "flex-start", flexWrap: "nowrap"}}>
             <table >
             <tbody>
             <tr>
@@ -138,7 +139,12 @@ const ElmeterDataComponent = () => {
             </tr>
             </tbody>
             </table>
-            <Example/>
+            <div  style={{display: "flex", justifyItems:"center", alignItems: "flex-start", flexWrap: "nowrap"}}>
+              <Example/>
+              <Example/>
+              <Example/>
+            </div>
+            </div>
         </div>
       ))}
     </div>
