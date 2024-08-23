@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import pkg from "../../../package.json";
+const urladdress = pkg["volts-server"];
 
 const ElmeterDataComponent = () => {
   const [data, setData] = useState([]);
@@ -10,17 +12,18 @@ const ElmeterDataComponent = () => {
     try {
       const userToken = localStorage.getItem('volts_token');
       const companyName = localStorage.getItem('company_name');
+      const body= JSON.stringify({
+        company_name: companyName,
+      })
       const response = await fetch(
-        'http://192.168.0.102:8081/elmeter/company/address/list',
+        `http://${urladdress}:8081/elmeter/company/address/list`,
         {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${userToken}`,
           },
-          body: JSON.stringify({
-            company_name: companyName,
-          }),
+          body,
         }
       );
       const datat = await response.json();
@@ -45,7 +48,7 @@ const ElmeterDataComponent = () => {
     try {
       const userToken = localStorage.getItem('volts_token');
       const companyName = localStorage.getItem('company_name');
-      const response = await fetch('http://192.168.0.102:8081/elmeter/data/last', {
+      const response = await fetch(`http://${urladdress}:8081/elmeter/data/last`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -59,24 +62,6 @@ const ElmeterDataComponent = () => {
 
       const datat = await response.json();
       const { name, address, electric_meter_data } = datat;
-      const {
-        meterId,
-        voltagell1,
-        voltagell2,
-        voltagell3,
-        currentl1,
-        currentl2,
-        currentl3,
-        activepowerl1,
-        activepowerl2,
-        activepowerl3,
-        pfl1,
-        pfl2,
-        pfl3,
-        totalActivePpower,
-        totalActiveEnergyImportTariff1,
-        totalActiveEnergyImportTariff2,
-      } = electric_meter_data;
 
       // Return the relevant data
       return {
@@ -107,13 +92,47 @@ const ElmeterDataComponent = () => {
             <h2>{elmeter.name} - {elmeter.address}</h2>
             <table >
             <tbody>
-            <tr><td>Name</td><td>L1</td><td>L2</td><td>L3</td></tr>
-            <tr><td>Voltage:</td><td>{elmeter.electric_meter_data.voltagell1}</td><td>{elmeter.electric_meter_data.voltagell2}</td><td>{elmeter.electric_meter_data.voltagell3}</td><td>V</td></tr>
-            <tr><td>Curent:</td><td>{elmeter.electric_meter_data.currentl1}</td><td>{elmeter.electric_meter_data.currentl2}</td><td>{elmeter.electric_meter_data.currentl3}</td><td>A</td></tr>
-            <tr><td>Active Power</td><td>{elmeter.electric_meter_data.activepowerl1}</td><td>{elmeter.electric_meter_data.activepowerl2}</td><td>{elmeter.electric_meter_data.activepowerl3}</td>W</tr>
-            <tr><td>pfl1</td><td>{elmeter.electric_meter_data.pfl1}</td><td>{elmeter.electric_meter_data.pfl2}</td><td>{elmeter.electric_meter_data.pfl3}</td></tr>
-            <tr><td>Total Active Power: </td><td>{elmeter.electric_meter_data.totalActivePpower}</td></tr>
-            <tr><td>Total Active Energy: </td><td>{elmeter.electric_meter_data.totalActiveEnergyImportTariff1}</td></tr>
+            <tr>
+              <td>Name</td>
+              <td>L1</td>
+              <td>L2</td>
+              <td>L3</td>
+            </tr>
+            <tr>
+              <td>Voltage:</td>
+              <td>{elmeter.electric_meter_data.voltagell1}</td>
+              <td>{elmeter.electric_meter_data.voltagell2}</td>
+              <td>{elmeter.electric_meter_data.voltagell3}</td>
+              <td>V</td>
+            </tr>
+            <tr>
+              <td>Curent:</td>
+              <td>{elmeter.electric_meter_data.currentl1}</td>
+              <td>{elmeter.electric_meter_data.currentl2}</td>
+              <td>{elmeter.electric_meter_data.currentl3}</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Active Power</td>
+              <td>{elmeter.electric_meter_data.activepowerl1}</td>
+              <td>{elmeter.electric_meter_data.activepowerl2}</td>
+              <td>{elmeter.electric_meter_data.activepowerl3}</td>
+              <td>W</td>
+              </tr>
+            <tr>
+              <td>pfl1</td>
+              <td>{elmeter.electric_meter_data.pfl1}</td>
+              <td>{elmeter.electric_meter_data.pfl2}</td>
+              <td>{elmeter.electric_meter_data.pfl3}</td>
+            </tr>
+            <tr>
+              <td>Total Active Power: </td>
+              <td>{elmeter.electric_meter_data.totalActivePpower}</td>
+            </tr>
+            <tr>
+              <td>Total Active Energy: </td>
+              <td>{elmeter.electric_meter_data.totalActiveEnergyImportTariff1}</td>
+            </tr>
             </tbody>
             </table>
         </div>
