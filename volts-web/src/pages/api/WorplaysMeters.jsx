@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import pkg from "../../../package.json";
+import Example from '../chart/ExampleChart';
 const urladdress = pkg["volts-server"];
 
 const ElmeterDataComponent = () => {
@@ -83,10 +84,12 @@ const ElmeterDataComponent = () => {
   // Conditional rendering based on loading and error state
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
-
+ // const chart=new Example();
+  //console.log(chart)
   return (
     <div>
       <h1>Elmeter Data</h1>
+      <br></br>  
       {data.map((elmeter, index) => (
         <div key={index}>
             <h2>{elmeter.name} - {elmeter.address}</h2>
@@ -135,6 +138,7 @@ const ElmeterDataComponent = () => {
             </tr>
             </tbody>
             </table>
+            <Example/>
         </div>
       ))}
     </div>
