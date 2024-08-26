@@ -87,6 +87,11 @@ const ElmeterDataComponent = () => {
  // const chart=new Example();
   //console.log(chart)
   //<h1>Elmeter Data</h1>
+  const dataG = [
+    { name: 'A', value: 35, color: '#011F26' },
+    { name: 'B', value: 35, color: '#025E73' },
+    { name: 'C', value: 25, color: '#F2A71B' },
+  ];
   return (
     <div>
       <br></br> 
@@ -146,9 +151,10 @@ const ElmeterDataComponent = () => {
             </table>
             <div  style={{display: "flex", justifyItems:"center", alignItems: "flex-start", flexWrap: "nowrap"}}>
               <div className='pie_chart_with_needle'  style={{display: "flex", justifyItems:"center", alignItems: "flex-start", flexWrap: "nowrap"}}>
-                <Example/>
-                <Example/>
-                <Example/>
+                <Example niddleValue={45} data={dataG} chartName={"Voltage"}/>
+                <Example niddleValue={4.5034} data={dataG}  chartName={"Curent"}/>
+                <Example niddleValue={874.59} data={dataG}  chartName={"Power"}/>
+                <Example niddleValue={0.82420} data={dataG}  chartName={"Power Factor"}/>
               </div>
               <div className='dayly_read_tarrif'></div>
             </div>
