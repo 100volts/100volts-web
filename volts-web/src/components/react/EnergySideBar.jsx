@@ -17,13 +17,7 @@ export default function Component() {
           isVisible ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="flex h-20 items-center justify-between px-4">
-          <h2 className="text-2xl font-semibold">Utility Meters</h2>
-          <Button variant="ghost" size="icon" onClick={() => setIsVisible(!isVisible)} className="rounded-full">
-            <VolumeXIcon className="w-5 h-5" />
-            <span className="sr-only">Toggle sidebar</span>
-          </Button>
-        </div>
+
         <div className="flex-1 overflow-y-auto px-4 py-8">
           <div className="grid gap-4">
             <div className="flex items-center gap-4 rounded-md px-3 py-2 transition-colors hover:bg-muted">
