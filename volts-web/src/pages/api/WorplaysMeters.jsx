@@ -87,6 +87,7 @@ const ElmeterDataComponent = () => {
  // const chart=new Example();
   //console.log(chart)
   //<h1>Elmeter Data</h1>
+  console.log(data)
   const dataVoltage = [
     { name: 'A', value: 240, color: '#011F26' },
   ];

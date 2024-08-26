@@ -1,79 +1,16 @@
-const form = document.querySelector("form");
 import { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-
-//import pkg from '../../../package.json' assert { type: 'json' };
-//const address = pkg["volts-server"];
-//var cors = require('cors');
-/*
- form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const data = new FormData(form);
+import pkg from "../../../package.json";
+const urladdress = pkg["volts-server"];
 
 
-  const response = await fetch(
-    `http://localhost:8081/api/vi/auth/authenticate`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: data.get("email"),
-        password: data.get("password"),
-      }),
-    }
-  );
-  const datat = await response.json();
-  const { access_token } = datat;
-  const { role } = datat;
+const form = document.querySelector("form");
 
-  localStorage.setItem("volts_token", access_token);
-  localStorage.setItem("volts_user_role", role);
-  await getUserData();
-  
-  if (response.ok) {
-    console.log(datat);
-    location.href = "/";
-  }
-  /*
-  console.log(response);
-  const result = document.querySelector("#result");
-
-  console.log(result);
-  console.log(data.get("email"));
-  console.log(data.get("pass"));
-    
-});
-*/
 
 export default  function getUserData() {
-  /*
-        try{
-            const userToken = localStorage.getItem("volts_token");
-            const response = await fetch(
-              `http://localhost:8081/api/v1/company/by/user`,
-              {
-                method: "GET",
-                headers: {
-                  "Content-Type": "application/json",
-                  Authorization: `Bearer ${userToken}`,
-                },
-              }
-            );
-            const datat = await response.json();
-            const { company_name } = datat;
-
-            localStorage.setItem("company_name", company_name);
-            //document.getElementById('company_name').innerText = company_name
-            //document.getElementById('company_name').innerText = CompanyButton({companyName:company_name,companyUrl:company_name,layout:Company });
-        }catch (error) {
-            //TODO add error handling
-        }
-            */
         const [email, setEmail] = useState("")
         const [password, setPassword] = useState("")
         const [loading, setLoading] = useState(false)
@@ -82,7 +19,7 @@ export default  function getUserData() {
           e.preventDefault()
           setLoading(true)
           try {
-            const response = await fetch("http://localhost:8081/api/vi/auth/authenticate", {
+            const response = await fetch(`http://${urladdress}:8081/api/vi/auth/authenticate`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -111,7 +48,7 @@ export default  function getUserData() {
           try{
             const userToken = localStorage.getItem("volts_token");
             const response = await fetch(
-              `http://localhost:8081/api/v1/company/by/user`,
+              `http://${urladdress}:8081/api/v1/company/by/user`,
               {
                 method: "GET",
                 headers: {
