@@ -17,7 +17,7 @@ import { Button } from "@/components/ui/button"
 
 
 const ElmeterDataComponent = () => {
-  const [data, setData] = useState([]);
+  const [data, seTableCellata] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const userToken = localStorage.getItem('volts_token');
@@ -49,7 +49,7 @@ const ElmeterDataComponent = () => {
         myEmptyArray.push(elmeterData);
       }
 
-      setData(myEmptyArray);
+      seTableCellata(myEmptyArray);
     } catch (error) {
       setError(error.message);
     } finally {
@@ -119,58 +119,58 @@ const ElmeterDataComponent = () => {
     { name: 'C', value: 25, color: '#F2A71B' },
   ];
   return (
-    <div>
+    <div style={{maxWidth: "70%"}}>
       <br></br> 
       {data.map((elmeter, index) => (
         <div key={index}  >
             <h2>{elmeter.name} - {elmeter.address}</h2>
             <div style={{display: "flex", justifyItems:"center", alignItems: "flex-start", flexWrap: "nowrap"}}>
             <div style={{display: "flex", justifyItems:"center", alignItems: "flex-start", flexWrap: "nowrap"}}>
-            <table >
-            <tbody>
-            <tr>
-              <td>Name</td>
-              <td>L1</td>
-              <td>L2</td>
-              <td>L3</td>
-            </tr>
-            <tr>
-              <td>Voltage:</td>
-              <td>{elmeter.electric_meter_data.voltagell1}</td>
-              <td>{elmeter.electric_meter_data.voltagell2}</td>
-              <td>{elmeter.electric_meter_data.voltagell3}</td>
-              <td>V</td>
-            </tr>
-            <tr>
-              <td>Curent:</td>
-              <td>{elmeter.electric_meter_data.currentl1}</td>
-              <td>{elmeter.electric_meter_data.currentl2}</td>
-              <td>{elmeter.electric_meter_data.currentl3}</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Active Power</td>
-              <td>{elmeter.electric_meter_data.activepowerl1}</td>
-              <td>{elmeter.electric_meter_data.activepowerl2}</td>
-              <td>{elmeter.electric_meter_data.activepowerl3}</td>
-              <td>W</td>
-              </tr>
-            <tr>
-              <td>pfl1</td>
-              <td>{elmeter.electric_meter_data.pfl1}</td>
-              <td>{elmeter.electric_meter_data.pfl2}</td>
-              <td>{elmeter.electric_meter_data.pfl3}</td>
-            </tr>
-            <tr>
-              <td>Total Active Power: </td>
-              <td>{elmeter.electric_meter_data.totalActivePpower}</td>
-            </tr>
-            <tr>
-              <td>Total Active Energy: </td>
-              <td>{elmeter.electric_meter_data.totalActiveEnergyImportTariff1}</td>
-            </tr>
-            </tbody>
-            </table>
+            <Table >
+            <TableBody>
+            <TableRow>
+              <TableHead>Name</TableHead>
+              <TableHead>L1</TableHead>
+              <TableHead>L2</TableHead>
+              <TableHead>L3</TableHead>
+            </TableRow>
+            <TableRow>
+              <TableCell>Voltage:</TableCell>
+              <TableCell>{elmeter.electric_meter_data.voltagell1}</TableCell>
+              <TableCell>{elmeter.electric_meter_data.voltagell2}</TableCell>
+              <TableCell>{elmeter.electric_meter_data.voltagell3}</TableCell>
+              <TableCell>V</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Curent:</TableCell>
+              <TableCell>{elmeter.electric_meter_data.currentl1}</TableCell>
+              <TableCell>{elmeter.electric_meter_data.currentl2}</TableCell>
+              <TableCell>{elmeter.electric_meter_data.currentl3}</TableCell>
+              <TableCell>A</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Active Power</TableCell>
+              <TableCell>{elmeter.electric_meter_data.activepowerl1}</TableCell>
+              <TableCell>{elmeter.electric_meter_data.activepowerl2}</TableCell>
+              <TableCell>{elmeter.electric_meter_data.activepowerl3}</TableCell>
+              <TableCell>W</TableCell>
+              </TableRow>
+            <TableRow>
+              <TableCell>pfl1</TableCell>
+              <TableCell>{elmeter.electric_meter_data.pfl1}</TableCell>
+              <TableCell>{elmeter.electric_meter_data.pfl2}</TableCell>
+              <TableCell>{elmeter.electric_meter_data.pfl3}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Total Active Power: </TableCell>
+              <TableCell>{elmeter.electric_meter_data.totalActivePpower}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Total Active Energy: </TableCell>
+              <TableCell>{elmeter.electric_meter_data.totalActiveEnergyImportTariff1}</TableCell>
+            </TableRow>
+            </TableBody>
+            </Table>
             <div>
             <div  style={{display: "flex", justifyItems:"center", alignItems: "flex-start", flexWrap: "nowrap"}}>
               <div className='pie_chart_with_needle'  style={{display: "flex", justifyItems:"center", alignItems: "flex-start", flexWrap: "nowrap"}}>
