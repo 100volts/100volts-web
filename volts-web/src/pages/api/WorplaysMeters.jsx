@@ -2,6 +2,16 @@ import React, { useState, useEffect } from 'react';
 import pkg from "../../../package.json";
 import Example from '../chart/ExampleChart';
 const urladdress = pkg["volts-server"];
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
 
 
 const ElmeterDataComponent = () => {
@@ -158,6 +168,7 @@ const ElmeterDataComponent = () => {
             </tr>
             </tbody>
             </table>
+            <div>
             <div  style={{display: "flex", justifyItems:"center", alignItems: "flex-start", flexWrap: "nowrap"}}>
               <div className='pie_chart_with_needle'  style={{display: "flex", justifyItems:"center", alignItems: "flex-start", flexWrap: "nowrap"}}>
                 <Example niddleValue={elmeter.electric_meter_avr_data.voltage} data={dataVoltage} chartName={"Voltage"}/>
@@ -166,6 +177,46 @@ const ElmeterDataComponent = () => {
                 <Example niddleValue={elmeter.electric_meter_avr_data.powerFactor} data={dataG}  chartName={"Power Factor"}/>
               </div>
               <div className='dayly_read_tarrif'></div>
+            </div>
+            <Table>
+                <TableCaption>A list of your recent invoices.</TableCaption>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead >Houler:</TableHead>
+                    <TableHead>01</TableHead>
+                    <TableHead>02</TableHead>
+                    <TableHead>03</TableHead>
+                    <TableHead>04</TableHead>
+                    <TableHead>05</TableHead>
+                    <TableHead>06</TableHead>
+                    <TableHead>07</TableHead>
+                    <TableHead>08</TableHead>
+                    <TableHead>09</TableHead>
+                    <TableHead>10</TableHead>
+                    <TableHead>11</TableHead>
+                    <TableHead>12</TableHead>
+                    <TableHead>13</TableHead>
+                    <TableHead>14</TableHead>
+                    <TableHead>15</TableHead>
+                    <TableHead>16</TableHead>
+                    <TableHead>17</TableHead>
+                    <TableHead>18</TableHead>
+                    <TableHead>19</TableHead>
+                    <TableHead>20</TableHead>
+                    <TableHead>21</TableHead>
+                    <TableHead>23</TableHead>
+                    <TableHead>24</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell></TableCell>
+                    <TableCell>1</TableCell>
+                    <TableCell>2</TableCell>
+                    <TableCell>3</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
             </div>
             </div>
         </div>
