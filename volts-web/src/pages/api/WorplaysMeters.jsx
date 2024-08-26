@@ -3,6 +3,7 @@ import pkg from "../../../package.json";
 import Example from '../chart/ExampleChart';
 const urladdress = pkg["volts-server"];
 
+
 const ElmeterDataComponent = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -86,7 +87,6 @@ const ElmeterDataComponent = () => {
  // const chart=new Example();
   //console.log(chart)
   //<h1>Elmeter Data</h1>
-  console.log(data)
   return (
     <div>
       <br></br> 
