@@ -87,6 +87,19 @@ const ElmeterDataComponent = () => {
  // const chart=new Example();
   //console.log(chart)
   //<h1>Elmeter Data</h1>
+  const dataVoltage = [
+    { name: 'A', value: 240, color: '#011F26' },
+  ];
+  const dataCurent = [
+    { name: 'A', value: 100, color: '#011F26' },
+    { name: 'B', value: 250, color: '#025E73' },
+    { name: 'C', value: 50, color: '#F2A71B' },
+  ];
+  const dataPower = [
+    { name: 'A', value: 20, color: '#011F26' },
+    { name: 'B', value: 65, color: '#025E73' },
+    { name: 'C', value: 15, color: '#F2A71B' },
+  ];
   const dataG = [
     { name: 'A', value: 35, color: '#011F26' },
     { name: 'B', value: 35, color: '#025E73' },
@@ -151,9 +164,9 @@ const ElmeterDataComponent = () => {
             </table>
             <div  style={{display: "flex", justifyItems:"center", alignItems: "flex-start", flexWrap: "nowrap"}}>
               <div className='pie_chart_with_needle'  style={{display: "flex", justifyItems:"center", alignItems: "flex-start", flexWrap: "nowrap"}}>
-                <Example niddleValue={45} data={dataG} chartName={"Voltage"}/>
-                <Example niddleValue={4.5034} data={dataG}  chartName={"Curent"}/>
-                <Example niddleValue={874.59} data={dataG}  chartName={"Power"}/>
+                <Example niddleValue={45} data={dataVoltage} chartName={"Voltage"}/>
+                <Example niddleValue={42.203} data={dataCurent}  chartName={"Curent"}/>
+                <Example niddleValue={874.59/1000} data={dataPower}  chartName={"Power"}/>
                 <Example niddleValue={0.82420} data={dataG}  chartName={"Power Factor"}/>
               </div>
               <div className='dayly_read_tarrif'></div>
