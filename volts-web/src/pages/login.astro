@@ -13,30 +13,6 @@ const pageName = "Login";
 </script>
 <Main title="Log in">
   <title>Login Page</title>
-  <div class="login-container">
-    <h2>{pageName}</h2>
-    <form method="post">
-      <label for="email">Email</label>
-      <div class="log-field">
-        <input
-          type="text"
-          id="email"
-          name="email"
-          required
-        />
-      </div>
-      <label for="password">Password</label>
-      <div class="log-field">
-        <input
-          type="password"
-          id="password"
-          name="password"
-          required
-        />
-      </div>
 
-      <input type="submit" value="Login" />
-    </form>
-  </div>
   <UserLogin client:only />
 </Main>
