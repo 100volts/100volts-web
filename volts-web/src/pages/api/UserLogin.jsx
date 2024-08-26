@@ -6,10 +6,6 @@ import { Button } from "@/components/ui/button"
 import pkg from "../../../package.json";
 const urladdress = pkg["volts-server"];
 
-
-const form = document.querySelector("form");
-
-
 export default  function getUserData() {
         const [email, setEmail] = useState("")
         const [password, setPassword] = useState("")
@@ -59,10 +55,7 @@ export default  function getUserData() {
             );
             const datat = await response.json();
             const { company_name } = datat;
-
             localStorage.setItem("company_name", company_name);
-            //document.getElementById('company_name').innerText = company_name
-            //document.getElementById('company_name').innerText = CompanyButton({companyName:company_name,companyUrl:company_name,layout:Company });
             if (response.ok) {
               console.log(datat);
               location.href = "/";
@@ -110,14 +103,3 @@ export default  function getUserData() {
           </div>
         )
     }
-
-    /*
-    function CompanyButton({ companyName, companyUrl, layout }) {
-        return (
-            <button onClick={layout}>
-                <a id="company_name" href={companyUrl} target="_blank">{companyName}</a>
-            </button>
-        );
-    }
-
-    */

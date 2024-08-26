@@ -1,18 +1,17 @@
 ---
 import Main from "../layouts/Main.astro";
-import WorplaysMeters from "./api/WorplaysMeters"
-import Example from "./chart/ExampleChart";
+import WorplaysMeters from "./api/WorplaysMeters";
+import EnergySideBar from "../components/react/EnergySideBar";
 ---
 
-<Main title="Volts" >
-
+<Main title="Volts">
   <body class="workplaces__c">
     <div id="workplaces" class="workplaces__c"></div>
     <div id="elmeter" class="elmeter">
-      <WorplaysMeters client:only/>
+      <WorplaysMeters client:only />
     </div>
   </body>
-  
+
   <script is:inline class="workplaces__c">
     if (
       localStorage.getItem("company_name") &&
@@ -28,22 +27,22 @@ import Example from "./chart/ExampleChart";
       document.getElementById("workplaces").appendChild(a);
     }
   </script>
-</Main>
+  <EnergySideBar />
 
-<style>
-  .workplase-banner {
-    background-color: brown;
-    padding:;
-  }
-  
-  .workplaces__c{
-    display: flex;
-    justify-items: center;
-    justify-content: center;
-  }
-  .elmeter__record{
-    display: flex;
-    justify-items: center;
-              
-  }
-</style>
+  <style>
+    .workplase-banner {
+      background-color: brown;
+      padding:;
+    }
+
+    .workplaces__c {
+      display: flex;
+      justify-items: center;
+      justify-content: center;
+    }
+    .elmeter__record {
+      display: flex;
+      justify-items: center;
+    }
+  </style>
+</Main>

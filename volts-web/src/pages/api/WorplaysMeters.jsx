@@ -120,14 +120,12 @@ const ElmeterDataComponent = () => {
               <td>L1</td>
               <td>L2</td>
               <td>L3</td>
-              <td>AVR</td>
             </tr>
             <tr>
               <td>Voltage:</td>
               <td>{elmeter.electric_meter_data.voltagell1}</td>
               <td>{elmeter.electric_meter_data.voltagell2}</td>
               <td>{elmeter.electric_meter_data.voltagell3}</td>
-              <td>{elmeter.electric_meter_avr_data.voltage}</td>
               <td>V</td>
             </tr>
             <tr>
@@ -135,7 +133,6 @@ const ElmeterDataComponent = () => {
               <td>{elmeter.electric_meter_data.currentl1}</td>
               <td>{elmeter.electric_meter_data.currentl2}</td>
               <td>{elmeter.electric_meter_data.currentl3}</td>
-              <td>{elmeter.electric_meter_avr_data.current}</td>
               <td>A</td>
             </tr>
             <tr>
@@ -143,7 +140,6 @@ const ElmeterDataComponent = () => {
               <td>{elmeter.electric_meter_data.activepowerl1}</td>
               <td>{elmeter.electric_meter_data.activepowerl2}</td>
               <td>{elmeter.electric_meter_data.activepowerl3}</td>
-              <td>{elmeter.electric_meter_avr_data.power}</td>
               <td>W</td>
               </tr>
             <tr>
@@ -151,7 +147,6 @@ const ElmeterDataComponent = () => {
               <td>{elmeter.electric_meter_data.pfl1}</td>
               <td>{elmeter.electric_meter_data.pfl2}</td>
               <td>{elmeter.electric_meter_data.pfl3}</td>
-              <td>{elmeter.electric_meter_avr_data.powerFactor}</td>
             </tr>
             <tr>
               <td>Total Active Power: </td>
@@ -165,10 +160,10 @@ const ElmeterDataComponent = () => {
             </table>
             <div  style={{display: "flex", justifyItems:"center", alignItems: "flex-start", flexWrap: "nowrap"}}>
               <div className='pie_chart_with_needle'  style={{display: "flex", justifyItems:"center", alignItems: "flex-start", flexWrap: "nowrap"}}>
-                <Example niddleValue={45} data={dataVoltage} chartName={"Voltage"}/>
-                <Example niddleValue={42.203} data={dataCurent}  chartName={"Curent"}/>
-                <Example niddleValue={874.59/1000} data={dataPower}  chartName={"Power"}/>
-                <Example niddleValue={0.82420} data={dataG}  chartName={"Power Factor"}/>
+                <Example niddleValue={elmeter.electric_meter_avr_data.voltage} data={dataVoltage} chartName={"Voltage"}/>
+                <Example niddleValue={elmeter.electric_meter_avr_data.current} data={dataCurent}  chartName={"Curent"}/>
+                <Example niddleValue={elmeter.electric_meter_avr_data.power/1000} data={dataPower}  chartName={"Power"}/>
+                <Example niddleValue={elmeter.electric_meter_avr_data.powerFactor} data={dataG}  chartName={"Power Factor"}/>
               </div>
               <div className='dayly_read_tarrif'></div>
             </div>
