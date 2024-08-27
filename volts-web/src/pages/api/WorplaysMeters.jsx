@@ -73,14 +73,15 @@ const ElmeterDataComponent = () => {
       });
 
       const datat = await response.json();
-      const { name, address, electric_meter_data,electric_meter_avr_data } = datat;
+      const { name, address, electric_meter_data,electric_meter_avr_data, daily_tariff_data } = datat;
 
       // Return the relevant data
       return {
         name,
         address,
         electric_meter_data,
-        electric_meter_avr_data
+        electric_meter_avr_data,
+        daily_tariff_data
       };
     } catch (error) {
       console.log('Failed to fetch data: ' + error.message);
@@ -182,44 +183,38 @@ const ElmeterDataComponent = () => {
               <div className='dayly_read_tarrif'></div>
             </div>
             <Table>
-                <TableCaption>A list of your recent invoices.</TableCaption>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead >Houler:</TableHead>
-                    <TableHead>01</TableHead>
-                    <TableHead>02</TableHead>
-                    <TableHead>03</TableHead>
-                    <TableHead>04</TableHead>
-                    <TableHead>05</TableHead>
-                    <TableHead>06</TableHead>
-                    <TableHead>07</TableHead>
-                    <TableHead>08</TableHead>
-                    <TableHead>09</TableHead>
-                    <TableHead>10</TableHead>
-                    <TableHead>11</TableHead>
-                    <TableHead>12</TableHead>
-                    <TableHead>13</TableHead>
-                    <TableHead>14</TableHead>
-                    <TableHead>15</TableHead>
-                    <TableHead>16</TableHead>
-                    <TableHead>17</TableHead>
-                    <TableHead>18</TableHead>
-                    <TableHead>19</TableHead>
-                    <TableHead>20</TableHead>
-                    <TableHead>21</TableHead>
-                    <TableHead>23</TableHead>
-                    <TableHead>24</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  <TableRow>
-                    <TableCell></TableCell>
-                    <TableCell>1</TableCell>
-                    <TableCell>2</TableCell>
-                    <TableCell>3</TableCell>
-                  </TableRow>
+            <TableCaption>.</TableCaption>
+            <TableRow>
+            <TableHead>Houler:</TableHead>
+            
+            {elmeter.daily_tariff_data.map((traff,index)=>(
+              <>
+                <TableHead>{index+1}</TableHead>
+              </>
+            ))}
+            </TableRow>
+            <TableBody>
+            <TableRow>
+            <TableCell></TableCell>
+            {elmeter.daily_tariff_data.map((traff,index)=>(
+              <>
+                <TableCell>{traff.totPower}</TableCell>
+              </>
+            ))}
+            </TableRow>
+            <TableRow>
+            <TableCell></TableCell>
+            {elmeter.daily_tariff_data.map((traff,index)=>{
+              
+              //const date = new Date(traff.timeStamp);
+              //const dayOfMonth = date.getDate();
+              <>
+                <TableCell>{traff.timeStamp}</TableCell>
+              </>
+            })}
+            </TableRow>
                 </TableBody>
-              </Table>
+            </Table>
             </div>
             </div>
             <div>

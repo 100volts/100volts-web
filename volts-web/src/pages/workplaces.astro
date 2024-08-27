@@ -1,23 +1,22 @@
 ---
 import Main from "../layouts/Main.astro";
-import GetUserWorkpaces from "./api/GetUserWorkpaces"
+import GetUserWorkpaces from "./api/GetUserWorkpaces";
 ---
 
 <Main title="Workspaces">
-  <h1 class="workplaces__c">Wellcome to your workpalces</h1>
+  <h1 class="workplaces__c">Welcome to your workpalces</h1>
   <div id="workplaces" class="workplaces__c">
     <GetUserWorkpaces client:only />
   </div>
 </Main>
 
-
 <style>
-  .workplaces__c{
+  .workplaces__c {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     justify-items: center;
     justify-content: center;
-    align-content: center
+    align-content: center;
   }
 </style>
