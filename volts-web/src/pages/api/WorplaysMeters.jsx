@@ -207,11 +207,13 @@ const ElmeterDataComponent = () => {
             <TableCell></TableCell>
             {elmeter.daily_tariff_data.map((traff,index)=>{
               
-              //const date = new Date(traff.timeStamp);
-              //const dayOfMonth = date.getDate();
-              <>
-                <TableCell>{traff.timeStamp}</TableCell>
-              </>
+              const date = new Date(traff.timeStamp);
+              const dayOfMonth = date.getDate();
+              const hours = date.getHours();
+              return(<>
+                <TableCell>{hours}</TableCell>
+              </>)
+              
             })}
             </TableRow>
                 </TableBody>
