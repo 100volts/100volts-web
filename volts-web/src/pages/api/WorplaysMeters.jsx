@@ -184,9 +184,10 @@ const ElmeterDataComponent = () => {
             </div>
             <Table>
             <TableCaption>.</TableCaption>
-            <TableRow>
-            <TableHead>Houler:</TableHead>
-            
+
+            {elmeter.daily_tariff_data && elmeter.daily_tariff_data.length > 0 ?(<>
+              <TableRow>
+              <TableHead>Houler:</TableHead>
             {elmeter.daily_tariff_data.map((traff,index)=>(
               <>
                 <TableHead>{index+1}</TableHead>
@@ -214,6 +215,13 @@ const ElmeterDataComponent = () => {
             })}
             </TableRow>
                 </TableBody>
+          </>):
+            <>
+              <TableRow className="text-center">
+                No new reads for doday 
+              </TableRow>
+            </>
+            }
             </Table>
             </div>
             </div>
