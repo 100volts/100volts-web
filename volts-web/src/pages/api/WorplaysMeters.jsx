@@ -6,11 +6,6 @@ import ElectricGraphs from "../../components/react/electric/ElectricGraphs"
 import AllElectricMeterDataTable from "../../components/react/electric/AllElectricMeterDataTable"
 import {
   Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
 } from "@/components/ui/card"
 
 
@@ -23,7 +18,6 @@ const ElmeterDataComponent = () => {
   const userToken = localStorage.getItem('volts_token');
   const companyName = localStorage.getItem('company_name');
 
-  // Fetch Elmeter data from the API
   const getElmeterData = async () => {
     try {
       const body= JSON.stringify({
@@ -57,7 +51,6 @@ const ElmeterDataComponent = () => {
     }
   };
 
-  // Fetch individual Elmeter data by address
   const getElmeterDataFromAddress = async (elmeterAddress) => {
     try {
       const response = await fetch(`http://${urladdress}:8081/elmeter/data/last`, {
@@ -75,7 +68,6 @@ const ElmeterDataComponent = () => {
       const datat = await response.json();
       const { name, address, electric_meter_data,electric_meter_avr_data, daily_tariff_data } = datat;
 
-      // Return the relevant data
       return {
         name,
         address,
@@ -89,7 +81,6 @@ const ElmeterDataComponent = () => {
     }
   };
 
-  // Effect hook to fetch data on component mount
   useEffect(() => {
     getElmeterData();
   }, []);

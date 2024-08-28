@@ -1,10 +1,6 @@
 ---
 import ThemeToggler from "./ThemeToggler.astro";
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar";
+import HeaderMenu from "./react/HeaderMenu";
 ---
 
 <style>
@@ -16,6 +12,7 @@ import {
   .internal-links {
     display: flex;
     justify-content: center;
+    align-items: center;
   }
   .internal-head {
     display: flex;
@@ -43,6 +40,8 @@ import {
   }
   .nava {
     display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 10px;
     padding: 1em 0.5em;
   }
@@ -97,24 +96,8 @@ import {
         >Docs</a
       >
       <div class="nava">
-        <script is:inline>
-          if (localStorage.getItem("volts_token")) {
-            document.write(
-              `<a style='color: var(--black); border-bottom: 4px solid transparent; text-decoration: none;' href='/acount'>
-                Account</a>`
-            );
-            document.write(
-              "<a style='color: var(--black); border-bottom: 4px solid transparent; text-decoration: none;' href='/workplaces'>Workplaces</a>"
-            );
-          } else {
-            document.write(
-              "<a style='     color: var(--black); border-bottom: 4px solid transparent; text-decoration: none;' href='/login'>Login</a>"
-            );
-          }
-        </script>
+        <HeaderMenu client:only />
       </div>
-      <a href="/about">About</a>
-
       <ThemeToggler />
     </div>
   </nav>
