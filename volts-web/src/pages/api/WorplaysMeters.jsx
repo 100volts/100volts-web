@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import pkg from "../../../package.json";
-const urladdress = pkg["volts-server"];
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableFooter,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table"
 import DayilyTatiff from "../../components/react/electric/DayilyTatiff"
 import OptionsButtons from "../../components/react/electric/OptionsButtons"
 import ElectricGraphs from "../../components/react/electric/ElectricGraphs"
+import AllElectricMeterDataTable from "../../components/react/electric/AllElectricMeterDataTable"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 
+
+const urladdress = pkg["volts-server"];
 
 const ElmeterDataComponent = () => {
   const [data, seTableCellata] = useState([]);
@@ -100,69 +100,29 @@ const ElmeterDataComponent = () => {
  // const chart=new Example();
   //console.log(chart)
   //<h1>Elmeter Data</h1>
-  console.log(data)
+  //console.log(data)
 
   return (
     <div style={{maxWidth: "70%"}}>
-      <br></br> 
       {data.map((elmeter, index) => (
         <div key={index}  >
-            <h2>{elmeter.name} - {elmeter.address}</h2>
-            <div style={{display: "flex", justifyItems:"center", alignItems: "flex-start", flexWrap: "nowrap"}}>
-            <div style={{display: "flex", justifyItems:"center", alignItems: "flex-start", flexWrap: "nowrap"}}>
-            <Table >
-            <TableBody>
-            <TableRow>
-              <TableHead>Name</TableHead>
-              <TableHead>L1</TableHead>
-              <TableHead>L2</TableHead>
-              <TableHead>L3</TableHead>
-            </TableRow>
-            <TableRow>
-              <TableCell>Voltage:</TableCell>
-              <TableCell>{elmeter.electric_meter_data.voltagell1}</TableCell>
-              <TableCell>{elmeter.electric_meter_data.voltagell2}</TableCell>
-              <TableCell>{elmeter.electric_meter_data.voltagell3}</TableCell>
-              <TableCell>V</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Curent:</TableCell>
-              <TableCell>{elmeter.electric_meter_data.currentl1}</TableCell>
-              <TableCell>{elmeter.electric_meter_data.currentl2}</TableCell>
-              <TableCell>{elmeter.electric_meter_data.currentl3}</TableCell>
-              <TableCell>A</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Active Power</TableCell>
-              <TableCell>{elmeter.electric_meter_data.activepowerl1}</TableCell>
-              <TableCell>{elmeter.electric_meter_data.activepowerl2}</TableCell>
-              <TableCell>{elmeter.electric_meter_data.activepowerl3}</TableCell>
-              <TableCell>W</TableCell>
-              </TableRow>
-            <TableRow>
-              <TableCell>pfl1</TableCell>
-              <TableCell>{elmeter.electric_meter_data.pfl1}</TableCell>
-              <TableCell>{elmeter.electric_meter_data.pfl2}</TableCell>
-              <TableCell>{elmeter.electric_meter_data.pfl3}</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Total Active Power: </TableCell>
-              <TableCell>{elmeter.electric_meter_data.totalActivePpower}</TableCell>
-              <TableCell>Total Active Energy: </TableCell>
-              <TableCell>{elmeter.electric_meter_data.totalActiveEnergyImportTariff1}</TableCell>
-            </TableRow>
-            <TableRow>
-              
-            </TableRow>
-            </TableBody>
-            </Table>
-            <div>
-            <ElectricGraphs elmeterProp={elmeter}/>
-            <DayilyTatiff elmeterProp={elmeter}/>
-            </div>
-            </div>
-            <OptionsButtons/>
-            </div>
+            <h2 style={{padding:"10px"}}>{elmeter.name} - {elmeter.address}</h2>
+              <div style={{display: "flex", justifyItems:"center", alignItems: "flex-start", flexWrap: "nowrap"}}>
+                <div style={{display: "flex", justifyItems:"center", alignItems: "flex-start", flexWrap: "nowrap"}}>
+                  <Card style={{padding:"10px", margin:"10px"}}>
+                    <AllElectricMeterDataTable elmeterProp={elmeter}/>
+                  </Card>
+                  <div style={{padding:"10px"}}>
+                    <Card>
+                      <ElectricGraphs elmeterProp={elmeter}/>
+                    </Card>
+                    <Card>
+                      <DayilyTatiff elmeterProp={elmeter}/>
+                    </Card>
+                  </div>
+                </div>
+                <OptionsButtons/>
+              </div>
         </div>
       ))}
     </div>
