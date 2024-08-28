@@ -165,10 +165,11 @@ const ElmeterDataComponent = () => {
             <TableRow>
               <TableCell>Total Active Power: </TableCell>
               <TableCell>{elmeter.electric_meter_data.totalActivePpower}</TableCell>
-            </TableRow>
-            <TableRow>
               <TableCell>Total Active Energy: </TableCell>
               <TableCell>{elmeter.electric_meter_data.totalActiveEnergyImportTariff1}</TableCell>
+            </TableRow>
+            <TableRow>
+              
             </TableRow>
             </TableBody>
             </Table>
@@ -186,7 +187,6 @@ const ElmeterDataComponent = () => {
             <TableCaption>.</TableCaption>
 
             {elmeter.daily_tariff_data && elmeter.daily_tariff_data.length > 0 ?(<>
-
             <TableBody>
             <TableRow>
             <TableHead>Time:</TableHead>
