@@ -1,4 +1,3 @@
-import { CircleUser, Menu, Package2, Search } from "lucide-react"
 import { Switch } from "@/components/ui/switch"
 import { Button } from "@/components/ui/button"
 import {
@@ -11,7 +10,6 @@ import {
 } from "@/components/ui/card"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 
 export default function Settings() {
     function switchLightDarkMode(){
