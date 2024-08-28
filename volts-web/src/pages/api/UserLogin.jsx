@@ -218,7 +218,7 @@ export default function getUserData() {
       </div>
       <div className="hidden  lg:block">
         <img
-          src="../../../public/posters/powerplant.jpg"
+          src="/posters/powerplant.jpg"
           alt="Image"
           width="1920"
           height="100%"
