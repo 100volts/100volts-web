@@ -186,15 +186,22 @@ const ElmeterDataComponent = () => {
             <TableCaption>.</TableCaption>
 
             {elmeter.daily_tariff_data && elmeter.daily_tariff_data.length > 0 ?(<>
-              <TableRow>
-              <TableHead>Houler:</TableHead>
-            {elmeter.daily_tariff_data.map((traff,index)=>(
-              <>
-                <TableHead>{index+1}</TableHead>
-              </>
-            ))}
-            </TableRow>
+
             <TableBody>
+            <TableRow>
+            <TableHead>Time:</TableHead>
+            {elmeter.daily_tariff_data.map((traff,index)=>{
+              
+              const date = new Date(traff.timeStamp);
+              const dayOfMonth = date.getDate();
+              const hours = date.getHours();
+              const minets = date.getMinutes();
+              return(<>
+                <TableHead>{hours}:{minets}</TableHead>
+              </>)
+              
+            })}
+            </TableRow>
             <TableRow>
             <TableCell></TableCell>
             {elmeter.daily_tariff_data.map((traff,index)=>(
@@ -202,21 +209,8 @@ const ElmeterDataComponent = () => {
                 <TableCell>{traff.totPower}</TableCell>
               </>
             ))}
-            </TableRow>
-            <TableRow>
-            <TableCell></TableCell>
-            {elmeter.daily_tariff_data.map((traff,index)=>{
-              
-              const date = new Date(traff.timeStamp);
-              const dayOfMonth = date.getDate();
-              const hours = date.getHours();
-              return(<>
-                <TableCell>{hours}</TableCell>
-              </>)
-              
-            })}
-            </TableRow>
-                </TableBody>
+              </TableRow>
+              </TableBody>
           </>):
             <>
               <TableRow className="text-center">
