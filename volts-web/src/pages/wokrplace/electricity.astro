@@ -9,6 +9,9 @@ import Charts from "../../components/react/dashboard/Dashboard";
   <body class="workplaces__c" style="max-width: 70%">
     <div id="workplaces" class="workplaces__c"></div>
     <h1>Dashboard</h1>
+    <div id="elmeter" class="elme ter">
+      <WorplaysMeters client:only />
+    </div>
   </body>
   <script is:inline class="workplaces__c">
     if (
@@ -25,7 +28,6 @@ import Charts from "../../components/react/dashboard/Dashboard";
       document.getElementById("workplaces").appendChild(a);
     }
   </script>
-  <Charts client:only />
   <EnergySideBar client:only />
 
   <style>

@@ -6,7 +6,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { ChevronRight, Zap, Droplet, Flame, Factory } from "lucide-react"
 
 const sidebarItems = [
-  { icon: Zap, label: "Electricity", usage: "150 kWh" },
+  { icon: Zap, label: "Electricity", usage: "150 kWh", link:"./electricity" },
   { icon: Droplet, label: "Water", usage: "2000 L" },
   { icon: Flame, label: "Gas", usage: "50 nm³" },
   { icon: Factory, label: "Production", usage: "1000 units" },
@@ -14,7 +14,9 @@ const sidebarItems = [
 
 export default function CollapsibleSidebar() {
   const [isExpanded, setIsExpanded] = React.useState(false)
-
+  const handleRedirect = (link) => {
+    window.location.href = link;
+  };
   return (
     <div 
       className={`fixed left-0 top-0 z-40 h-screen bg-background transition-all duration-300 ease-in-out ${
@@ -35,7 +37,7 @@ export default function CollapsibleSidebar() {
           <nav className="p-3 space-y-3">
             {sidebarItems.map((item, index) => (
               <Button
-                key={index}
+                onClick={()=>CollapsibleSidebar(item.link)}
                 variant="ghost"
                 className={`w-full justify-start text-lg ${isExpanded ? 'px-5 py-4' : 'px-3 py-4'}`}
                 title={`${item.label}: ${item.usage}`}
