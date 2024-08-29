@@ -32,7 +32,7 @@ import {
   } from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
 
-const data= [
+const data1= [
     {
         merterId: 1,
         voltagell1: "233.80",
@@ -235,7 +235,7 @@ const data= [
     }
 ]
 
-export const columns= [
+export const columns1= [
     {
       accessorKey: "merterId",
       header: "merterId",
@@ -298,7 +298,10 @@ export const columns= [
     },
   ]
 
-  export default function CompleteTable(){
+  export default function CompleteTable({
+    columns,
+    data,
+  }){
     return(
         <>
         <DataTable columns={columns} data={data}></DataTable>
@@ -306,7 +309,7 @@ export const columns= [
     )
   }
 
-export function DataTable({
+  export  function DataTable({
   columns,
   data,
 }) {

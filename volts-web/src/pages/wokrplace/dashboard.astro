@@ -3,12 +3,16 @@ import Main from "../../layouts/Main.astro";
 import WorplaysMeters from "../api/WorplaysMeters";
 import EnergySideBar from "../../components/react/electric/EnergySideBar";
 import Charts from "../../components/react/dashboard/Dashboard";
+//<Charts client:only />
 ---
 
 <Main title="Volts">
   <body class="workplaces__c" style="max-width: 70%">
     <div id="workplaces" class="workplaces__c"></div>
     <h1>Dashboard</h1>
+    <div id="elmeter" class="elme ter">
+      <WorplaysMeters client:only />
+    </div>
   </body>
   <script is:inline class="workplaces__c">
     if (
@@ -17,7 +21,7 @@ import Charts from "../../components/react/dashboard/Dashboard";
     ) {
       const cname = localStorage.getItem("company_name");
       let a = document.createElement("a");
-      a.href = "/workplaces-dashboar";
+      a.href = "/wokrplace/dashboard";
       let img = document.createElement("img");
       img.src = "/workplaces/Markeli.png";
       img.alt = "Workplase Banner";
@@ -25,7 +29,7 @@ import Charts from "../../components/react/dashboard/Dashboard";
       document.getElementById("workplaces").appendChild(a);
     }
   </script>
-  <Charts client:only />
+
   <EnergySideBar client:only />
 
   <style>

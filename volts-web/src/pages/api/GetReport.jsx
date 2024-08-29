@@ -1,157 +1,480 @@
 
-import React, { SortingState ,useState, useEffect } from 'react';
-
-import {
-  flexRender,
-  getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
-  useReactTable,
-} from "@tanstack/react-table"
-import { ArrowUpDown, MoreHorizontal } from "lucide-react"
- 
-import { Button } from "@/components/ui/button"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Input } from "@/components/ui/input"
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table"
+import React, { useState, useEffect } from 'react';
 import pkg from "../../../package.json";
+import { Button } from "@/components/ui/button"
+import {  flexRender, 
+    useReactTable,
+    getCoreRowModel,
+    getPaginationRowModel,  
+    getSortedRowModel,
+    getFilteredRowModel,
+} from "@tanstack/react-table"
+import { ArrowUpDown, } from "lucide-react"
+import {
+      ChevronLeftIcon,
+      ChevronRightIcon,
+      DoubleArrowLeftIcon,
+      DoubleArrowRightIcon,
+} from "@radix-ui/react-icons"
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,  
+} from "@/components/ui/table"
+import {
+      Select,
+      SelectContent,
+      SelectItem,
+      SelectTrigger,
+      SelectValue,
+} from "@/components/ui/select"
+import { Input } from "@/components/ui/input"
 
 ///
-const data= [
+const data1= [
     {
-      id: "m5gr84i9",
-      amount: 316,
-      status: "success",
-      email: "ken99@yahoo.com",
+        merterId: 1,
+        voltagell1: 237.5,
+        voltagell2: 237.63,
+        voltagell3: 239.86,
+        pfl1: 0.974549,
+        currentl1: 33.3096,
+        currentl2: 34.079,
+        currentl3: 34.5922,
+        activepowerl1: 7714.61,
+        activepowerl2: 7033.43,
+        activepowerl3: 7835.15,
+        totalActiveEnergyImportTariff1: 72567.12,
+        totalActiveEnergyImportTariff2: 0,
+        totalActivePpower: 22583.19,
+        pfl2: 0.944497,
+        pfl3: 0.985958
     },
     {
-      id: "3u1reuv4",
-      amount: 242,
-      status: "success",
-      email: "Abe45@gmail.com",
+        "merterId": 222,
+        "voltagell1": 237.5,
+        "voltagell2": 237.63,
+        "voltagell3": 239.86,
+        "currentl1": 33.3096,
+        "currentl2": 34.079,
+        "currentl3": 34.5922,
+        "activepowerl1": 7714.61,
+        "activepowerl2": 7033.43,
+        "activepowerl3": 7835.15,
+        "pfl1": 0.974549,
+        "pfl2": 0.869258,
+        "pfl3": 0.945079,
+        "totalActivePpower": 22583.19,
+        "totalActiveEnergyImportTariff1": 72567.12,
+        "totalActiveEnergyImportTariff2": 0
     },
     {
-      id: "derv1ws0",
-      amount: 837,
-      status: "processing",
-      email: "Monserrat44@gmail.com",
+        merterId: 1,
+        voltagell1: "233.80",
+        voltagell2: 234.45,
+        voltagell3: 235.18,
+        currentl1: 6.3230,
+
     },
     {
-      id: "5kma53ae",
-      amount: 874,
-      status: "success",
-      email: "Silas22@gmail.com",
+        merterId: 1,
+        voltagell1: "235.69",
+        voltagell2: 235.60,
+        voltagell3: 236.74,
+        currentl1: 7.5014,
+       
     },
     {
-      id: "bhqecj4p",
-      amount: 721,
-      status: "failed",
-      email: "carmella@hotmail.com",
-    },
-  ]
-   
-   
-  export const columns = [
-    {
-      id: "select",
-      header: ({ table }) => (
-        <Checkbox
-          checked={
-            table.getIsAllPageRowsSelected() ||
-            (table.getIsSomePageRowsSelected() && "indeterminate")
-          }
-          onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-          aria-label="Select all"
-        />
-      ),
-      cell: ({ row }) => (
-        <Checkbox
-          checked={row.getIsSelected()}
-          onCheckedChange={(value) => row.toggleSelected(!!value)}
-          aria-label="Select row"
-        />
-      ),
-      enableSorting: false,
-      enableHiding: false,
+        merterId: 1,
+        voltagell1: "235.69",
+        voltagell2: 235.60,
+        voltagell3: 236.74,
+        currentl1: 7.5014,
+       
     },
     {
-      accessorKey: "status",
-      header: "Status",
-      cell: ({ row }) => (
-        <div className="capitalize">{row.getValue("status")}</div>
-      ),
+        merterId: 1,
+        voltagell1: "233.80",
+        voltagell2: 234.45,
+        voltagell3: 235.18,
+        currentl1: 6.3230,
+
     },
     {
-      accessorKey: "email",
+        merterId: 1,
+        voltagell1: "235.69",
+        voltagell2: 235.60,
+        voltagell3: 236.74,
+        currentl1: 7.5014,
+       
+    },
+    {
+        merterId: 1,
+        voltagell1: "235.69",
+        voltagell2: 235.60,
+        voltagell3: 236.74,
+        currentl1: 7.5014,
+       
+    },
+    {
+        merterId: 1,
+        voltagell1: "233.80",
+        voltagell2: 234.45,
+        voltagell3: 235.18,
+        currentl1: 6.3230,
+
+    },
+    {
+        merterId: 1,
+        voltagell1: "235.69",
+        voltagell2: 235.60,
+        voltagell3: 236.74,
+        currentl1: 7.5014,
+       
+    },
+    {
+        merterId: 1,
+        voltagell1: "235.69",
+        voltagell2: 235.60,
+        voltagell3: 236.74,
+        currentl1: 7.5014,
+       
+    },
+    {
+        merterId: 1,
+        voltagell1: "233.80",
+        voltagell2: 234.45,
+        voltagell3: 235.18,
+        currentl1: 6.3230,
+
+    },
+    {
+        merterId: 1,
+        voltagell1: "235.69",
+        voltagell2: 235.60,
+        voltagell3: 236.74,
+        currentl1: 7.5014,
+       
+    },
+    {
+        merterId: 1,
+        voltagell1: "235.69",
+        voltagell2: 235.60,
+        voltagell3: 236.74,
+        currentl1: 7.5014,
+       
+    },
+    {
+        merterId: 1,
+        voltagell1: "233.80",
+        voltagell2: 234.45,
+        voltagell3: 235.18,
+        currentl1: 6.3230,
+
+    },
+    {
+        merterId: 1,
+        voltagell1: "235.69",
+        voltagell2: 235.60,
+        voltagell3: 236.74,
+        currentl1: 7.5014,
+       
+    },
+    {
+        merterId: 1,
+        voltagell1: "235.69",
+        voltagell2: 235.60,
+        voltagell3: 236.74,
+        currentl1: 7.5014,
+       
+    },
+    {
+        merterId: 1,
+        voltagell1: "233.80",
+        voltagell2: 234.45,
+        voltagell3: 235.18,
+        currentl1: 6.3230,
+
+    },
+    {
+        merterId: 1,
+        voltagell1: "235.69",
+        voltagell2: 235.60,
+        voltagell3: 236.74,
+        currentl1: 7.5014,
+       
+    },
+    {
+        merterId: 1,
+        voltagell1: "235.69",
+        voltagell2: 235.60,
+        voltagell3: 236.74,
+        currentl1: 7.5014,
+       
+    },
+    {
+        merterId: 1,
+        voltagell1: "233.80",
+        voltagell2: 234.45,
+        voltagell3: 235.18,
+        currentl1: 6.3230,
+
+    },
+    {
+        merterId: 1,
+        voltagell1: "235.69",
+        voltagell2: 235.60,
+        voltagell3: 236.74,
+        currentl1: 7.5014,
+       
+    },
+    {
+        merterId: 1,
+        voltagell1: "235.69",
+        voltagell2: 235.60,
+        voltagell3: 236.74,
+        currentl1: 7.5014,
+       
+    },
+    {
+        merterId: 1,
+        voltagell1: "233.80",
+        voltagell2: 234.45,
+        voltagell3: 235.18,
+        currentl1: 6.3230,
+
+    },
+    {
+        merterId: 1,
+        voltagell1: "235.69",
+        voltagell2: 235.60,
+        voltagell3: 236.74,
+        currentl1: 7.5014,
+       
+    }
+]
+
+export const columns1= [
+    {
+      accessorKey: "merterId",
+      header: "merterId",
+    },
+    {
+        accessorKey: "totalActivePpower",
+        header: ({ column }) => {
+            return (
+              <Button
+                variant="ghost"
+                onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+              >
+                totalActivePpower
+                <ArrowUpDown className="ml-2 h-4 w-4" />
+              </Button>
+            )
+          },
+    },
+    {
+        accessorKey: "totalActiveEnergyImportTariff1",
+        header: ({ column }) => {
+            return (
+              <Button
+                variant="ghost"
+                onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+              >
+                totalActiveEnergyImportTariff1
+                <ArrowUpDown className="ml-2 h-4 w-4" />
+              </Button>
+            )
+          },
+    },
+    {
+      accessorKey: "voltagell1",
       header: ({ column }) => {
         return (
           <Button
             variant="ghost"
             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
           >
-            Email
+            voltagell1
             <ArrowUpDown className="ml-2 h-4 w-4" />
           </Button>
         )
       },
-      cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
     },
     {
-      accessorKey: "amount",
-      header: () => <div className="text-right">Amount</div>,
-      cell: ({ row }) => {
-        const amount = parseFloat(row.getValue("amount"))
-   
-        // Format the amount as a dollar amount
-        const formatted = new Intl.NumberFormat("en-US", {
-          style: "currency",
-          currency: "USD",
-        }).format(amount)
-   
-        return <div className="text-right font-medium">{formatted}</div>
-      },
-    },
-    {
-      id: "actions",
-      enableHiding: false,
-      cell: ({ row }) => {
-        const payment = row.original
-   
+      accessorKey: "voltagell2",
+      header: ({ column }) => {
         return (
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="h-8 w-8 p-0">
-                <span className="sr-only">Open menu</span>
-                <MoreHorizontal className="h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>Actions</DropdownMenuLabel>
-              <DropdownMenuItem
-                onClick={() => navigator.clipboard.writeText(payment.id)}
-              >
-                Copy payment ID
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>View customer</DropdownMenuItem>
-              <DropdownMenuItem>View payment details</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <Button
+            variant="ghost"
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          >
+            voltagell2
+            <ArrowUpDown className="ml-2 h-4 w-4" />
+          </Button>
         )
       },
     },
+    {
+        accessorKey: "voltagell3",
+        header: ({ column }) => {
+            return (
+              <Button
+                variant="ghost"
+                onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+              >
+                voltagell3
+                <ArrowUpDown className="ml-2 h-4 w-4" />
+              </Button>
+            )
+          },
+    },
+    {
+        accessorKey: "currentl1",
+        header: ({ column }) => {
+            return (
+              <Button
+                variant="ghost"
+                onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+              >
+                currentl1
+                <ArrowUpDown className="ml-2 h-4 w-4" />
+              </Button>
+            )
+          },
+    },
+    {
+        accessorKey: "currentl2",
+        header: ({ column }) => {
+            return (
+              <Button
+                variant="ghost"
+                onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+              >
+                currentl2
+                <ArrowUpDown className="ml-2 h-4 w-4" />
+              </Button>
+            )
+          },
+    },
+    {
+        accessorKey: "currentl3",
+        header: ({ column }) => {
+            return (
+              <Button
+                variant="ghost"
+                onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+              >
+                currentl3
+                <ArrowUpDown className="ml-2 h-4 w-4" />
+              </Button>
+            )
+          },
+    },
+    {
+        accessorKey: "activepowerl1",
+        header: ({ column }) => {
+            return (
+              <Button
+                variant="ghost"
+                onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+              >
+                activepowerl1
+                <ArrowUpDown className="ml-2 h-4 w-4" />
+              </Button>
+            )
+          },
+    },
+    {
+        accessorKey: "activepowerl2",
+        header: ({ column }) => {
+            return (
+              <Button
+                variant="ghost"
+                onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+              >
+                activepowerl2
+                <ArrowUpDown className="ml-2 h-4 w-4" />
+              </Button>
+            )
+          },
+    },
+    {
+        accessorKey: "activepowerl3",
+        header: ({ column }) => {
+            return (
+              <Button
+                variant="ghost"
+                onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+              >
+                activepowerl3
+                <ArrowUpDown className="ml-2 h-4 w-4" />
+              </Button>
+            )
+          },
+    },
+    {
+        accessorKey: "pfl1",
+        header: ({ column }) => {
+            return (
+              <Button
+                variant="ghost"
+                onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+              >
+                pfl1
+                <ArrowUpDown className="ml-2 h-4 w-4" />
+              </Button>
+            )
+          },
+    },
+    {
+        accessorKey: "pfl2",
+        header: ({ column }) => {
+            return (
+              <Button
+                variant="ghost"
+                onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+              >
+                pfl2
+                <ArrowUpDown className="ml-2 h-4 w-4" />
+              </Button>
+            )
+          },
+    },
+    {
+        accessorKey: "pfl3",
+        header: ({ column }) => {
+            return (
+              <Button
+                variant="ghost"
+                onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+              >
+                pfl3
+                <ArrowUpDown className="ml-2 h-4 w-4" />
+              </Button>
+            )
+          },
+    },
+
+    {
+        accessorKey: "totalActiveEnergyImportTariff2",
+        header: ({ column }) => {
+            return (
+              <Button
+                variant="ghost"
+                onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+              >
+                totalActiveEnergyImportTariff1
+                <ArrowUpDown className="ml-2 h-4 w-4" />
+              </Button>
+            )
+          },
+    },
   ]
 ///
-
-
 export default function GetReport(){
     const urladdress = pkg["volts-server"];
     const [data, setData] = useState([]);
@@ -160,14 +483,15 @@ export default function GetReport(){
     const userToken = localStorage.getItem('volts_token');
     const companyName = localStorage.getItem('company_name');
     const elMeterAddress = localStorage.getItem('electric_meter_address');
+    const delay = ms => new Promise(res => setTimeout(res, ms));
 
     const getElmeterData = async () => {
         try {
           const body= JSON.stringify({
             company_name: companyName,
-            address: 1,
-            page_limit:2,
-            pages:2
+            address: elMeterAddress,
+            page_limit:100,
+            pages:1
           })
           const response = await fetch(
             `http://${urladdress}:8081/elmeter/data/report`,
@@ -183,64 +507,70 @@ export default function GetReport(){
           const datat = await response.json();
           const { meters } = datat;
           setData(meters);
+          //await delay(5000);
         } catch (error) {
           setError(error.message);
         } finally {
           setLoading(false);
         }
       };
+
       useEffect(() => {
         getElmeterData();
       }, []);
-    
+
       if (loading) return <div>Loading...</div>;
       if (error) return <div>Error: {error}</div>;
+      console.log(data)
+      
+      return(
+        <>
+        <div>
+        <DataTable columns={columns1} data={data[0]}/>
+        </div>
+        </>
+    )
+}
 
 
-///
 
-
-
-const [sorting, setSorting] = useState([])
-const [columnFilters, setColumnFilters] = useState(
-  []
-)
-const [columnVisibility, setColumnVisibility] =
-  useState({})
-const [rowSelection, setRowSelection] = useState({})
-
-const table = useReactTable({
-  data,
-  columns,
-  onSortingChange: setSorting,
-  onColumnFiltersChange: setColumnFilters,
-  getCoreRowModel: getCoreRowModel(),
-  getPaginationRowModel: getPaginationRowModel(),
-  getSortedRowModel: getSortedRowModel(),
-  getFilteredRowModel: getFilteredRowModel(),
-  onColumnVisibilityChange: setColumnVisibility,
-  onRowSelectionChange: setRowSelection,
-  state: {
-    sorting,
-    columnFilters,
-    columnVisibility,
-    rowSelection,
-  },
-})
-       
-  return (
-    <div className="w-full">
-      <div className="flex items-center py-4">
-        <Input
-          placeholder="Filter emails..."
-          value={(table.getColumn("email")?.getFilterValue()) ?? ""}
-          onChange={(event) =>
-            table.getColumn("email")?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
-        />
-      </div>
+export  function DataTable({
+    columns,
+    data,
+  }) {
+      const [columnFilters, setColumnFilters] = useState([])
+      const [sorting, setSorting] = useState([]);
+    const table = useReactTable({
+      data,
+      columns,
+      getCoreRowModel: getCoreRowModel(),
+      getPaginationRowModel: getPaginationRowModel(),
+      onSortingChange: setSorting,
+      getSortedRowModel: getSortedRowModel(),
+      onColumnFiltersChange: setColumnFilters,
+      getFilteredRowModel: getFilteredRowModel(),
+      state: {
+        sorting,
+        columnFilters,
+      },
+    })
+  
+    return (
       <div className="rounded-md border">
+          <div>
+          <div className="flex items-center py-4">
+          <Input
+            placeholder="Filter totalActivePpower..."
+            value={(table.getColumn("totalActivePpower")?.getFilterValue()) ?? ""}
+            onChange={(event) =>
+              table.getColumn("totalActivePpower")?.setFilterValue(event.target.value)
+            }
+            className="max-w-sm"
+          />
+        </div>
+        <div className="flex items-center py-4">
+        
+        </div>
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -269,33 +599,22 @@ const table = useReactTable({
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
                   ))}
                 </TableRow>
               ))
             ) : (
               <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className="h-24 text-center"
-                >
+                <TableCell colSpan={columns.length} className="h-24 text-center">
                   No results.
                 </TableCell>
               </TableRow>
             )}
           </TableBody>
         </Table>
-      </div>
-      <div className="flex items-center justify-end space-x-2 py-4">
-        <div className="flex-1 text-sm text-muted-foreground">
-          {table.getFilteredSelectedRowModel().rows.length} of{" "}
-          {table.getFilteredRowModel().rows.length} row(s) selected.
-        </div>
-        <div className="space-x-2">
+        <div className="flex items-center justify-end space-x-2 py-4">
+        <DataTablePagination  table={table}></DataTablePagination>
           <Button
             variant="outline"
             size="sm"
@@ -314,6 +633,86 @@ const table = useReactTable({
           </Button>
         </div>
       </div>
-    </div>
-  )
-}
+      </div>
+    )
+  }
+  
+  
+  export function DataTablePagination({
+      table,
+    }) {
+      //{table.getFilteredSelectedRowModel().rows.length} of{" "}
+      //{table.getFilteredRowModel().rows.length} row(s) selected.
+      return (
+        <div className="flex items-center justify-between px-2">
+          <div className="flex-1 text-sm text-muted-foreground">
+            
+            
+          </div>
+          <div className="flex items-center space-x-6 lg:space-x-8">
+            <div className="flex items-center space-x-2">
+              <p className="text-sm font-medium">Rows per page</p>
+              <Select
+                value={`${table.getState().pagination.pageSize}`}
+                onValueChange={(value) => {
+                  table.setPageSize(Number(value))
+                }}
+              >
+                <SelectTrigger className="h-8 w-[70px]">
+                  <SelectValue placeholder={table.getState().pagination.pageSize} />
+                </SelectTrigger>
+                <SelectContent side="top">
+                  {[10, 20, 30, 40, 50].map((pageSize) => (
+                    <SelectItem key={pageSize} value={`${pageSize}`}>
+                      {pageSize}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="flex w-[100px] items-center justify-center text-sm font-medium">
+              Page {table.getState().pagination.pageIndex + 1} of{" "}
+              {table.getPageCount()}
+            </div>
+            <div className="flex items-center space-x-2">
+              <Button
+                variant="outline"
+                className="hidden h-8 w-8 p-0 lg:flex"
+                onClick={() => table.setPageIndex(0)}
+                disabled={!table.getCanPreviousPage()}
+              >
+                <span className="sr-only">Go to first page</span>
+                <DoubleArrowLeftIcon className="h-4 w-4" />
+              </Button>
+              <Button
+                variant="outline"
+                className="h-8 w-8 p-0"
+                onClick={() => table.previousPage()}
+                disabled={!table.getCanPreviousPage()}
+              >
+                <span className="sr-only">Go to previous page</span>
+                <ChevronLeftIcon className="h-4 w-4" />
+              </Button>
+              <Button
+                variant="outline"
+                className="h-8 w-8 p-0"
+                onClick={() => table.nextPage()}
+                disabled={!table.getCanNextPage()}
+              >
+                <span className="sr-only">Go to next page</span>
+                <ChevronRightIcon className="h-4 w-4" />
+              </Button>
+              <Button
+                variant="outline"
+                className="hidden h-8 w-8 p-0 lg:flex"
+                onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+                disabled={!table.getCanNextPage()}
+              >
+                <span className="sr-only">Go to last page</span>
+                <DoubleArrowRightIcon className="h-4 w-4" />
+              </Button>
+            </div>
+          </div>
+        </div>
+      )
+    }

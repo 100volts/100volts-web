@@ -1,7 +1,7 @@
 ---
 import Main from "../../layouts/Main.astro";
 import GetReport from "../api/GetReport";
-import DataTable from "../api/DataTable";
+//import DataTable from "../api/DataTable";
 type Props = {
   elMeterName: string;
 };
@@ -10,5 +10,5 @@ const { elMeterName } = Astro.props;
 ---
 
 <Main title=`Report ${elMeterName}`>
-  <DataTable client:only />
+  <GetReport client:only />
 </Main>
