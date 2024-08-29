@@ -4,7 +4,7 @@ export default function GetUserWorkpaces() {
   return (<>
     <h1>{companyName}</h1>
     <br/>
-    <a href="/workplaces-dashboar">
+    <a href="/wokrplace/dashboard">
       <img src="/workplaces/Markeli.png"></img>
     </a>
   </>);

@@ -5,7 +5,7 @@ export default function HeaderMenu(){
     if( localStorage.getItem('volts_token')){
         return(
             <>
-            <a  href='/workplaces'>Workplaces</a>
+            <a  href='/wokrplace'>Workplaces</a>
             <ProfileIconHeader/>
             </>
         );
