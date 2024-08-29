@@ -4,18 +4,22 @@ import * as React from "react"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { ChevronRight, Zap, Droplet, Flame, Factory } from "lucide-react"
+import { useNavigate } from 'react-router-dom';
 
 const sidebarItems = [
-  { icon: Zap, label: "Electricity", usage: "150 kWh", link:"./electricity" },
-  { icon: Droplet, label: "Water", usage: "2000 L" },
-  { icon: Flame, label: "Gas", usage: "50 nm³" },
-  { icon: Factory, label: "Production", usage: "1000 units" },
+  { icon: Zap, label: "Electricity", usage: "150 kWh", link:"/wokrplace/electricity" },
+  { icon: Droplet, label: "Water", usage: "2000 L",link:"/" },
+  { icon: Flame, label: "Gas", usage: "50 nm³",link:"./" },
+  { icon: Factory, label: "Production", usage: "1000 units",link:"/" },
 ]
 
 export default function CollapsibleSidebar() {
   const [isExpanded, setIsExpanded] = React.useState(false)
   const handleRedirect = (link) => {
     window.location.href = link;
+  };
+  const handleClick = (link) => {
+    navigate(link);
   };
   return (
     <div 
@@ -37,7 +41,7 @@ export default function CollapsibleSidebar() {
           <nav className="p-3 space-y-3">
             {sidebarItems.map((item, index) => (
               <Button
-                onClick={()=>CollapsibleSidebar(item.link)}
+                onClick={()=>handleRedirect(`${item.link}`)}
                 variant="ghost"
                 className={`w-full justify-start text-lg ${isExpanded ? 'px-5 py-4' : 'px-3 py-4'}`}
                 title={`${item.label}: ${item.usage}`}
