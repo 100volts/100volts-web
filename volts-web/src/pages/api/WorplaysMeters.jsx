@@ -112,7 +112,7 @@ const ElmeterDataComponent = () => {
                     </Card>
                   </div>
                 </div>
-                <OptionsButtons/>
+                <OptionsButtons address={elmeter.address}/>
               </div>
         </div>
       ))}

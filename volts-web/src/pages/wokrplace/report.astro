@@ -1,0 +1,13 @@
+---
+import Main from "../../layouts/Main.astro";
+
+type Props = {
+  elMeterName: string;
+};
+
+const { elMeterName } = Astro.props;
+---
+
+<Main title=`Report ${elMeterName}`>
+  <div></div>
+</Main>
