@@ -1,10 +1,12 @@
 ---
 import Main from "../../layouts/Main.astro";
+import Settings from "../../components/react/Settings";
 ---
 
 <Main title="Settings">
   <h1>Settings</h1>
   <div>
+    <Settings client:only />
     <h2>Your profile</h2>
     <a>Profile infomation</a>
     <a>Change your password</a><a>TO BE ADDED</a>

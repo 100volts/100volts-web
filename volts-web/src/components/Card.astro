@@ -1,12 +1,14 @@
 ---
 export type Props = {
+  img: string;
   to: string;
   title: string;
   gradientFrom: string;
   gradientTo: string;
 };
 
-const { to, title, gradientTo, gradientFrom } = Astro.props;
+const { to, title, gradientTo, gradientFrom, img } =
+  Astro.props;
 ---
 
 <a href={to} class="card" data-gradientfrom={gradientFrom}>
