@@ -1,17 +1,18 @@
 ---
-import Main from "../layouts/Main.astro";
-import WorplaysMeters from "./api/WorplaysMeters";
-import EnergySideBar from "../components/react/EnergySideBar";
+import Main from "../../layouts/Main.astro";
+import WorplaysMeters from "../api/WorplaysMeters";
+import EnergySideBar from "../../components/react/electric/EnergySideBar";
+import Charts from "../../components/react/dashboard/Dashboard";
 ---
 
 <Main title="Volts">
   <body class="workplaces__c" style="max-width: 70%">
     <div id="workplaces" class="workplaces__c"></div>
-    <div id="elmeter" class="elmeter">
+    <h1>Electrisity</h1>
+    <div id="elmeter" class="elme ter">
       <WorplaysMeters client:only />
     </div>
   </body>
-
   <script is:inline class="workplaces__c">
     if (
       localStorage.getItem("company_name") &&
@@ -19,7 +20,7 @@ import EnergySideBar from "../components/react/EnergySideBar";
     ) {
       const cname = localStorage.getItem("company_name");
       let a = document.createElement("a");
-      a.href = "/workplaces-dashboar";
+      a.href = "/wokrplace/dashboard";
       let img = document.createElement("img");
       img.src = "/workplaces/Markeli.png";
       img.alt = "Workplase Banner";
@@ -27,7 +28,7 @@ import EnergySideBar from "../components/react/EnergySideBar";
       document.getElementById("workplaces").appendChild(a);
     }
   </script>
-  <EnergySideBar />
+  <EnergySideBar client:only />
 
   <style>
     .workplase-banner {
