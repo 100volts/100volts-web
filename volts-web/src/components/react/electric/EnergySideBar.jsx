@@ -4,7 +4,6 @@ import * as React from "react"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { ChevronRight, Zap, Droplet, Flame, Factory } from "lucide-react"
-import { useNavigate } from 'react-router-dom';
 
 const sidebarItems = [
   { icon: Zap, label: "Electricity", usage: "150 kWh", link:"/wokrplace/electricity" },
@@ -17,9 +16,6 @@ export default function CollapsibleSidebar() {
   const [isExpanded, setIsExpanded] = React.useState(false)
   const handleRedirect = (link) => {
     window.location.href = link;
-  };
-  const handleClick = (link) => {
-    navigate(link);
   };
   return (
     <div 
