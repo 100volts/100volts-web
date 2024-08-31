@@ -19,37 +19,34 @@ export default function ElectricGraphs({ elmeterProp }) {
   ];
   return (
     <>
-      <div className="flex flex-row md:flex-col">
-        <div
-          className="pie_chart_with_needle"
-          style={{
-            display: "flex",
-            justifyItems: "center",
-            alignItems: "flex-start",
-          }}
-        >
-          <Example
-            niddleValue={elmeterProp.electric_meter_avr_data.voltage}
-            data={dataVoltage}
-            chartName={"Voltage"}
-          />
-          <Example
-            niddleValue={elmeterProp.electric_meter_avr_data.current}
-            data={dataCurent}
-            chartName={"Curent"}
-          />
-          <Example
-            niddleValue={elmeterProp.electric_meter_avr_data.power / 1000}
-            data={dataPower}
-            chartName={"Power"}
-          />
-          <Example
-            niddleValue={elmeterProp.electric_meter_avr_data.powerFactor}
-            data={dataG}
-            chartName={"Power Factor"}
-          />
-        </div>
-        <div className="dayly_read_tarrif"></div>
+      <div
+        className="pie_chart_with_needle flex flex-col md:flex-row"
+        style={{
+          display: "flex",
+          justifyItems: "center",
+          alignItems: "flex-start",
+        }}
+      >
+        <Example
+          niddleValue={elmeterProp.electric_meter_avr_data.voltage}
+          data={dataVoltage}
+          chartName={"Voltage"}
+        />
+        <Example
+          niddleValue={elmeterProp.electric_meter_avr_data.current}
+          data={dataCurent}
+          chartName={"Curent"}
+        />
+        <Example
+          niddleValue={elmeterProp.electric_meter_avr_data.power / 1000}
+          data={dataPower}
+          chartName={"Power"}
+        />
+        <Example
+          niddleValue={elmeterProp.electric_meter_avr_data.powerFactor}
+          data={dataG}
+          chartName={"Power Factor"}
+        />
       </div>
     </>
   );

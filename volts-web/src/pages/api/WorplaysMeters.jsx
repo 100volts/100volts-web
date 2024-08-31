@@ -107,19 +107,19 @@ const ElmeterDataComponent = () => {
             {elmeter.name} - {elmeter.address}
           </h2>
           <div
+            className="flex flex-col md:flex-row"
             style={{
               display: "flex",
               justifyItems: "center",
               alignItems: "flex-start",
-              flexWrap: "nowrap",
             }}
           >
             <div
+              className="flex flex-col md:flex-row"
               style={{
                 display: "flex",
                 justifyItems: "center",
                 alignItems: "flex-start",
-                flexWrap: "nowrap",
               }}
             >
               <Card style={{ padding: "10px", margin: "10px" }}>
@@ -127,10 +127,7 @@ const ElmeterDataComponent = () => {
               </Card>
               <div style={{ padding: "10px" }}>
                 <Card>
-                  <ElectricGraphs
-                    elmeterProp={elmeter}
-                    className="flex flex-row md:flex-col"
-                  />
+                  <ElectricGraphs elmeterProp={elmeter} />
                 </Card>
                 <Card>
                   <DayilyTatiff elmeterProp={elmeter} />
