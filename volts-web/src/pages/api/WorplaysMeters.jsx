@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import pkg from "../../../package.json";
-import DayilyTatiff from "../../components/react/electric/DayilyTatiff"
-import OptionsButtons from "../../components/react/electric/OptionsButtons"
-import ElectricGraphs from "../../components/react/electric/ElectricGraphs"
-import AllElectricMeterDataTable from "../../components/react/electric/AllElectricMeterDataTable"
-import {
-  Card,
-} from "@/components/ui/card"
-
+import DayilyTatiff from "../../components/react/electric/DayilyTatiff";
+import OptionsButtons from "../../components/react/electric/OptionsButtons";
+import ElectricGraphs from "../../components/react/electric/ElectricGraphs";
+import AllElectricMeterDataTable from "../../components/react/electric/AllElectricMeterDataTable";
+import { Card } from "@/components/ui/card";
 
 const urladdress = pkg["volts-server"];
 
@@ -15,20 +12,20 @@ const ElmeterDataComponent = () => {
   const [data, seTableCellata] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const userToken = localStorage.getItem('volts_token');
-  const companyName = localStorage.getItem('company_name');
+  const userToken = localStorage.getItem("volts_token");
+  const companyName = localStorage.getItem("company_name");
 
   const getElmeterData = async () => {
     try {
-      const body= JSON.stringify({
+      const body = JSON.stringify({
         company_name: companyName,
-      })
+      });
       const response = await fetch(
         `http://${urladdress}:8081/elmeter/company/address/list`,
         {
-          method: 'POST',
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
             Authorization: `Bearer ${userToken}`,
           },
           body,
@@ -53,30 +50,39 @@ const ElmeterDataComponent = () => {
 
   const getElmeterDataFromAddress = async (elmeterAddress) => {
     try {
-      const response = await fetch(`http://${urladdress}:8081/elmeter/data/last`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${userToken}`,
-        },
-        body: JSON.stringify({
-          company_name: companyName,
-          address: elmeterAddress,
-        }),
-      });
+      const response = await fetch(
+        `http://${urladdress}:8081/elmeter/data/last`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${userToken}`,
+          },
+          body: JSON.stringify({
+            company_name: companyName,
+            address: elmeterAddress,
+          }),
+        }
+      );
 
       const datat = await response.json();
-      const { name, address, electric_meter_data,electric_meter_avr_data, daily_tariff_data } = datat;
+      const {
+        name,
+        address,
+        electric_meter_data,
+        electric_meter_avr_data,
+        daily_tariff_data,
+      } = datat;
 
       return {
         name,
         address,
         electric_meter_data,
         electric_meter_avr_data,
-        daily_tariff_data
+        daily_tariff_data,
       };
     } catch (error) {
-      console.log('Failed to fetch data: ' + error.message);
+      console.log("Failed to fetch data: " + error.message);
       return null;
     }
   };
@@ -88,37 +94,56 @@ const ElmeterDataComponent = () => {
   // Conditional rendering based on loading and error state
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
- // const chart=new Example();
+  // const chart=new Example();
   //console.log(chart)
   //<h1>Elmeter Data</h1>
   //console.log(data)
 
   return (
-    <div style={{maxWidth: "70%"}}>
+    <div style={{ maxWidth: "70%" }}>
       {data.map((elmeter, index) => (
-        <div key={index}  >
-            <h2 style={{padding:"10px"}}>{elmeter.name} - {elmeter.address}</h2>
-              <div style={{display: "flex", justifyItems:"center", alignItems: "flex-start", flexWrap: "nowrap"}}>
-                <div style={{display: "flex", justifyItems:"center", alignItems: "flex-start", flexWrap: "nowrap"}}>
-                  <Card style={{padding:"10px", margin:"10px"}}>
-                    <AllElectricMeterDataTable elmeterProp={elmeter}/>
-                  </Card>
-                  <div style={{padding:"10px"}}>
-                    <Card>
-                      <ElectricGraphs elmeterProp={elmeter}/>
-                    </Card>
-                    <Card>
-                      <DayilyTatiff elmeterProp={elmeter}/>
-                    </Card>
-                  </div>
-                </div>
-                <OptionsButtons address={elmeter.address}/>
+        <div key={index}>
+          <h2 style={{ padding: "10px" }}>
+            {elmeter.name} - {elmeter.address}
+          </h2>
+          <div
+            style={{
+              display: "flex",
+              justifyItems: "center",
+              alignItems: "flex-start",
+              flexWrap: "nowrap",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyItems: "center",
+                alignItems: "flex-start",
+                flexWrap: "nowrap",
+              }}
+            >
+              <Card style={{ padding: "10px", margin: "10px" }}>
+                <AllElectricMeterDataTable elmeterProp={elmeter} />
+              </Card>
+              <div style={{ padding: "10px" }}>
+                <Card>
+                  <ElectricGraphs
+                    elmeterProp={elmeter}
+                    className="flex flex-row md:flex-col"
+                  />
+                </Card>
+                <Card>
+                  <DayilyTatiff elmeterProp={elmeter} />
+                </Card>
               </div>
+            </div>
+            <OptionsButtons address={elmeter.address} />
+          </div>
         </div>
       ))}
     </div>
   );
-   // <pre>{JSON.stringify(elmeter.electric_meter_data, null, 2)}</pre>
+  // <pre>{JSON.stringify(elmeter.electric_meter_data, null, 2)}</pre>
 };
 
 export default ElmeterDataComponent;

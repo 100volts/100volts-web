@@ -2,58 +2,74 @@ import pkg from "../../../package.json";
 const urladdress = pkg["volts-server"];
 
 export default async function getElmeterData() {
-    try{
-        const userToken = localStorage.getItem("volts_token");
-        const companyName = localStorage.getItem("company_name");
-        const response = await fetch(
-          `http://${urladdress}:8081/elmeter/company/address/list`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${userToken}`,
-            },
-            body: JSON.stringify({
-                company_name: companyName,
-            }),
-          },
-        );
-        const datat = await response.json();
-        const {address_list}=datat;
-        
-        address_list.forEach(element => {
-            console.log(element)
-            getElmeterDataFromAddress(element)
-        });
-        
-    }catch (error) {
-        console.log('Failed to fetch data: ' + error.message);
-    }
+  try {
+    const userToken = localStorage.getItem("volts_token");
+    const companyName = localStorage.getItem("company_name");
+    const response = await fetch(
+      `http://${urladdress}:8081/elmeter/company/address/list`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userToken}`,
+        },
+        body: JSON.stringify({
+          company_name: companyName,
+        }),
+      }
+    );
+    const datat = await response.json();
+    const { address_list } = datat;
+
+    address_list.forEach((element) => {
+      console.log(element);
+      getElmeterDataFromAddress(element);
+    });
+  } catch (error) {
+    console.log("Failed to fetch data: " + error.message);
+  }
 }
 
 async function getElmeterDataFromAddress(elmeterAddress) {
-    try{
-        const userToken = localStorage.getItem("volts_token");
-        const companyName = localStorage.getItem("company_name");
-        const response = await fetch(
-          `http://${urladdress}:8081/elmeter/data/last`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${userToken}`,
-            },
-            body: JSON.stringify({
-                company_name: companyName,
-                address:elmeterAddress
-            }),
-          },
-        );
-        const datat = await response.json();
-        const {name,address,electric_meter_data}=datat
-        const {merterId,voltagell1,voltagell2,voltagell3,currentl1,currentl2,currentl3,activepowerl1,activepowerl2,activepowerl3,pfl1,pfl2,pfl3,totalActivePpower,totalActiveEnergyImportTariff1,totalActiveEnergyImportTariff2}=electric_meter_data
-        let a = document.createElement("a");
-        a.innerHTML = `<h2>${name} Address: ${address}</h2> <br>
+  try {
+    const userToken = localStorage.getItem("volts_token");
+    const companyName = localStorage.getItem("company_name");
+    const response = await fetch(
+      `http://${urladdress}:8081/elmeter/data/last`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userToken}`,
+        },
+        body: JSON.stringify({
+          company_name: companyName,
+          address: elmeterAddress,
+        }),
+      }
+    );
+    const datat = await response.json();
+    const { name, address, electric_meter_data } = datat;
+    const {
+      merterId,
+      voltagell1,
+      voltagell2,
+      voltagell3,
+      currentl1,
+      currentl2,
+      currentl3,
+      activepowerl1,
+      activepowerl2,
+      activepowerl3,
+      pfl1,
+      pfl2,
+      pfl3,
+      totalActivePpower,
+      totalActiveEnergyImportTariff1,
+      totalActiveEnergyImportTariff2,
+    } = electric_meter_data;
+    let a = document.createElement("a");
+    a.innerHTML = `<h2>${name} Address: ${address}</h2> <br>
         <table>
         <tr><td>Name</td><td>L1</td><td>L2</td><td>L3</td></tr>
         <tr><td>Voltage:</td><td>${voltagell1}</td><td>${voltagell2}</td><td>${voltagell3}</td><td>V</td></tr>
@@ -65,15 +81,18 @@ async function getElmeterDataFromAddress(elmeterAddress) {
         </table>
 
         `;
-        document.getElementById('elmeter').appendChild(a);
-        document.getElementById('elmeter').appendChild(document.createElement("br"));
-        document.getElementById('elmeter').appendChild(document.createElement("br"));
+    document.getElementById("elmeter").appendChild(a);
+    document
+      .getElementById("elmeter")
+      .appendChild(document.createElement("br"));
+    document
+      .getElementById("elmeter")
+      .appendChild(document.createElement("br"));
 
-        console.log(datat)
-        
-    }catch (error) {
-        console.log('Failed to fetch data: ' + error.message);
-    }
+    console.log(datat);
+  } catch (error) {
+    console.log("Failed to fetch data: " + error.message);
+  }
 }
 
 await getElmeterData();
