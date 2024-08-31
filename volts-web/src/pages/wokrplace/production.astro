@@ -1,6 +1,9 @@
 ---
 import Main from "../../layouts/Main.astro";
+import EnergySideBar from "../../components/react/electric/EnergySideBar";
+
 ---
 <Main title="production">
     <h1>Production</h1>
+    <EnergySideBar client:only />
 </Main>

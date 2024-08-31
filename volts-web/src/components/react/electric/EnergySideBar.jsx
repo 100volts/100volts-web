@@ -15,7 +15,12 @@ const sidebarItems = [
   },
   { icon: Droplet, label: "Water", usage: "2000 L", link: "/" },
   { icon: Flame, label: "Gas", usage: "50 nm³", link: "./" },
-  { icon: Factory, label: "Production", usage: "1000 units", link: "/" },
+  {
+    icon: Factory,
+    label: "Production",
+    usage: "1000 units",
+    link: "/wokrplace/production",
+  },
 ];
 
 export default function CollapsibleSidebar() {
