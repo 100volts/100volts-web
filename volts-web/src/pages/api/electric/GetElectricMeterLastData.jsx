@@ -1,4 +1,4 @@
-import pkg from "../../../package.json";
+import pkg from "../../../../package.json";
 const urladdress = pkg["volts-server"];
 
 export default async function getElmeterData() {

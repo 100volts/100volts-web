@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import pkg from "../../../package.json";
-import DayilyTatiff from "../../components/react/electric/DayilyTatiff";
-import OptionsButtons from "../../components/react/electric/OptionsButtons";
-import ElectricGraphs from "../../components/react/electric/ElectricGraphs";
-import AllElectricMeterDataTable from "../../components/react/electric/AllElectricMeterDataTable";
+import pkg from "../../../../package.json";
+import DayilyTatiff from "../../../components/react/electric/DayilyTatiff";
+import OptionsButtons from "../../../components/react/electric/OptionsButtons";
+import ElectricGraphs from "../../../components/react/electric/ElectricGraphs";
+import AllElectricMeterDataTable from "../../../components/react/electric/AllElectricMeterDataTable";
 import { Card } from "@/components/ui/card";
 
 const urladdress = pkg["volts-server"];

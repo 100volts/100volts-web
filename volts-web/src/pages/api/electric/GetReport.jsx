@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import pkg from "../../../package.json";
+import pkg from "../../../../package.json";
 import { Button } from "@/components/ui/button";
 import {
   flexRender,
