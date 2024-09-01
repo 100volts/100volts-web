@@ -88,7 +88,22 @@ export default function CreateNewProduction() {
                 <Input placeholder="discription" {...field} />
               </FormControl>
               <FormDescription>
-                This is your public display name.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="prod_group"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Production group</FormLabel>
+              <FormControl>
+                <Input placeholder="discription group" {...field} />
+              </FormControl>
+              <FormDescription>
+                Not mandatory. It is used just for organization
               </FormDescription>
               <FormMessage />
             </FormItem>
