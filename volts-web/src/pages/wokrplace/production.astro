@@ -1,9 +1,13 @@
 ---
 import Main from "../../layouts/Main.astro";
 import EnergySideBar from "../../components/react/electric/EnergySideBar";
-
+import ProdUI from "../api/Production"
 ---
 <Main title="production">
     <h1>Production</h1>
+    <div>
+        <a>All productions</a>
+        <ProdUI client:only>
+    </div>
     <EnergySideBar client:only />
 </Main>
