@@ -30,7 +30,6 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 
-
 const formSchema = z.object({
   username: z.string().min(2, {
     message: "Username must be at least 2 characters.",
@@ -50,12 +49,12 @@ const formSchema = z.object({
   }
 
 
-export default function ui() {
+export default function CreateNewProduction() {
   const form = useForm()
   return (
     <>
     <Dialog>
-    <DialogTrigger>Open</DialogTrigger>
+    <DialogTrigger>Create new Production</DialogTrigger>
     <DialogContent>
     <DialogHeader>
       <DialogTitle>Creating new production</DialogTitle>
@@ -75,22 +74,6 @@ export default function ui() {
               <FormControl>
                 <Input placeholder="name" {...field} />
               </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="prod_discription"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Production disctription</FormLabel>
-              <FormControl>
-                <Input placeholder="discription" {...field} />
-              </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}

@@ -1,14 +1,28 @@
 ---
 import Main from "../../layouts/Main.astro";
 import EnergySideBar from "../../components/react/electric/EnergySideBar";
-import ProdUI from "../api/ProdUI";
+import CreateNewProduction from "../api/CreateNewProduction";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 ---
 
 <Main title="production">
   <h1>Production</h1>
   <div>
     <a>All productions</a>
-    <ProdUI client:only />
+    <Card>
+      <CardContent>
+        <br />
+        <a></a>
+        <CreateNewProduction client:only />
+      </CardContent>
+    </Card>
     <EnergySideBar client:only />
   </div></Main
 >
