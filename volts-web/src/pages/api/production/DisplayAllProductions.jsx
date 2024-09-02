@@ -56,13 +56,17 @@ const formSchema = z.object({
       },
     })
    
-    function onSubmit(values) {
-        const sendProdData = async () => {
-            try {
+    async function onSubmit(values) {
+      //const [error, setError] = useState(null);
+        try{
+
               const body = JSON.stringify({
-                productionName: companyName,
+                company_name: companyName,
+                production_name:"test",
                 value:values.prod_value
               });
+
+        console.log('Request Body:', body);
               const response = await fetch(
                 `http://${urladdress}:8081/production/company/data`,
                 {
@@ -75,27 +79,32 @@ const formSchema = z.object({
                 }
               );
               const datat = await response.json();
-              const { production } = datat;
+              console.log('API Response:', datat);
+
+              const { success } = datat;
         
-              console.log(production);
-            } catch (error) {
-              setError(error.message);
-            } finally {
-              setLoading(false);
-            }
-          };
-          useEffect(() => {
-            sendProdData();
-          }, []);
+              console.log(success);
+
+          }catch (error) {
+            console.error('Error submitting form:', error);  // Log the error
+        } finally {
+            console.log('Form submission process completed');
+        }
+        ;
+
+          
+          
       console.log(values)
     }
+
+    const companyName = localStorage.getItem("company_name");
+    const userToken = localStorage.getItem("volts_token");
 
 export default function DisplayAllProductions(){
     const [data, setProdData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const userToken = localStorage.getItem("volts_token");
-    const companyName = localStorage.getItem("company_name");
+
     const form = useForm();
     const getProdData = async () => {
         try {
@@ -130,6 +139,13 @@ export default function DisplayAllProductions(){
     
       if (loading) return <div>Loading...</div>;
       if (error) return <div>Error: {error}</div>;
+
+
+      const handleSubmit = async (event) => {
+        event.preventDefault(); // Prevent the default form submission behavior
+    
+        await form.handleSubmit(onSubmit)(event);
+    };
 
       return(
         <>
@@ -166,7 +182,7 @@ export default function DisplayAllProductions(){
                     </DialogHeader>
 
                     <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+                    <form onSubmit={handleSubmit} className="space-y-8">
                         <FormField
                         control={form.control}
                         name="prod_value"
@@ -179,12 +195,12 @@ export default function DisplayAllProductions(){
                             <FormMessage />
                             </FormItem>
                         )}
-                        /><DialogClose >
+                        />
                         <Button type="submit">Submit</Button>
-                        </DialogClose>
                     </form>
                     </Form>
-                    
+                    <DialogClose > Close
+                    </DialogClose>
                     </DialogContent>
                     </Dialog>
                 </Card>
