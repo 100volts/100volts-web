@@ -37,11 +37,12 @@ import {
     CardHeader,
     CardTitle,
   } from "@/components/ui/card";
+  
   import React, { useState, useEffect } from "react";
   import pkg from "../../../../package.json";
   
 const urladdress = pkg["volts-server"];
-
+let ffsName=""
 const formSchema = z.object({
     username: z.string().min(2, {
       message: "Username must be at least 2 characters.",
@@ -57,16 +58,13 @@ const formSchema = z.object({
     })
    
     async function onSubmit(values) {
-      //const [error, setError] = useState(null);
         try{
 
               const body = JSON.stringify({
                 company_name: companyName,
-                production_name:"test",
+                production_name:values.prod_name,
                 value:values.prod_value
               });
-
-        console.log('Request Body:', body);
               const response = await fetch(
                 `http://${urladdress}:8081/production/company/data`,
                 {
@@ -79,20 +77,14 @@ const formSchema = z.object({
                 }
               );
               const datat = await response.json();
-              console.log('API Response:', datat);
-
               const { success } = datat;
-        
               console.log(success);
-
           }catch (error) {
-            console.error('Error submitting form:', error);  // Log the error
+            console.error('Error submitting form:', error);
         } finally {
             console.log('Form submission process completed');
         }
         ;
-
-          
           
       console.log(values)
     }
@@ -105,7 +97,12 @@ export default function DisplayAllProductions(){
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const form = useForm();
+    const form = useForm({
+      defaultValues: {
+        prod_value: '',
+        prod_name: '' 
+      }
+    });
     const getProdData = async () => {
         try {
           const body = JSON.stringify({
@@ -143,12 +140,70 @@ export default function DisplayAllProductions(){
 
       const handleSubmit = async (event) => {
         event.preventDefault(); // Prevent the default form submission behavior
-    
+        console.log("event",event)
         await form.handleSubmit(onSubmit)(event);
     };
+    
 
       return(
         <>
+          <div>
+          <Card>
+            <CardHeader>Input productiuon</CardHeader>
+            <CardContent>
+            <Dialog>
+                    <DialogTrigger>Add new Production value</DialogTrigger>
+                    <DialogContent>
+                    <DialogHeader>
+                    <DialogTitle>Add new Production value</DialogTitle>
+                    <DialogDescription>
+                        Adding new record for the given production
+                    </DialogDescription>
+                    </DialogHeader>
+                    <Form {...form}>
+                    <form onSubmit={handleSubmit} className="space-y-8">
+                        <FormField
+                        control={form.control}
+                        name="prod_value"
+                        render={({ field }) => (
+                            <FormItem>
+                            <FormLabel>Production value</FormLabel>
+                            <FormControl>
+                                <Input placeholder="123" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                            </FormItem>
+                        )}
+                        />
+                        <FormField
+                          control={form.control}
+                          name="prod_name"
+                          render={({ field }) => (
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <FormControl>
+                              <SelectTrigger>
+                                <SelectValue placeholder="Select production unit type" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                            {data.map((production, index) => (
+                              <div key={index} >
+                                <SelectItem value={production.name}>{production.name}</SelectItem>
+                              </div>
+                            ))}
+                            </SelectContent>
+                        </Select>)}
+                        />
+                        <Button type="submit">Submit</Button>
+                    </form>
+                    </Form>
+                    <DialogClose > Close
+                    </DialogClose>
+                    </DialogContent>
+                    </Dialog>
+            </CardContent>
+          </Card>
+        </div>
         <div>
         {data.map((production, index) => (
             <div key={index}>
@@ -171,38 +226,6 @@ export default function DisplayAllProductions(){
                             </div>
                         ))}
                     </CardContent>
-                        <Dialog>
-                    <DialogTrigger>Add new Production value</DialogTrigger>
-                    <DialogContent>
-                    <DialogHeader>
-                    <DialogTitle>Add new Production value</DialogTitle>
-                    <DialogDescription>
-                        Adding new record for the given production
-                    </DialogDescription>
-                    </DialogHeader>
-
-                    <Form {...form}>
-                    <form onSubmit={handleSubmit} className="space-y-8">
-                        <FormField
-                        control={form.control}
-                        name="prod_value"
-                        render={({ field }) => (
-                            <FormItem>
-                            <FormLabel>Production value</FormLabel>
-                            <FormControl>
-                                <Input placeholder="123" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                            </FormItem>
-                        )}
-                        />
-                        <Button type="submit">Submit</Button>
-                    </form>
-                    </Form>
-                    <DialogClose > Close
-                    </DialogClose>
-                    </DialogContent>
-                    </Dialog>
                 </Card>
             </div>
         ))}
