@@ -1,5 +1,6 @@
-"use client";
 import React, { useState, useEffect } from "react";
+import pkg from "../../../../package.json";
+import { Button } from "@/components/ui/button";
 import {
   flexRender,
   useReactTable,
@@ -15,7 +16,6 @@ import {
   DoubleArrowLeftIcon,
   DoubleArrowRightIcon,
 } from "@radix-ui/react-icons";
-import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -33,20 +33,43 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 
+///
 const data1 = [
   {
     merterId: 1,
-    voltagell1: "233.80",
-    voltagell2: 234.45,
-    voltagell3: 235.18,
-    currentl1: 6.323,
+    voltagell1: 237.5,
+    voltagell2: 237.63,
+    voltagell3: 239.86,
+    pfl1: 0.974549,
+    currentl1: 33.3096,
+    currentl2: 34.079,
+    currentl3: 34.5922,
+    activepowerl1: 7714.61,
+    activepowerl2: 7033.43,
+    activepowerl3: 7835.15,
+    totalActiveEnergyImportTariff1: 72567.12,
+    totalActiveEnergyImportTariff2: 0,
+    totalActivePpower: 22583.19,
+    pfl2: 0.944497,
+    pfl3: 0.985958,
   },
   {
-    merterId: 1,
-    voltagell1: "235.69",
-    voltagell2: 235.6,
-    voltagell3: 236.74,
-    currentl1: 7.5014,
+    merterId: 222,
+    voltagell1: 237.5,
+    voltagell2: 237.63,
+    voltagell3: 239.86,
+    currentl1: 33.3096,
+    currentl2: 34.079,
+    currentl3: 34.5922,
+    activepowerl1: 7714.61,
+    activepowerl2: 7033.43,
+    activepowerl3: 7835.15,
+    pfl1: 0.974549,
+    pfl2: 0.869258,
+    pfl3: 0.945079,
+    totalActivePpower: 22583.19,
+    totalActiveEnergyImportTariff1: 72567.12,
+    totalActiveEnergyImportTariff2: 0,
   },
   {
     merterId: 1,
@@ -217,6 +240,34 @@ export const columns1 = [
     header: "merterId",
   },
   {
+    accessorKey: "totalActivePpower",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          totalActivePpower
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+  },
+  {
+    accessorKey: "totalActiveEnergyImportTariff1",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          totalActiveEnergyImportTariff1
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+  },
+  {
     accessorKey: "voltagell1",
     header: ({ column }) => {
       return (
@@ -272,12 +323,188 @@ export const columns1 = [
       );
     },
   },
-];
+  {
+    accessorKey: "currentl2",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          currentl2
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+  },
+  {
+    accessorKey: "currentl3",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          currentl3
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+  },
+  {
+    accessorKey: "activepowerl1",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          activepowerl1
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+  },
+  {
+    accessorKey: "activepowerl2",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          activepowerl2
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+  },
+  {
+    accessorKey: "activepowerl3",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          activepowerl3
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+  },
+  {
+    accessorKey: "pfl1",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          pfl1
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+  },
+  {
+    accessorKey: "pfl2",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          pfl2
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+  },
+  {
+    accessorKey: "pfl3",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          pfl3
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+  },
 
-export default function CompleteTable({ columns, data }) {
+  {
+    accessorKey: "totalActiveEnergyImportTariff2",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          totalActiveEnergyImportTariff1
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+  },
+];
+///
+export default function GetReport() {
+  const urladdress = pkg["volts-server"];
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const userToken = localStorage.getItem("volts_token");
+  const companyName = localStorage.getItem("company_name");
+  const elMeterAddress = localStorage.getItem("electric_meter_address");
+  const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+
+  const getElmeterData = async () => {
+    try {
+      const body = JSON.stringify({
+        company_name: companyName,
+        address: elMeterAddress,
+        page_limit: 100,
+        pages: 1,
+      });
+      const response = await fetch(
+        `http://${urladdress}:8081/elmeter/data/report`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${userToken}`,
+          },
+          body,
+        }
+      );
+      const datat = await response.json();
+      const { meters } = datat;
+      setData(meters);
+      //await delay(5000);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getElmeterData();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+  console.log(data);
+
   return (
     <>
-      <DataTable columns={columns} data={data}></DataTable>
+      <div>
+        <DataTable columns={columns1} data={data[0]} />
+      </div>
     </>
   );
 }
@@ -305,17 +532,17 @@ export function DataTable({ columns, data }) {
       <div>
         <div className="flex items-center py-4">
           <Input
-            placeholder="Filter voltagell1..."
-            value={table.getColumn("voltagell1")?.getFilterValue() ?? ""}
+            placeholder="Filter totalActivePpower..."
+            value={table.getColumn("totalActivePpower")?.getFilterValue() ?? ""}
             onChange={(event) =>
-              table.getColumn("voltagell1")?.setFilterValue(event.target.value)
+              table
+                .getColumn("totalActivePpower")
+                ?.setFilterValue(event.target.value)
             }
             className="max-w-sm"
           />
         </div>
-        <div className="flex items-center py-4">
-          <DataTablePagination table={table}></DataTablePagination>
-        </div>
+        <div className="flex items-center py-4"></div>
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -365,6 +592,7 @@ export function DataTable({ columns, data }) {
           </TableBody>
         </Table>
         <div className="flex items-center justify-end space-x-2 py-4">
+          <DataTablePagination table={table}></DataTablePagination>
           <Button
             variant="outline"
             size="sm"

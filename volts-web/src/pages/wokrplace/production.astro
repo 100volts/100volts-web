@@ -1,10 +1,34 @@
 ---
 import Main from "../../layouts/Main.astro";
+
+import EnergySideBar from "../../components/react/electric/EnergySideBar";
+import CreateNewProduction from "../api/production/CreateNewProduction";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import DisplayAllProductions from "../api/production/DisplayAllProductions";
 ---
 
-<Main title="Production">
-<div
+<Main title="production">
+  <h1>Production</h1>
+  <div>
+    <a>All productions</a>
+    <div class="all_productions">
+      <DisplayAllProductions client:only />
+    </div>
+    <Card>
+      <CardContent>
+        <br />
+        <a></a>
+        <CreateNewProduction client:only />
+      </CardContent>
+    </Card>
+    <EnergySideBar client:only />
+  </div></Main
 >
 
-</div>
-</Main>
