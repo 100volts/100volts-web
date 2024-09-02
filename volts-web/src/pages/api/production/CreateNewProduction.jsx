@@ -32,6 +32,8 @@ import {
 import React, { useState, useEffect } from "react";
 import pkg from "../../../../package.json";
 
+const companyName = localStorage.getItem("company_name");
+const userToken = localStorage.getItem("volts_token")
 const formSchema = z.object({
   username: z.string().min(2, {
     message: "Username must be at least 2 characters.",
@@ -56,6 +58,7 @@ const formSchema = z.object({
         group_name:"test gtoup",
         el_name:[values.electric_name]
       });
+      console.log("body",body)
       const response = await fetch(
         `http://${urladdress}:8081/production/company/create`,
         {
@@ -70,12 +73,12 @@ const formSchema = z.object({
       const datat = await response.json();
       const { success } = datat;
       console.log(success);
-  }catch (error) {
-    console.error('Error submitting form:', error);
-} finally {
-    console.log('Form submission process completed');
-}
-;
+    }catch (error) {
+      console.error('Error submitting form:', error);
+  } finally {
+      console.log('Form submission process completed');
+  }
+  ;
 
     console.log(values)
   }
@@ -88,9 +91,7 @@ export default function CreateNewProduction() {
   const [dataEl, setElData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  const companyName = localStorage.getItem("company_name");
-  const userToken = localStorage.getItem("volts_token");
+;
   const getElData = async () => {
     try {
       const body = JSON.stringify({
@@ -125,6 +126,10 @@ export default function CreateNewProduction() {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
+  
+  const handleSubmit = async (event) => {
+    await form.handleSubmit(onSubmit)(event);
+};
   return (
     <>
     <Dialog>
@@ -138,7 +143,7 @@ export default function CreateNewProduction() {
     </DialogHeader>
 
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={handleSubmit} className="space-y-8">
         <FormField
           control={form.control}
           name="prod_name"
@@ -196,9 +201,9 @@ export default function CreateNewProduction() {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="liters">Liters</SelectItem>
-                  <SelectItem value="kilograms">Kilograms</SelectItem>
-                  <SelectItem value="units">Units</SelectItem>
+                  <SelectItem value="Liter">Liters</SelectItem>
+                  <SelectItem value="Kilogram">Kilograms</SelectItem>
+                  <SelectItem value="Unit">Units</SelectItem>
                 </SelectContent>
               </Select>
               <FormDescription>
