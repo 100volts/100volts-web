@@ -42,7 +42,6 @@ import {
   import pkg from "../../../../package.json";
   
 const urladdress = pkg["volts-server"];
-let ffsName=""
 const formSchema = z.object({
     username: z.string().min(2, {
       message: "Username must be at least 2 characters.",
@@ -59,7 +58,6 @@ const formSchema = z.object({
    
     async function onSubmit(values) {
         try{
-
               const body = JSON.stringify({
                 company_name: companyName,
                 production_name:values.prod_name,
@@ -120,8 +118,8 @@ export default function DisplayAllProductions(){
             }
           );
           const datat = await response.json();
-          const { production } = datat;
-    
+          const { production } = datat;    
+                
           setProdData(production);
         } catch (error) {
           setError(error.message);
