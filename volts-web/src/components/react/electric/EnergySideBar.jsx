@@ -39,6 +39,7 @@ export default function CollapsibleSidebar() {
     >
       <div className="flex flex-col h-full">
         <Button
+          key="butt)open"
           variant="ghost"
           size="icon"
           className="w-full h-20 rounded-none border-b border-border"
@@ -55,6 +56,7 @@ export default function CollapsibleSidebar() {
           <nav className="p-3 space-y-3">
             {sidebarItems.map((item, index) => (
               <Button
+              key={index}
                 onClick={() => handleRedirect(`${item.link}`)}
                 variant="ghost"
                 className={`w-full justify-start text-lg ${
@@ -64,7 +66,7 @@ export default function CollapsibleSidebar() {
               >
                 <item.icon className="h-7 w-7 flex-shrink-0" />
                 {isExpanded && (
-                  <div className="ml-3 text-left">
+                  <div key={index} className="ml-3 text-left">
                     <div className="font-medium">{item.label}</div>
                     <div className="text-sm text-muted-foreground">
                       Current usage: {item.usage}

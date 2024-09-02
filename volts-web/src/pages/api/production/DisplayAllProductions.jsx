@@ -27,7 +27,7 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
+  DialogTrigger,DialogClose
 } from "@/components/ui/dialog"
 import {
     Card,
@@ -77,7 +77,7 @@ const formSchema = z.object({
               const datat = await response.json();
               const { production } = datat;
         
-              setProdData(production);
+              console.log(production);
             } catch (error) {
               setError(error.message);
             } finally {
@@ -144,11 +144,11 @@ export default function DisplayAllProductions(){
                         <a>{production.units.name}</a>
                         <br></br>
                         <a>Groups:</a>
-                        {production.groups.map((group, indexg) => (
-                            <div>
+                        {production.groups.map((group, index) => (
+                            <div key={index}>
                                 <a>Name: {group.name}</a>
-                                {group.electricMeters.map((electric, indexe) => (
-                                    <div>
+                                {group.electricMeters.map((electric, index) => (
+                                    <div key={index}>
                                         <a>Electric meter name: {electric.meterName}</a>
                                     </div>
                                 ))}
@@ -179,10 +179,12 @@ export default function DisplayAllProductions(){
                             <FormMessage />
                             </FormItem>
                         )}
-                        />
+                        /><DialogClose >
                         <Button type="submit">Submit</Button>
+                        </DialogClose>
                     </form>
                     </Form>
+                    
                     </DialogContent>
                     </Dialog>
                 </Card>
