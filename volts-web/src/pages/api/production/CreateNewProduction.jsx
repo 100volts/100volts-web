@@ -77,6 +77,7 @@ const formSchema = z.object({
       console.error('Error submitting form:', error);
   } finally {
       console.log('Form submission process completed');
+      window.location.reload();
   }
   ;
 
@@ -116,6 +117,7 @@ export default function CreateNewProduction() {
       setError(error.message);
     } finally {
       setLoading(false);
+      
     }
   };
 
