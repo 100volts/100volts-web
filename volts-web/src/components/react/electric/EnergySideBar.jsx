@@ -1,5 +1,6 @@
 "use client";
 
+
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -23,13 +24,11 @@ const sidebarItems = [
   },
 ];
 
+
 export default function CollapsibleSidebar() {
   const [isExpanded, setIsExpanded] = React.useState(false);
   const handleRedirect = (link) => {
     window.location.href = link;
-  };
-  const handleClick = (link) => {
-    navigate(link);
   };
   return (
     <div
