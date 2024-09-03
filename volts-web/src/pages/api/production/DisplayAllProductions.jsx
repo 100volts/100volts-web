@@ -68,19 +68,25 @@ export default function DisplayAllProductions(){
                 <Card>
                     <CardHeader>{production.name}</CardHeader>
                     <CardContent>
-                        <a>{production.description}</a>
-                        <a>Date of creation:{production.dateOfCreation}</a>
-                        <a>{production.units.name}</a>
+                        <a>Description: {production.description}</a>
+                        <br/>
+                        <a>Date of creation: {production.dateOfCreation}</a>
+                        <br/>
+                        <a>Units: {production.units.name}</a>
                         <br></br>
                         <a>Groups:</a>
                         {production.groups.map((group, index) => (
                             <div key={index}>
-                                <a>Name: {group.name}</a>
-                                {group.electricMeters.map((electric, index) => (
-                                    <div key={index}>
-                                        <a>Electric meter name: {electric.meterName}</a>
-                                    </div>
-                                ))}
+                                <a>{group.name}</a>
+                              
+                            </div>
+                        ))}
+                        <br/>
+                        <a>Electric Meters:</a>
+                        {production.electricMeters.map((electricMeters, index) => (
+                            <div key={index}>
+                                <a>Name: {electricMeters.meterName}</a>
+                              
                             </div>
                         ))}
                         <DeleteButton production={production}/>

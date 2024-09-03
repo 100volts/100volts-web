@@ -55,7 +55,7 @@ const formSchema = z.object({
         production_name: values.prod_name,
         production_description:values.prod_discription,
         units_name:values.prod_unit,
-        group_name:"test gtoup",
+        group_name:prod_group,
         el_name:[values.electric_name]
       });
       console.log("body",body)
@@ -77,10 +77,9 @@ const formSchema = z.object({
       console.error('Error submitting form:', error);
   } finally {
       console.log('Form submission process completed');
-      window.location.reload();
+      //window.location.reload();
   }
   ;
-
     console.log(values)
   }
 
@@ -215,7 +214,7 @@ export default function CreateNewProduction() {
             </FormItem>
           )}
         />
-                                <FormField
+        <FormField
                           control={form.control}
                           name="electric_name"
                           render={({ field }) => (
@@ -233,7 +232,7 @@ export default function CreateNewProduction() {
                             ))}
                             </SelectContent>
                         </Select>)}
-                        />
+         />
         <Button type="submit">Submit</Button>
       </form>
     </Form>
