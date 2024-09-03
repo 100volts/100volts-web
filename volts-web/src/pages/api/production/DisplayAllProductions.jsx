@@ -13,6 +13,7 @@ import {
   import pkg from "../../../../package.json";
   import ImputProduction from "./ui/ImputProduction"
 const urladdress = pkg["volts-server"];
+import Last10DataTable from "./ui/Last10DataTable"
 
 const companyName = localStorage.getItem("company_name");
 const userToken = localStorage.getItem("volts_token");
@@ -59,15 +60,16 @@ export default function DisplayAllProductions(){
     
       return(
         <>
-          <div className="imput_production">
+          <div className="imput_production max-w-2xl">
             <ImputProduction production={data}/>
         </div>
-        <div>
+        <div className="max-w-2xl">
         {data.map((production, index) => (
             <div key={index}>
-                <Card>
+                <Card >
                     <CardHeader>{production.name}</CardHeader>
-                    <CardContent>
+                    <CardContent className="flex flex-col md:flex-row">
+                      <div>
                         <a>Description: {production.description}</a>
                         <br/>
                         <a>Date of creation: {production.dateOfCreation}</a>
@@ -89,6 +91,8 @@ export default function DisplayAllProductions(){
                               
                             </div>
                         ))}
+                        </div>
+                        <Last10DataTable className="max-w-xs" prodName={production.name}/>
                         <DeleteButton production={production}/>
                     </CardContent>
                 </Card>
