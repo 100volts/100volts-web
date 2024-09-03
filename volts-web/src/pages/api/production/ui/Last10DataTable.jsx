@@ -56,7 +56,7 @@ import {
     
 
     return(
-        <Table>
+        <Table className="max-w-xs">
             <TableCaption>All data.</TableCaption>
             <TableHeader>
                 <TableRow>
