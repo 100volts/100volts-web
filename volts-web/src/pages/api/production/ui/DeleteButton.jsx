@@ -42,7 +42,7 @@ async function deleteProd(prod_name){
 export default function DeleteButton({production}){
     return(
     <>
-        <Button onClick={() =>deleteProd(`${production.name}`)}>
+        <Button variant="destructive" onClick={() =>deleteProd(`${production.name}`)}>
             <CrossCircledIcon></CrossCircledIcon>
         </Button>
     </>

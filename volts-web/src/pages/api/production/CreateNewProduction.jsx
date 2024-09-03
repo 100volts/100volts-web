@@ -55,7 +55,7 @@ const formSchema = z.object({
         production_name: values.prod_name,
         production_description:values.prod_discription,
         units_name:values.prod_unit,
-        group_name:prod_group,
+        group_name:values.prod_group,
         el_name:[values.electric_name]
       });
       console.log("body",body)
@@ -77,7 +77,7 @@ const formSchema = z.object({
       console.error('Error submitting form:', error);
   } finally {
       console.log('Form submission process completed');
-      //window.location.reload();
+      window.location.reload();
   }
   ;
     console.log(values)
