@@ -66,9 +66,6 @@ const companyName = localStorage.getItem("company_name");
 const userToken = localStorage.getItem("volts_token");
 
 async function onSubmit(values) {
-  
-
-
     try{
           const body = JSON.stringify({
             company_name: companyName,
@@ -76,7 +73,6 @@ async function onSubmit(values) {
             value:values.prod_value,
             date:values.date.toISOString()
           });
-          console.log("add date body",body)
           const response = await fetch(
             `http://${urladdress}:8081/production/company/data`,
             {
@@ -90,20 +86,15 @@ async function onSubmit(values) {
           );
           const datat = await response.json();
           const { success } = datat;
-          console.log(success);
       }catch (error) {
-        console.error('Error submitting form:', error);
     } finally {
-        console.log('Form submission process completed');
+      window.location.reload();
     }
     ;
-      
-  console.log(values)
+
 }
 
 export default function ImputProduction({production}){
-    console.log("production",production)
-
     const form = useForm({
         defaultValues: {
           prod_value: '',
@@ -112,8 +103,7 @@ export default function ImputProduction({production}){
     });
     
     const handleSubmit = async (event) => {
-        event.preventDefault(); // Prevent the default form submission behavior
-        console.log("event",event)
+        event.preventDefault();
         await form.handleSubmit(onSubmit)(event);
     };
 
