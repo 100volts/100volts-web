@@ -13,6 +13,7 @@ import {
   import pkg from "../../../../package.json";
   import ImputProduction from "./ui/ImputProduction"
 const urladdress = pkg["volts-server"];
+import Last10DataTable from "./ui/Last10DataTable"
 
 const companyName = localStorage.getItem("company_name");
 const userToken = localStorage.getItem("volts_token");
@@ -89,6 +90,7 @@ export default function DisplayAllProductions(){
                               
                             </div>
                         ))}
+                        <Last10DataTable prodName={production.name}/>
                         <DeleteButton production={production}/>
                     </CardContent>
                 </Card>
