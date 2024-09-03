@@ -33,6 +33,16 @@ import {
     CardHeader,
     CardTitle,
   } from "@/components/ui/card";
+  import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+  } from "@/components/ui/popover"
+  import { Calendar } from "@/components/ui/calendar"
+  import { cn } from "@/lib/utils"
+  import { CalendarIcon } from "@radix-ui/react-icons"
+//import { toast } from "@/components/hooks/use-toast"
+import { format } from "date-fns"
   import { zodResolver } from "@hookform/resolvers/zod"
   import { useForm } from "react-hook-form"
   import { z } from "zod"
@@ -56,12 +66,17 @@ const companyName = localStorage.getItem("company_name");
 const userToken = localStorage.getItem("volts_token");
 
 async function onSubmit(values) {
+  
+
+
     try{
           const body = JSON.stringify({
             company_name: companyName,
             production_name:values.prod_name,
-            value:values.prod_value
+            value:values.prod_value,
+            date:values.date.toISOString()
           });
+          console.log("add date body",body)
           const response = await fetch(
             `http://${urladdress}:8081/production/company/data`,
             {
@@ -131,6 +146,49 @@ export default function ImputProduction({production}){
                             </FormItem>
                         )}
                         />
+                        <FormField
+                        control={form.control}
+                        name="date"
+                        render={({ field }) => (
+                          <FormItem className="flex flex-col">
+                            <FormLabel>Date of prodction</FormLabel>
+                            <Popover >
+                              <PopoverTrigger asChild>
+                                <FormControl>
+                                  <Button
+                                    variant={"outline"}
+                                    className={cn(
+                                      " pl-3 text-left font-normal",
+                                      !field.value && "text-muted-foreground"
+                                    )}
+                                  >
+                                    {field.value ? (
+                                      format(field.value, "PPP")
+                                    ) : (
+                                      <span>Pick a date</span>
+                                    )}
+                                    <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                                  </Button>
+                                </FormControl>
+                              </PopoverTrigger>
+                              <PopoverContent className="w-auto p-0" align="start">
+                                <Calendar
+                                  mode="single"
+                                  selected={field.value}
+                                  onSelect={field.onChange}
+                                  disabled={(date) =>
+                                    date > new Date() || date < new Date("1900-01-01")
+                                  }
+                                  initialFocus
+                                />
+                              </PopoverContent>
+                            </Popover>
+                            <FormDescription>
+                            </FormDescription>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
                         <FormField
                           control={form.control}
                           name="prod_name"
