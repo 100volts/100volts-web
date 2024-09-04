@@ -14,13 +14,14 @@ import {
   import ImputProduction from "./ui/ImputProduction"
 const urladdress = pkg["volts-server"];
 import Last10DataTable from "./ui/Last10DataTable"
-
+import YearlyProductionChart from "./ui/YearlyProductionChart"
 const companyName = localStorage.getItem("company_name");
 const userToken = localStorage.getItem("volts_token");
 
 
 export default function DisplayAllProductions(){
     const [data, setProdData] = useState([]);
+    const [groupedByMonth, setgroupedByMonth] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -60,39 +61,38 @@ export default function DisplayAllProductions(){
     
       return(
         <>
-          <div className="imput_production max-w-2xl">
+          <div className="imput_production">
             <ImputProduction production={data}/>
         </div>
-        <div className="max-w-2xl">
+        <div className="max-w-10xl">
         {data.map((production, index) => (
             <div key={index}>
                 <Card >
                     <CardHeader>{production.name}</CardHeader>
                     <CardContent className="flex flex-col md:flex-row">
-                      <div>
+                      <div className=" w-full h-full">
                         <a>Description: {production.description}</a>
                         <br/>
-                        <a>Date of creation: {production.dateOfCreation}</a>
-                        <br/>
                         <a>Units: {production.units.name}</a>
-                        <br></br>
                         <a>Groups:</a>
                         {production.groups.map((group, index) => (
                             <div key={index}>
                                 <a>{group.name}</a>
-                              
                             </div>
                         ))}
                         <br/>
                         <a>Electric Meters:</a>
                         {production.electricMeters.map((electricMeters, index) => (
                             <div key={index}>
-                                <a>Name: {electricMeters.meterName}</a>
+                              
+                                <a>Name:<br/> {electricMeters.meterName}</a>
                               
                             </div>
                         ))}
                         </div>
+                        
                         <Last10DataTable className="max-w-xs" prodName={production.name}/>
+                        
                         <DeleteButton production={production}/>
                     </CardContent>
                 </Card>
@@ -101,4 +101,4 @@ export default function DisplayAllProductions(){
         </div>
         </>
       );
-}
+}//<YearlyProductionChart/>
