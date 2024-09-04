@@ -32,419 +32,30 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-
-///
-const data1 = [
-  {
-    merterId: 1,
-    voltagell1: 237.5,
-    voltagell2: 237.63,
-    voltagell3: 239.86,
-    pfl1: 0.974549,
-    currentl1: 33.3096,
-    currentl2: 34.079,
-    currentl3: 34.5922,
-    activepowerl1: 7714.61,
-    activepowerl2: 7033.43,
-    activepowerl3: 7835.15,
-    totalActiveEnergyImportTariff1: 72567.12,
-    totalActiveEnergyImportTariff2: 0,
-    totalActivePpower: 22583.19,
-    pfl2: 0.944497,
-    pfl3: 0.985958,
-  },
-  {
-    merterId: 222,
-    voltagell1: 237.5,
-    voltagell2: 237.63,
-    voltagell3: 239.86,
-    currentl1: 33.3096,
-    currentl2: 34.079,
-    currentl3: 34.5922,
-    activepowerl1: 7714.61,
-    activepowerl2: 7033.43,
-    activepowerl3: 7835.15,
-    pfl1: 0.974549,
-    pfl2: 0.869258,
-    pfl3: 0.945079,
-    totalActivePpower: 22583.19,
-    totalActiveEnergyImportTariff1: 72567.12,
-    totalActiveEnergyImportTariff2: 0,
-  },
-  {
-    merterId: 1,
-    voltagell1: "233.80",
-    voltagell2: 234.45,
-    voltagell3: 235.18,
-    currentl1: 6.323,
-  },
-  {
-    merterId: 1,
-    voltagell1: "235.69",
-    voltagell2: 235.6,
-    voltagell3: 236.74,
-    currentl1: 7.5014,
-  },
-  {
-    merterId: 1,
-    voltagell1: "235.69",
-    voltagell2: 235.6,
-    voltagell3: 236.74,
-    currentl1: 7.5014,
-  },
-  {
-    merterId: 1,
-    voltagell1: "233.80",
-    voltagell2: 234.45,
-    voltagell3: 235.18,
-    currentl1: 6.323,
-  },
-  {
-    merterId: 1,
-    voltagell1: "235.69",
-    voltagell2: 235.6,
-    voltagell3: 236.74,
-    currentl1: 7.5014,
-  },
-  {
-    merterId: 1,
-    voltagell1: "235.69",
-    voltagell2: 235.6,
-    voltagell3: 236.74,
-    currentl1: 7.5014,
-  },
-  {
-    merterId: 1,
-    voltagell1: "233.80",
-    voltagell2: 234.45,
-    voltagell3: 235.18,
-    currentl1: 6.323,
-  },
-  {
-    merterId: 1,
-    voltagell1: "235.69",
-    voltagell2: 235.6,
-    voltagell3: 236.74,
-    currentl1: 7.5014,
-  },
-  {
-    merterId: 1,
-    voltagell1: "235.69",
-    voltagell2: 235.6,
-    voltagell3: 236.74,
-    currentl1: 7.5014,
-  },
-  {
-    merterId: 1,
-    voltagell1: "233.80",
-    voltagell2: 234.45,
-    voltagell3: 235.18,
-    currentl1: 6.323,
-  },
-  {
-    merterId: 1,
-    voltagell1: "235.69",
-    voltagell2: 235.6,
-    voltagell3: 236.74,
-    currentl1: 7.5014,
-  },
-  {
-    merterId: 1,
-    voltagell1: "235.69",
-    voltagell2: 235.6,
-    voltagell3: 236.74,
-    currentl1: 7.5014,
-  },
-  {
-    merterId: 1,
-    voltagell1: "233.80",
-    voltagell2: 234.45,
-    voltagell3: 235.18,
-    currentl1: 6.323,
-  },
-  {
-    merterId: 1,
-    voltagell1: "235.69",
-    voltagell2: 235.6,
-    voltagell3: 236.74,
-    currentl1: 7.5014,
-  },
-  {
-    merterId: 1,
-    voltagell1: "235.69",
-    voltagell2: 235.6,
-    voltagell3: 236.74,
-    currentl1: 7.5014,
-  },
-  {
-    merterId: 1,
-    voltagell1: "233.80",
-    voltagell2: 234.45,
-    voltagell3: 235.18,
-    currentl1: 6.323,
-  },
-  {
-    merterId: 1,
-    voltagell1: "235.69",
-    voltagell2: 235.6,
-    voltagell3: 236.74,
-    currentl1: 7.5014,
-  },
-  {
-    merterId: 1,
-    voltagell1: "235.69",
-    voltagell2: 235.6,
-    voltagell3: 236.74,
-    currentl1: 7.5014,
-  },
-  {
-    merterId: 1,
-    voltagell1: "233.80",
-    voltagell2: 234.45,
-    voltagell3: 235.18,
-    currentl1: 6.323,
-  },
-  {
-    merterId: 1,
-    voltagell1: "235.69",
-    voltagell2: 235.6,
-    voltagell3: 236.74,
-    currentl1: 7.5014,
-  },
-  {
-    merterId: 1,
-    voltagell1: "235.69",
-    voltagell2: 235.6,
-    voltagell3: 236.74,
-    currentl1: 7.5014,
-  },
-  {
-    merterId: 1,
-    voltagell1: "233.80",
-    voltagell2: 234.45,
-    voltagell3: 235.18,
-    currentl1: 6.323,
-  },
-  {
-    merterId: 1,
-    voltagell1: "235.69",
-    voltagell2: 235.6,
-    voltagell3: 236.74,
-    currentl1: 7.5014,
-  },
-];
-
 export const columns1 = [
   {
-    accessorKey: "merterId",
-    header: "merterId",
-  },
-  {
-    accessorKey: "totalActivePpower",
+    accessorKey: "values",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          totalActivePpower
+          Value
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
   },
   {
-    accessorKey: "totalActiveEnergyImportTariff1",
+    accessorKey: "date",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          totalActiveEnergyImportTariff1
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-  },
-  {
-    accessorKey: "voltagell1",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          voltagell1
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-  },
-  {
-    accessorKey: "voltagell2",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          voltagell2
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-  },
-  {
-    accessorKey: "voltagell3",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          voltagell3
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-  },
-  {
-    accessorKey: "currentl1",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          currentl1
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-  },
-  {
-    accessorKey: "currentl2",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          currentl2
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-  },
-  {
-    accessorKey: "currentl3",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          currentl3
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-  },
-  {
-    accessorKey: "activepowerl1",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          activepowerl1
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-  },
-  {
-    accessorKey: "activepowerl2",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          activepowerl2
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-  },
-  {
-    accessorKey: "activepowerl3",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          activepowerl3
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-  },
-  {
-    accessorKey: "pfl1",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          pfl1
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-  },
-  {
-    accessorKey: "pfl2",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          pfl2
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-  },
-  {
-    accessorKey: "pfl3",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          pfl3
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-  },
-
-  {
-    accessorKey: "totalActiveEnergyImportTariff2",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          totalActiveEnergyImportTariff1
+          Date
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
@@ -459,19 +70,15 @@ export default function GetReport() {
   const [error, setError] = useState(null);
   const userToken = localStorage.getItem("volts_token");
   const companyName = localStorage.getItem("company_name");
-  const elMeterAddress = localStorage.getItem("electric_meter_address");
-  const delay = (ms) => new Promise((res) => setTimeout(res, ms));
-
+  const productionName= localStorage.getItem("production_name")
   const getElmeterData = async () => {
     try {
       const body = JSON.stringify({
         company_name: companyName,
-        address: elMeterAddress,
-        page_limit: 100,
-        pages: 1,
+        production_name: productionName,
       });
       const response = await fetch(
-        `http://${urladdress}:8081/elmeter/data/report`,
+        `http://${urladdress}:8081/production/company/data/report`,
         {
           method: "POST",
           headers: {
@@ -482,9 +89,8 @@ export default function GetReport() {
         }
       );
       const datat = await response.json();
-      const { meters } = datat;
-      setData(meters);
-      //await delay(5000);
+      const { productionData } = datat;
+      setData(productionData);
     } catch (error) {
       setError(error.message);
     } finally {
@@ -503,7 +109,7 @@ export default function GetReport() {
   return (
     <>
       <div>
-        <DataTable columns={columns1} data={data[0]} />
+        <DataTable columns={columns1} data={data} />
       </div>
     </>
   );
@@ -532,11 +138,11 @@ export function DataTable({ columns, data }) {
       <div>
         <div className="flex items-center py-4">
           <Input
-            placeholder="Filter totalActivePpower..."
-            value={table.getColumn("totalActivePpower")?.getFilterValue() ?? ""}
+            placeholder="Filter date..."
+            value={table.getColumn("date")?.getFilterValue() ?? ""}
             onChange={(event) =>
               table
-                .getColumn("totalActivePpower")
+                .getColumn("date")
                 ?.setFilterValue(event.target.value)
             }
             className="max-w-sm"
@@ -616,8 +222,6 @@ export function DataTable({ columns, data }) {
 }
 
 export function DataTablePagination({ table }) {
-  //{table.getFilteredSelectedRowModel().rows.length} of{" "}
-  //{table.getFilteredRowModel().rows.length} row(s) selected.
   return (
     <div className="flex items-center justify-between px-2">
       <div className="flex-1 text-sm text-muted-foreground"></div>
