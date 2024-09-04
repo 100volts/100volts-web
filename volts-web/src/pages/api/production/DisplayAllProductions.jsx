@@ -98,8 +98,8 @@ export default function DisplayAllProductions(){
                         
                         <Last10DataTable className="max-w-xs" prodName={production.name}/>
 
-                        <OptionsButtons productionName={production.name}/>
                         <YearlyProductionChart chartData={production.monthlyData}/>
+                        <OptionsButtons productionName={production.name}/>
                         <DeleteButton production={production}/>
                     </CardContent>
                 </Card>

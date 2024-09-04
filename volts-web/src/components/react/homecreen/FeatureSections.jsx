@@ -4,13 +4,13 @@ const features = [
   {
     name: 'Efishency',
     description:
-      'Trach automatecly electrisity, watter gas and mote',
+      'Trach automatically electricity, water gas and more',
     icon: BoltIcon,
   },
   {
     name: 'Cloud storage',
     description:
-      'Track and see you efishentsy eveiware. All data is securly stored in our cloud infrastructer.',
+      'Track and see you efishent everywhere. All data is securly stored in our cloud infrastructure.',
     icon: CloudIcon,
   },
   {
@@ -32,12 +32,12 @@ export default function FeatureSections() {
     <div className="bg-white py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:text-center">
-          <h2 className="text-base font-semibold leading-7 text-indigo-600">Mantain your production</h2>
+          <h2 className="text-base font-semibold leading-7 text-indigo-600">Maintain your production</h2>
           <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Everything you for production traking and managament
+          everything you for production tracking and management
           </p>
           <p className="mt-6 text-lg leading-8 text-gray-600">
-            Quick and easy ways for you and your company to track, mantain and odit your production.
+          Quick and easy ways for you and your company to track, maintain and audit your production.
           </p>
         </div>
         <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">

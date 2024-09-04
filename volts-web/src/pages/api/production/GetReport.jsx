@@ -32,7 +32,31 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox"
+
+
+
 export const columns1 = [
+  {
+    id: "select",
+    header: ({ table }) => (
+      <Checkbox
+        checked={
+          table.getIsAllPageRowsSelected() ||
+          (table.getIsSomePageRowsSelected() && "indeterminate")
+        }
+        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+        aria-label="Select all"
+      />
+    ),
+    cell: ({ row }) => (
+      <Checkbox
+        checked={row.getIsSelected()}
+        onCheckedChange={(value) => row.toggleSelected(!!value)}
+        aria-label="Select row"
+      />
+    ),
+  },
   {
     accessorKey: "values",
     header: ({ column }) => {
@@ -71,6 +95,7 @@ export default function GetReport() {
   const userToken = localStorage.getItem("volts_token");
   const companyName = localStorage.getItem("company_name");
   const productionName= localStorage.getItem("production_name")
+
   const getElmeterData = async () => {
     try {
       const body = JSON.stringify({
