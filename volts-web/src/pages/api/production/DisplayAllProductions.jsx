@@ -14,7 +14,12 @@ import {
   import ImputProduction from "./ui/ImputProduction"
 const urladdress = pkg["volts-server"];
 import Last10DataTable from "./ui/Last10DataTable"
+
+import OptionsButtons from "./ui/OptionsButtons"
+
+
 import YearlyProductionChart from "./ui/YearlyProductionChart"
+
 const companyName = localStorage.getItem("company_name");
 const userToken = localStorage.getItem("volts_token");
 
@@ -92,7 +97,9 @@ export default function DisplayAllProductions(){
                         </div>
                         
                         <Last10DataTable className="max-w-xs" prodName={production.name}/>
-                        
+
+                        <OptionsButtons productionName={production.name}/>
+
                         <DeleteButton production={production}/>
                     </CardContent>
                 </Card>
