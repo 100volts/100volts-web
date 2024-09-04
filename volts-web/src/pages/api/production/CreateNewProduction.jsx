@@ -58,7 +58,6 @@ const formSchema = z.object({
         group_name:values.prod_group,
         el_name:[values.electric_name]
       });
-      console.log("body",body)
       const response = await fetch(
         `http://${urladdress}:8081/production/company/create`,
         {
@@ -72,15 +71,11 @@ const formSchema = z.object({
       );
       const datat = await response.json();
       const { success } = datat;
-      console.log(success);
     }catch (error) {
-      console.error('Error submitting form:', error);
   } finally {
-      console.log('Form submission process completed');
       window.location.reload();
   }
   ;
-    console.log(values)
   }
 
 

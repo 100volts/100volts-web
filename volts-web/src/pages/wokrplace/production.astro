@@ -15,20 +15,21 @@ import DisplayAllProductions from "../api/production/DisplayAllProductions";
 ---
 
 <Main title="production">
-  <h1>Production</h1>
-  <div>
-    <a>All productions</a>
-    <div class="all_productions">
-      <DisplayAllProductions client:only />
+  <div class="flex justify-center">
+    <div>
+      <h1>Production</h1>
+      <a>All productions</a>
+      <div class="all_productions">
+        <DisplayAllProductions client:only />
+      </div>
+      <Card>
+        <CardContent>
+          <br />
+          <a></a>
+          <CreateNewProduction client:only />
+        </CardContent>
+      </Card>
+      <EnergySideBar client:only />
     </div>
-    <Card>
-      <CardContent>
-        <br />
-        <a></a>
-        <CreateNewProduction client:only />
-      </CardContent>
-    </Card>
-    <EnergySideBar client:only />
   </div></Main
 >
-

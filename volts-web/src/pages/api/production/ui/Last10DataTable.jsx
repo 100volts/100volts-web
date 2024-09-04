@@ -77,7 +77,7 @@ import {
             </>
             ) : (
                 <>
-                <TableRow className="text-center">No new reads for doday</TableRow>
+                <TableRow className="text-center"><TableCell>No new reads for doday</TableCell></TableRow>
                 </>
             )}
             </TableBody>
