@@ -144,3 +144,7 @@ const ElmeterDataComponent = () => {
 };
 
 export default ElmeterDataComponent;
+
+//context for global
+//state management
+

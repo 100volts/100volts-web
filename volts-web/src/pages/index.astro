@@ -1,19 +1,7 @@
 ---
 import Main from "../layouts/Main.astro";
+/*
 import Cards from "../components/Cards.astro";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
----
-
-<Main title="Volts">
-  <body>
-    Main pages
     <Cards
       cards={[
         {
@@ -25,5 +13,13 @@ import {
         },
       ]}
     />
+    */
+import FeatureSections from "../components/react/homecreen/FeatureSections"
+---
+
+<Main title="Volts">
+  <body>
+    <h1 class="flex justify-center">Hello and welcome to Volts</h1>
+    <FeatureSections/>
   </body>
 </Main>
