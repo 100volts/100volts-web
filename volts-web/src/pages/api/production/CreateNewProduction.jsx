@@ -223,6 +223,7 @@ export default function CreateNewProduction() {
                           control={form.control}
                           name="prod_group"
                           render={({ field }) => (<FormItem>
+                            <Input placeholder="discription group" {...field} />
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
                               <SelectTrigger>
@@ -235,6 +236,7 @@ export default function CreateNewProduction() {
                                 <SelectItem value={el}>{el}</SelectItem>
                               </div>
                             ))}
+                            <SelectItem>Crete new</SelectItem>
                             </SelectContent>
                         </Select></FormItem>)}
          />
