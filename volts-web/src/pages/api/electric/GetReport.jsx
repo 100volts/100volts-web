@@ -509,6 +509,10 @@ export default function GetReport() {
   );
 }
 
+function buttClick(row){
+  console.log("butt click",row)
+}
+
 export function DataTable({ columns, data }) {
   const [columnFilters, setColumnFilters] = useState([]);
   const [sorting, setSorting] = useState([]);
@@ -577,6 +581,7 @@ export function DataTable({ columns, data }) {
                       )}
                     </TableCell>
                   ))}
+                  <TableCell><Button onClick={buttClick(row)}>butt</Button></TableCell>
                 </TableRow>
               ))
             ) : (
