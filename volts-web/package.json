@@ -2,7 +2,7 @@
   "name": "volts-web",
   "type": "module",
   "version": "0.0.1",
-  "volts-server": "192.168.0.102",
+  "volts-server": "localhost",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
