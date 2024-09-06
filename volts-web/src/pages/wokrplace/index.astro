@@ -1,13 +1,18 @@
 ---
 import Main from "../../layouts/Main.astro";
 import GetUserWorkpaces from "../api/GetUserWorkpaces";
----
-
-<Main title="Workspaces">
+import { App } from "./workapp";
+/*
+old version
   <h1 class="workplaces__c">Welcome to your workplaces</h1>
   <div id="workplaces" class="workplaces__c">
     <GetUserWorkpaces client:only />
   </div>
+*/
+---
+
+<Main title="Workspaces">
+  <App client:only />
 </Main>
 
 <style>
