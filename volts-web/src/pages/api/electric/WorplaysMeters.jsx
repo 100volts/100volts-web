@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from "react";
-import pkg from "../../../../package.json";
 import DayilyTatiff from "../../../components/react/electric/DayilyTatiff";
 import OptionsButtons from "../../../components/react/electric/OptionsButtons";
 import ElectricGraphs from "../../../components/react/electric/ElectricGraphs";
 import AllElectricMeterDataTable from "../../../components/react/electric/AllElectricMeterDataTable";
 import {elMeterDashDataStore} from "@/pages/store/ElectricStore"
 import { Card } from "@/components/ui/card";
-import {userData } from "@/pages/store/userStore";
 import { useStore } from '@nanostores/react';
 
 
@@ -50,7 +47,7 @@ const ElmeterDataComponent = () => {
             <Card className="flex  max-w-full " style={{ margin: "10px" }} >
                 <DayilyTatiff elmeterProp={elmeter} />
             </Card>
-            <div class="max-w-[50%]" style={{ padding: "10px" }}></div>
+            <div className="max-w-[50%]" style={{ padding: "10px" }}></div>
           </div>
         </div>
       ))}

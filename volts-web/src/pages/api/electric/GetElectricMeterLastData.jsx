@@ -1,6 +1,6 @@
 import pkg from "../../../../package.json";
 const urladdress = pkg["volts-server"];
-import { isLogedIn,userData } from "@/pages/store/userStore";
+import { isLogedIn,userData } from "@/pages/store/UserStore";
 import { useStore } from '@nanostores/react';
 
 

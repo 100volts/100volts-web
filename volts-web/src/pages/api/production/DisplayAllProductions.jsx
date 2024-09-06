@@ -26,7 +26,6 @@ const userToken = localStorage.getItem("volts_token");
 
 export default function DisplayAllProductions(){
     const [data, setProdData] = useState([]);
-    const [groupedByMonth, setgroupedByMonth] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 

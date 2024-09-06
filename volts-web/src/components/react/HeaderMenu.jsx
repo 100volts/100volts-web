@@ -1,6 +1,6 @@
 import ProfileIconHeader from "./ProfileIconHeader";
 import { useStore } from '@nanostores/react';
-import { isLogedIn,userData } from "@/pages/store/userStore";
+import { isLogedIn,userData } from "@/pages/store/UserStore";
 
 export default function HeaderMenu() {
   //style='color: var(--black); border-bottom: 4px solid transparent; text-decoration: none;'

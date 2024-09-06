@@ -1,6 +1,6 @@
 import { ChevronDown, User, Settings, LogOut } from "lucide-react";
 import React, { useEffect, useState } from "react";
-import { isLogedIn,userData } from "@/pages/store/userStore";
+import { isLogedIn,userData } from "@/pages/store/UserStore";
 import { useStore } from '@nanostores/react';
 
 
