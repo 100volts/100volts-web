@@ -76,7 +76,7 @@ export default function DisplayAllProductions(){
                     <CardHeader>{production.name}</CardHeader>
                     <CardContent className="flex flex-col md:flex-row">
                       <div className=" w-full h-full">
-                        <a>Description: {production.description}</a>
+                        <a>Discription: {production.description}</a>
                         <br/>
                         <a>Units: {production.units.name}</a>
                         <a>Groups:</a>
@@ -98,8 +98,8 @@ export default function DisplayAllProductions(){
                         
                         <Last10DataTable className="max-w-xs" prodName={production.name}/>
 
+                        <YearlyProductionChart chartData={production.monthlyData}/>
                         <OptionsButtons productionName={production.name}/>
-
                         <DeleteButton production={production}/>
                     </CardContent>
                 </Card>
@@ -108,4 +108,4 @@ export default function DisplayAllProductions(){
         </div>
         </>
       );
-}//<YearlyProductionChart/>
+}//

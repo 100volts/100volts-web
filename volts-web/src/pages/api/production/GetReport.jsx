@@ -32,7 +32,31 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox"
+
+
+
 export const columns1 = [
+  {
+    id: "select",
+    header: ({ table }) => (
+      <Checkbox
+        checked={
+          table.getIsAllPageRowsSelected() ||
+          (table.getIsSomePageRowsSelected() && "indeterminate")
+        }
+        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+        aria-label="Select all"
+      />
+    ),
+    cell: ({ row }) => (
+      <Checkbox
+        checked={row.getIsSelected()}
+        onCheckedChange={(value) => row.toggleSelected(!!value)}
+        aria-label="Select row"
+      />
+    ),
+  },
   {
     accessorKey: "values",
     header: ({ column }) => {
@@ -62,15 +86,19 @@ export const columns1 = [
     },
   },
 ];
+
+const userToken = localStorage.getItem("volts_token");
+const companyName = localStorage.getItem("company_name");
+const productionName= localStorage.getItem("production_name")
+const urladdress = pkg["volts-server"];
+
 ///
 export default function GetReport() {
-  const urladdress = pkg["volts-server"];
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const userToken = localStorage.getItem("volts_token");
-  const companyName = localStorage.getItem("company_name");
-  const productionName= localStorage.getItem("production_name")
+
+
   const getElmeterData = async () => {
     try {
       const body = JSON.stringify({
@@ -115,6 +143,35 @@ export default function GetReport() {
   );
 }
 
+async function buttClick(row){
+  console.log(row)
+  try{
+    const body = JSON.stringify({
+      id: row.id,
+    });
+    console.log("body",body)
+    const response = await fetch(
+      `http://${urladdress}:8081/production/data`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userToken}`,
+        },
+        body,
+      }
+    );
+    console.log("before getting data")
+    const datat = await response.json();
+    const { success } = datat;
+    console.log("result",success)
+}catch (error) {
+ //todo handle error
+} finally {
+    window.location.reload();
+};
+}
+
 export function DataTable({ columns, data }) {
   const [columnFilters, setColumnFilters] = useState([]);
   const [sorting, setSorting] = useState([]);
@@ -132,6 +189,8 @@ export function DataTable({ columns, data }) {
       columnFilters,
     },
   });
+
+  
 
   return (
     <div className="rounded-md border">
@@ -183,6 +242,7 @@ export function DataTable({ columns, data }) {
                       )}
                     </TableCell>
                   ))}
+                  <TableCell><Button onClick={()=> buttClick(row.original)}>Delete</Button></TableCell>
                 </TableRow>
               ))
             ) : (

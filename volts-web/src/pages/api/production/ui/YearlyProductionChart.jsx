@@ -25,7 +25,7 @@ const chartData1 = [
 ]
 const chartConfig = {
   desktop: {
-    label: "Desktop",
+    label: "value",
     color: "hsl(var(--chart-1))",
   },
 }
@@ -52,7 +52,7 @@ export default function YearlyProductionChart({chartData}){
               cursor={false}
               content={<ChartTooltipContent hideLabel />}
             />
-            <Bar dataKey="desktop" fill="var(--color-desktop)" radius={8} />
+            <Bar dataKey="value" fill="var(--color-desktop)" radius={8} />
           </BarChart>
         </ChartContainer>
       </CardContent>

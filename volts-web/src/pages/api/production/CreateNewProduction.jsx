@@ -84,6 +84,7 @@ const urladdress = pkg["volts-server"];
 export default function CreateNewProduction() {
   const form = useForm();
   const [dataEl, setElData] = useState([]);
+  const [dataProdGroup, setDataProdGroup] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 ;
@@ -92,8 +93,8 @@ export default function CreateNewProduction() {
       const body = JSON.stringify({
         company_name: companyName,
       });
-      const response = await fetch(
-        `http://${urladdress}:8081/elmeter/comapny/names`,
+      const responseb = await fetch(
+        `http://${urladdress}:8081/production/company/group`,
         {
           method: "POST",
           headers: {
@@ -103,10 +104,11 @@ export default function CreateNewProduction() {
           body,
         }
       );
-      const datae= await response.json();
-      const {elMeterNames}=datae;
+      const datae= await responseb.json();
+      const {elMeterNames,prodGroupNames}=datae;
       
       setElData(elMeterNames);
+      setDataProdGroup(prodGroupNames);
     } catch (error) {
       setError(error.message);
     } finally {
@@ -117,12 +119,14 @@ export default function CreateNewProduction() {
 
   useEffect(() => {
     getElData();
-  }, []);
+    }, []);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
-  
+  console.log("Group",dataProdGroup)
+  console.log("ElNames",dataEl)
+
   const handleSubmit = async (event) => {
     await form.handleSubmit(onSubmit)(event);
 };
@@ -158,9 +162,9 @@ export default function CreateNewProduction() {
           name="prod_discription"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Production disctription</FormLabel>
+              <FormLabel>Production desctription</FormLabel>
               <FormControl>
-                <Input placeholder="discription" {...field} />
+                <Input placeholder="description" {...field} />
               </FormControl>
               <FormDescription>
               </FormDescription>
@@ -168,22 +172,7 @@ export default function CreateNewProduction() {
             </FormItem>
           )}
         />
-        <FormField
-          control={form.control}
-          name="prod_group"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Production group</FormLabel>
-              <FormControl>
-                <Input placeholder="discription group" {...field} />
-              </FormControl>
-              <FormDescription>
-                Not mandatory. It is used just for organization
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+       
         <FormField
           control={form.control}
           name="prod_unit"
@@ -213,6 +202,7 @@ export default function CreateNewProduction() {
                           control={form.control}
                           name="electric_name"
                           render={({ field }) => (
+                            <FormItem>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
                               <SelectTrigger>
@@ -226,7 +216,28 @@ export default function CreateNewProduction() {
                               </div>
                             ))}
                             </SelectContent>
-                        </Select>)}
+                        </Select></FormItem>)}
+         />
+        <FormField
+                          control={form.control}
+                          name="prod_group"
+                          render={({ field }) => (<FormItem>
+                            <Input placeholder="discription group" {...field} />
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <FormControl>
+                              <SelectTrigger>
+                                <SelectValue placeholder="Select Electric meter witch connects to the production" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                            {dataProdGroup.map((el, index) => (
+                              <div key={index} >
+                                <SelectItem value={el}>{el}</SelectItem>
+                              </div>
+                            ))}
+                            <SelectItem>Crete new</SelectItem>
+                            </SelectContent>
+                        </Select></FormItem>)}
          />
         <Button type="submit">Submit</Button>
       </form>
@@ -236,3 +247,24 @@ export default function CreateNewProduction() {
     </>
   )
 }
+
+
+/*old group form
+
+        <FormField
+          control={form.control}
+          name="prod_group"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Production group</FormLabel>
+              <FormControl>
+                <Input placeholder="discription group" {...field} />
+              </FormControl>
+              <FormDescription>
+                Not mandatory. It is used just for organization
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+*/
