@@ -1,8 +1,16 @@
 import { ChevronDown, User, Settings, LogOut } from "lucide-react";
 import React, { useEffect, useState } from "react";
+import { isLogedIn,userData } from "@/pages/store/userStore";
+import { useStore } from '@nanostores/react';
+
+
 export default function ProfileIconHeader() {
   const [email, setEmail] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const $isLogedIn=useStore(isLogedIn);
+  const $userData=useStore(userData);
+  
+  console.log("$userData from drop",$userData.email)
 
   useEffect(() => {
     const token = localStorage.getItem("volts_token");
@@ -36,6 +44,7 @@ export default function ProfileIconHeader() {
     localStorage.removeItem(tokenKey);
     localStorage.removeItem("volts_user_role");
     localStorage.removeItem("company_name");
+    $isLogedIn.set(false)
   }
   const toggleDropdown = () => setIsOpen(!isOpen);
 
@@ -50,7 +59,7 @@ export default function ProfileIconHeader() {
           aria-haspopup="true"
           onClick={toggleDropdown}
         >
-          <span className="ml-2">{email}</span>
+          <span className="ml-2">{$userData.email}</span>
           <ChevronDown
             className="-mr-1 h-5 w-5 text-gray-400"
             aria-hidden="true"
