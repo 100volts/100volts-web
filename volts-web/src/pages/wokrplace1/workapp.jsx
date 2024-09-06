@@ -2,11 +2,13 @@ import { Link } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import React from "react";
+import WorplaysMeters from "../api/electric/WorplaysMeters";
 
 
 const Dashboard = () => <h1>Dashboard</h1>;
-const Settings = () => <h1>Settings</h1>;
-const Profile = () => <h1>Profile</h1>;
+const Settings = () => <><h1>Electric</h1>
+<div className='max-w-[70%] max-w-full '><WorplaysMeters/></div></>;
+const Profile = () => (<h1>Production</h1>);
 
 const Navbar = () => {
   return (
@@ -16,10 +18,10 @@ const Navbar = () => {
           <Link to="/wokrplace/">Dashboard</Link>
         </li>
         <li>
-          <Link to="/wokrplace/settings">Settings</Link>
+          <Link to="/wokrplace/elesctric">Elctrisity</Link>
         </li>
         <li>
-          <Link to="/wokrplace/profile">Profile</Link>
+          <Link to="/wokrplace/production">Production</Link>
         </li>
       </ul>
     </nav>
@@ -41,8 +43,8 @@ const router = createBrowserRouter([
       element: <Layout />,
       children: [
         { path: 'wokrplace', element: <Dashboard /> },
-        { path: 'settings', element: <Settings /> },
-        { path: 'profile', element: <Profile /> }
+        { path: 'elesctric', element: <Settings /> },
+        { path: 'production', element: <Profile /> }
       ]
     }
   ]);

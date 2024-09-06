@@ -5,6 +5,10 @@ import OptionsButtons from "../../../components/react/electric/OptionsButtons";
 import ElectricGraphs from "../../../components/react/electric/ElectricGraphs";
 import AllElectricMeterDataTable from "../../../components/react/electric/AllElectricMeterDataTable";
 import { Card } from "@/components/ui/card";
+import {userData } from "@/pages/store/userStore";
+import { useStore } from '@nanostores/react';
+
+
 
 const urladdress = pkg["volts-server"];
 
@@ -12,8 +16,12 @@ const ElmeterDataComponent = () => {
   const [data, seTableCellata] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const userToken = localStorage.getItem("volts_token");
-  const companyName = localStorage.getItem("company_name");
+  const $userData=useStore(userData);
+  console.log("Prod: userData",userData);
+  console.log("Prod: $userData",$userData)
+  const userToken =$userData.tokken
+  const companyName ='Markeli'
+  //= localStorage.getItem("company_name");
 
   const getElmeterData = async () => {
     try {

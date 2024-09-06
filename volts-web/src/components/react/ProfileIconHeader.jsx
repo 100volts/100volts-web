@@ -10,7 +10,7 @@ export default function ProfileIconHeader() {
   const $isLogedIn=useStore(isLogedIn);
   const $userData=useStore(userData);
   
-  console.log("$userData from drop",$userData.email)
+  console.log("$userData from drop",$userData.tokken)
 
   useEffect(() => {
     const token = localStorage.getItem("volts_token");
@@ -42,9 +42,12 @@ export default function ProfileIconHeader() {
   function deleteToken() {
     const tokenKey = "volts_token";
     localStorage.removeItem(tokenKey);
-    localStorage.removeItem("volts_user_role");
-    localStorage.removeItem("company_name");
+    //localStorage.removeItem("volts_user_role");
+    //localStorage.removeItem("company_name");
+    localStorage.removeItem("user_state");
+    localStorage.removeItem("user_islogedIn");
     $isLogedIn.set(false)
+    $userData.set()
   }
   const toggleDropdown = () => setIsOpen(!isOpen);
 

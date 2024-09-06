@@ -1,0 +1,64 @@
+---
+import Main from "../layouts/Main.astro";
+import GetUserWorkpaces from "./api/GetUserWorkpaces";
+import { App } from "./wokrplace1/workapp";
+/*
+old version
+  <h1 class="workplaces__c">Welcome to your workplaces</h1>
+  <div id="workplaces" class="workplaces__c">
+    <GetUserWorkpaces client:only />
+  </div>
+*/
+
+export function getStaticPaths() {
+  return [
+    { params: { path: "one/two/three" } },
+    { params: { path: "wokrplace" } },
+    {
+      params: { path: "wokrplace/elesctric" },
+    },
+  ];
+}
+
+const { path } = Astro.params;
+---
+
+<Main title="Workspaces">
+  <div id="workplaces" class="workplaces__c"></div>
+  <body
+    class="workplaces__c w-full max-w-full overflow-hidden box-border"
+    style="max-width: 70%"
+  >
+    <div id="elmeter" class="elme ter">
+      <App client:only />
+    </div>
+  </body>
+
+  <style>
+    .workplase-banner {
+      background-color: brown;
+      padding:;
+    }
+
+    .workplaces__c {
+      display: flex;
+      justify-items: center;
+      justify-content: center;
+    }
+    .elmeter__record {
+      display: flex;
+      justify-items: center;
+    }
+  </style>
+</Main>
+
+<style>
+  .workplaces__c {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-items: center;
+    justify-content: center;
+    align-content: center;
+  }
+</style>
