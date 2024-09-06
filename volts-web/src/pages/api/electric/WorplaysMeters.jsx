@@ -14,14 +14,17 @@ const ElmeterDataComponent = () => {
   const data=useStore(elMeterDashDataStore)
 
   return (
-    <div style={{ maxWidth: "70%" }}>
+    <div className="flex flex-col">
       {Object.entries(data).map(([key,elmeter], index) => (
-        <div key={index}>
+        <div key={index} >
+          <div className="flex flex-row justify-between">
           <h2 style={{ padding: "10px" }}>
-            {elmeter.name} - {elmeter.address}
+            {elmeter.name} - {elmeter.address} 
           </h2>
+          <OptionsButtons address={elmeter.address} />
+          </div>
           <div
-            className="flex flex-col md:flex-row"
+            className="flex  flex-col md:flex-row flex-wrap max-w-full  justify-evenly"
             style={{
               display: "flex",
               justifyItems: "center",
@@ -29,26 +32,25 @@ const ElmeterDataComponent = () => {
             }}
           >
             <div
-              className="flex flex-col md:flex-row"
+              className="flex flex-col md:flex-row w-full flex-wrap justify-evenly"
               style={{
                 display: "flex",
                 justifyItems: "center",
                 alignItems: "flex-start",
               }}
             >
-              <Card style={{ padding: "10px", margin: "10px" }}>
+
+            </div>
+            <Card style={{ padding: "10px", margin: "10px" }}>
                 <AllElectricMeterDataTable elmeterProp={elmeter} />
               </Card>
-              <div style={{ padding: "10px" }}>
-                <Card>
+              <Card style={{ margin: "10px" }}>
                   <ElectricGraphs elmeterProp={elmeter} />
-                </Card>
-                <Card>
-                  <DayilyTatiff elmeterProp={elmeter} />
-                </Card>
-              </div>
-            </div>
-            <OptionsButtons address={elmeter.address} />
+              </Card>
+            <Card className="flex  max-w-full " style={{ margin: "10px" }} >
+                <DayilyTatiff elmeterProp={elmeter} />
+            </Card>
+            <div class="max-w-[50%]" style={{ padding: "10px" }}></div>
           </div>
         </div>
       ))}

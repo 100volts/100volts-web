@@ -23,34 +23,6 @@ return(
 <div className='max-w-[70%] max-w-full '><WorplaysMeters/></div></>
 )};
 const Profile = () => (<h1>Production</h1>);
-/*
-const Navbar = () => {
-  return (
-    <nav>
-      <ul>
-        <li>
-          <Link to="/wokrplace/">Dashboard</Link>
-        </li>
-        <li>
-          <Link to="/wokrplace/elesctric">Elctrisity</Link>
-        </li>
-        <li>
-          <Link to="/wokrplace/production">Production</Link>
-        </li>
-      </ul>
-    </nav>
-  );
-};
-
-const Layout = () => (
-    <div>
-      <Navbar />
-      <div>
-        <Outlet />
-      </div>
-    </div>
-);
-*/
 
 const Navbar = () => {
   return (
