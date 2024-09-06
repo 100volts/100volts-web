@@ -10,7 +10,7 @@ export default function ProfileIconHeader() {
   const $isLogedIn=useStore(isLogedIn);
   const $userData=useStore(userData);
   
-  console.log("$userData from drop",$userData.tokken)
+  //console.log("$userData from drop",$userData.tokken)
 
   useEffect(() => {
     const token = localStorage.getItem("volts_token");

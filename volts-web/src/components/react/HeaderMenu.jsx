@@ -21,8 +21,8 @@ export default function HeaderMenu() {
   const $isLogedIn=useStore(isLogedIn);
   const $userData=useStore(userData);
 
-  console.log("$isLogedIn",$isLogedIn)
-  console.log("$userData",userData.get())
+  //console.log("$isLogedIn",$isLogedIn)
+  //console.log("$userData",userData.get())
 
   if ($isLogedIn){//localStorage.getItem("volts_token")) {
     return (

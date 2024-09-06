@@ -4,112 +4,18 @@ import DayilyTatiff from "../../../components/react/electric/DayilyTatiff";
 import OptionsButtons from "../../../components/react/electric/OptionsButtons";
 import ElectricGraphs from "../../../components/react/electric/ElectricGraphs";
 import AllElectricMeterDataTable from "../../../components/react/electric/AllElectricMeterDataTable";
+import {elMeterDashDataStore} from "@/pages/store/ElectricStore"
 import { Card } from "@/components/ui/card";
 import {userData } from "@/pages/store/userStore";
 import { useStore } from '@nanostores/react';
 
 
-
-const urladdress = pkg["volts-server"];
-
 const ElmeterDataComponent = () => {
-  const [data, seTableCellata] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const $userData=useStore(userData);
-  console.log("Prod: userData",userData);
-  console.log("Prod: $userData",$userData)
-  const userToken =$userData.tokken
-  const companyName ='Markeli'
-  //= localStorage.getItem("company_name");
-
-  const getElmeterData = async () => {
-    try {
-      const body = JSON.stringify({
-        company_name: companyName,
-      });
-      const response = await fetch(
-        `http://${urladdress}:8081/elmeter/company/address/list`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${userToken}`,
-          },
-          body,
-        }
-      );
-      const datat = await response.json();
-      const { address_list } = datat;
-      const myEmptyArray = [];
-
-      for (const element of address_list) {
-        const elmeterData = await getElmeterDataFromAddress(element);
-        myEmptyArray.push(elmeterData);
-      }
-
-      seTableCellata(myEmptyArray);
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const getElmeterDataFromAddress = async (elmeterAddress) => {
-    try {
-      const response = await fetch(
-        `http://${urladdress}:8081/elmeter/data/last`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${userToken}`,
-          },
-          body: JSON.stringify({
-            company_name: companyName,
-            address: elmeterAddress,
-          }),
-        }
-      );
-
-      const datat = await response.json();
-      const {
-        name,
-        address,
-        electric_meter_data,
-        electric_meter_avr_data,
-        daily_tariff_data,
-      } = datat;
-
-      return {
-        name,
-        address,
-        electric_meter_data,
-        electric_meter_avr_data,
-        daily_tariff_data,
-      };
-    } catch (error) {
-      console.log("Failed to fetch data: " + error.message);
-      return null;
-    }
-  };
-
-  useEffect(() => {
-    getElmeterData();
-  }, []);
-
-  // Conditional rendering based on loading and error state
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
-  // const chart=new Example();
-  //console.log(chart)
-  //<h1>Elmeter Data</h1>
-  //console.log(data)
+  const data=useStore(elMeterDashDataStore)
 
   return (
     <div style={{ maxWidth: "70%" }}>
-      {data.map((elmeter, index) => (
+      {Object.entries(data).map(([key,elmeter], index) => (
         <div key={index}>
           <h2 style={{ padding: "10px" }}>
             {elmeter.name} - {elmeter.address}
