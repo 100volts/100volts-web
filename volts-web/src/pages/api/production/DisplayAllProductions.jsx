@@ -16,61 +16,19 @@ const urladdress = pkg["volts-server"];
 import { useStore } from '@nanostores/react';
 import Last10DataTable from "./ui/Last10DataTable"
 import {productionDashDataStore} from "@/pages/store/ProductionStore"
-
 import OptionsButtons from "./ui/OptionsButtons"
-
-
 import YearlyProductionChart from "./ui/YearlyProductionChart"
-
-const companyName = localStorage.getItem("company_name");
-const userToken = localStorage.getItem("volts_token");
+import CreateNewProduction from "./CreateNewProduction"
 
 
 export default function DisplayAllProductions(){
-    //const [data, setProdData] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
     const data=useStore(productionDashDataStore);
     console.log("prod data",data);
-/*
-    const getProdData = async () => {
-        try {
-          const body = JSON.stringify({
-            company_name: companyName,
-          });
-          const response = await fetch(
-            `http://${urladdress}:8081/production/company/all`,
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${userToken}`,
-              },
-              body,
-            }
-          );
-          const datat = await response.json();
-          const { production } = datat;    
-    
-          setProdData(production);
-        } catch (error) {
-          setError(error.message);
-        } finally {
-          setLoading(false);
-        }
-      };
-
-      useEffect(() => {
-        getProdData();
-      }, []);
-    
-      if (loading) return <div>Loading...</div>;
-      if (error) return <div>Error: {error}</div>;
-    */
       return(
         <>
           <div className="imput_production">
             <ImputProduction production={Object.values(data)}/>
+            <CreateNewProduction/>
         </div>
         <div className="max-w-10xl">
         {Object.entries(data).map(([key,production], index) => (

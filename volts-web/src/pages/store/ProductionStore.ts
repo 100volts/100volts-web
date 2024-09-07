@@ -1,4 +1,4 @@
-import { map } from "nanostores";
+import { map,atom  } from "nanostores";
 import type { Company } from "./UserStore";
 
 export type Unit = {
@@ -33,6 +33,8 @@ export type ProductionDataPackage = {
   electricMeters: Meter[];
   monthlyData: MonthValue[];
 };
+export const prodGroup= atom()
+export const prodElMeterNames= atom()
 
 export const productionDashDataStore = map<
   Record<string, ProductionDataPackage>

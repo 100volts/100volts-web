@@ -18,8 +18,6 @@ const Production = () => (<><h1>Production</h1>
 const Gas = () => (<h1>Gas</h1>);
 const Watter = () => (<h1>Watter</h1>);
 
-
-
 const Navbar = () => {
   return (
     <nav className="p-4 bg-background shadow-md rounded-lg mb-4">

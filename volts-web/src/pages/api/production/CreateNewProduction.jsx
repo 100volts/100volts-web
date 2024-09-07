@@ -29,10 +29,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { useState } from "react";
 import pkg from "../../../../package.json";
 import {userData } from "@/pages/store/UserStore";
 import { useStore } from '@nanostores/react';
+import {prodGroup,prodElMeterNames} from "@/pages/store/ProductionStore"
 
 const formSchema = z.object({
   username: z.string().min(2, {
@@ -81,21 +81,14 @@ const formSchema = z.object({
   }
   ;
   }
-
-export default function CreateNewProduction() {
-  const form = useForm();
-  const [dataEl, setElData] = useState([]);
-  const [dataProdGroup, setDataProdGroup] = useState([]);
-
-
-
-  console.log("Group",dataProdGroup)
-  console.log("ElNames",dataEl)
-
   const handleSubmit = async (event) => {
     await form.handleSubmit(onSubmit)(event);
-};
-return (<a></a>)
+  };
+export default function CreateNewProduction() {
+  const form = useForm();
+  const dataEl=useStore(prodGroup);
+  const dataProdGroup=useStore(prodElMeterNames);
+
   return (
     <>
     <Dialog>
