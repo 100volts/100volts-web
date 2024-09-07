@@ -33,17 +33,42 @@ export function initProductiondDashData(){
             }
           );
           const datat = await response.json();
-          const { production } = datat;    
-          productionDashDataStore.set(production)
-          console.log("$productionDashDataStore",$productionDashDataStore)
-          setProdData(production);
+          const { production } = datat;   
+          production.map((prod,index)=> productionDashDataStore.setKey(index,prod)) 
+
         } catch (error) {
           setError(error.message);
         } finally {
           setLoading(false);
         }
-      };
+        try {
+          const body = JSON.stringify({
+            company_name: companyName,
+          });
+          const responseb = await fetch(
+            `http://${urladdress}:8081/production/company/group`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${userToken}`,
+              },
+              body,
+            }
+          );
+          const datae= await responseb.json();
+          const {elMeterNames,prodGroupNames}=datae;
+          console.log("elMeterNames",elMeterNames);
+          console.log("prodGroupNames",prodGroupNames);
 
+        } catch (error) {
+          setError(error.message);
+        } finally {
+          setLoading(false);
+          
+        }
+      };
+      console.log("$productionDashDataStore",Object.values($productionDashDataStore))
       useEffect(() => {
         getProdData();
       }, []);

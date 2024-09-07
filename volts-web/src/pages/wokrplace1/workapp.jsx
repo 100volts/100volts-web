@@ -3,17 +3,22 @@ import { Outlet } from 'react-router-dom';
 import { Button } from "@/components/ui/button"
 import { LayoutDashboard, Zap, Droplet, Flame, Factory } from "lucide-react"
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import React, { useState, useEffect }  from "react";
+import React  from "react";
 import WorplaysMeters from "../api/electric/WorplaysMeters";
+import DisplayAllProductions from "../api/production/DisplayAllProductions"
 import {initElectricityData} from "./initElectrisityData"
+import {initProductiondDashData} from "./initProductionData"
 
 const Dashboard = () => <h1>Dashboard</h1>;
-function Settings () {
-return(
-<><h1>Electric</h1>
-<div className='max-w-[70%] max-w-full '><WorplaysMeters/></div></>
-)};
-const Profile = () => (<h1>Production</h1>);
+const Electric =()=> <><h1>Electric</h1>
+<div className='max-w-full '><WorplaysMeters/></div></>;
+const Production = () => (<><h1>Production</h1>
+  <div><DisplayAllProductions/></div></>
+);
+const Gas = () => (<h1>Gas</h1>);
+const Watter = () => (<h1>Watter</h1>);
+
+
 
 const Navbar = () => {
   return (
@@ -94,8 +99,10 @@ const router = createBrowserRouter([
       element: <Layout />,
       children: [
         { path: 'wokrplace', element: <Dashboard /> },
-        { path: 'elesctric', element: <Settings /> },
-        { path: 'production', element: <Profile /> }
+        { path: 'elesctric', element: <Electric /> },
+        { path: 'production', element: <Production /> },
+        { path: 'water', element: <Watter /> },
+        { path: 'gas', element: <Gas /> },
       ]
     }
   ]);
@@ -104,6 +111,7 @@ const router = createBrowserRouter([
   
   export const App = () => {
     initElectricityData();
+    initProductiondDashData();
     ///
     
     ///

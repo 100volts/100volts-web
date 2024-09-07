@@ -12,15 +12,13 @@ old version
 
 export function getStaticPaths() {
   return [
-    { params: { path: "one/two/three" } },
     { params: { path: "wokrplace" } },
-    {
-      params: { path: "wokrplace/elesctric" },
-    },
+    { params: { path: "wokrplace/elesctric" },},
+    { params: { path: "wokrplace/production" } },
+    { params: { path: "wokrplace/water" } },
+    { params: { path: "wokrplace/gas" } },
   ];
 }
-
-const { path } = Astro.params;
 ---
 
 <Main title="Workspaces">

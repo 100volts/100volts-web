@@ -84,13 +84,7 @@ export function initElectricityData(){
       return null;
     }
   };
-  console.log("$elMeterDashDataStore",$elMeterDashDataStore)
   if($elMeterDashDataStore){
-    console.log("PING")
-    //if(localStorage.getItem("electricity_store")){
-      //  elMeterDashDataStore.set(localStorage.getItem("electricity_store"))
-    //}
-    //
     useEffect(() => {
       getElmeterData();
     }, []);

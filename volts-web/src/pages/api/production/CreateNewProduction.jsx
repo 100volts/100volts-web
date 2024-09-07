@@ -29,11 +29,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import pkg from "../../../../package.json";
+import {userData } from "@/pages/store/UserStore";
+import { useStore } from '@nanostores/react';
 
-const companyName = localStorage.getItem("company_name");
-const userToken = localStorage.getItem("volts_token")
 const formSchema = z.object({
   username: z.string().min(2, {
     message: "Username must be at least 2 characters.",
@@ -49,6 +49,10 @@ const formSchema = z.object({
   })
  
   async function onSubmit(values) {
+    const $userData=useStore(userData);
+    const companyName = $userData.companies[0];//todo remove hard coded call
+    const userToken =$userData.tokken
+    const urladdress = pkg["volts-server"];
     try{
       const body = JSON.stringify({
         company_name:companyName,
@@ -78,51 +82,12 @@ const formSchema = z.object({
   ;
   }
 
-
-  
-const urladdress = pkg["volts-server"];
 export default function CreateNewProduction() {
   const form = useForm();
   const [dataEl, setElData] = useState([]);
   const [dataProdGroup, setDataProdGroup] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-;
-  const getElData = async () => {
-    try {
-      const body = JSON.stringify({
-        company_name: companyName,
-      });
-      const responseb = await fetch(
-        `http://${urladdress}:8081/production/company/group`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${userToken}`,
-          },
-          body,
-        }
-      );
-      const datae= await responseb.json();
-      const {elMeterNames,prodGroupNames}=datae;
-      
-      setElData(elMeterNames);
-      setDataProdGroup(prodGroupNames);
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setLoading(false);
-      
-    }
-  };
 
-  useEffect(() => {
-    getElData();
-    }, []);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
 
   console.log("Group",dataProdGroup)
   console.log("ElNames",dataEl)
@@ -130,6 +95,7 @@ export default function CreateNewProduction() {
   const handleSubmit = async (event) => {
     await form.handleSubmit(onSubmit)(event);
 };
+return (<a></a>)
   return (
     <>
     <Dialog>

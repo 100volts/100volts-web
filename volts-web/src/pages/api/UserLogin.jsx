@@ -57,17 +57,13 @@ export default function getUserData() {
         }
       );
       const datatUD = await responseUD.json();
-      console.log(datatUD);
       isLogedIn.set(true);
-      console.log("userData bf",userData.get());
       userData.setKey("firstName",datatUD.first_name);
       userData.setKey("lastName",datatUD.last_name);
       userData.setKey("email",datatUD.email);
       userData.setKey("tokken",access_token);
       userData.setKey("companies",[company_name]);
       
-      console.log("userData",userData.get());
-      console.log("isLogedIn",isLogedIn.get())
       setLoading(false);
       localStorage.setItem("user_state",JSON.stringify(userData.get()));
       localStorage.setItem("user_islogedIn",isLogedIn.get());
