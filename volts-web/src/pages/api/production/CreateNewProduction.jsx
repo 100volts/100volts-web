@@ -46,6 +46,7 @@ const formSchema = z.object({
     defaultValues: {
       username: "",
     },
+    
   })
  
   async function onSubmit(values) {
@@ -77,18 +78,19 @@ const formSchema = z.object({
       const { success } = datat;
     }catch (error) {
   } finally {
-      window.location.reload();
+      //window.location.reload();
   }
   ;
   }
-  const handleSubmit = async (event) => {
-    await form.handleSubmit(onSubmit)(event);
-  };
+
 export default function CreateNewProduction() {
   const form = useForm();
-  const dataEl=useStore(prodGroup);
-  const dataProdGroup=useStore(prodElMeterNames);
-
+  const dataEl=useStore(prodElMeterNames);
+  const dataProdGroup=useStore(prodGroup);
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    await handleSubmit(onSubmit)(event);
+  };
   return (
     <>
     <Dialog>
