@@ -42,6 +42,7 @@ export type ProductionDataPackage = {
 };
 export const prodGroup = atom();
 export const prodElMeterNames = atom();
+export const selectedProduction = atom();
 
 export const productionDashDataStore = map<
   Record<string, ProductionDataPackage>

@@ -56,7 +56,7 @@ export default function DisplayAllProductions(){
 
                         <YearlyProductionChart chartData={production.monthlyData}/>
                         <div  key={index}>
-                        <OptionsButtons  productionName={production.name}/>
+                        <OptionsButtons  production={production}/>
                         <DeleteButton production={production}/>
                         </div>
                     </CardContent>

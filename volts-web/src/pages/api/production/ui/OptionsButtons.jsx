@@ -1,16 +1,19 @@
 import { Button } from "@/components/ui/button";
+import {userData } from "@/pages/store/UserStore";
+import { useStore } from '@nanostores/react';
+import {selectedProduction} from "@/pages/store/ProductionStore"
 
+export default function OptionsButtons({ production }) {
 
-export default function OptionsButtons({ productionName }) {
-    const handleRedirect = (productionName) => {
-      localStorage.setItem("production_name", productionName);
-      window.location.href = "/wokrplace/productionReport";
+    const handleRedirect = (production) => {
+      selectedProduction.set(production)
+      window.location.href = "/wokrplace/production/productionReport";
     };
   
     return (
       <>
         <div>
-          <Button variant="outline" onClick={() => handleRedirect(productionName)}>
+          <Button variant="outline" onClick={() => handleRedirect(production)}>
             <a style={{ width: "25px" }}>i</a>
           </Button>
           <Button variant="outline">

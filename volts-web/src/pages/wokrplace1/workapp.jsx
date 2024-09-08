@@ -19,6 +19,8 @@ const Production = () => (<><h1>Production</h1>
 );
 const Gas = () => (<h1>Gas</h1>);
 const Watter = () => (<h1>Watter</h1>);
+const ProductionReport=()=>(<><h1>Production Reports</h1></>)
+
 
 const Navbar = () => {
   return (
@@ -103,6 +105,7 @@ const router = createBrowserRouter([
         { path: 'production', element: <Production /> },
         { path: 'water', element: <Watter /> },
         { path: 'gas', element: <Gas /> },
+        {path:'production/productionReport',element:<ProductionReport/>}
       ]
     }
   ]);
