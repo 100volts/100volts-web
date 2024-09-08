@@ -9,16 +9,12 @@ import {
     CardTitle,
   } from "@/components/ui/card";
   import DeleteButton from "./ui/DeleteButton"
-  import React, { useState, useEffect } from "react";
-  import pkg from "../../../../package.json";
   import ImputProduction from "./ui/ImputProduction"
-const urladdress = pkg["volts-server"];
 import { useStore } from '@nanostores/react';
 import Last10DataTable from "./ui/Last10DataTable"
 import {productionDashDataStore} from "@/pages/store/ProductionStore"
 import OptionsButtons from "./ui/OptionsButtons"
 import YearlyProductionChart from "./ui/YearlyProductionChart"
-import CreateNewProduction from "./CreateNewProduction"
 
 
 export default function DisplayAllProductions(){
@@ -56,7 +52,7 @@ export default function DisplayAllProductions(){
                         ))}
                         </div>
                         
-                        <Last10DataTable className="max-w-xs" prodName={production.name}/>
+                        <Last10DataTable className="max-w-xs" data={production.last10}/>
 
                         <YearlyProductionChart chartData={production.monthlyData}/>
                         <div  key={index}>

@@ -1,4 +1,4 @@
-import { map,atom  } from "nanostores";
+import { map, atom } from "nanostores";
 import type { Company } from "./UserStore";
 
 export type Unit = {
@@ -23,6 +23,12 @@ export type MonthValue = {
   meterName: string;
 };
 
+export type ProductionData = {
+  id: number;
+  values: number;
+  date: string;
+};
+
 export type ProductionDataPackage = {
   name: string;
   description: string;
@@ -32,9 +38,10 @@ export type ProductionDataPackage = {
   groups: Group[];
   electricMeters: Meter[];
   monthlyData: MonthValue[];
+  last10: ProductionData[];
 };
-export const prodGroup= atom()
-export const prodElMeterNames= atom()
+export const prodGroup = atom();
+export const prodElMeterNames = atom();
 
 export const productionDashDataStore = map<
   Record<string, ProductionDataPackage>

@@ -38,8 +38,6 @@ export function initProductiondDashData(){
 
         } catch (error) {
           setError(error.message);
-        } finally {
-          setLoading(false);
         }
         try {
           const body = JSON.stringify({
@@ -64,7 +62,6 @@ export function initProductiondDashData(){
           setError(error.message);
         } finally {
           setLoading(false);
-          
         }
       };
       //console.log("$productionDashDataStore",Object.values($productionDashDataStore))
@@ -72,6 +69,6 @@ export function initProductiondDashData(){
         getProdData();
       }, []);
     
-    //  if (loading) return <div>Loading...</div>;
-     // if (error) return <div>Error: {error}</div>;
+      if (loading) return <div>Loading...</div>;
+      if (error) return <div>Error: {error}</div>;
 }
