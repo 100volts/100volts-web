@@ -67,11 +67,11 @@ export function initProductiondDashData(){
           
         }
       };
-      console.log("$productionDashDataStore",Object.values($productionDashDataStore))
+      //console.log("$productionDashDataStore",Object.values($productionDashDataStore))
       useEffect(() => {
         getProdData();
       }, []);
     
-      if (loading) return <div>Loading...</div>;
-      if (error) return <div>Error: {error}</div>;
+    //  if (loading) return <div>Loading...</div>;
+     // if (error) return <div>Error: {error}</div>;
 }

@@ -28,7 +28,6 @@ export default function DisplayAllProductions(){
         <>
           <div className="imput_production">
             <ImputProduction production={Object.values(data)}/>
-            <CreateNewProduction/>
         </div>
         <div className="max-w-10xl">
         {Object.entries(data).map(([key,production], index) => (
@@ -60,8 +59,10 @@ export default function DisplayAllProductions(){
                         <Last10DataTable className="max-w-xs" prodName={production.name}/>
 
                         <YearlyProductionChart chartData={production.monthlyData}/>
-                        <OptionsButtons productionName={production.name}/>
+                        <div  key={index}>
+                        <OptionsButtons  productionName={production.name}/>
                         <DeleteButton production={production}/>
+                        </div>
                     </CardContent>
                 </Card>
             </div>

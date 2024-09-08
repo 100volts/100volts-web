@@ -49,8 +49,17 @@ const formSchema = z.object({
     
   })
  
+export default function CreateNewProduction() {
+  const form = useForm();
+  const dataEl=useStore(prodElMeterNames);
+  const dataProdGroup=useStore(prodGroup);
+  const $userData=useStore(userData);
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    form.handleSubmit(onSubmit)(event);
+  };
+
   async function onSubmit(values) {
-    const $userData=useStore(userData);
     const companyName = $userData.companies[0];//todo remove hard coded call
     const userToken =$userData.tokken
     const urladdress = pkg["volts-server"];
@@ -78,19 +87,10 @@ const formSchema = z.object({
       const { success } = datat;
     }catch (error) {
   } finally {
-      //window.location.reload();
+      window.location.reload();
   }
   ;
   }
-
-export default function CreateNewProduction() {
-  const form = useForm();
-  const dataEl=useStore(prodElMeterNames);
-  const dataProdGroup=useStore(prodGroup);
-  const handleSubmit = async (event) => {
-    event.preventDefault()
-    await handleSubmit(onSubmit)(event);
-  };
   return (
     <>
     <Dialog>
@@ -147,9 +147,9 @@ export default function CreateNewProduction() {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="Liter">Liters</SelectItem>
-                  <SelectItem value="Kilogram">Kilograms</SelectItem>
-                  <SelectItem value="Unit">Units</SelectItem>
+                  <SelectItem key="Liter" value="Liter">Liters</SelectItem>
+                  <SelectItem key="Kilogram" value="Kilogram">Kilograms</SelectItem>
+                  <SelectItem key="Unit" value="Unit">Units</SelectItem>
                 </SelectContent>
               </Select>
               <FormDescription>
@@ -172,9 +172,7 @@ export default function CreateNewProduction() {
                             </FormControl>
                             <SelectContent>
                             {dataEl.map((el, index) => (
-                              <div key={index} >
-                                <SelectItem value={el}>{el}</SelectItem>
-                              </div>
+                                <SelectItem  key={index} value={el}>{el}</SelectItem>
                             ))}
                             </SelectContent>
                         </Select></FormItem>)}
@@ -192,11 +190,9 @@ export default function CreateNewProduction() {
                             </FormControl>
                             <SelectContent>
                             {dataProdGroup.map((el, index) => (
-                              <div key={index} >
-                                <SelectItem value={el}>{el}</SelectItem>
-                              </div>
+                                <SelectItem  key={index} value={el}>{el}</SelectItem>
                             ))}
-                            <SelectItem>Crete new</SelectItem>
+                            <SelectItem key="Crete_new">Crete new</SelectItem>
                             </SelectContent>
                         </Select></FormItem>)}
          />

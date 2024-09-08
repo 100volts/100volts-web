@@ -16,6 +16,7 @@ import {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    if(localStorage.getItem("company_name")){
     const userToken = localStorage.getItem("volts_token");
     const companyName = localStorage.getItem("company_name");
 
@@ -50,9 +51,9 @@ import {
       useEffect(() => {
         getProdData();
       }, []);
-    
-      if (loading) return <div>Loading...</div>;
-      if (error) return <div>Error: {error}</div>;
+    }
+      //if (loading) return <div>Loading...</div>;
+      //if (error) return <div>Error: {error}</div>;
     
 
     return(

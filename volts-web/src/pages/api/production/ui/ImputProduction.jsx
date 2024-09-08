@@ -61,38 +61,6 @@ const form = useForm<z.infer<typeof formSchema>>({
     },
 })
 
-async function onSubmit(values) {
-  const urladdress = pkg["volts-server"];
-  const $userData=useStore(userData);
-  const companyName = $userData.companies[0];//todo remove hard coded call
-  const userToken =$userData.tokken
-    try{
-          const body = JSON.stringify({
-            company_name: companyName,
-            production_name:values.prod_name,
-            value:values.prod_value,
-            date:values.date.toISOString()
-          });
-          const response = await fetch(
-            `http://${urladdress}:8081/production/company/data`,
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${userToken}`,
-              },
-              body,
-            }
-          );
-          const datat = await response.json();
-          const { success } = datat;
-      }catch (error) {
-    } finally {
-      window.location.reload();
-    }
-    ;
-
-}
 
 export default function ImputProduction({production}){
     const form = useForm({
@@ -101,6 +69,39 @@ export default function ImputProduction({production}){
           prod_name: '' 
         }
     });
+    const $userData=useStore(userData);
+    async function onSubmit(values) {
+      const urladdress = pkg["volts-server"];
+      const companyName = $userData.companies[0];//todo remove hard coded call
+      const userToken =$userData.tokken
+        try{
+              const body = JSON.stringify({
+                company_name: companyName,
+                production_name:values.prod_name,
+                value:values.prod_value,
+                date:values.date.toISOString()
+              });
+              const response = await fetch(
+                `http://${urladdress}:8081/production/company/data`,
+                {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${userToken}`,
+                  },
+                  body,
+                }
+              );
+              const datat = await response.json();
+              const { success } = datat;
+          }catch (error) {
+        } finally {
+          window.location.reload();
+        }
+        ;
+    
+    }
+    
     
     const handleSubmit = async (event) => {
         event.preventDefault();

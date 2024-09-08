@@ -8,12 +8,13 @@ import WorplaysMeters from "../api/electric/WorplaysMeters";
 import DisplayAllProductions from "../api/production/DisplayAllProductions"
 import {initElectricityData} from "./initElectrisityData"
 import {initProductiondDashData} from "./initProductionData"
+import CreateNewProduction from "../api/production/CreateNewProduction"
 
 const Dashboard = () => <h1>Dashboard</h1>;
 const Electric =()=> <><h1>Electric</h1>
-<div className='max-w-full '><WorplaysMeters/></div></>;
+<div><WorplaysMeters/></div></>;
 const Production = () => (<><h1>Production</h1>
-  <div><DisplayAllProductions/></div></>
+  <div><CreateNewProduction/><DisplayAllProductions/></div></>
 );
 const Gas = () => (<h1>Gas</h1>);
 const Watter = () => (<h1>Watter</h1>);
