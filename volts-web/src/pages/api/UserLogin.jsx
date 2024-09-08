@@ -68,7 +68,7 @@ export default function getUserData() {
       localStorage.setItem("user_state",JSON.stringify(userData.get()));
       localStorage.setItem("user_islogedIn",isLogedIn.get());
 
-      //location.href = "/";
+      location.href = "/";
     } catch (err) {
       setError(err.message);
       setLoading(false);

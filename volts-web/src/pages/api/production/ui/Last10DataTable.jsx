@@ -10,8 +10,6 @@ import {
   } from "@/components/ui/table"
 
   export default function Last10DataTable({data}){
-    console.log("last10",data)
-    
     return(
         <Table className="max-w-xs">
             <TableCaption>All data.</TableCaption>

@@ -1,13 +1,16 @@
 import { CrossCircledIcon } from '@radix-ui/react-icons'
 import { Button } from "@/components/ui/button"
-
+import {userData } from "@/pages/store/UserStore";
+import { useStore } from '@nanostores/react';
 import pkg from "../../../../../package.json";
-  
-const urladdress = pkg["volts-server"];
-const companyName = localStorage.getItem("company_name");
-const userToken = localStorage.getItem("volts_token");
 
+export default function DeleteButton({production}){
+  const urladdress = pkg["volts-server"];
+  const $userData=useStore(userData);
+  const companyName = $userData.companies[0];//todo remove hard coded call
 async function deleteProd(prod_name){   
+
+  const userToken =$userData.tokken
     try{
       const body = JSON.stringify({
         company_name: companyName,
@@ -32,12 +35,10 @@ async function deleteProd(prod_name){
 }
 ;
 }
-
-export default function DeleteButton({production}){
     return(
     <>
         <Button variant="destructive" onClick={() =>deleteProd(`${production.name}`)}>
-            <CrossCircledIcon></CrossCircledIcon>
+            <CrossCircledIcon key={production}></CrossCircledIcon>
         </Button>
     </>
     )
