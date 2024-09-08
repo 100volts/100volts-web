@@ -9,8 +9,9 @@ import DisplayAllProductions from "../api/production/DisplayAllProductions"
 import {initElectricityData} from "./initElectrisityData"
 import {initProductiondDashData} from "./initProductionData"
 import CreateNewProduction from "../api/production/CreateNewProduction"
+import DashboardWorkPlace from "../../components/react/dashboard/Dashboard"
 
-const Dashboard = () => <h1>Dashboard</h1>;
+const Dashboard = () => (<><div><h1>Dashboard</h1><DashboardWorkPlace/></div></>);
 const Electric =()=> <><h1>Electric</h1>
 <div><WorplaysMeters/></div></>;
 const Production = () => (<><h1>Production</h1>
@@ -97,7 +98,7 @@ const router = createBrowserRouter([
       path: 'wokrplace',
       element: <Layout />,
       children: [
-        { path: 'wokrplace', element: <Dashboard /> },
+        { path: '', element: <Dashboard /> },
         { path: 'elesctric', element: <Electric /> },
         { path: 'production', element: <Production /> },
         { path: 'water', element: <Watter /> },
