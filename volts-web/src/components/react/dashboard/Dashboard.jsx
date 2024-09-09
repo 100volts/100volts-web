@@ -26,12 +26,13 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "../../components/ui/card";
+} from "@/components/ui/card";
 import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "../..//components/ui/chart";
+} from "@/components/ui/chart";
+import { Separator } from "@/components/ui/separator";
 
 export default function Charts() {
 
