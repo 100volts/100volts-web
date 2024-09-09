@@ -9,6 +9,7 @@ import DisplayAllProductions from "../api/production/DisplayAllProductions"
 import {initElectricityData} from "./initElectrisityData"
 import {initProductiondDashData} from "./initProductionData"
 import CreateNewProduction from "../api/production/CreateNewProduction"
+import GetReport from "../api/production/GetReport"
 import DashboardWorkPlace from "../../components/react/dashboard/Dashboard"
 
 const Dashboard = () => (<><div><h1>Dashboard</h1><DashboardWorkPlace/></div></>);
@@ -19,7 +20,7 @@ const Production = () => (<><h1>Production</h1>
 );
 const Gas = () => (<h1>Gas</h1>);
 const Watter = () => (<h1>Watter</h1>);
-const ProductionReport=()=>(<><h1>Production Reports</h1></>)
+const ProductionReport=()=>(<><h1>Production Reports</h1><GetReport/></>)
 
 
 const Navbar = () => {
