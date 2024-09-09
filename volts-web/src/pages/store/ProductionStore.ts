@@ -1,5 +1,4 @@
 import { map, atom } from "nanostores";
-import type { Company } from "./UserStore";
 
 export type Unit = {
   name: string;
@@ -34,7 +33,7 @@ export type ProductionDataPackage = {
   description: string;
   dateOfCreation: string;
   units: Unit;
-  company: Company;
+  company: any;
   groups: Group[];
   electricMeters: Meter[];
   monthlyData: MonthValue[];
