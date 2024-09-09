@@ -44,6 +44,7 @@ export type ElectricMeterDashboardData = {
 export type Company = {
   name: string;
 };
+export const reportElectricData = atom();
 
 export const elMeterDashDataStore = map<
   Record<string, ElectricMeterDashboardData>

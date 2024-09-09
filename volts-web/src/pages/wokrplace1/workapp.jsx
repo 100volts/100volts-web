@@ -10,11 +10,14 @@ import {initElectricityData} from "./initElectrisityData"
 import {initProductiondDashData} from "./initProductionData"
 import CreateNewProduction from "../api/production/CreateNewProduction"
 import GetReport from "../api/production/GetReport"
+import GetElectricReport from "../api/electric/GetReport"
 import DashboardWorkPlace from "../../components/react/dashboard/Dashboard"
+
 
 const Dashboard = () => (<><div><h1>Dashboard</h1><DashboardWorkPlace/></div></>);
 const Electric =()=> <><h1>Electric</h1>
 <div><WorplaysMeters/></div></>;
+const ElesctricReport =()=>(<><h1>Electric Report</h1><GetElectricReport/></>)
 const Production = () => (<><h1>Production</h1>
   <div><CreateNewProduction/><DisplayAllProductions/></div></>
 );
@@ -103,10 +106,11 @@ const router = createBrowserRouter([
       children: [
         { path: '', element: <Dashboard /> },
         { path: 'elesctric', element: <Electric /> },
+        { path: 'elesctric/report',element:<ElesctricReport/>},
         { path: 'production', element: <Production /> },
         { path: 'water', element: <Watter /> },
         { path: 'gas', element: <Gas /> },
-        {path:'production/productionReport',element:<ProductionReport/>}
+        { path: 'production/productionReport',element:<ProductionReport/>},
       ]
     }
   ]);

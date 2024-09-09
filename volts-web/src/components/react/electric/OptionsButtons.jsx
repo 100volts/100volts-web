@@ -1,9 +1,14 @@
 import { Button } from "@/components/ui/button";
+import { useNavigate } from 'react-router-dom';
+import {reportElectricData} from "@/pages/store/ElectricStore"
 
 export default function OptionsButtons({ address }) {
+  const navigate = useNavigate();
+
   const handleRedirect = (address) => {
-    localStorage.setItem("electric_meter_address", address);
-    window.location.href = "/wokrplace/report";
+    //localStorage.setItem("electric_meter_address", address);
+    reportElectricData.set(address)
+    navigate("/wokrplace/elesctric/report")
   };
 
   return (

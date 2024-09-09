@@ -1,6 +1,4 @@
 import { Button } from "@/components/ui/button";
-import {userData } from "@/pages/store/UserStore";
-import { useStore } from '@nanostores/react';
 import {selectedProduction} from "@/pages/store/ProductionStore"
 import { useNavigate } from 'react-router-dom';
 export default function OptionsButtons({ production }) {

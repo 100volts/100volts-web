@@ -34,6 +34,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { isLogedIn,userData } from "@/pages/store/UserStore";
 import { useStore } from '@nanostores/react';
+import {reportElectricData} from "@/pages/store/ElectricStore"
 
 ///
 const data1 = [
@@ -459,9 +460,10 @@ export default function GetReport() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const userToken = localStorage.getItem("volts_token");
-  const companyName = localStorage.getItem("company_name");
-  const elMeterAddress = localStorage.getItem("electric_meter_address");
+  const $userData=useStore(userData);
+  const companyName = $userData.companies[0];//todo remove hard coded call
+  const userToken =$userData.tokken;
+  const elMeterAddress = useStore(reportElectricData);
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
   const getElmeterData = async () => {
@@ -500,8 +502,6 @@ export default function GetReport() {
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
-  console.log(data);
-
   return (
     <>
       <div>
