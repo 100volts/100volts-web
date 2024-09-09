@@ -41,10 +41,11 @@ class Examplec extends PureComponent {
       const ybb = y0 + r * cos;
       const xp = x0 + length * cos;
       const yp = y0 + length * sin;
-
+      const key=Math.floor(Math.random() * (100 - 2 + 1)) + 2+niddleValue
       return [
-        <circle cx={x0} cy={y0} r={r} fill={color} stroke="none" />,
+        <circle key={Math.round(key+niddleValue+Math.random()*12)} cx={x0} cy={y0} r={r} fill={color} stroke="none" />,
         <path
+        key={Math.round(key+niddleValue+Math.random()*1321)}
           d={`M${xba} ${yba}L${xbb} ${ybb} L${xp} ${yp} L${xba} ${yba}`}
           stroke="#none"
           fill={color}
@@ -53,7 +54,8 @@ class Examplec extends PureComponent {
     };
     return (
       <>
-        <div
+        <div 
+        key={Math.round(Math.random()+niddleValue)}
           style={{
             display: "flex",
             justifyItems: "center",
@@ -77,7 +79,7 @@ class Examplec extends PureComponent {
               label
             >
               {data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={entry.color} />
+                <Cell key={index} fill={entry.color} />
               ))}
             </Pie>
             {needle(value, data, cx, cy, iR, oR, "#d0d000")}

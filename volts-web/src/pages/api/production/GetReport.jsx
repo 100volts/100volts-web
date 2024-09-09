@@ -33,7 +33,9 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox"
-
+import {userData } from "@/pages/store/UserStore";
+import { useStore } from '@nanostores/react';
+import {selectedProduction} from "@/pages/store/ProductionStore"
 
 
 export const columns1 = [
@@ -86,10 +88,6 @@ export const columns1 = [
     },
   },
 ];
-
-const userToken = localStorage.getItem("volts_token");
-const companyName = localStorage.getItem("company_name");
-const productionName= localStorage.getItem("production_name")
 const urladdress = pkg["volts-server"];
 
 ///
@@ -97,13 +95,16 @@ export default function GetReport() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-
+  const $userData=useStore(userData);
+  const companyName = $userData.companies[0];//todo remove hard coded call
+  const userToken =$userData.tokken;
+  const prod=useStore(selectedProduction);
+  console.log("production",prod)
   const getElmeterData = async () => {
     try {
       const body = JSON.stringify({
         company_name: companyName,
-        production_name: productionName,
+        production_name: prod.name,
       });
       const response = await fetch(
         `http://${urladdress}:8081/production/company/data/report`,

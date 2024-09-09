@@ -31,6 +31,15 @@ const chartConfig = {
 }
 
 export default function YearlyProductionChart({chartData}){
+/*
+  <XAxis
+  dataKey="month"
+  tickLine={false}
+  tickMargin={10}
+  axisLine={false} //removed becose it will be depricated
+  tickFormatter={(value) => value.slice(0, 3)}
+/>
+  */              
     return(
 <Card className=" w-full h-full">
       <CardHeader>

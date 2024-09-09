@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import {
@@ -46,6 +45,8 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import pkg from "../../../../../package.json";
+import {userData } from "@/pages/store/UserStore";
+import { useStore } from '@nanostores/react';
 
 const formSchema = z.object({
     username: z.string().min(2, {
@@ -60,38 +61,6 @@ const form = useForm<z.infer<typeof formSchema>>({
     },
 })
 
-const urladdress = pkg["volts-server"];
-const companyName = localStorage.getItem("company_name");
-const userToken = localStorage.getItem("volts_token");
-
-async function onSubmit(values) {
-    try{
-          const body = JSON.stringify({
-            company_name: companyName,
-            production_name:values.prod_name,
-            value:values.prod_value,
-            date:values.date.toISOString()
-          });
-          const response = await fetch(
-            `http://${urladdress}:8081/production/company/data`,
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${userToken}`,
-              },
-              body,
-            }
-          );
-          const datat = await response.json();
-          const { success } = datat;
-      }catch (error) {
-    } finally {
-      window.location.reload();
-    }
-    ;
-
-}
 
 export default function ImputProduction({production}){
     const form = useForm({
@@ -100,6 +69,39 @@ export default function ImputProduction({production}){
           prod_name: '' 
         }
     });
+    const $userData=useStore(userData);
+    async function onSubmit(values) {
+      const urladdress = pkg["volts-server"];
+      const companyName = $userData.companies[0];//todo remove hard coded call
+      const userToken =$userData.tokken
+        try{
+              const body = JSON.stringify({
+                company_name: companyName,
+                production_name:values.prod_name,
+                value:values.prod_value,
+                date:values.date.toISOString()
+              });
+              const response = await fetch(
+                `http://${urladdress}:8081/production/company/data`,
+                {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${userToken}`,
+                  },
+                  body,
+                }
+              );
+              const datat = await response.json();
+              const { success } = datat;
+          }catch (error) {
+        } finally {
+          window.location.reload();
+        }
+        ;
+    
+    }
+    
     
     const handleSubmit = async (event) => {
         event.preventDefault();

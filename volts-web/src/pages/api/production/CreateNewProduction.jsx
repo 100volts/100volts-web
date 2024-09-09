@@ -29,11 +29,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import React, { useState, useEffect } from "react";
 import pkg from "../../../../package.json";
+import {userData } from "@/pages/store/UserStore";
+import { useStore } from '@nanostores/react';
+import {prodGroup,prodElMeterNames} from "@/pages/store/ProductionStore"
 
-const companyName = localStorage.getItem("company_name");
-const userToken = localStorage.getItem("volts_token")
 const formSchema = z.object({
   username: z.string().min(2, {
     message: "Username must be at least 2 characters.",
@@ -46,9 +46,23 @@ const formSchema = z.object({
     defaultValues: {
       username: "",
     },
+    
   })
  
+export default function CreateNewProduction() {
+  const form = useForm();
+  const dataEl=useStore(prodElMeterNames);
+  const dataProdGroup=useStore(prodGroup);
+  const $userData=useStore(userData);
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    form.handleSubmit(onSubmit)(event);
+  };
+
   async function onSubmit(values) {
+    const companyName = $userData.companies[0];//todo remove hard coded call
+    const userToken =$userData.tokken
+    const urladdress = pkg["volts-server"];
     try{
       const body = JSON.stringify({
         company_name:companyName,
@@ -77,59 +91,6 @@ const formSchema = z.object({
   }
   ;
   }
-
-
-  
-const urladdress = pkg["volts-server"];
-export default function CreateNewProduction() {
-  const form = useForm();
-  const [dataEl, setElData] = useState([]);
-  const [dataProdGroup, setDataProdGroup] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-;
-  const getElData = async () => {
-    try {
-      const body = JSON.stringify({
-        company_name: companyName,
-      });
-      const responseb = await fetch(
-        `http://${urladdress}:8081/production/company/group`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${userToken}`,
-          },
-          body,
-        }
-      );
-      const datae= await responseb.json();
-      const {elMeterNames,prodGroupNames}=datae;
-      
-      setElData(elMeterNames);
-      setDataProdGroup(prodGroupNames);
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setLoading(false);
-      
-    }
-  };
-
-  useEffect(() => {
-    getElData();
-    }, []);
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
-
-  console.log("Group",dataProdGroup)
-  console.log("ElNames",dataEl)
-
-  const handleSubmit = async (event) => {
-    await form.handleSubmit(onSubmit)(event);
-};
   return (
     <>
     <Dialog>
@@ -186,9 +147,9 @@ export default function CreateNewProduction() {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="Liter">Liters</SelectItem>
-                  <SelectItem value="Kilogram">Kilograms</SelectItem>
-                  <SelectItem value="Unit">Units</SelectItem>
+                  <SelectItem key="Liter" value="Liter">Liters</SelectItem>
+                  <SelectItem key="Kilogram" value="Kilogram">Kilograms</SelectItem>
+                  <SelectItem key="Unit" value="Unit">Units</SelectItem>
                 </SelectContent>
               </Select>
               <FormDescription>
@@ -211,9 +172,7 @@ export default function CreateNewProduction() {
                             </FormControl>
                             <SelectContent>
                             {dataEl.map((el, index) => (
-                              <div key={index} >
-                                <SelectItem value={el}>{el}</SelectItem>
-                              </div>
+                                <SelectItem  key={index} value={el}>{el}</SelectItem>
                             ))}
                             </SelectContent>
                         </Select></FormItem>)}
@@ -231,11 +190,9 @@ export default function CreateNewProduction() {
                             </FormControl>
                             <SelectContent>
                             {dataProdGroup.map((el, index) => (
-                              <div key={index} >
-                                <SelectItem value={el}>{el}</SelectItem>
-                              </div>
+                                <SelectItem  key={index} value={el}>{el}</SelectItem>
                             ))}
-                            <SelectItem>Crete new</SelectItem>
+                            <SelectItem key="Crete_new">Crete new</SelectItem>
                             </SelectContent>
                         </Select></FormItem>)}
          />
