@@ -70,14 +70,16 @@ export function initElectricityData(){
         electric_meter_data,
         electric_meter_avr_data,
         daily_tariff_data,
+        lastWeekEnergy
       } = datat;
-
+      console.log("lastWeekEnergy",lastWeekEnergy)
       return {
         name,
         address,
         electric_meter_data,
         electric_meter_avr_data,
         daily_tariff_data,
+        lastWeekEnergy
       };
     } catch (error) {
       console.log("Failed to fetch data: " + error.message);

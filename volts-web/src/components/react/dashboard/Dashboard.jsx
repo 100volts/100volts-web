@@ -35,6 +35,37 @@ import {
 import { Separator } from "@/components/ui/separator";
 
 export default function Charts() {
+
+  const data=[
+    {
+      date: "2024-01-01",
+      steps: 2000,
+    },
+    {
+      date: "2024-01-02",
+      steps: 2100,
+    },
+    {
+      date: "2024-01-03",
+      steps: 2200,
+    },
+    {
+      date: "2024-01-04",
+      steps: 1300,
+    },
+    {
+      date: "2024-01-05",
+      steps: 1400,
+    },
+    {
+      date: "2024-01-06",
+      steps: 2500,
+    },
+    {
+      date: "2024-01-07",
+      steps: 1600,
+    },
+  ]
   return (
     <div className="chart-wrapper mx-auto flex max-w-6xl flex-col flex-wrap items-start justify-center gap-6 p-6 sm:flex-row sm:p-8">
       <div className="grid w-full gap-6 sm:grid-cols-2 lg:max-w-[22rem] lg:grid-cols-1 xl:max-w-[25rem]">
@@ -63,36 +94,7 @@ export default function Charts() {
                   left: -4,
                   right: -4,
                 }}
-                data={[
-                  {
-                    date: "2024-01-01",
-                    steps: 2000,
-                  },
-                  {
-                    date: "2024-01-02",
-                    steps: 2100,
-                  },
-                  {
-                    date: "2024-01-03",
-                    steps: 2200,
-                  },
-                  {
-                    date: "2024-01-04",
-                    steps: 1300,
-                  },
-                  {
-                    date: "2024-01-05",
-                    steps: 1400,
-                  },
-                  {
-                    date: "2024-01-06",
-                    steps: 2500,
-                  },
-                  {
-                    date: "2024-01-07",
-                    steps: 1600,
-                  },
-                ]}
+                data={data}
               >
                 <Bar
                   dataKey="steps"
@@ -164,6 +166,9 @@ export default function Charts() {
             </CardDescription>
           </CardFooter>
         </Card>
+        </div></div>
+  )};
+  /*
         <Card className="flex flex-col lg:max-w-md" x-chunk="charts-01-chunk-1">
           <CardHeader className="flex flex-row items-center gap-4 space-y-0 pb-2 [&>div]:flex-1">
             <div>
@@ -863,3 +868,4 @@ export default function Charts() {
     </div>
   );
 }
+  */

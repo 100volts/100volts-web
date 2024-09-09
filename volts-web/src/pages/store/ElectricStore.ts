@@ -39,6 +39,7 @@ export type ElectricMeterDashboardData = {
   electric_meter_data: any;
   electric_meter_avr_data: any;
   daily_tariff_data: any;
+  lastWeekEnergy: any;
 };
 
 export type Company = {

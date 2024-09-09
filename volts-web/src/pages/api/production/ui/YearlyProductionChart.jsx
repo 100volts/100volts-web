@@ -50,7 +50,13 @@ export default function YearlyProductionChart({chartData}){
         <ChartContainer config={chartConfig}>
           <BarChart accessibilityLayer data={chartData}>
             <CartesianGrid vertical={false} />
-
+            <XAxis
+              dataKey="month"
+              tickLine={false}
+              tickMargin={10}
+              axisLine={false}
+              tickFormatter={(value) => value.slice(0, 3)}
+            />
             <ChartTooltip
               cursor={false}
               content={<ChartTooltipContent hideLabel />}

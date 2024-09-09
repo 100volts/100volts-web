@@ -5,11 +5,42 @@ import AllElectricMeterDataTable from "../../../components/react/electric/AllEle
 import {elMeterDashDataStore} from "@/pages/store/ElectricStore"
 import { Card } from "@/components/ui/card";
 import { useStore } from '@nanostores/react';
+import WeeklyEnergyChart from "@/components/react/dashboard/WeeklyEnergyChart"
 
 
 const ElmeterDataComponent = () => {
   const data=useStore(elMeterDashDataStore)
 
+  const data1=[
+    {
+      date: "2024-01-01",
+      steps: 2000,
+    },
+    {
+      date: "2024-01-02",
+      steps: 2100,
+    },
+    {
+      date: "2024-01-03",
+      steps: 2200,
+    },
+    {
+      date: "2024-01-04",
+      steps: 1300,
+    },
+    {
+      date: "2024-01-05",
+      steps: 1400,
+    },
+    {
+      date: "2024-01-06",
+      steps: 2500,
+    },
+    {
+      date: "2024-01-07",
+      steps: 1600,
+    },
+  ]
   return (
     <div className="flex flex-col">
       {Object.entries(data).map(([key,elmeter], index) => (
@@ -18,37 +49,23 @@ const ElmeterDataComponent = () => {
           <h2 style={{ padding: "10px" }}>
             {elmeter.name} - {elmeter.address} 
           </h2>
-          <OptionsButtons address={elmeter.address} />
           </div>
-          <div
-            className="flex  flex-col md:flex-row flex-wrap max-w-full  justify-evenly"
-            style={{
-              display: "flex",
-              justifyItems: "center",
-              alignItems: "flex-start",
-            }}
-          >
-            <div
-              className="flex flex-col md:flex-row w-full flex-wrap justify-evenly"
-              style={{
-                display: "flex",
-                justifyItems: "center",
-                alignItems: "flex-start",
-              }}
-            >
 
-            </div>
-            <Card style={{ padding: "10px", margin: "10px" }}>
-                <AllElectricMeterDataTable elmeterProp={elmeter} />
-              </Card>
-              <Card style={{ margin: "10px" }}>
-                  <ElectricGraphs elmeterProp={elmeter} />
-              </Card>
+            <OptionsButtons address={elmeter.address} />
+            <Card className="flex  flex-wrap flex-row" style={{ padding: "10px", margin: "10px" }}>
+              <div  className="flex flex-nowrap  items-center">
+                  <div style={{ padding: "10px", margin: "10px" }} className=" w-full">
+                    <WeeklyEnergyChart  data={elmeter.lastWeekEnergy}/>
+                  </div>
+                <AllElectricMeterDataTable style={{ padding: "10px", margin: "10px" }} elmeterProp={elmeter} />
+              </div>
+              <ElectricGraphs elmeterProp={elmeter} />
+            </Card>
             <Card className="flex  max-w-full " style={{ margin: "10px" }} >
                 <DayilyTatiff elmeterProp={elmeter} />
             </Card>
             <div className="max-w-[50%]" style={{ padding: "10px" }}></div>
-          </div>
+          
         </div>
       ))}
     </div>
@@ -60,4 +77,3 @@ export default ElmeterDataComponent;
 
 //context for global
 //state management
-
