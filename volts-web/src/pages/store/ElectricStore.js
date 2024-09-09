@@ -1,7 +1,7 @@
 import { atom, map } from "nanostores";
 
-export const isLogedIn: boolean = atom(false);
-
+export const isLogedIn = atom(false);
+/*
 export type ElectricMeterData = {
   merterId: number;
   voltagell1: string;
@@ -45,8 +45,7 @@ export type ElectricMeterDashboardData = {
 export type Company = {
   name: string;
 };
+*/
 export const reportElectricData = atom();
 
-export const elMeterDashDataStore = map<
-  Record<string, ElectricMeterDashboardData>
->({});
+export const elMeterDashDataStore = map({});

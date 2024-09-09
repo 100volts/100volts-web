@@ -1,5 +1,5 @@
 import { map, atom } from "nanostores";
-
+/*
 export type Unit = {
   name: string;
   value: string;
@@ -39,11 +39,10 @@ export type ProductionDataPackage = {
   monthlyData: MonthValue[];
   last10: ProductionData[];
 };
+*/
 export const prodGroup = atom();
 export const prodElMeterNames = atom();
 export const selectedProduction = atom();
 export const reportProdData = atom();
 
-export const productionDashDataStore = map<
-  Record<string, ProductionDataPackage>
->({});
+export const productionDashDataStore = map({});

@@ -1,7 +1,7 @@
 import { atom, map } from "nanostores";
 
-export const isLogedIn: boolean = atom(false);
-
+export const isLogedIn = atom(false);
+/*
 export type User = {
   firstName: string;
   lastName: string;
@@ -13,8 +13,9 @@ export type User = {
 export type Company = {
   name: string;
 };
+*/
 
-export const userData: User = map({
+export const userData = map({
   firstName: "anonymous",
   lastName: "anonymous",
   email: "anonymous",
