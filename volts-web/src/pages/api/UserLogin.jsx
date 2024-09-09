@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import pkg from "../../../package.json";
 const urladdress = pkg["volts-server"];
-import { isLogedIn,userData, } from "@/pages/store/UserStore";
+import { isLogedIn,userData, } from "../store/UserStore";
 
 export default function getUserData() {
   const [email, setEmail] = useState("");
