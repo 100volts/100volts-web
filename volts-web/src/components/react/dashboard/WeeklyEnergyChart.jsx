@@ -1,22 +1,12 @@
 "use client";
 
 import {
-  Area,
-  AreaChart,
   Bar,
   BarChart,
-  CartesianGrid,
   Label,
-  LabelList,
-  Line,
-  LineChart,
-  PolarAngleAxis,
-  RadialBar,
-  RadialBarChart,
   Rectangle,
   ReferenceLine,
   XAxis,
-  YAxis,
 } from "recharts";
 
 import {
@@ -32,7 +22,6 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { Separator } from "@/components/ui/separator";
 
 export default function Charts({data}) {
     const avrage= Math.round(data.reduce((sum, obj) => sum + obj.energy, 0) / data.length);
@@ -103,7 +92,7 @@ export default function Charts({data}) {
                       cursor={false}
                     />
                     <ReferenceLine
-                      y={1200}
+                      y={avrage}
                       stroke="hsl(var(--muted-foreground))"
                       strokeDasharray="3 3"
                       strokeWidth={1}
@@ -131,7 +120,6 @@ export default function Charts({data}) {
                   Avrage{" "}
                   <span className="font-medium text-foreground">{avrage}</span> kwh.
                 </CardDescription>
-
               </CardFooter>
             </Card>
             </div></div>

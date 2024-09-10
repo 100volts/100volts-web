@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/table";
 
 export default function DayilyTatiff({ elmeterProp }) {
-  const key=Math.floor(Math.random() * (100 - 2 + 1))+1
   return (
     <>
       <Table >
@@ -23,7 +22,6 @@ export default function DayilyTatiff({ elmeterProp }) {
                 <TableHead>Time:</TableHead>
                 {elmeterProp.daily_tariff_data.map((traff, index) => {
                   const date = new Date(traff.timeStamp);
-                  const dayOfMonth = date.getDate();
                   const hours = date.getHours();
                   const minets = date.getMinutes();
                   return (

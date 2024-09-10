@@ -13,13 +13,16 @@ export default function AllElectricMeterDataTable({ elmeterProp }) {
   return (
     <>
       <Table>
-        <TableBody>
+        <TableCaption>Electric meter last read data.</TableCaption>
+        <TableHeader>
           <TableRow>
             <TableHead>Name</TableHead>
             <TableHead>L1</TableHead>
             <TableHead>L2</TableHead>
             <TableHead>L3</TableHead>
           </TableRow>
+        </TableHeader>
+        <TableBody>
           <TableRow>
             <TableCell>Voltage:</TableCell>
             <TableCell>{elmeterProp.electric_meter_data.voltagell1}</TableCell>

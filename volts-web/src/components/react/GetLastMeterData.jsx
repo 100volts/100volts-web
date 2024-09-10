@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { addElmeter, elmeters } from "../datastore/elmeterStore";
+import { addElmeter } from "../datastore/elmeterStore";
 import { useStore } from "@nanostores/react";
 import pkg from "../../../package.json";
 const urladdress = pkg["volts-server"];
 
 export default async function GetElMeterAdnDisplay() {
   const [userElmeter, setUserElmeter] = useState("");
-  const $elmeters = useStore(elmeters);
   const $elmeters1 = useStore(await getElmeterData());
   return (
     <>
