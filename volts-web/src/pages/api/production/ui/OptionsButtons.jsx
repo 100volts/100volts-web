@@ -10,6 +10,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import Reports from "../GetReport"
+import ProductionSettings from "../Settings"
 
 export default function OptionsButtons({ production }) {
   const navigate = useNavigate();
@@ -19,31 +20,34 @@ export default function OptionsButtons({ production }) {
     };
     const goToSettings = (production) => {
       selectedProduction.set(production)
-      navigate("/wokrplace/production/settings")
+      //navigate("/wokrplace/production/settings")
     };
   
     return (
       <>
         <div>
         <Dialog className="flex"> 
-        <DialogTrigger>
-            <Button variant="outline" onClick={() => handleRedirect(production)}>
-                <a style={{ width: "25px" }}>i</a>
-              </Button>
-        </DialogTrigger>
-        <DialogContent  style={{ width: "50%", maxWidth:"100%" }}>
-          <DialogHeader>
-            <DialogTitle>          
-            </DialogTitle>
-            <DialogDescription>
-              Creating a new production intem witch you produce to get how mutch energy you spent on a given production.
-            </DialogDescription>
-          </DialogHeader>
-          <Reports/>
-        </DialogContent>
+          <DialogTrigger>
+              <Button variant="outline" onClick={() => handleRedirect(production)}>
+                  <a style={{ width: "25px" }}>i</a>
+                </Button>
+          </DialogTrigger>
+          <DialogContent  style={{ width: "50%", maxWidth:"100%" }}>
+            <DialogHeader>
+              <DialogTitle>   
+              Peoduction reports       
+              </DialogTitle>
+              <DialogDescription>
+                Peoduction reports
+              </DialogDescription>
+            </DialogHeader>
+            <Reports/>
+          </DialogContent>
         </Dialog>
 
-          <Button variant="outline" onClick={() => goToSettings(production)}>
+        <Dialog className="flex"> 
+        <DialogTrigger>
+        <Button variant="outline" onClick={() => goToSettings(production)}>
             <svg
             style={{ width: "25px" }}
               height="25px"
@@ -67,6 +71,18 @@ export default function OptionsButtons({ production }) {
               />
             </svg>
           </Button>
+        </DialogTrigger>
+        <DialogContent  style={{ width: "50%", maxWidth:"100%" }}>
+          <DialogHeader>
+            <DialogTitle>          
+            </DialogTitle>
+            <DialogDescription>
+              Production settings
+            </DialogDescription>
+          </DialogHeader>
+          <ProductionSettings/>
+        </DialogContent>
+        </Dialog>
         </div>
       </>
     );

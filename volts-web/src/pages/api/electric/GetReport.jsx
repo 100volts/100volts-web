@@ -532,7 +532,7 @@ export function DataTable({ columns, data }) {
   });
 
   return (
-    <div className="rounded-md border">
+    <div className="rounded-md border" style={{ width: "77%", maxWidth:"80%"}}>
       <div>
         <div className="flex items-center py-4">
           <Input
@@ -566,7 +566,7 @@ export function DataTable({ columns, data }) {
               </TableRow>
             ))}
           </TableHeader>
-          <TableBody>
+          <TableBody style={{ width: "77%", maxWidth:"80%",maxHeight:"50% ", height:"50%" }}>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
