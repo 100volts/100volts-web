@@ -10,9 +10,10 @@ import {
   } from "@/components/ui/table"
 
   export default function Last10DataTable({data}){
+    const prodSum=data.reduce((sum,prod)=>sum+prod.values,0)
     return(
         <Table className="max-w-xs">
-            <TableCaption>All data.</TableCaption>
+            <TableCaption>All entries.</TableCaption>
             <TableHeader>
                 <TableRow>
                 <TableHead >Value</TableHead>
@@ -36,6 +37,12 @@ import {
                 </>
             )}
             </TableBody>
+            <TableFooter>
+                <TableRow>
+                    <TableCell colSpan={3}>Total</TableCell>
+                    <TableCell className="text-right">{prodSum}</TableCell>
+                </TableRow>
+            </TableFooter>
         </Table>
     )
   }

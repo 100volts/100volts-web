@@ -13,7 +13,7 @@ export default function DayilyTatiff({ elmeterProp }) {
   return (
     <>
       <Table >
-        <TableCaption>.</TableCaption>
+        <TableCaption>Fifteen Minute Load.</TableCaption>
         {elmeterProp.daily_tariff_data &&
         elmeterProp.daily_tariff_data.length > 0 ? (
           <>
@@ -22,6 +22,7 @@ export default function DayilyTatiff({ elmeterProp }) {
                 <TableHead>Time:</TableHead>
                 {elmeterProp.daily_tariff_data.map((traff, index) => {
                   const date = new Date(traff.timeStamp);
+                  const dayOfMonth = date.getDate();
                   const hours = date.getHours();
                   const minets = date.getMinutes();
                   return (

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import pkg from "../../../../package.json";
 import { Button } from "@/components/ui/button";
 import {
@@ -488,7 +488,6 @@ export default function GetReport() {
       const datat = await response.json();
       const { meters } = datat;
       setData(meters);
-      //await delay(5000);
     } catch (error) {
       setError(error.message);
     } finally {
@@ -512,7 +511,6 @@ export default function GetReport() {
 }
 
 function buttClick(row){
-  console.log("butt click",row)
 }
 
 export function DataTable({ columns, data }) {

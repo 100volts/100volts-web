@@ -1,6 +1,6 @@
 import pkg from "../../../../package.json";
 const urladdress = pkg["volts-server"];
-import { isLogedIn,userData } from "@/pages/store/UserStore";
+import { userData } from "@/pages/store/UserStore";
 import { useStore } from '@nanostores/react';
 
 
@@ -10,7 +10,6 @@ export default async function getElmeterData() {
   console.log("Prod: $userData",$userData)
   const userToken =$userData.tokken
   try {
-    //const userToken = localStorage.getItem("volts_token");
     const companyName = localStorage.getItem("company_name");
     const response = await fetch(
       `http://${urladdress}:8081/elmeter/company/address/list`,
@@ -39,7 +38,6 @@ export default async function getElmeterData() {
 
 async function getElmeterDataFromAddress(elmeterAddress) {
   try {
-    //const userToken = localStorage.getItem("volts_token");
     const companyName = localStorage.getItem("company_name");
     const response = await fetch(
       `http://${urladdress}:8081/elmeter/data/last`,

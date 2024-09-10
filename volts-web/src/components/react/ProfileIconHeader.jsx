@@ -1,5 +1,5 @@
 import { ChevronDown, User, Settings, LogOut } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { isLogedIn,userData } from "@/pages/store/UserStore";
 import { useStore } from '@nanostores/react';
 
@@ -9,8 +9,6 @@ export default function ProfileIconHeader() {
   const [isOpen, setIsOpen] = useState(false);
   const $isLogedIn=useStore(isLogedIn);
   const $userData=useStore(userData);
-  
-  //console.log("$userData from drop",$userData.tokken)
 
   useEffect(() => {
     const token = localStorage.getItem("volts_token");
@@ -42,8 +40,6 @@ export default function ProfileIconHeader() {
   function deleteToken() {
     const tokenKey = "volts_token";
     localStorage.removeItem(tokenKey);
-    //localStorage.removeItem("volts_user_role");
-    //localStorage.removeItem("company_name");
     localStorage.removeItem("user_state");
     localStorage.removeItem("user_islogedIn");
     $isLogedIn.set(false)

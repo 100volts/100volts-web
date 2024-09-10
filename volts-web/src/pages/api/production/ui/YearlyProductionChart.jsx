@@ -1,5 +1,4 @@
 "use client"
-import { TrendingUp } from "lucide-react"
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
 import {
   Card,
@@ -15,14 +14,6 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart"
 export const description = "A bar chart"
-const chartData1 = [
-  { month: "January", desktop: 186 },
-  { month: "February", desktop: 305 },
-  { month: "March", desktop: 237 },
-  { month: "April", desktop: 73 },
-  { month: "May", desktop: 209 },
-  { month: "June", desktop: 214 },
-]
 const chartConfig = {
   desktop: {
     label: "value",
@@ -30,21 +21,12 @@ const chartConfig = {
   },
 }
 
-export default function YearlyProductionChart({chartData}){
-/*
-  <XAxis
-  dataKey="month"
-  tickLine={false}
-  tickMargin={10}
-  axisLine={false} //removed becose it will be depricated
-  tickFormatter={(value) => value.slice(0, 3)}
-/>
-  */              
-    return(
+export default function YearlyProductionChart({chartData}){            
+return(
 <Card className=" w-full h-full">
       <CardHeader>
-        <CardTitle>Bar Chart</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
+        <CardTitle>Yearly production</CardTitle>
+        <CardDescription>All production for th epst 6 months.</CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>

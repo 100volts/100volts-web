@@ -77,14 +77,6 @@ async function getElmeterDataFromAddress(elmeterAddress) {
     );
     const datat = await response.json();
     const { name } = datat;
-    /*
-        let a = document.createElement("a");
-        a.innerHTML = name;
-        document.getElementById('elmeter').appendChild(a);
-        document.getElementById('elmeter').appendChild(document.createElement("br"));
-
-        console.log(datat)
-        */
     return name;
   } catch (error) {
     console.log("Failed to fetch data: " + error.message);

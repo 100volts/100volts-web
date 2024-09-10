@@ -181,11 +181,11 @@ export default function CreateNewProduction() {
                           control={form.control}
                           name="prod_group"
                           render={({ field }) => (<FormItem>
-                            <Input placeholder="discription group" {...field} />
+                            <Input placeholder="New group name" {...field} />
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
                               <SelectTrigger>
-                                <SelectValue placeholder="Select Electric meter witch connects to the production" />
+                                <SelectValue placeholder="Select Electric group" />
                               </SelectTrigger>
                             </FormControl>
                             <SelectContent>
@@ -204,24 +204,3 @@ export default function CreateNewProduction() {
     </>
   )
 }
-
-
-/*old group form
-
-        <FormField
-          control={form.control}
-          name="prod_group"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Production group</FormLabel>
-              <FormControl>
-                <Input placeholder="discription group" {...field} />
-              </FormControl>
-              <FormDescription>
-                Not mandatory. It is used just for organization
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-*/

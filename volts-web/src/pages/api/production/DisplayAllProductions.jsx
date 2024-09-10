@@ -19,7 +19,6 @@ import YearlyProductionChart from "./ui/YearlyProductionChart"
 
 export default function DisplayAllProductions(){
     const data=useStore(productionDashDataStore);
-    console.log("prod data",data);
       return(
         <>
           <div className="imput_production">

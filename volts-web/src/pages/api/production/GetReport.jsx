@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import pkg from "../../../../package.json";
 import { Button } from "@/components/ui/button";
 import {
@@ -99,7 +99,6 @@ export default function GetReport() {
   const companyName = $userData.companies[0];//todo remove hard coded call
   const userToken =$userData.tokken;
   const prod=useStore(selectedProduction);
-  console.log("production",prod)
   const getElmeterData = async () => {
     try {
       const body = JSON.stringify({
@@ -133,8 +132,6 @@ export default function GetReport() {
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
-  console.log(data);
-
   return (
     <>
       <div>
@@ -145,13 +142,11 @@ export default function GetReport() {
 }
 
 async function buttClick(row){
-  console.log(row)
   try{
     const body = JSON.stringify({
       id: row.id,
     });
-    console.log("body",body)
-    const response = await fetch(
+        const response = await fetch(
       `http://${urladdress}:8081/production/data`,
       {
         method: "DELETE",
@@ -162,10 +157,8 @@ async function buttClick(row){
         body,
       }
     );
-    console.log("before getting data")
     const datat = await response.json();
     const { success } = datat;
-    console.log("result",success)
 }catch (error) {
  //todo handle error
 } finally {

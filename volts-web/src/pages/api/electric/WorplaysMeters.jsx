@@ -70,10 +70,7 @@ const ElmeterDataComponent = () => {
       ))}
     </div>
   );
-  // <pre>{JSON.stringify(elmeter.electric_meter_data, null, 2)}</pre>
 };
 
 export default ElmeterDataComponent;
 
-//context for global
-//state management
