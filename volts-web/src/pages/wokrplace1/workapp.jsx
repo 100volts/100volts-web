@@ -12,9 +12,10 @@ import GetReport from "../api/production/GetReport"
 import GetElectricReport from "../api/electric/GetReport"
 import DashboardWorkPlace from "../../components/react/dashboard/Dashboard"
 import ProductionSettingsComponent from "../api/production/Settings" 
+import TokkenCheck from "./TokkenCheck"
 
 const Dashboard = () => (<><div><h1>Dashboard</h1><DashboardWorkPlace/></div></>);
-const Electric =()=> <><h1>Electric</h1>
+const Electric =()=> <><TokkenCheck/><h1>Electric</h1>
 <div><WorplaysMeters/></div></>;
 const ElesctricReport =()=>(<><h1>Electric Report</h1><GetElectricReport/></>)
 const Production = () => (<><h1>Production</h1>
@@ -121,9 +122,9 @@ const router = createBrowserRouter([
   export const App = () => {
     initElectricityData();
     initProductiondDashData();
-    //<React.StrictMode> </React.StrictMode>
+    //</React.StrictMode>
     return (
-      <React.StrictMode><RouterProvider router={router} /></React.StrictMode>
+      <RouterProvider router={router} />
         
     );
   }; 
