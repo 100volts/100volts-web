@@ -40,6 +40,7 @@ export type ProductionDataPackage = {
   last10: ProductionData[];
 };
 */
+export const initLoading = atom(0);
 export const prodGroup = atom();
 export const prodElMeterNames = atom();
 export const selectedProduction = atom();

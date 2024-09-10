@@ -1,7 +1,9 @@
 ---
+import type { StrictMode } from "react";
 import Main from "../layouts/Main.astro";
 import GetUserWorkpaces from "./api/GetUserWorkpaces";
 import { App } from "./wokrplace1/workapp";
+import React  from "react";
 /*
 old version
   <h1 class="workplaces__c">Welcome to your workplaces</h1>
@@ -22,6 +24,7 @@ export function getStaticPaths() {
     { params: { path: "wokrplace/production/settings"}}
   ];
 }
+//<React.StrictMode></React.StrictMode>
 ---
 
 <Main title="Workspaces">
@@ -31,7 +34,9 @@ export function getStaticPaths() {
     style="max-width: 70%"
   >
     <div id="elmeter" class="elme ter">
-      <App client:only />
+      
+        <App client:only />
+
     </div>
   </body>
 

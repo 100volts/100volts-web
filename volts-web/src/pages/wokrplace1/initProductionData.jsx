@@ -1,7 +1,7 @@
 import React, { useState, useEffect }  from "react";
 import {userData } from "@/pages/store/UserStore";
 import { useStore } from '@nanostores/react';
-import {productionDashDataStore,prodGroup,prodElMeterNames,selectedProduction,reportProdData} from "@/pages/store/ProductionStore"
+import {productionDashDataStore,prodGroup,prodElMeterNames,selectedProduction,reportProdData,initLoading} from "@/pages/store/ProductionStore"
 import pkg from "../../../package.json";
 
 const urladdress = pkg["volts-server"];
@@ -33,7 +33,8 @@ export function initProductiondDashData(){
             }
           );
           const datat = await response.json();
-          const { production } = datat;   
+          const { production } = datat; 
+          initLoading.set(initLoading.get()+50)
           production.map((prod,index)=> productionDashDataStore.setKey(index,prod)) 
 
         } catch (error) {
@@ -62,11 +63,13 @@ export function initProductiondDashData(){
           setError(error.message);
         }finally {
             setLoading(false);
+            initLoading.set(initLoading.get()+50)
           }
       };
       //console.log("$productionDashDataStore",Object.values($productionDashDataStore))
       useEffect(() => {
         getProdData();
+        initLoading.set(initLoading.get()+50)
       }, []);
     
       if (loading) return <div>Loading...</div>;

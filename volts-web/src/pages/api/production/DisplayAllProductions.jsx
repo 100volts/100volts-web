@@ -12,15 +12,26 @@ import {
   import ImputProduction from "./ui/ImputProduction"
 import { useStore } from '@nanostores/react';
 import Last10DataTable from "./ui/Last10DataTable"
-import {productionDashDataStore} from "@/pages/store/ProductionStore"
+import {productionDashDataStore,initLoading} from "@/pages/store/ProductionStore"
 import OptionsButtons from "./ui/OptionsButtons"
 import YearlyProductionChart from "./ui/YearlyProductionChart"
+import CreateNewProduction from "./CreateNewProduction"
+import Loading from "@/pages/wokrplace1/InitLoading"
+import * as Progress from '@radix-ui/react-progress';
 
 
 export default function DisplayAllProductions(){
     const data=useStore(productionDashDataStore);
+    const progress=useStore(initLoading);
+    if(initLoading.get()<100){
+      return (<>        
+      <Progress.Root  value={progress}>
+        <Progress.Indicator/>
+      </Progress.Root></>)
+    }
       return(
         <>
+        <CreateNewProduction/>
           <div className="imput_production">
             <ImputProduction production={Object.values(data)}/>
         </div>

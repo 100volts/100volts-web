@@ -1,7 +1,7 @@
 import React, { useState, useEffect }  from "react";
 import {userData } from "@/pages/store/UserStore";
 import { useStore } from '@nanostores/react';
-import {elMeterDashDataStore} from "@/pages/store/ElectricStore"
+import {elMeterDashDataStore,initLoading} from "@/pages/store/ElectricStore"
 import pkg from "../../../package.json";
 
 const urladdress = pkg["volts-server"];
@@ -43,6 +43,8 @@ export function initElectricityData(){
     } finally {
         localStorage.setItem("electricity_store",JSON.stringify(elMeterDashDataStore.get()));
       setLoading(false);
+      initLoading.set(100)
+      console.log("lastWeekEnergy","gg")
     }
   };
 
@@ -72,7 +74,7 @@ export function initElectricityData(){
         daily_tariff_data,
         lastWeekEnergy
       } = datat;
-      console.log("lastWeekEnergy",lastWeekEnergy)
+      
       return {
         name,
         address,
@@ -84,7 +86,7 @@ export function initElectricityData(){
     } catch (error) {
       console.log("Failed to fetch data: " + error.message);
       return null;
-    }
+    } 
   };
   if($elMeterDashDataStore){
     useEffect(() => {

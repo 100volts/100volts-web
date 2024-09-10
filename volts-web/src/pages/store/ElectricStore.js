@@ -46,6 +46,8 @@ export type Company = {
   name: string;
 };
 */
+export const initLoading = atom(0);
+
 export const reportElectricData = atom();
 
 export const elMeterDashDataStore = map({});

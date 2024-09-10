@@ -2,11 +2,11 @@ import DayilyTatiff from "../../../components/react/electric/DayilyTatiff";
 import OptionsButtons from "../../../components/react/electric/OptionsButtons";
 import ElectricGraphs from "../../../components/react/electric/ElectricGraphs";
 import AllElectricMeterDataTable from "../../../components/react/electric/AllElectricMeterDataTable";
-import {elMeterDashDataStore} from "@/pages/store/ElectricStore"
+import {elMeterDashDataStore,initLoading} from "@/pages/store/ElectricStore"
 import { Card } from "@/components/ui/card";
 import { useStore } from '@nanostores/react';
 import WeeklyEnergyChart from "@/components/react/dashboard/WeeklyEnergyChart"
-
+import Loading from "@/pages/wokrplace1/InitLoading"
 
 const ElmeterDataComponent = () => {
   const data=useStore(elMeterDashDataStore)
@@ -41,6 +41,9 @@ const ElmeterDataComponent = () => {
       steps: 1600,
     },
   ]
+  if(initLoading.get()<100){
+    return (<><Loading progress={initLoading.get()}/></>)
+  }
   return (
     <div className="flex flex-col">
       {Object.entries(data).map(([key,elmeter], index) => (
@@ -65,7 +68,6 @@ const ElmeterDataComponent = () => {
                 <DayilyTatiff elmeterProp={elmeter} />
             </Card>
             <div className="max-w-[50%]" style={{ padding: "10px" }}></div>
-          
         </div>
       ))}
     </div>
