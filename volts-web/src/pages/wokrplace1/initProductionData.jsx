@@ -34,8 +34,11 @@ export function initProductiondDashData(){
           );
           const datat = await response.json();
           const { production } = datat; 
-          initLoading.set(initLoading.get()+50)
-          production.map((prod,index)=> productionDashDataStore.setKey(index,prod)) 
+          
+          production.map((prod,index)=> {
+            productionDashDataStore.setKey(index,prod);
+            initLoading.set(initLoading.get()+10)
+        }) 
 
         } catch (error) {
           setError(error.message);

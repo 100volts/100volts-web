@@ -74,7 +74,7 @@ export function initElectricityData(){
         daily_tariff_data,
         lastWeekEnergy
       } = datat;
-      
+      initLoading.set(initLoading.get()+10)
       return {
         name,
         address,

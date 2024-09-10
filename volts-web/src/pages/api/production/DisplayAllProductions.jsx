@@ -24,10 +24,7 @@ export default function DisplayAllProductions(){
     const data=useStore(productionDashDataStore);
     const progress=useStore(initLoading);
     if(initLoading.get()<100){
-      return (<>        
-      <Progress.Root  value={progress}>
-        <Progress.Indicator/>
-      </Progress.Root></>)
+      return (<><Loading progress={progress}/></>)
     }
       return(
         <>
