@@ -12,6 +12,7 @@ import CreateNewProduction from "../api/production/CreateNewProduction"
 import GetReport from "../api/production/GetReport"
 import GetElectricReport from "../api/electric/GetReport"
 import DashboardWorkPlace from "../../components/react/dashboard/Dashboard"
+import ProductionSettingsComponent from "../api/production/Settings" 
 
 
 const Dashboard = () => (<><div><h1>Dashboard</h1><DashboardWorkPlace/></div></>);
@@ -21,6 +22,7 @@ const ElesctricReport =()=>(<><h1>Electric Report</h1><GetElectricReport/></>)
 const Production = () => (<><h1>Production</h1>
   <div><CreateNewProduction/><DisplayAllProductions/></div></>
 );
+const ProductionSettings=()=>(<><h1>Settings<div><ProductionSettingsComponent/></div></h1></>);
 const Gas = () => (<h1>Gas</h1>);
 const Watter = () => (<h1>Watter</h1>);
 const ProductionReport=()=>(<><h1>Production Reports</h1><GetReport/></>)
@@ -110,7 +112,8 @@ const router = createBrowserRouter([
         { path: 'production', element: <Production /> },
         { path: 'water', element: <Watter /> },
         { path: 'gas', element: <Gas /> },
-        { path: 'production/productionReport',element:<ProductionReport/>},
+        { path: 'production/productionReport', element:<ProductionReport/>},
+        { path: 'production/settings', element:<ProductionSettings/>},
       ]
     }
   ]);
@@ -120,9 +123,6 @@ const router = createBrowserRouter([
   export const App = () => {
     initElectricityData();
     initProductiondDashData();
-    ///
-    
-    ///
     return (
       <React.StrictMode>
         <RouterProvider router={router} />

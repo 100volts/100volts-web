@@ -1,20 +1,49 @@
 import { Button } from "@/components/ui/button";
 import {selectedProduction} from "@/pages/store/ProductionStore"
 import { useNavigate } from 'react-router-dom';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import Reports from "../GetReport"
+
 export default function OptionsButtons({ production }) {
   const navigate = useNavigate();
     const handleRedirect = (production) => {
       selectedProduction.set(production)
-      navigate("/wokrplace/production/productionReport")
+      //navigate("/wokrplace/production/productionReport")
+    };
+    const goToSettings = (production) => {
+      selectedProduction.set(production)
+      navigate("/wokrplace/production/settings")
     };
   
     return (
       <>
         <div>
-          <Button variant="outline" onClick={() => handleRedirect(production)}>
-            <a style={{ width: "25px" }}>i</a>
-          </Button>
-          <Button variant="outline">
+        <Dialog className="flex"> 
+        <DialogTrigger>
+            <Button variant="outline" onClick={() => handleRedirect(production)}>
+                <a style={{ width: "25px" }}>i</a>
+              </Button>
+        </DialogTrigger>
+        <DialogContent  style={{ width: "50%", maxWidth:"100%" }}>
+          <DialogHeader>
+            <DialogTitle>          
+            </DialogTitle>
+            <DialogDescription>
+              Creating a new production intem witch you produce to get how mutch energy you spent on a given production.
+            </DialogDescription>
+          </DialogHeader>
+          <Reports/>
+        </DialogContent>
+        </Dialog>
+
+          <Button variant="outline" onClick={() => goToSettings(production)}>
             <svg
             style={{ width: "25px" }}
               height="25px"

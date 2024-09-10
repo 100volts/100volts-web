@@ -187,7 +187,7 @@ export function DataTable({ columns, data }) {
   
 
   return (
-    <div className="rounded-md border">
+    <div className="rounded-md border w-full">
       <div>
         <div className="flex items-center py-4">
           <Input

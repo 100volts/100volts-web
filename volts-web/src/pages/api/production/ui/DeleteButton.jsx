@@ -37,8 +37,8 @@ async function deleteProd(prod_name){
 }
     return(
     <>
-        <Button variant="destructive" onClick={() =>deleteProd(`${production.name}`)}>
-            <CrossCircledIcon key={production}></CrossCircledIcon>
+        <Button variant="destructive"  onClick={() =>deleteProd(`${production.name}`)}>
+            <CrossCircledIcon key={production} style={{ width: "25px" }}></CrossCircledIcon>
         </Button>
     </>
     )
