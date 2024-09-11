@@ -32,9 +32,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import { Checkbox } from "@/components/ui/checkbox"
-import {waterDataPack } from "@/pages/store/WaterStore";
+import { Checkbox } from "@/components/ui/checkbox";
+import { waterDataPack } from "@/pages/store/WaterStore";
 import { useStore } from '@nanostores/react';
+import  BlackWaterMeter  from '@/components/black-water-meter'
+
+const urladdress = pkg["volts-server"];
 
 export const columns1 = [
     {
@@ -79,17 +82,14 @@ export const columns1 = [
         );
       },
     },
-  ];
-  const urladdress = pkg["volts-server"];
-
-
+];
   
 export default function WatterDataTable() {
     const data= useStore(waterDataPack);
-
     return (
       <>
         <div>
+          
           <DataTable columns={columns1} data={data} />
         </div>
       </>
@@ -114,8 +114,6 @@ export default function WatterDataTable() {
         columnFilters,
       },
     });
-  
-    
   
     return (
       <div className="rounded-md border w-full">
@@ -167,7 +165,9 @@ export default function WatterDataTable() {
                         )}
                       </TableCell>
                     ))}
-                    <TableCell><Button onClick={()=> buttClick(row.original)}>Delete</Button></TableCell>
+                    <TableCell> 
+                    <BlackWaterMeter initialValue={row.original.data[0].value}/>
+                    </TableCell>
                   </TableRow>
                 ))
               ) : (

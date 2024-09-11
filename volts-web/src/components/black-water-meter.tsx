@@ -1,46 +1,120 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 
-const DialDigit = ({ digit, speed }: { digit: number; speed: number }) => (
-  <div className="relative w-12 h-16 bg-black border border-gray-700 rounded-md overflow-hidden">
-    <div
-      className="absolute inset-0 flex flex-col items-center transition-transform duration-1000 ease-linear"
-      style={{
-        transform: `translateY(-${digit * 10}%)`,
-        transitionDuration: `${speed}ms`,
-      }}
-    >
-      {[9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((num, index) => (
-        <div key={index} className="flex items-center justify-center h-full w-full text-2xl font-bold text-white">
-          {num}
-        </div>
-      ))}
-    </div>
-  </div>
-)
-
-export function BlackWaterMeter() {
-  const [count, setCount] = useState(0)
-  const digits = String(Math.floor(count)).padStart(6, '0').split('').map(Number)
+const DigitDisplay = ({ digit }: { digit: string }) => {
+  const [key, setKey] = useState(0)
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCount((prevCount) => prevCount + 0.1)
-    }, 100)
-
-    return () => clearInterval(timer)
-  }, [])
+    setKey(prevKey => prevKey + 1)
+  }, [digit])
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900">
-      <div className="bg-black p-8 rounded-xl shadow-lg border border-gray-700">
-        <h2 className="text-2xl font-bold mb-4 text-center text-white">Water Meter</h2>
-        <div className="flex space-x-1">
-          {digits.map((digit, index) => (
-            <DialDigit key={index} digit={digit} speed={1000 * Math.pow(10, index)} />
-          ))}
-          <div className="text-2xl font-bold text-white ml-2 self-end mb-2">m³</div>
-        </div>
+    <div className="digit-container">
+      <div key={key} className="digit-display">
+        {digit}
       </div>
+    </div>
+  )
+}
+
+interface WaterMeterProps {
+  initialValue?: number;
+}
+
+export default function Component({ initialValue = 0 }: WaterMeterProps) {
+  const [meterValue, setMeterValue] = useState(initialValue)
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(e.target.value, 10)
+    if (!isNaN(value)) {
+      setMeterValue(value)
+    }
+  }
+/*
+
+      <input
+        type="number"
+        value={meterValue}
+        onChange={handleInputChange}
+        className="mt-4 p-2 bg-gray-800 text-white border border-gray-700 rounded"
+        min="0"
+        max="99999999"
+      />
+*/
+  // Pad the number with leading zeros to always have 8 digits
+  const paddedValue = meterValue.toString().padStart(8, '0')
+
+  return (
+    <div className="flex flex-col items-center ">
+      <div className="water-meter">
+        {paddedValue.split('').map((digit, index) => (
+          <DigitDisplay key={index} digit={digit} />
+        ))}
+      </div>
+      <style>{`
+        .water-meter {
+          display: flex;
+          //background-color: #111;
+          //border: 2px solid #333;
+          //border-radius: 8px;
+          //padding: 2px;
+          //font-family: 'Courier New', monospace;
+          box-shadow: 0 0 10px rgba(255,255,255,0.1);
+        }
+        .digit-container {
+          //width: 40px;
+          //height: 60px;
+          width: 20px;
+          height: 30px;
+          margin: 0 2px;
+          perspective: 300px;
+          overflow: hidden;
+        }
+        .digit-display {
+          width: 100%;
+          height: 100%;
+          //background-color: #000;
+          border: 1px solid #444;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          //font-size: 2rem;
+          font-weight: bold;
+          border-radius: 4px;
+         // color: #fff;
+          text-shadow: 0 0 5px rgba(255,255,255,0.5);
+          box-shadow: inset 0 2px 4px rgba(255,255,255,0.1);
+          position: relative;
+          animation: flip 0.3s ease-in-out;
+          transform-style: preserve-3d;
+        }
+        .digit-display::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(
+            to bottom,
+            rgba(255,255,255,0.1) 0%,
+            rgba(255,255,255,0.05) 50%,
+            rgba(255,255,255,0) 51%,
+            rgba(255,255,255,0.05) 100%
+          );
+          pointer-events: none;
+        }
+        @keyframes flip {
+          0% {
+            transform: rotateX(0deg);
+          }
+          50% {
+            transform: rotateX(90deg);
+          }
+          100% {
+            transform: rotateX(0deg);
+          }
+        }
+      `}</style>
     </div>
   )
 }

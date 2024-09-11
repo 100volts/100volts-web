@@ -34,6 +34,7 @@ export default function initWater(){
           const { watter } = datat; 
         console.log("water data",watter)
         waterDataPack.set(watter);
+        console.log("water data got",waterDataPack.get())
         } catch (error) {
           setError(error.message);
         }finally {

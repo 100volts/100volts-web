@@ -1,18 +1,19 @@
 import { Link } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
-import { Button } from "@/components/ui/button"
-import { LayoutDashboard, Zap, Droplet, Flame, Factory } from "lucide-react"
+import { Button } from "@/components/ui/button";
+import { LayoutDashboard, Zap, Droplet, Flame, Factory } from "lucide-react";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import WorplaysMeters from "../api/electric/WorplaysMeters";
-import DisplayAllProductions from "../api/production/DisplayAllProductions"
-import {initElectricityData} from "./initElectrisityData"
-import {initProductiondDashData} from "./initProductionData"
-import GetReport from "../api/production/GetReport"
-import GetElectricReport from "../api/electric/GetReport"
-import DashboardWorkPlace from "../../components/react/dashboard/Dashboard"
-import ProductionSettingsComponent from "../api/production/Settings" 
-import TokkenCheck from "./TokkenCheck"
-import InitWater from "./initWater"
+import DisplayAllProductions from "../api/production/DisplayAllProductions";
+import {initElectricityData} from "./initElectrisityData";
+import {initProductiondDashData} from "./initProductionData";
+import GetReport from "../api/production/GetReport";
+import GetElectricReport from "../api/electric/GetReport";
+import DashboardWorkPlace from "../../components/react/dashboard/Dashboard";
+import ProductionSettingsComponent from "../api/production/Settings"; 
+import TokkenCheck from "./TokkenCheck";
+import InitWater from "./initWater";
+import DisplayWater from "../api/water/DisplayWater"
 
 const Dashboard = () => (<><div><h1>Dashboard</h1><DashboardWorkPlace/></div></>);
 const Electric =()=> <><TokkenCheck/><h1>Electric</h1>
@@ -23,7 +24,7 @@ const Production = () => (<><h1>Production</h1>
 );
 const ProductionSettings=()=>(<><h1>Settings<div><ProductionSettingsComponent/></div></h1></>);
 const Gas = () => (<h1>Gas</h1>);
-const Watter = () => (<h1>Watter</h1>);
+const Watter = () => (<><h1>Watter</h1><DisplayWater/></>);
 const ProductionReport=()=>(<><h1>Production Reports</h1><GetReport/></>)
 
 
