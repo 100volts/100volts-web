@@ -3,7 +3,6 @@ import { Outlet } from 'react-router-dom';
 import { Button } from "@/components/ui/button"
 import { LayoutDashboard, Zap, Droplet, Flame, Factory } from "lucide-react"
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import React  from "react";
 import WorplaysMeters from "../api/electric/WorplaysMeters";
 import DisplayAllProductions from "../api/production/DisplayAllProductions"
 import {initElectricityData} from "./initElectrisityData"
@@ -13,6 +12,7 @@ import GetElectricReport from "../api/electric/GetReport"
 import DashboardWorkPlace from "../../components/react/dashboard/Dashboard"
 import ProductionSettingsComponent from "../api/production/Settings" 
 import TokkenCheck from "./TokkenCheck"
+import InitWater from "./initWater"
 
 const Dashboard = () => (<><div><h1>Dashboard</h1><DashboardWorkPlace/></div></>);
 const Electric =()=> <><TokkenCheck/><h1>Electric</h1>
@@ -122,6 +122,7 @@ const router = createBrowserRouter([
   export const App = () => {
     initElectricityData();
     initProductiondDashData();
+    InitWater();
     //</React.StrictMode>
     return (
       <RouterProvider router={router} />
