@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { Button } from "@/components/ui/button"
 import { Plus } from "lucide-react"
+import { format,isToday  } from "date-fns"
 import {
     Popover,
     PopoverContent,
@@ -45,7 +46,8 @@ import {waterDataNames,waterDataPack} from "@/pages/store/WaterStore"
 import  { useState }  from "react";
 
 export default function AddDataToWaterMeter() {
-    const [meterState,setMeterState]=  useState();
+  const waterData=useStore(waterDataPack)
+    const [meterState,setMeterState]=  useState([{date:"1900-01-01"}]);
 const formSchema = z.object({
     water_name: z.string().min(2, {
       message: "Water meter name must be at least 2 characters.",
@@ -71,6 +73,7 @@ const formSchema = z.object({
     })
 
   const $userData=useStore(userData);
+
   const handleSubmit = async (event) => {
     event.preventDefault()
     form.handleSubmit(onSubmit)(event);
@@ -79,6 +82,7 @@ const formSchema = z.object({
   const handleChange= async(event)=> {
     setMeterState(event.target.value)
     console.log("meterState",meterState)
+    console.log("waterData", waterData.filter(water=> water.name===meterState))
   }
 
   async function onSubmit(values) {
@@ -110,8 +114,18 @@ const formSchema = z.object({
     }
     ;
   }
+  const todayDateOverlapChe=()=>{
+    const filteredData = waterData.filter(water => water.name === meterState);
+    if (filteredData.length === 0) {
+      return false;
+    }
+    if (isToday(waterData.filter(water=> water.name===meterState)[0].date)) {
+      return true; // Disable if the date is today
+    }
+    return false;
+  }
+  //console.log("waterData222", waterData.filter(water=> water.name===meterState)[0].date)
 
-  
   return (
     <>
     <Dialog>
@@ -131,8 +145,7 @@ const formSchema = z.object({
 
     <Form {...form}>
       <form onSubmit={handleSubmit} onChange={handleChange} className="space-y-8">
-      <FormField
-           
+      <FormField 
           control={form.control}
           name="water_name"
           render={({ field }) => (
@@ -145,8 +158,8 @@ const formSchema = z.object({
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                    {waterDataPack.get().map((el, index) => (
-                        <SelectItem  key={index} value={el.name}>{el.name}</SelectItem>
+                    {waterData.map((water, index) => (
+                        <SelectItem  key={index} value={water.name}>{water.name}</SelectItem>
                     ))}
                 </SelectContent>
               </Select>
@@ -179,23 +192,26 @@ const formSchema = z.object({
           render={({ field }) => (
             <FormItem className="flex flex-col">
               <FormLabel>Date of birth</FormLabel>
-              <Popover>
+              <Popover >
                 <PopoverTrigger asChild>
                   <FormControl>
                     <Button
-                      variant={"outline"}
-                      className={cn(
-                        "w-[240px] pl-3 text-left font-normal",
-                        !field.value && "text-muted-foreground"
-                      )}
-                    >
-                      {field.value ? (
-                        format(field.value, "PPP")
-                      ) : (
-                        <span>Pick a date</span>
-                      )}
-                      <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                    </Button>
+                    disabled={todayDateOverlapChe()}
+                              variant={"outline"}
+                              className={cn(
+                                "w-[240px] pl-3 text-left font-normal",
+                                !field.value && "text-muted-foreground"
+                              )}
+                            >
+                              {field.value ? (
+                                todayDateOverlapChe?(format(waterData.filter(water=> water.name===meterState)[0].date, "PPP")
+                              ):
+                                  format(field.value, "PPP")
+                              ) : (
+                                <span>Pick a date</span>
+                              )}
+                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                            </Button>
                   </FormControl>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0" align="start">
@@ -204,7 +220,18 @@ const formSchema = z.object({
                     selected={field.value}
                     onSelect={field.onChange}
                     disabled={(date) =>
-                      date > new Date() || date < new Date("1900-01-01")
+                      {
+                        const filteredData = waterData.filter(water => water.name === meterState);
+
+                        if (filteredData.length === 0) {
+                          return  date > new Date() || date < new Date("1900-01-01")
+                        }
+                        if (isToday(waterData.filter(water=> water.name===meterState)[0].date)) {
+                          return true; // Disable if the date is today
+                        }
+
+                        return date > new Date() || date < new Date(waterData.filter(water=> water.name===meterState)[0].date)
+                      }
                     }
                     initialFocus
                   />
