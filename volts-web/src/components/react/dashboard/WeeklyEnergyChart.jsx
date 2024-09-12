@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/chart";
 
 export default function Charts({data}) {
+  if(data.length>7){
     const avrage= Math.round(data.reduce((sum, obj) => sum + obj.energy, 0) / data.length);
 
   
@@ -123,7 +124,9 @@ export default function Charts({data}) {
               </CardFooter>
             </Card>
             </div></div>
-      )};
+      )
+}
+};
       /*
                       <CardDescription>
                   You need{" "}
