@@ -1,4 +1,7 @@
 import WatterDataTable from "./WatterDataTable"
+import { Button } from "@/components/ui/button"
+import { Plus } from "lucide-react"
+import  BlackWaterMeter  from '@/components/black-water-meter'
 
 export default function DisplayWater(){
     return(
@@ -15,6 +18,7 @@ export default function DisplayWater(){
                         Add Water Data
                     </Button>
                 </div>
+                <BlackWaterMeter initialValue={123}/>
             </div>
             <WatterDataTable/>
         </div>

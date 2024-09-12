@@ -35,7 +35,7 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { waterDataPack } from "@/pages/store/WaterStore";
 import { useStore } from '@nanostores/react';
-import  BlackWaterMeter  from '@/components/black-water-meter'
+
 
 const urladdress = pkg["volts-server"];
 
@@ -82,6 +82,20 @@ export const columns1 = [
         );
       },
     },
+    {
+      accessorKey: "data.value",
+      header: ({ column }) => {
+        return (
+          <Button
+            variant="ghost"
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          >
+            Current reading
+            <ArrowUpDown className="ml-2 h-4 w-4" />
+          </Button>
+        );
+      },
+    },
 ];
   
 export default function WatterDataTable() {
@@ -89,7 +103,6 @@ export default function WatterDataTable() {
     return (
       <>
         <div>
-          
           <DataTable columns={columns1} data={data} />
         </div>
       </>
@@ -117,8 +130,10 @@ export default function WatterDataTable() {
   
     return (
       <div className="rounded-md border w-full">
+                  <h1 className="p-4">Watter meters</h1>
+
         <div>
-          <div className="flex items-center py-4">
+          <div className="flex items-center p-4">
             <Input
               placeholder="Filter date..."
               value={table.getColumn("date")?.getFilterValue() ?? ""}
@@ -132,7 +147,7 @@ export default function WatterDataTable() {
           </div>
           <div className="flex items-center py-4"></div>
           <Table>
-            <TableHeader>
+            <TableHeader className="bg-gray-100">
               {table.getHeaderGroups().map((headerGroup) => (
                 <TableRow key={headerGroup.id}>
                   {headerGroup.headers.map((header) => {
@@ -166,7 +181,6 @@ export default function WatterDataTable() {
                       </TableCell>
                     ))}
                     <TableCell> 
-                    <BlackWaterMeter initialValue={row.original.data[0].value}/>
                     </TableCell>
                   </TableRow>
                 ))
@@ -184,22 +198,6 @@ export default function WatterDataTable() {
           </Table>
           <div className="flex items-center justify-end space-x-2 py-4">
             <DataTablePagination table={table}></DataTablePagination>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => table.previousPage()}
-              disabled={!table.getCanPreviousPage()}
-            >
-              Previous
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => table.nextPage()}
-              disabled={!table.getCanNextPage()}
-            >
-              Next
-            </Button>
           </div>
         </div>
       </div>
