@@ -1,24 +1,26 @@
 import WatterDataTable from "./WatterDataTable"
-import { Button } from "@/components/ui/button"
-import { Plus } from "lucide-react"
 import  BlackWaterMeter  from '@/components/black-water-meter'
+import CreateNewWatterMeter from "./CreateNewWatterMeter"
+import AddDataToWattermeter from "./AddDataToWattermeter"
+import {waterDataPack,waterDataSum} from "@/pages/store/WaterStore"
+import { useStore } from '@nanostores/react';
 
 export default function DisplayWater(){
+    const data=useStore(waterDataPack)
+    console.log("waterDataPack.get()",data)
+
+    if(data===undefined){
+        return(<></>)
+    }
+
     return(
+    
     <>
         <div>
             <div>
-                <div className="flex flex-col gap-4 w-full max-w-sm mx-auto p-4">
-                    <Button className="w-full justify-start">
-                        <Plus className="mr-2 h-4 w-4" />
-                        Create Water Meter
-                    </Button>
-                    <Button className="w-full justify-start">
-                        <Plus className="mr-2 h-4 w-4" />
-                        Add Water Data
-                    </Button>
-                </div>
-                <BlackWaterMeter initialValue={123}/>
+                <CreateNewWatterMeter/>
+                <AddDataToWattermeter/>
+                <BlackWaterMeter initialValue={waterDataSum.get()}/>
             </div>
             <WatterDataTable/>
         </div>

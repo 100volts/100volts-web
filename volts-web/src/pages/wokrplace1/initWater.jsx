@@ -1,7 +1,7 @@
 import  { useState, useEffect }  from "react";
 import {userData } from "@/pages/store/UserStore";
 import { useStore } from '@nanostores/react';
-import {waterDataPack } from "@/pages/store/WaterStore";
+import {waterDataPack,waterDataNames,waterDataSum } from "@/pages/store/WaterStore";
 import pkg from "../../../package.json";
 
 const urladdress = pkg["volts-server"];
@@ -31,9 +31,12 @@ export default function initWater(){
             }
           );
           const datat = await response.json();
-          const { watter } = datat; 
+          const { watter,sum_value,meter_names } = datat; 
         console.log("water data",watter)
         waterDataPack.set(watter);
+        waterDataSum.set(sum_value);
+        waterDataNames.set(meter_names);
+
         console.log("water data got",waterDataPack.get())
         } catch (error) {
           setError(error.message);
