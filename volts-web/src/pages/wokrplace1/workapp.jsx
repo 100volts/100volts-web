@@ -15,6 +15,7 @@ import TokkenCheck from "./TokkenCheck";
 import InitWater from "./initWater";
 import DisplayWater from "../api/water/DisplayWater"
 
+
 const Dashboard = () => (<><div><h1>Dashboard</h1><DashboardWorkPlace/></div></>);
 const Electric =()=> <><TokkenCheck/><h1>Electric</h1>
 <div><WorplaysMeters/></div></>;
@@ -124,6 +125,7 @@ const router = createBrowserRouter([
     initElectricityData();
     initProductiondDashData();
     InitWater();
+    TokkenCheck();
     //</React.StrictMode>
     return (
       <RouterProvider router={router} />

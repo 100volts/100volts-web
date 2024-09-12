@@ -5,14 +5,15 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function TokkenCheck() {
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
     const $userData=useStore(userData);
     const token =$userData.tokken
     useEffect(() => {
         if (!token || isTokenExpired(token)) {
-            navigate("/login");
+            //navigate("/login");
+            window.location.href = '/login';
         }
-    }, [navigate]);
+    },);// [navigate]);
     console.log("Logout working")
 };
 
