@@ -11,9 +11,9 @@ import {
     PopoverContent,
     PopoverTrigger,
   } from "@/components/ui/popover"
-  import { cn } from "@/lib/utils"
-  import { CalendarIcon } from "@radix-ui/react-icons"
-  import { Calendar } from "@/components/ui/calendar"
+import { cn } from "@/lib/utils"
+import { CalendarIcon } from "@radix-ui/react-icons"
+import { Calendar } from "@/components/ui/calendar"
 import {
   Form,
   FormControl,
@@ -40,10 +40,10 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import pkg from "../../../../package.json";
-import {userData } from "@/pages/store/UserStore";
+import { userData } from "@/pages/store/UserStore";
 import { useStore } from '@nanostores/react';
-import {waterDataNames,waterDataPack} from "@/pages/store/WaterStore"
-import  { useState, useEffect }  from "react";
+import { waterDataPack } from "@/pages/store/WaterStore"
+import { useState, useEffect }  from "react";
 
 export default function AddDataToWaterMeter() {
   const waterData=useStore(waterDataPack)
@@ -55,15 +55,15 @@ const formSchema = z.object({
     .refine((val) => !/^\d/.test(val), {
         message: "Water meter name cannot start with a number.",
       }),
-      value: z.string().min(1, {
-      message: "Value must not be empty.",
+      value: z.number().gte(1, {
+      required_error: "Value must not be empty.",
+      invalid_type_error: "Value must be a number",
+    
     }),
     doe: z.date({
         required_error: "A date of birth is required.",
       }),
   })
-  
-  
   
     const form = useForm({
       resolver: zodResolver(formSchema),
@@ -115,53 +115,44 @@ const formSchema = z.object({
     }
     ;
   }
-  /*
-  const todayDateOverlapChe=()=>{
-    const filteredData = waterData.filter(water => water.name === meterState);
-    if (filteredData.length === 0) {
-      return false;
-    }
-    if (isToday(waterData.filter(water=> water.name===meterState)[0].date)) {
-      return true; // Disable if the date is today
-    }
-    return false;
-  }
-    */
-    // Helper function to check today's date overlap
     const todayDateOverlapChe = () => {
       const filteredData = waterData.filter(water => water.name === meterState);
       if (filteredData.length === 0) return false;
       return isToday(new Date(filteredData[0].date));
     };
   
-    // Helper function to get the minimum date from waterData
     const getMinDate = () => {
       const filteredData = waterData.filter(water => water.name === meterState);
       if (filteredData.length === 0) return new Date("1900-01-01");
       return new Date(filteredData[0].date);
     };
+    
     const getMinValue = () => {
       const filteredData = waterData.filter(water => water.name === meterState);
       if (filteredData.length === 0) return 1;
-      console.log("min value",filteredData[0].value)
+      console.log("min value",filteredData[0].data.value)
       return filteredData[0].value;
     };
+
     const minValue=getMinValue();
-    const minDate = getMinDate(); // Get the current min date
+    const minDate = getMinDate();
 
     useEffect(() => {
-      // Whenever minDate changes, check if field.value is less than minDate
       const fieldValue = form.getValues('doe');
       if (fieldValue && new Date(fieldValue) < minDate) {
-        form.setValue('doe', minDate); // Update field value if it's less than the min date
+        form.setValue('doe', minDate); 
       }
       const dataValue = form.getValues('value');
       if(dataValue<minValue){
         form.setValue('value', minValue)
+        console.log("minValue",minValue)
+        formSchema.value=
+          z.number().gte(minValue+1, {
+            required_error: "Value must not be less then previus input.",
+          });
+          console.log("formSchema.value",formSchema.value)
       }
-    }, [minDate, form]); // Dependency on minDate and form to re-run when either changes
-
-  //console.log("waterData222", waterData.filter(water=> water.name===meterState)[0].date)
+    }, [minDate, form]);
 
   return (
     <>
@@ -179,7 +170,6 @@ const formSchema = z.object({
         Creating a new production intem witch you produce to get how mutch energy you spent on a given production.
       </DialogDescription>
     </DialogHeader>
-
     <Form {...form}>
       <form onSubmit={handleSubmit} onChange={handleChange} className="space-y-8">
       <FormField 
@@ -207,7 +197,6 @@ const formSchema = z.object({
             </FormItem>
           )}
         />
-        {}
         <FormField
           control={form.control}
           name="value"
@@ -215,7 +204,7 @@ const formSchema = z.object({
             <FormItem>
               <FormLabel>Value</FormLabel>
               <FormControl>
-                <Input placeholder="description" {...field} />
+                <Input type="number" {...field} />
               </FormControl>
               <FormDescription>
               </FormDescription>
@@ -228,7 +217,7 @@ const formSchema = z.object({
           name="doe"
           render={({ field }) => (
             <FormItem className="flex flex-col">
-              <FormLabel>Date of birth</FormLabel>
+              <FormLabel>Date of read data</FormLabel>
               <Popover >
                 <PopoverTrigger asChild>
                   <FormControl>
@@ -241,7 +230,6 @@ const formSchema = z.object({
                               )}
                             >
                               {field.value ? (
-                               // todayDateOverlapChe()?(waterData.filter(getMinDate)):
                                 todayDateOverlapChe()?(format(waterData.filter(water=> water.name===meterState)[0].date, "PPP")):
                                   format(field.value, "PPP")
                               ) : (
@@ -258,10 +246,9 @@ const formSchema = z.object({
                     onSelect={(date) => {
                       const minDate = getMinDate();
                       if (date < minDate) {
-                        // Automatically set the calendar value to the minimum date if the selected date is less than the minimum
                         field.onChange(minDate);
                       } else {
-                        field.onChange(date); // Otherwise, set it to the selected date
+                        field.onChange(date);
                       }
                     }}
                     disabled={(date) => {
@@ -273,7 +260,7 @@ const formSchema = z.object({
                 </PopoverContent>
               </Popover>
               <FormDescription>
-                Your date of birth is used to calculate your age.
+                Date of water meter reading.
               </FormDescription>
               <FormMessage />
             </FormItem>
