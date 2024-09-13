@@ -140,6 +140,13 @@ const formSchema = z.object({
       if (filteredData.length === 0) return new Date("1900-01-01");
       return new Date(filteredData[0].date);
     };
+    const getMinValue = () => {
+      const filteredData = waterData.filter(water => water.name === meterState);
+      if (filteredData.length === 0) return 1;
+      console.log("min value",filteredData[0].value)
+      return filteredData[0].value;
+    };
+    const minValue=getMinValue();
     const minDate = getMinDate(); // Get the current min date
 
     useEffect(() => {
@@ -147,6 +154,10 @@ const formSchema = z.object({
       const fieldValue = form.getValues('doe');
       if (fieldValue && new Date(fieldValue) < minDate) {
         form.setValue('doe', minDate); // Update field value if it's less than the min date
+      }
+      const dataValue = form.getValues('value');
+      if(dataValue<minValue){
+        form.setValue('value', minValue)
       }
     }, [minDate, form]); // Dependency on minDate and form to re-run when either changes
 
