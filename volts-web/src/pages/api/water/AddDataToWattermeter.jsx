@@ -1,7 +1,7 @@
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
+import { useForm  } from "react-hook-form"
 import { z } from "zod"
 import { Button } from "@/components/ui/button"
 import { Plus } from "lucide-react"
@@ -43,7 +43,7 @@ import pkg from "../../../../package.json";
 import {userData } from "@/pages/store/UserStore";
 import { useStore } from '@nanostores/react';
 import {waterDataNames,waterDataPack} from "@/pages/store/WaterStore"
-import  { useState }  from "react";
+import  { useState, useEffect }  from "react";
 
 export default function AddDataToWaterMeter() {
   const waterData=useStore(waterDataPack)
@@ -58,10 +58,11 @@ const formSchema = z.object({
       value: z.string().min(1, {
       message: "Value must not be empty.",
     }),
-    dое: z.date({
+    doe: z.date({
         required_error: "A date of birth is required.",
       }),
   })
+  
   
   
     const form = useForm({
@@ -114,6 +115,7 @@ const formSchema = z.object({
     }
     ;
   }
+  /*
   const todayDateOverlapChe=()=>{
     const filteredData = waterData.filter(water => water.name === meterState);
     if (filteredData.length === 0) {
@@ -124,6 +126,30 @@ const formSchema = z.object({
     }
     return false;
   }
+    */
+    // Helper function to check today's date overlap
+    const todayDateOverlapChe = () => {
+      const filteredData = waterData.filter(water => water.name === meterState);
+      if (filteredData.length === 0) return false;
+      return isToday(new Date(filteredData[0].date));
+    };
+  
+    // Helper function to get the minimum date from waterData
+    const getMinDate = () => {
+      const filteredData = waterData.filter(water => water.name === meterState);
+      if (filteredData.length === 0) return new Date("1900-01-01");
+      return new Date(filteredData[0].date);
+    };
+    const minDate = getMinDate(); // Get the current min date
+
+    useEffect(() => {
+      // Whenever minDate changes, check if field.value is less than minDate
+      const fieldValue = form.getValues('doe');
+      if (fieldValue && new Date(fieldValue) < minDate) {
+        form.setValue('doe', minDate); // Update field value if it's less than the min date
+      }
+    }, [minDate, form]); // Dependency on minDate and form to re-run when either changes
+
   //console.log("waterData222", waterData.filter(water=> water.name===meterState)[0].date)
 
   return (
@@ -188,7 +214,7 @@ const formSchema = z.object({
         />
         <FormField
           control={form.control}
-          name="doе"
+          name="doe"
           render={({ field }) => (
             <FormItem className="flex flex-col">
               <FormLabel>Date of birth</FormLabel>
@@ -204,8 +230,8 @@ const formSchema = z.object({
                               )}
                             >
                               {field.value ? (
-                                todayDateOverlapChe?(format(waterData.filter(water=> water.name===meterState)[0].date, "PPP")
-                              ):
+                               // todayDateOverlapChe()?(waterData.filter(getMinDate)):
+                                todayDateOverlapChe()?(format(waterData.filter(water=> water.name===meterState)[0].date, "PPP")):
                                   format(field.value, "PPP")
                               ) : (
                                 <span>Pick a date</span>
@@ -218,21 +244,19 @@ const formSchema = z.object({
                   <Calendar
                     mode="single"
                     selected={field.value}
-                    onSelect={field.onChange}
-                    disabled={(date) =>
-                      {
-                        const filteredData = waterData.filter(water => water.name === meterState);
-
-                        if (filteredData.length === 0) {
-                          return  date > new Date() || date < new Date("1900-01-01")
-                        }
-                        if (isToday(waterData.filter(water=> water.name===meterState)[0].date)) {
-                          return true; // Disable if the date is today
-                        }
-
-                        return date > new Date() || date < new Date(waterData.filter(water=> water.name===meterState)[0].date)
+                    onSelect={(date) => {
+                      const minDate = getMinDate();
+                      if (date < minDate) {
+                        // Automatically set the calendar value to the minimum date if the selected date is less than the minimum
+                        field.onChange(minDate);
+                      } else {
+                        field.onChange(date); // Otherwise, set it to the selected date
                       }
-                    }
+                    }}
+                    disabled={(date) => {
+                      const minDate = getMinDate();
+                      return date > new Date() || date < minDate;
+                    }}
                     initialFocus
                   />
                 </PopoverContent>
@@ -252,4 +276,5 @@ const formSchema = z.object({
     </>
   )
 }
+
 
