@@ -46,6 +46,7 @@ const ElmeterDataComponent = () => {
     return (<><Loading progress={initLoading.get()}/></>)
   }
     */
+   console.log("elmeter dash data",data)
   return (
     <div className="flex flex-col">
       {Object.entries(data).map(([key,elmeter], index) => (

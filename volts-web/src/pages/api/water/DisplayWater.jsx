@@ -20,6 +20,9 @@ export default function DisplayWater(){
             <div>
                 <CreateNewWatterMeter/>
                 <AddDataToWattermeter/>
+                <h2>Sum of Watter meter data as per last read</h2>
+                <BlackWaterMeter initialValue={waterDataSum.get()}/>
+                <h2>Sum of Watter meter data full</h2>
                 <BlackWaterMeter initialValue={waterDataSum.get()}/>
             </div>
             <WatterDataTable/>

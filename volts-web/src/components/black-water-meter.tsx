@@ -44,7 +44,7 @@ export default function Component({ initialValue = 0 }: WaterMeterProps) {
   const paddedValue = meterValue.toString().padStart(8, '0')
 
   return (
-    <div className="flex flex-col items-center ">
+    <div className="flex` ">
       <div className="water-meter">
         {paddedValue.split('').map((digit, index) => (
           <DigitDisplay key={index} digit={digit} />
@@ -54,17 +54,15 @@ export default function Component({ initialValue = 0 }: WaterMeterProps) {
         .water-meter {
           display: flex;
           //background-color: #111;
-          //border: 2px solid #333;
-          //border-radius: 8px;
-          //padding: 2px;
+          border: 2px solid #333;
+          border-radius: 8px;
+          padding: 10px;
           //font-family: 'Courier New', monospace;
           box-shadow: 0 0 10px rgba(255,255,255,0.1);
         }
         .digit-container {
-          //width: 40px;
-          //height: 60px;
-          width: 20px;
-          height: 30px;
+          width: 40px;
+          height: 60px;
           margin: 0 2px;
           perspective: 300px;
           overflow: hidden;
@@ -77,10 +75,10 @@ export default function Component({ initialValue = 0 }: WaterMeterProps) {
           display: flex;
           justify-content: center;
           align-items: center;
-          //font-size: 2rem;
+          font-size: 2rem;
           font-weight: bold;
           border-radius: 4px;
-         // color: #fff;
+          //color: #fff;
           text-shadow: 0 0 5px rgba(255,255,255,0.5);
           box-shadow: inset 0 2px 4px rgba(255,255,255,0.1);
           position: relative;
