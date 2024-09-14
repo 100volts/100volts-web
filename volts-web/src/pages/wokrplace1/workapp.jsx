@@ -13,7 +13,9 @@ import DashboardWorkPlace from "../../components/react/dashboard/Dashboard";
 import ProductionSettingsComponent from "../api/production/Settings"; 
 import TokkenCheck from "./TokkenCheck";
 import InitWater from "./initWater";
+import InitGas from "./initGas"
 import DisplayWater from "../api/water/DisplayWater"
+import DisplayGas from '../api/gas/DisplayGas';
 
 
 const Dashboard = () => (<><div><h1>Dashboard</h1><DashboardWorkPlace/></div></>);
@@ -24,7 +26,7 @@ const Production = () => (<><h1>Production</h1>
   <div><DisplayAllProductions/></div></>
 );
 const ProductionSettings=()=>(<><h1>Settings<div><ProductionSettingsComponent/></div></h1></>);
-const Gas = () => (<h1>Gas</h1>);
+const Gas = () => (<><h1>Gas</h1><DisplayGas/></>);
 const Watter = () => (<><h1>Watter</h1><DisplayWater/></>);
 const ProductionReport=()=>(<><h1>Production Reports</h1><GetReport/></>)
 
@@ -126,6 +128,7 @@ const router = createBrowserRouter([
     initProductiondDashData();
     InitWater();
     TokkenCheck();
+    InitGas();
     //</React.StrictMode>
     return (
       <RouterProvider router={router} />

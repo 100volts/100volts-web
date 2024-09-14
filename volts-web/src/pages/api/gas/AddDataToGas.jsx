@@ -42,50 +42,24 @@ import {
 import pkg from "../../../../package.json";
 import { userData } from "@/pages/store/UserStore";
 import { useStore } from '@nanostores/react';
-import { waterDataPack } from "@/pages/store/WaterStore"
+import { gasDataPack } from "@/pages/store/GasStore"
 import { useState, useEffect }  from "react";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { ExclamationTriangleIcon } from "@radix-ui/react-icons"
 
-function AlertDestructive() {
-  return (
-    <Alert variant="destructive">
-      <ExclamationTriangleIcon className="h-4 w-4" />
-      <AlertTitle>Error</AlertTitle>
-      <AlertDescription>
-        Your session has expired. Please log in again.
-      </AlertDescription>
-    </Alert>
-  )
-}
-
-export default function AddDataToWaterMeter() {
-  const waterData=useStore(waterDataPack)
+export default function AddDataToGasMeter() {
+  const gasData=useStore(gasDataPack)
     const [meterState,setMeterState]=  useState([{date:"1900-01-01"}]);
-    const [meterMinValueState,setMeterMinValueState]=  useState();
-
-    const getMinValue = () => {
-      const filteredData = waterData.filter(water => water.name === meterState);
-      if (filteredData.length === 0) return 1;
-      //console.log("min value",filteredData[0].data.value)
-      return filteredData[0].data.value;
-    };
-
-    const minValue=getMinValue();
-    
-    const formSchema = z.object({
-    water_name: z.string().min(2, {
-      message: "Water meter name must be at least 2 characters.",
+const formSchema = z.object({
+    gas_name: z.string().min(2, {
+      message: "gas meter name must be at least 2 characters.",
     })    
     .refine((val) => !/^\d/.test(val), {
-        message: "Water meter name cannot start with a number.",
-    }),
-    valueMeter:  z.preprocess((a) => parseInt(z.string().parse(a),10),
-    z.number().gte(meterMinValueState+1, {
+        message: "gas meter name cannot start with a number.",
+      }),
+      value: z.number().gte(1, {
       required_error: "Value must not be empty.",
       invalid_type_error: "Value must be a number",
-    })),
-
+    
+    }),
     doe: z.date({
         required_error: "A date of birth is required.",
       }),
@@ -94,8 +68,8 @@ export default function AddDataToWaterMeter() {
     const form = useForm({
       resolver: zodResolver(formSchema),
       defaultValues: {
-        water_name: "",
-        valueMeter:Number(1)
+        gas_name: "",
+        value:1
       },
     })
 
@@ -106,125 +80,117 @@ export default function AddDataToWaterMeter() {
     form.handleSubmit(onSubmit)(event);
   };  
 
-  const handleNameChange= async(event)=> {
-    //console.log("event.target.value",event)
-    form.water_name=event;
-    setMeterState(event)
-  }
-  const handleNumberChange= async(event)=> {
-    //console.log("number change")
+  const handleChange= async(event)=> {
+    setMeterState(event.target.value)
+    console.log("meterState",meterState)
+    console.log("gasData", gasData.filter(gas=> gas.name===meterState))
   }
 
   async function onSubmit(values) {
-    console.log("getMinValue", waterData.filter(water => water.name === meterState).data[0].value)
-    console.log("values.value",values.value)
-    if(values.value<meterMinValueState){
-      alert('Form submitted successfully!');
-      return AlertDestructive();
-    }else{
-      const companyName = $userData.companies[0];//todo remove hard coded call
-      const userToken =$userData.tokken
-      const urladdress = pkg["volts-server"];
-      //console.log("values.value",values.value)
-      try{
-        const body = JSON.stringify({
-          company_name:companyName,
-          water_meter_name: values.water_name,
-          value:values.valueMeter,
-        });
-        const response = await fetch(
-          `http://${urladdress}:8081/water/data`,
-          {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${userToken}`,
-            },
-            body,
-          }
-        );
-        const datat = await response.json();
-        const { success } = datat;
-      }catch (error) {}
-      finally {
-          //window.location.reload();
-      }
-      ;
+    const companyName = $userData.companies[0];//todo remove hard coded call
+    const userToken =$userData.tokken
+    const urladdress = pkg["volts-server"];
+    try{
+      const body = JSON.stringify({
+        company_name:companyName,
+        gas_meter_name: values.gas_name,
+        value:values.value,
+      });
+      const response = await fetch(
+        `http://${urladdress}:8081/gas/data`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${userToken}`,
+          },
+          body,
+        }
+      );
+      const datat = await response.json();
+      const { success } = datat;
+    }catch (error) {}
+     finally {
+        window.location.reload();
     }
+    ;
   }
     const todayDateOverlapChe = () => {
-      const filteredData = waterData.filter(water => water.name === meterState);
+      const filteredData = gasData.filter(gas => gas.name === meterState);
       if (filteredData.length === 0) return false;
       return isToday(new Date(filteredData[0].date));
     };
   
     const getMinDate = () => {
-      const filteredData = waterData.filter(water => water.name === meterState);
+      const filteredData = gasData.filter(gas => gas.name === meterState);
       if (filteredData.length === 0) return new Date("1900-01-01");
       return new Date(filteredData[0].date);
     };
     
+    const getMinValue = () => {
+      const filteredData = gasData.filter(gas => gas.name === meterState);
+      if (filteredData.length === 0) return 1;
+      return filteredData[0].value;
+    };
 
+    const minValue=getMinValue();
     const minDate = getMinDate();
 
     useEffect(() => {
-      setMeterMinValueState(minValue)
       const fieldValue = form.getValues('doe');
       if (fieldValue && new Date(fieldValue) < minDate) {
         form.setValue('doe', minDate); 
       }
-      const dataValue = form.getValues('valueMeter');
+      const dataValue = form.getValues('value');
       if(dataValue<minValue){
-        form.setValue('valueMeter', minValue)
-        //form.water_name=event;
-        formSchema.value= z.preprocess((a) => parseInt(z.string().parse(a),10),
-        z.number().gte(minValue+1, {
-          required_error: "Value must not be empty.123",
-          invalid_type_error: "Value must be a number123",
-        }))
+        form.setValue('value', minValue)
+        console.log("minValue",minValue)
+        formSchema.value=
+          z.number().gte(minValue+1, {
+            required_error: "Value must not be less then previus input.",
+          });
+          console.log("formSchema.value",formSchema.value)
       }
     }, [minDate, form]);
-    console.log("meterState",meterState);//minValue
-    console.log("minValue",minValue);
-    //console.log("waterData.filter(water => water.name === meterState)",waterData.filter(water => water.name === meterState))
+
   return (
     <>
     <Dialog>
     <DialogTrigger>
         <Button className="w-full justify-start">
             <Plus className="mr-2 h-4 w-4" />
-                Add Water Data
+                Add gas Data
             </Button>
         </DialogTrigger>
     <DialogContent>
     <DialogHeader>
       <DialogTitle>Add data to meter</DialogTitle>
       <DialogDescription>
-        Add data to meter.
+        Add data to meter
       </DialogDescription>
     </DialogHeader>
     <Form {...form}>
-      <form onSubmit={handleSubmit}  className="space-y-8">
+      <form onSubmit={handleSubmit} onChange={handleChange} className="space-y-8">
       <FormField 
           control={form.control}
-          name="water_name"
+          name="gas_name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Water meter</FormLabel>
-              <Select onChange={handleNameChange} onValueChange={handleNameChange} defaultValue={field.value}>
+              <FormLabel>Gas meter</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder="Select production unit type" />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                    {waterData.map((water, index) => (
-                        <SelectItem  key={index} value={water.name}>{water.name}</SelectItem>
+                    {gasData.map((gas, index) => (
+                        <SelectItem  key={index} value={gas.name}>{gas.name}</SelectItem>
                     ))}
                 </SelectContent>
               </Select>
               <FormDescription>
-              <a href="/examples/forms"></a>
+              <a href="/examples/forms"></a>.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -232,13 +198,12 @@ export default function AddDataToWaterMeter() {
         />
         <FormField
           control={form.control}
-          name="valueMeter"
-          onChange={handleNumberChange}
+          name="value"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Value</FormLabel>
               <FormControl>
-                <Input type="number" min={minValue} {...field} />
+                <Input type="number" {...field} />
               </FormControl>
               <FormDescription>
               </FormDescription>
@@ -264,7 +229,7 @@ export default function AddDataToWaterMeter() {
                               )}
                             >
                               {field.value ? (
-                                todayDateOverlapChe()?(format(waterData.filter(water=> water.name===meterState)[0].date, "PPP")):
+                                todayDateOverlapChe()?(format(gasData.filter(gas=> gas.name===meterState)[0].date, "PPP")):
                                   format(field.value, "PPP")
                               ) : (
                                 <span>Pick a date</span>
@@ -294,7 +259,7 @@ export default function AddDataToWaterMeter() {
                 </PopoverContent>
               </Popover>
               <FormDescription>
-                Date of water meter reading.
+                Date of gas meter reading.
               </FormDescription>
               <FormMessage />
             </FormItem>

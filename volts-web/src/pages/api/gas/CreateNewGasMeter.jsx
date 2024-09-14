@@ -27,18 +27,17 @@ import pkg from "../../../../package.json";
 import {userData } from "@/pages/store/UserStore";
 import { useStore } from '@nanostores/react';
 
- 
-export default function CreateNewWaterMeter() {
+export default function CreateNewGasMeter() {
   
 const formSchema = z.object({
-    water_name: z.string().min(2, {
-      message: "Water meter name must be at least 2 characters.",
+    gas_name: z.string().min(2, {
+      message: "gas meter name must be at least 2 characters.",
     })    
     .refine((val) => !/^\d/.test(val), {
-        message: "Water meter name cannot start with a number.",
+        message: "gas meter name cannot start with a number.",
       }),
-    water_description: z.string().min(2, {
-      message: "Water meter description must be at least 2 characters.",
+    gas_description: z.string().min(2, {
+      message: "gas meter description must be at least 2 characters.",
     })
   })
 
@@ -46,8 +45,8 @@ const formSchema = z.object({
     const form = useForm({
       resolver: zodResolver(formSchema),
       defaultValues: {
-        water_name: "",
-        water_description:""
+        gas_name: "",
+        gas_description:""
       },
     })
 
@@ -64,11 +63,11 @@ const formSchema = z.object({
     try{
       const body = JSON.stringify({
         company_name:companyName,
-        water_name: values.water_name,
-        water_description:values.water_description,
+        gas_name: values.gas_name,
+        gas_description:values.gas_description,
       });
       const response = await fetch(
-        `http://${urladdress}:8081/water`,
+        `http://${urladdress}:8081/gas`,
         {
           method: "PUT",
           headers: {
@@ -92,14 +91,14 @@ const formSchema = z.object({
     <DialogTrigger>
         <Button className="w-full justify-start">
             <Plus className="mr-2 h-4 w-4" />
-                Create Water Meter
+                Create gas Meter
             </Button>
         </DialogTrigger>
     <DialogContent>
     <DialogHeader>
-      <DialogTitle>Creating new Water Meter</DialogTitle>
+      <DialogTitle>Creating new gas meter</DialogTitle>
       <DialogDescription>
-        Creating a new Water Meter.
+        Creating a new gas meter.
       </DialogDescription>
     </DialogHeader>
 
@@ -107,10 +106,10 @@ const formSchema = z.object({
       <form onSubmit={handleSubmit} className="space-y-8">
         <FormField
           control={form.control}
-          name="water_name"
+          name="gas_name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Watter meter name</FormLabel>
+              <FormLabel>Gas meter name</FormLabel>
               <FormControl>
                 <Input placeholder="name" {...field} />
               </FormControl>
@@ -120,10 +119,10 @@ const formSchema = z.object({
         />
         <FormField
           control={form.control}
-          name="water_description"
+          name="gas_description"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Watter meter desctription</FormLabel>
+              <FormLabel>Gas meter desctription</FormLabel>
               <FormControl>
                 <Input placeholder="description" {...field} />
               </FormControl>

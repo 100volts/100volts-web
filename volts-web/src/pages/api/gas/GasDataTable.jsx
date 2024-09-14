@@ -33,7 +33,7 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
-import { waterDataPack } from "@/pages/store/WaterStore";
+import { gasDataPack } from "@/pages/store/GasStore";
 import { useStore } from '@nanostores/react';
 
 
@@ -99,7 +99,7 @@ export const columns1 = [
 ];
   
 export default function WatterDataTable() {
-    const data= useStore(waterDataPack);
+    const data= useStore(gasDataPack);
     return (
       <>
         <div>
@@ -130,7 +130,7 @@ export default function WatterDataTable() {
   
     return (
       <div className="rounded-md border w-full">
-                  <h1 className="p-4">Water meters</h1>
+                  <h1 className="p-4">Gas meters</h1>
 
         <div>
           <div className="flex items-center p-4">

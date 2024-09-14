@@ -196,7 +196,7 @@ export default function ImputProduction({production}){
                             </SelectContent>
                         </Select>)}
                         />
-                        <Button type="submit">Submit</Button>
+                        <Button type="submit">Add</Button>
                     </form>
                     </Form>
                     <DialogClose > Close
