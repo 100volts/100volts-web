@@ -67,16 +67,13 @@ export default function AddDataToWaterMeter() {
     const getMinValue = () => {
       const filteredData = waterData.filter(water => water.name === meterState);
       if (filteredData.length === 0) return 1;
-      //console.log("min value",filteredData[0].data.value)
       return filteredData[0].data.value;
     };
 
     const minValue=getMinValue();
     
     const formSchema = z.object({
-    water_name: z.string().min(2, {
-      message: "Water meter name must be at least 2 characters.",
-    })    
+    water_name: z.string()   
     .refine((val) => !/^\d/.test(val), {
         message: "Water meter name cannot start with a number.",
     }),
@@ -107,25 +104,14 @@ export default function AddDataToWaterMeter() {
   };  
 
   const handleNameChange= async(event)=> {
-    //console.log("event.target.value",event)
-    form.water_name=event;
+    form.setValue("water_name",event)
     setMeterState(event)
-  }
-  const handleNumberChange= async(event)=> {
-    //console.log("number change")
   }
 
   async function onSubmit(values) {
-    console.log("getMinValue", waterData.filter(water => water.name === meterState).data[0].value)
-    console.log("values.value",values.value)
-    if(values.value<meterMinValueState){
-      alert('Form submitted successfully!');
-      return AlertDestructive();
-    }else{
       const companyName = $userData.companies[0];//todo remove hard coded call
       const userToken =$userData.tokken
       const urladdress = pkg["volts-server"];
-      //console.log("values.value",values.value)
       try{
         const body = JSON.stringify({
           company_name:companyName,
@@ -147,10 +133,9 @@ export default function AddDataToWaterMeter() {
         const { success } = datat;
       }catch (error) {}
       finally {
-          //window.location.reload();
+          window.location.reload();
       }
       ;
-    }
   }
     const todayDateOverlapChe = () => {
       const filteredData = waterData.filter(water => water.name === meterState);
@@ -176,7 +161,6 @@ export default function AddDataToWaterMeter() {
       const dataValue = form.getValues('valueMeter');
       if(dataValue<minValue){
         form.setValue('valueMeter', minValue)
-        //form.water_name=event;
         formSchema.value= z.preprocess((a) => parseInt(z.string().parse(a),10),
         z.number().gte(minValue+1, {
           required_error: "Value must not be empty.123",
@@ -184,10 +168,10 @@ export default function AddDataToWaterMeter() {
         }))
       }
     }, [minDate, form]);
-    console.log("meterState",meterState);//minValue
+    console.log("meterState",meterState);
     console.log("minValue",minValue);
-    //console.log("waterData.filter(water => water.name === meterState)",waterData.filter(water => water.name === meterState))
-  return (
+
+    return (
     <>
     <Dialog>
     <DialogTrigger>
@@ -233,7 +217,6 @@ export default function AddDataToWaterMeter() {
         <FormField
           control={form.control}
           name="valueMeter"
-          onChange={handleNumberChange}
           render={({ field }) => (
             <FormItem>
               <FormLabel>Value</FormLabel>

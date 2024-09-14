@@ -44,22 +44,47 @@ import { userData } from "@/pages/store/UserStore";
 import { useStore } from '@nanostores/react';
 import { gasDataPack } from "@/pages/store/GasStore"
 import { useState, useEffect }  from "react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { ExclamationTriangleIcon } from "@radix-ui/react-icons"
 
-export default function AddDataToGasMeter() {
+function AlertDestructive() {
+  return (
+    <Alert variant="destructive">
+      <ExclamationTriangleIcon className="h-4 w-4" />
+      <AlertTitle>Error</AlertTitle>
+      <AlertDescription>
+        Your session has expired. Please log in again.
+      </AlertDescription>
+    </Alert>
+  )
+}
+
+export default function AddDataTogasMeter() {
   const gasData=useStore(gasDataPack)
     const [meterState,setMeterState]=  useState([{date:"1900-01-01"}]);
-const formSchema = z.object({
+    const [meterMinValueState,setMeterMinValueState]=  useState();
+
+    const getMinValue = () => {
+      const filteredData = gasData.filter(gas => gas.name === meterState);
+      if (filteredData.length === 0) return 1;
+      return filteredData[0].data.value;
+    };
+
+    const minValue=getMinValue();
+    
+    const formSchema = z.object({
     gas_name: z.string().min(2, {
       message: "gas meter name must be at least 2 characters.",
     })    
     .refine((val) => !/^\d/.test(val), {
         message: "gas meter name cannot start with a number.",
-      }),
-      value: z.number().gte(1, {
+    }),
+    valueMeter:  z.preprocess((a) => parseInt(z.string().parse(a),10),
+    z.number().gte(meterMinValueState+1, {
       required_error: "Value must not be empty.",
       invalid_type_error: "Value must be a number",
-    
-    }),
+    })),
+
     doe: z.date({
         required_error: "A date of birth is required.",
       }),
@@ -69,7 +94,7 @@ const formSchema = z.object({
       resolver: zodResolver(formSchema),
       defaultValues: {
         gas_name: "",
-        value:1
+        valueMeter:Number(1)
       },
     })
 
@@ -80,40 +105,46 @@ const formSchema = z.object({
     form.handleSubmit(onSubmit)(event);
   };  
 
-  const handleChange= async(event)=> {
-    setMeterState(event.target.value)
-    console.log("meterState",meterState)
-    console.log("gasData", gasData.filter(gas=> gas.name===meterState))
+  const handleNameChange= async(event)=> {
+    form.gas_name=event;
+    setMeterState(event)
   }
 
   async function onSubmit(values) {
-    const companyName = $userData.companies[0];//todo remove hard coded call
-    const userToken =$userData.tokken
-    const urladdress = pkg["volts-server"];
-    try{
-      const body = JSON.stringify({
-        company_name:companyName,
-        gas_meter_name: values.gas_name,
-        value:values.value,
-      });
-      const response = await fetch(
-        `http://${urladdress}:8081/gas/data`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${userToken}`,
-          },
-          body,
-        }
-      );
-      const datat = await response.json();
-      const { success } = datat;
-    }catch (error) {}
-     finally {
-        window.location.reload();
+    console.log("getMinValue", gasData.filter(gas => gas.name === meterState).data[0].value)
+    console.log("values.value",values.value)
+    if(values.value<meterMinValueState){
+      alert('Form submitted successfully!');
+      return AlertDestructive();
+    }else{
+      const companyName = $userData.companies[0];//todo remove hard coded call
+      const userToken =$userData.tokken
+      const urladdress = pkg["volts-server"];
+      try{
+        const body = JSON.stringify({
+          company_name:companyName,
+          gas_meter_name: values.gas_name,
+          value:values.valueMeter,
+        });
+        const response = await fetch(
+          `http://${urladdress}:8081/gas/data`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${userToken}`,
+            },
+            body,
+          }
+        );
+        const datat = await response.json();
+        const { success } = datat;
+      }catch (error) {}
+      finally {
+          window.location.reload();
+      }
+      ;
     }
-    ;
   }
     const todayDateOverlapChe = () => {
       const filteredData = gasData.filter(gas => gas.name === meterState);
@@ -127,33 +158,29 @@ const formSchema = z.object({
       return new Date(filteredData[0].date);
     };
     
-    const getMinValue = () => {
-      const filteredData = gasData.filter(gas => gas.name === meterState);
-      if (filteredData.length === 0) return 1;
-      return filteredData[0].value;
-    };
 
-    const minValue=getMinValue();
     const minDate = getMinDate();
 
     useEffect(() => {
+      setMeterMinValueState(minValue)
       const fieldValue = form.getValues('doe');
       if (fieldValue && new Date(fieldValue) < minDate) {
         form.setValue('doe', minDate); 
       }
-      const dataValue = form.getValues('value');
+      const dataValue = form.getValues('valueMeter');
       if(dataValue<minValue){
-        form.setValue('value', minValue)
-        console.log("minValue",minValue)
-        formSchema.value=
-          z.number().gte(minValue+1, {
-            required_error: "Value must not be less then previus input.",
-          });
-          console.log("formSchema.value",formSchema.value)
+        form.setValue('valueMeter', minValue)
+        formSchema.value= z.preprocess((a) => parseInt(z.string().parse(a),10),
+        z.number().gte(minValue+1, {
+          required_error: "Value must not be empty.123",
+          invalid_type_error: "Value must be a number123",
+        }))
       }
     }, [minDate, form]);
+    console.log("meterState",meterState);
+    console.log("minValue",minValue);
 
-  return (
+    return (
     <>
     <Dialog>
     <DialogTrigger>
@@ -166,18 +193,18 @@ const formSchema = z.object({
     <DialogHeader>
       <DialogTitle>Add data to meter</DialogTitle>
       <DialogDescription>
-        Add data to meter
+        Add data to meter.
       </DialogDescription>
     </DialogHeader>
     <Form {...form}>
-      <form onSubmit={handleSubmit} onChange={handleChange} className="space-y-8">
+      <form onSubmit={handleSubmit}  className="space-y-8">
       <FormField 
           control={form.control}
           name="gas_name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Gas meter</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <FormLabel>gas meter</FormLabel>
+              <Select onChange={handleNameChange} onValueChange={handleNameChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder="Select production unit type" />
@@ -190,7 +217,7 @@ const formSchema = z.object({
                 </SelectContent>
               </Select>
               <FormDescription>
-              <a href="/examples/forms"></a>.
+              <a href="/examples/forms"></a>
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -198,12 +225,12 @@ const formSchema = z.object({
         />
         <FormField
           control={form.control}
-          name="value"
+          name="valueMeter"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Value</FormLabel>
               <FormControl>
-                <Input type="number" {...field} />
+                <Input type="number" min={minValue} {...field} />
               </FormControl>
               <FormDescription>
               </FormDescription>
