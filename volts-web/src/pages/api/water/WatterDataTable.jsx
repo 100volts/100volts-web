@@ -69,7 +69,7 @@ export const columns1 = [
       },
     },
     {
-      accessorKey: "date",
+      accessorKey: "data.date",
       header: ({ column }) => {
         return (
           <Button
@@ -100,6 +100,7 @@ export const columns1 = [
   
 export default function WatterDataTable() {
     const data= useStore(waterDataPack);
+    console.log("data",data[0].data.date)
     return (
       <>
         <div>
@@ -136,10 +137,10 @@ export default function WatterDataTable() {
           <div className="flex items-center p-4">
             <Input
               placeholder="Filter date..."
-              value={table.getColumn("date")?.getFilterValue() ?? ""}
+              value={table.getColumn("data.date")?.getFilterValue() ?? ""}
               onChange={(event) =>
                 table
-                  .getColumn("date")
+                  .getColumn("data.date")
                   ?.setFilterValue(event.target.value)
               }
               className="max-w-sm"

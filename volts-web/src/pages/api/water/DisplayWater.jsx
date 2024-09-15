@@ -7,12 +7,11 @@ import { useStore } from '@nanostores/react';
 
 export default function DisplayWater(){
     const data=useStore(waterDataPack)
-    console.log("waterDataPack.get()",data)
-
     if(data===undefined){
         return(<></>)
     }
-
+//                <h2>Sum of Water meter data full</h2>
+//<BlackWaterMeter initialValue={waterDataSum.get()}/>
     return(
     
     <>
@@ -22,8 +21,7 @@ export default function DisplayWater(){
                 <AddDataToWattermeter/>
                 <h2>Sum of Water meter data as per last read</h2>
                 <BlackWaterMeter initialValue={waterDataSum.get()}/>
-                <h2>Sum of Water meter data full</h2>
-                <BlackWaterMeter initialValue={waterDataSum.get()}/>
+
             </div>
             <WatterDataTable/>
         </div>
