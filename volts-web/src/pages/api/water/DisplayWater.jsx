@@ -10,8 +10,8 @@ export default function DisplayWater(){
     if(data===undefined){
         return(<></>)
     }
-//                <h2>Sum of Water meter data full</h2>
-//<BlackWaterMeter initialValue={waterDataSum.get()}/>
+    //<h2>Sum of Water meter data full</h2>
+    //<BlackWaterMeter initialValue={waterDataSum.get()}/>
     return(
     
     <>

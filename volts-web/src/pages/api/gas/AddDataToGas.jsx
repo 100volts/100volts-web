@@ -44,20 +44,6 @@ import { userData } from "@/pages/store/UserStore";
 import { useStore } from '@nanostores/react';
 import { gasDataPack } from "@/pages/store/GasStore"
 import { useState, useEffect }  from "react";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { ExclamationTriangleIcon } from "@radix-ui/react-icons"
-
-function AlertDestructive() {
-  return (
-    <Alert variant="destructive">
-      <ExclamationTriangleIcon className="h-4 w-4" />
-      <AlertTitle>Error</AlertTitle>
-      <AlertDescription>
-        Your session has expired. Please log in again.
-      </AlertDescription>
-    </Alert>
-  )
-}
 
 export default function AddDataTogasMeter() {
   const gasData=useStore(gasDataPack)
@@ -67,15 +53,14 @@ export default function AddDataTogasMeter() {
     const getMinValue = () => {
       const filteredData = gasData.filter(gas => gas.name === meterState);
       if (filteredData.length === 0) return 1;
+      if (!filteredData[0].data) return 1;
       return filteredData[0].data.value;
     };
 
     const minValue=getMinValue();
     
     const formSchema = z.object({
-    gas_name: z.string().min(2, {
-      message: "gas meter name must be at least 2 characters.",
-    })    
+    gas_name: z.string()   
     .refine((val) => !/^\d/.test(val), {
         message: "gas meter name cannot start with a number.",
     }),
@@ -94,7 +79,8 @@ export default function AddDataTogasMeter() {
       resolver: zodResolver(formSchema),
       defaultValues: {
         gas_name: "",
-        valueMeter:Number(1)
+        valueMeter:Number(1),
+        doe:""
       },
     })
 
@@ -106,17 +92,11 @@ export default function AddDataTogasMeter() {
   };  
 
   const handleNameChange= async(event)=> {
-    form.gas_name=event;
+    form.setValue("gas_name",event)
     setMeterState(event)
   }
 
   async function onSubmit(values) {
-    console.log("getMinValue", gasData.filter(gas => gas.name === meterState).data[0].value)
-    console.log("values.value",values.value)
-    if(values.value<meterMinValueState){
-      alert('Form submitted successfully!');
-      return AlertDestructive();
-    }else{
       const companyName = $userData.companies[0];//todo remove hard coded call
       const userToken =$userData.tokken
       const urladdress = pkg["volts-server"];
@@ -125,6 +105,7 @@ export default function AddDataTogasMeter() {
           company_name:companyName,
           gas_meter_name: values.gas_name,
           value:values.valueMeter,
+          date:values.doe
         });
         const response = await fetch(
           `http://${urladdress}:8081/gas/data`,
@@ -141,31 +122,28 @@ export default function AddDataTogasMeter() {
         const { success } = datat;
       }catch (error) {}
       finally {
-          window.location.reload();
+        //window.location.reload();
       }
       ;
-    }
   }
     const todayDateOverlapChe = () => {
-      const filteredData = gasData.filter(gas => gas.name === meterState);
-      if (filteredData.length === 0) return false;
-      return isToday(new Date(filteredData[0].date));
+      return isToday(new Date(getMinDate()));
     };
   
     const getMinDate = () => {
       const filteredData = gasData.filter(gas => gas.name === meterState);
       if (filteredData.length === 0) return new Date("1900-01-01");
-      return new Date(filteredData[0].date);
+      if (!filteredData[0].data) return new Date("1900-01-01");
+      return new Date(filteredData[0].data.date+1);
     };
     
 
     const minDate = getMinDate();
-
     useEffect(() => {
       setMeterMinValueState(minValue)
-      const fieldValue = form.getValues('doe');
-      if (fieldValue && new Date(fieldValue) < minDate) {
-        form.setValue('doe', minDate); 
+      const fieldValue = form.doe
+      if (fieldValue && new Date(fieldValue) < getMinDate()) {
+        form.setValue('doe', getMinDate()); 
       }
       const dataValue = form.getValues('valueMeter');
       if(dataValue<minValue){
@@ -177,8 +155,6 @@ export default function AddDataTogasMeter() {
         }))
       }
     }, [minDate, form]);
-    console.log("meterState",meterState);
-    console.log("minValue",minValue);
 
     return (
     <>
