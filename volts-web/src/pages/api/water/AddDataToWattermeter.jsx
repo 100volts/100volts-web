@@ -67,6 +67,7 @@ export default function AddDataToWaterMeter() {
     const getMinValue = () => {
       const filteredData = waterData.filter(water => water.name === meterState);
       if (filteredData.length === 0) return 1;
+      if (!filteredData[0].data) return 1;
       return filteredData[0].data.value;
     };
 
@@ -92,7 +93,8 @@ export default function AddDataToWaterMeter() {
       resolver: zodResolver(formSchema),
       defaultValues: {
         water_name: "",
-        valueMeter:Number(1)
+        valueMeter:Number(1),
+        doe:""
       },
     })
 
@@ -117,6 +119,7 @@ export default function AddDataToWaterMeter() {
           company_name:companyName,
           water_meter_name: values.water_name,
           value:values.valueMeter,
+          date:values.doe
         });
         const response = await fetch(
           `http://${urladdress}:8081/water/data`,
@@ -138,25 +141,23 @@ export default function AddDataToWaterMeter() {
       ;
   }
     const todayDateOverlapChe = () => {
-      const filteredData = waterData.filter(water => water.name === meterState);
-      if (filteredData.length === 0) return false;
-      return isToday(new Date(filteredData[0].date));
+      return isToday(new Date(getMinDate()));
     };
   
     const getMinDate = () => {
       const filteredData = waterData.filter(water => water.name === meterState);
       if (filteredData.length === 0) return new Date("1900-01-01");
-      return new Date(filteredData[0].date);
+      if (!filteredData[0].data) return new Date("1900-01-01");
+      return new Date(filteredData[0].data.date+1);
     };
     
 
     const minDate = getMinDate();
-
     useEffect(() => {
       setMeterMinValueState(minValue)
-      const fieldValue = form.getValues('doe');
-      if (fieldValue && new Date(fieldValue) < minDate) {
-        form.setValue('doe', minDate); 
+      const fieldValue = form.doe
+      if (fieldValue && new Date(fieldValue) < getMinDate()) {
+        form.setValue('doe', getMinDate()); 
       }
       const dataValue = form.getValues('valueMeter');
       if(dataValue<minValue){
@@ -168,8 +169,6 @@ export default function AddDataToWaterMeter() {
         }))
       }
     }, [minDate, form]);
-    console.log("meterState",meterState);
-    console.log("minValue",minValue);
 
     return (
     <>
