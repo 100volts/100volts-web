@@ -29,18 +29,6 @@ export default function Component({ initialValue = 0 }: WaterMeterProps) {
       setMeterValue(value)
     }
   }
-/*
-
-      <input
-        type="number"
-        value={meterValue}
-        onChange={handleInputChange}
-        className="mt-4 p-2 bg-gray-800 text-white border border-gray-700 rounded"
-        min="0"
-        max="99999999"
-      />
-*/
-  // Pad the number with leading zeros to always have 8 digits
   const paddedValue = meterValue.toString().padStart(8, '0')
 
   return (
