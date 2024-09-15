@@ -122,7 +122,7 @@ export default function AddDataTogasMeter() {
         const { success } = datat;
       }catch (error) {}
       finally {
-        //window.location.reload();
+        window.location.reload();
       }
       ;
   }
