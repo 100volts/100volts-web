@@ -44,7 +44,7 @@ export default function Component({ initialValue = 0 }: WaterMeterProps) {
   const paddedValue = meterValue.toString().padStart(8, '0')
 
   return (
-    <div className="flex` ">
+    <div className="flex ">
       <div className="water-meter">
         {paddedValue.split('').map((digit, index) => (
           <DigitDisplay key={index} digit={digit} />
