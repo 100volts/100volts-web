@@ -38,6 +38,7 @@ import { useStore } from '@nanostores/react';
 import GetReport from "./GetReport"
 
 
+import { format } from "date-fns"
 const urladdress = pkg["volts-server"];
 
 export const columns1 = [
@@ -101,7 +102,7 @@ export const columns1 = [
   
 export default function WatterDataTable() {
     const data= useStore(waterDataPack);
-    console.log("data",data[0].data.date)
+    //console.log("data", format(data[0].data.date, "PPP"))
     return (
       <>
         <div>
@@ -137,11 +138,11 @@ export default function WatterDataTable() {
         <div>
           <div className="flex items-center p-4">
             <Input
-              placeholder="Filter date..."
-              value={table.getColumn("data.date")?.getFilterValue() ?? ""}
+              placeholder="Filter meter name..."
+              value={table.getColumn("name")?.getFilterValue() ?? ""}
               onChange={(event) =>
                 table
-                  .getColumn("data.date")
+                  .getColumn("name")
                   ?.setFilterValue(event.target.value)
               }
               className="max-w-sm"
