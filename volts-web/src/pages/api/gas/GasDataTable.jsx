@@ -35,7 +35,7 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { gasDataPack } from "@/pages/store/GasStore";
 import { useStore } from '@nanostores/react';
-
+import GetReport from "./GetReport"
 
 const urladdress = pkg["volts-server"];
 
@@ -180,7 +180,8 @@ export default function WatterDataTable() {
                         )}
                       </TableCell>
                     ))}
-                    <TableCell> 
+                    <TableCell>
+                      <GetReport/>
                     </TableCell>
                   </TableRow>
                 ))
