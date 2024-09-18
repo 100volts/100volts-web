@@ -1,7 +1,7 @@
-import DayilyTatiff from "@/components/renderer/electric/DayilyTatiff";
-import OptionsButtons from "@/components/renderer/electric/OptionsButtons";
-import ElectricGraphs from "@/components/renderer/electric/ElectricGraphs";
-import AllElectricMeterDataTable from "@/components/renderer/electric/AllElectricMeterDataTable";
+import DayilyTatiff from "@/components/renderer/workplace/electric/ui/DayilyTatiff";
+import OptionsButtons from "@/components/renderer/workplace/electric/ui/OptionsButtons";
+import ElectricGraphs from "@/components/renderer/workplace/electric/ui/ElectricGraphs";
+import AllElectricMeterDataTable from "@/components/renderer/workplace/electric/ui/AllElectricMeterDataTable";
 import {elMeterDashDataStore,initLoading} from "@/components/datastore/ElectricStore"
 import { Card } from "@/components/ui/card";
 import { useStore } from '@nanostores/react';

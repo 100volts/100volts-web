@@ -1,4 +1,4 @@
-import Example from "../../../pages/chart/ExampleChart";
+import Example from "@/pages/chart/ExampleChart";
 
 export default function ElectricGraphs({ elmeterProp }) {
   const dataVoltage = [{ name: "A", value: 240, color: "#011F26" }];
