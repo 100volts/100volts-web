@@ -33,9 +33,9 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox"
-import {userData } from "@/pages/store/UserStore";
+import {userData } from "@/components/datastore/UserStore";
 import { useStore } from '@nanostores/react';
-import {selectedProduction} from "@/pages/store/ProductionStore"
+import {selectedProduction} from "@/components/datastore/ProductionStore"
 import {
   Dialog,
   DialogContent,

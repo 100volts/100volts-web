@@ -1,7 +1,7 @@
 import  { useState, useEffect }  from "react";
-import {userData } from "@/pages/store/UserStore";
+import {userData } from "@/components/datastore/UserStore";
 import { useStore } from '@nanostores/react';
-import {productionDashDataStore,prodGroup,prodElMeterNames,initLoading} from "@/pages/store/ProductionStore"
+import {productionDashDataStore,prodGroup,prodElMeterNames,initLoading} from "@/components/datastore/ProductionStore"
 import pkg from "../../../../package.json";
 
 const urladdress = pkg["volts-server"];

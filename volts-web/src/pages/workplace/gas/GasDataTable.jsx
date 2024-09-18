@@ -33,7 +33,7 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
-import { gasDataPack } from "@/pages/store/GasStore";
+import { gasDataPack } from "@/components/datastore/GasStore";
 import { useStore } from '@nanostores/react';
 import GetReport from "./GetReport"
 import GasSettings from "./Settings"

@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import {selectedProduction} from "@/pages/store/ProductionStore"
+import {selectedProduction} from "@/components/datastore/ProductionStore"
 import { useNavigate } from 'react-router-dom';
 import {
   Dialog,

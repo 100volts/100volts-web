@@ -1,6 +1,6 @@
 import ProfileIconHeader from "./ProfileIconHeader";
 import { useStore } from '@nanostores/react';
-import { isLogedIn,userData } from "@/pages/store/UserStore";
+import { isLogedIn,userData } from "@/components/datastore/UserStore";
 
 export default function HeaderMenu() {
   if(localStorage.getItem("user_state")){

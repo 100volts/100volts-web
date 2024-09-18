@@ -2,7 +2,7 @@ import DayilyTatiff from "../../../components/react/electric/DayilyTatiff";
 import OptionsButtons from "../../../components/react/electric/OptionsButtons";
 import ElectricGraphs from "../../../components/react/electric/ElectricGraphs";
 import AllElectricMeterDataTable from "../../../components/react/electric/AllElectricMeterDataTable";
-import {elMeterDashDataStore,initLoading} from "@/pages/store/ElectricStore"
+import {elMeterDashDataStore,initLoading} from "@/components/datastore/ElectricStore"
 import { Card } from "@/components/ui/card";
 import { useStore } from '@nanostores/react';
 import WeeklyEnergyChart from "@/components/react/dashboard/WeeklyEnergyChart"

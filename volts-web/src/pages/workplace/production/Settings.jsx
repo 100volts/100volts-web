@@ -1,7 +1,7 @@
 import pkg from "../../../../package.json";
-import {userData } from "@/pages/store/UserStore";
+import {userData } from "@/components/datastore/UserStore";
 import { useStore } from '@nanostores/react';
-import { prodGroup,selectedProduction,prodElMeterNames} from "@/pages/store/ProductionStore"
+import { prodGroup,selectedProduction,prodElMeterNames} from "@/components/datastore/ProductionStore"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"

@@ -32,9 +32,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import { isLogedIn,userData } from "@/pages/store/UserStore";
+import { isLogedIn,userData } from "@/components/datastore/UserStore";
 import { useStore } from '@nanostores/react';
-import {reportElectricData} from "@/pages/store/ElectricStore"
+import {reportElectricData} from "@/components/datastore/ElectricStore"
 
 ///
 const data1 = [

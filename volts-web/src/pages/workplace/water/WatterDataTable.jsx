@@ -33,7 +33,7 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
-import { waterDataPack } from "@/pages/store/WaterStore";
+import { waterDataPack } from "@/components/datastore/WaterStore";
 import { useStore } from '@nanostores/react';
 import GetReport from "./GetReport"
 import WaterSettings from "./Settings"

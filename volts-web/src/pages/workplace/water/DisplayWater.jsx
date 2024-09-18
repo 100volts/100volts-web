@@ -2,7 +2,7 @@ import WatterDataTable from "./WatterDataTable"
 import  BlackWaterMeter  from '@/components/black-water-meter'
 import CreateNewWatterMeter from "./CreateNewWatterMeter"
 import AddDataToWattermeter from "./AddDataToWattermeter"
-import {waterDataPack,waterDataSum} from "@/pages/store/WaterStore"
+import {waterDataPack,waterDataSum} from "@/components/datastore/WaterStore"
 import { useStore } from '@nanostores/react';
 
 export default function DisplayWater(){

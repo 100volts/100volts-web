@@ -40,9 +40,9 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import pkg from "../../../../package.json";
-import { userData } from "@/pages/store/UserStore";
+import { userData } from "@/components/datastore/UserStore";
 import { useStore } from '@nanostores/react';
-import { gasDataPack } from "@/pages/store/GasStore"
+import { gasDataPack } from "@/components/datastore/GasStore"
 import { useState, useEffect }  from "react";
 
 export default function AddDataTogasMeter() {

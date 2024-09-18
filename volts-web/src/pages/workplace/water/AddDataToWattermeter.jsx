@@ -40,9 +40,9 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import pkg from "../../../../package.json";
-import { userData } from "@/pages/store/UserStore";
+import { userData } from "@/components/datastore/UserStore";
 import { useStore } from '@nanostores/react';
-import { waterDataPack } from "@/pages/store/WaterStore"
+import { waterDataPack } from "@/components/datastore/WaterStore"
 import { useState, useEffect }  from "react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { ExclamationTriangleIcon } from "@radix-ui/react-icons"

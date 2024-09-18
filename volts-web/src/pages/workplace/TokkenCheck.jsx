@@ -1,6 +1,6 @@
 import { jwtDecode } from "jwt-decode";
 import { useStore } from '@nanostores/react';
-import {userData } from "@/pages/store/UserStore";
+import {userData } from "@/components/datastore/UserStore";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 

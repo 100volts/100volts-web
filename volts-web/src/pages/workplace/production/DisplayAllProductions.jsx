@@ -12,7 +12,7 @@ import {
   import ImputProduction from "./ui/ImputProduction"
 import { useStore } from '@nanostores/react';
 import Last10DataTable from "./ui/Last10DataTable"
-import {productionDashDataStore,initLoading} from "@/pages/store/ProductionStore"
+import {productionDashDataStore,initLoading} from "@/components/datastore/ProductionStore"
 import OptionsButtons from "./ui/OptionsButtons"
 import YearlyProductionChart from "./ui/YearlyProductionChart"
 import CreateNewProduction from "./CreateNewProduction"
