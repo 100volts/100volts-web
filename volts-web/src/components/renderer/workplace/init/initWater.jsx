@@ -32,12 +32,9 @@ export default function initWater(){
           );
           const datat = await response.json();
           const { watter,sum_value,meter_names } = datat; 
-        console.log("water data",watter)
         waterDataPack.set(watter);
         waterDataSum.set(sum_value);
         waterDataNames.set(meter_names);
-
-        console.log("water data got",waterDataPack.get())
         } catch (error) {
           setError(error.message);
         }finally {

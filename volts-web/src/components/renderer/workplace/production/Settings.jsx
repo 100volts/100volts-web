@@ -48,7 +48,6 @@ export default function Settings(){
         form.handleSubmit(onSubmit)(event);
       };
       async function onSubmit(values) {
-        console.log(values)
         const companyName = $userData.companies[0];//todo remove hard coded call
         const userToken =$userData.tokken
         const urladdress = pkg["volts-server"];

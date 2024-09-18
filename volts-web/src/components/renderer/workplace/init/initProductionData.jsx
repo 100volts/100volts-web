@@ -7,12 +7,10 @@ import pkg from "../../../../../package.json";
 const urladdress = pkg["volts-server"];
 
 export function initProductiondDashData(){
-    const [data, setProdData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     const $userData=useStore(userData);
-    const $productionDashDataStore=useStore(productionDashDataStore);
     const companyName = $userData.companies[0];//todo remove hard coded call
     const userToken =$userData.tokken
 
@@ -69,7 +67,6 @@ export function initProductiondDashData(){
             initLoading.set(initLoading.get()+50)
           }
       };
-      //console.log("$productionDashDataStore",Object.values($productionDashDataStore))
       useEffect(() => {
         getProdData();
         initLoading.set(initLoading.get()+50)

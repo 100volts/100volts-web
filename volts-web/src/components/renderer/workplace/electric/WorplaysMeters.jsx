@@ -41,11 +41,6 @@ const ElmeterDataComponent = () => {
       steps: 1600,
     },
   ]
-  /*
-  if(initLoading.get()<100){
-    return (<><Loading progress={initLoading.get()}/></>)
-  }
-    */
    console.log("elmeter dash data",data)
   return (
     <div className="flex flex-col">

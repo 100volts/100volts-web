@@ -44,7 +44,6 @@ export default function getUserData() {
         }
       );
       const datatU = await responseU.json();
-      console.log("datatU",datatU)
       const { company_name } = datatU;
       const responseUD = await fetch(
         `http://${urladdress}:8081/api/v1/company/user`,

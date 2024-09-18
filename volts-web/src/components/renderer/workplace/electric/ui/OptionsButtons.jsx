@@ -11,11 +11,9 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 export default function OptionsButtons({ address }) {
-  const navigate = useNavigate();
 
   const handleRedirect = (address) => {
     reportElectricData.set(address)
-    //navigate("/wokrplace/elesctric/report")
   };
 
   return (

@@ -44,7 +44,6 @@ export function initElectricityData(){
         localStorage.setItem("electricity_store",JSON.stringify(elMeterDashDataStore.get()));
       setLoading(false);
       initLoading.set(100)
-      console.log("lastWeekEnergy","gg")
     }
   };
 
@@ -84,7 +83,6 @@ export function initElectricityData(){
         lastWeekEnergy
       };
     } catch (error) {
-      console.log("Failed to fetch data: " + error.message);
       return null;
     } 
   };

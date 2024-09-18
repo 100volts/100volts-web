@@ -98,7 +98,6 @@ export const columns1 = [
 const urladdress = pkg["volts-server"];
 
 export default function Report({meter}){
-  {console.log("meter",meter)}
   return(
   <Dialog className="flex"> 
   <DialogTrigger>
@@ -192,7 +191,6 @@ export function DataTable({ columns, data ,meter,companyName,userToken }) {
     },
   });
   async function buttClick(row){
-    console.log("row",row)
     try{
       const body = JSON.stringify({
         company_name: companyName,
@@ -211,13 +209,11 @@ export function DataTable({ columns, data ,meter,companyName,userToken }) {
         }
       );
       const datat = await response.json();
-      console.log("datat",datat)
       const { success } = datat;
-      console.log("success",success)
   }catch (error) {
     console.log("error",error)
   } finally {
-      //window.location.reload();
+      window.location.reload();
   };
   }
   

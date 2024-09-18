@@ -6,8 +6,6 @@ import { useStore } from '@nanostores/react';
 
 export default async function getElmeterData() {
   const $userData=useStore(userData);
-  console.log("Prod: userData",userData);
-  console.log("Prod: $userData",$userData)
   const userToken =$userData.tokken
   try {
     const companyName = localStorage.getItem("company_name");
@@ -28,7 +26,6 @@ export default async function getElmeterData() {
     const { address_list } = datat;
 
     address_list.forEach((element) => {
-      console.log(element);
       getElmeterDataFromAddress(element);
     });
   } catch (error) {
@@ -93,8 +90,6 @@ async function getElmeterDataFromAddress(elmeterAddress) {
     document
       .getElementById("elmeter")
       .appendChild(document.createElement("br"));
-
-    console.log(datat);
   } catch (error) {
     console.log("Failed to fetch data: " + error.message);
   }

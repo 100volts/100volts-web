@@ -103,7 +103,6 @@ export const columns1 = [
   
 export default function WatterDataTable() {
     const data= useStore(waterDataPack);
-    //console.log("data", format(data[0].data.date, "PPP"))
     return (
       <>
         <div>

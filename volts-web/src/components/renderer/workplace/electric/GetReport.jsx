@@ -32,7 +32,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import { isLogedIn,userData } from "@/components/datastore/UserStore";
+import { userData } from "@/components/datastore/UserStore";
 import { useStore } from '@nanostores/react';
 import {reportElectricData} from "@/components/datastore/ElectricStore"
 
@@ -464,7 +464,6 @@ export default function GetReport() {
   const companyName = $userData.companies[0];//todo remove hard coded call
   const userToken =$userData.tokken;
   const elMeterAddress = useStore(reportElectricData);
-  const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
   const getElmeterData = async () => {
     try {
@@ -508,9 +507,6 @@ export default function GetReport() {
       </div>
     </>
   );
-}
-
-function buttClick(row){
 }
 
 export function DataTable({ columns, data }) {
@@ -621,8 +617,6 @@ export function DataTable({ columns, data }) {
 }
 
 export function DataTablePagination({ table }) {
-  //{table.getFilteredSelectedRowModel().rows.length} of{" "}
-  //{table.getFilteredRowModel().rows.length} row(s) selected.
   return (
     <div className="flex items-center justify-between px-2">
       <div className="flex-1 text-sm text-muted-foreground"></div>

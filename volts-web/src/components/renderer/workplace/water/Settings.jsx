@@ -37,7 +37,6 @@ const formSchema = z.object({
 })
 
 export default function WaterSettings({meter}){
-  {console.log("meter",meter)}
   return(
   <Dialog className="flex"> 
   <DialogTrigger>
@@ -69,7 +68,6 @@ export function SettingsForm({water}){
         event.preventDefault()
         form.handleSubmit(onSubmit)(event);
       };
-      console.log("water",water)
   async function onSubmit(values) {
     const companyName = $userData.companies[0];//todo remove hard coded call
     const userToken =$userData.tokken

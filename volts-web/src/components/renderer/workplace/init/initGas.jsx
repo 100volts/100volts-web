@@ -32,12 +32,9 @@ export default function initgas(){
           );
           const datat = await response.json();
           const { gas,sum_value,meter_names } = datat; 
-        console.log("gas data",gas)
         gasDataPack.set(gas);
         gasDataSum.set(sum_value);
         gasDataNames.set(meter_names);
-
-        console.log("gas data got",gasDataPack.get())
         } catch (error) {
           setError(error.message);
         }finally {
