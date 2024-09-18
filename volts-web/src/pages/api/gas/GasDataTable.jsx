@@ -36,6 +36,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { gasDataPack } from "@/pages/store/GasStore";
 import { useStore } from '@nanostores/react';
 import GetReport from "./GetReport"
+import GasSettings from "./Settings"
 
 const urladdress = pkg["volts-server"];
 
@@ -182,6 +183,9 @@ export default function WatterDataTable() {
                     ))}
                     <TableCell>
                       <GetReport meter={row.getVisibleCells()[0].getValue()}/>
+                    </TableCell>
+                    <TableCell>
+                      <GasSettings meter={row.getVisibleCells()[0].getValue()}/>
                     </TableCell>
                   </TableRow>
                 ))

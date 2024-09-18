@@ -25,18 +25,18 @@ import {
 import { Input } from "@/components/ui/input"
  
 const formSchema = z.object({
-  water_name: z.string().min(2, {
-    message: "wateruction name must be at least 2 characters.",
+  gas_name: z.string().min(2, {
+    message: "gasuction name must be at least 2 characters.",
   }),
-  water_discription: z.string().min(2, {
+  gas_discription: z.string().min(2, {
     message: "Description must be at least 2 characters.",
   }),
-  wateruction_group: z.string().min(2, {
+  gasuction_group: z.string().min(2, {
     message: "Username must be at least 2 characters.",
   }),
 })
 
-export default function WaterSettings({meter}){
+export default function GasSettings({meter}){
   {console.log("meter",meter)}
   return(
   <Dialog className="flex"> 
@@ -48,20 +48,20 @@ export default function WaterSettings({meter}){
   <DialogContent  style={{ width: "50%", maxWidth:"100%" }}>
     <DialogHeader>
       <DialogTitle>   
-      Water Settings       
+      gas Settings       
       </DialogTitle>
       <DialogDescription>
-        Water Settings
+        gas Settings
       </DialogDescription>
     </DialogHeader>
-    <SettingsForm water={meter}/>
+    <SettingsForm gas={meter}/>
   </DialogContent>
 </Dialog>
   )
 }
 
 
-export function SettingsForm({water}){
+export function SettingsForm({gas}){
     const $userData=useStore(userData);
     const form = useForm();
 
@@ -69,7 +69,7 @@ export function SettingsForm({water}){
         event.preventDefault()
         form.handleSubmit(onSubmit)(event);
       };
-      console.log("water",water)
+      console.log("gas",gas)
   async function onSubmit(values) {
     const companyName = $userData.companies[0];//todo remove hard coded call
     const userToken =$userData.tokken
@@ -77,12 +77,12 @@ export function SettingsForm({water}){
     try{
       const body = JSON.stringify({
         company_name:companyName,
-        water_name:water,
-        water_name_new: values.water_name_new,
-        water_description:values.water_description,
+        gas_name:gas,
+        gas_name_new: values.gas_name_new,
+        gas_description:values.gas_description,
       });
       const response = await fetch(
-        `http://${urladdress}:8081/water`,
+        `http://${urladdress}:8081/gas`,
         {
           method: "PUT",
           headers: {
@@ -103,20 +103,20 @@ export function SettingsForm({water}){
     return (
     <><br/>
         <div>
-          <h1>Settings for: {water}</h1>
+          <h1>Settings for: {gas}</h1>
             <Form {...form}>
       <form onSubmit={handleSubmit} className="space-y-8">
         <FormField
           control={form.control}
-          name="water_name_new"
+          name="gas_name_new"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input placeholder={water} {...field} />
+                <Input placeholder={gas} {...field} />
               </FormControl>
               <FormDescription>
-                The new water meter name.
+                The new gas meter name.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -124,15 +124,15 @@ export function SettingsForm({water}){
         />
         <FormField
           control={form.control}
-          name="water_description"
+          name="gas_description"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
-                <Input placeholder={water.description} {...field} />
+                <Input placeholder={gas.description} {...field} />
               </FormControl>
               <FormDescription>
-                The new water meter description.
+                The new gas meter description.
               </FormDescription>
               <FormMessage />
             </FormItem>
