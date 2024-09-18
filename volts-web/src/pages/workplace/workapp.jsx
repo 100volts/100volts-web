@@ -3,19 +3,19 @@ import { Outlet } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { LayoutDashboard, Zap, Droplet, Flame, Factory } from "lucide-react";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import WorplaysMeters from "../api/electric/WorplaysMeters";
-import DisplayAllProductions from "../api/production/DisplayAllProductions";
-import {initElectricityData} from "./initElectrisityData";
-import {initProductiondDashData} from "./initProductionData";
-import GetReport from "../api/production/GetReport";
-import GetElectricReport from "../api/electric/GetReport";
+import WorplaysMeters from "./electric/WorplaysMeters";
+import DisplayAllProductions from "./production/DisplayAllProductions";
+import {initElectricityData} from "./init/initElectrisityData";
+import {initProductiondDashData} from "./init/initProductionData";
+import GetReport from "./production/GetReport";
+import GetElectricReport from "./electric/GetReport";
 import DashboardWorkPlace from "../../components/react/dashboard/Dashboard";
-import ProductionSettingsComponent from "../api/production/Settings"; 
+import ProductionSettingsComponent from "./production/Settings"; 
 import TokkenCheck from "./TokkenCheck";
-import InitWater from "./initWater";
-import InitGas from "./initGas"
-import DisplayWater from "../api/water/DisplayWater"
-import DisplayGas from '../api/gas/DisplayGas';
+import InitWater from "./init/initWater";
+import InitGas from "./init/initGas"
+import DisplayWater from "./water/DisplayWater"
+import DisplayGas from './gas/DisplayGas';
 
 
 const Dashboard = () => (<><div><h1>Dashboard</h1><DashboardWorkPlace/></div></>);

@@ -2,7 +2,7 @@ import  { useState, useEffect }  from "react";
 import {userData } from "@/pages/store/UserStore";
 import { useStore } from '@nanostores/react';
 import {waterDataPack,waterDataNames,waterDataSum } from "@/pages/store/WaterStore";
-import pkg from "../../../package.json";
+import pkg from "../../../../package.json";
 
 const urladdress = pkg["volts-server"];
 

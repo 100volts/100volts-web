@@ -6,7 +6,7 @@ import {elMeterDashDataStore,initLoading} from "@/pages/store/ElectricStore"
 import { Card } from "@/components/ui/card";
 import { useStore } from '@nanostores/react';
 import WeeklyEnergyChart from "@/components/react/dashboard/WeeklyEnergyChart"
-import Loading from "@/pages/wokrplace1/InitLoading"
+import Loading from "@/pages/workplace/init/InitLoading"
 
 const ElmeterDataComponent = () => {
   const data=useStore(elMeterDashDataStore)
