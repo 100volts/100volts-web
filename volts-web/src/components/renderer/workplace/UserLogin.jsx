@@ -2,9 +2,9 @@ import { useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import pkg from "../../../package.json";
+import pkg from "../../../../package.json";
 const urladdress = pkg["volts-server"];
-import { isLogedIn,userData, } from "../../components/datastore/UserStore";
+import { isLogedIn,userData, } from "../../datastore/UserStore";
 
 export default function getUserData() {
   const [email, setEmail] = useState("");

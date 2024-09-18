@@ -1,4 +1,4 @@
-import pkg from "../../../../package.json";
+import pkg from "../../../../../package.json";
 const urladdress = pkg["volts-server"];
 import { userData } from "@/components/datastore/UserStore";
 import { useStore } from '@nanostores/react';

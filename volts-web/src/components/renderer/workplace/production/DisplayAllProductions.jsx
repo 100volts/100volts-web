@@ -16,7 +16,7 @@ import {productionDashDataStore,initLoading} from "@/components/datastore/Produc
 import OptionsButtons from "./ui/OptionsButtons"
 import YearlyProductionChart from "./ui/YearlyProductionChart"
 import CreateNewProduction from "./CreateNewProduction"
-import Loading from "@/pages/workplace/init/InitLoading"
+import Loading from "@/components/renderer/workplace/init/InitLoading"
 import * as Progress from '@radix-ui/react-progress';
 
 

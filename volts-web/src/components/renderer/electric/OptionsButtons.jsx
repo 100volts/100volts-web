@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate } from 'react-router-dom';
 import {reportElectricData} from "@/components/datastore/ElectricStore"
-import ElectricityReports from "@/pages/workplace/electric/GetReport"
+import ElectricityReports from "@/components/renderer/workplace/electric/GetReport"
 import {
   Dialog,
   DialogContent,

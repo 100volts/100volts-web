@@ -1,4 +1,4 @@
-import pkg from "../../../../package.json";
+import pkg from "../../../../../package.json";
 import {userData } from "@/components/datastore/UserStore";
 import { useStore } from '@nanostores/react';
 import { prodGroup,selectedProduction,prodElMeterNames} from "@/components/datastore/ProductionStore"

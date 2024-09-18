@@ -39,7 +39,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import pkg from "../../../../package.json";
+import pkg from "../../../../../package.json";
 import { userData } from "@/components/datastore/UserStore";
 import { useStore } from '@nanostores/react';
 import { gasDataPack } from "@/components/datastore/GasStore"

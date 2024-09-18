@@ -1,12 +1,12 @@
-import DayilyTatiff from "../../../components/renderer/electric/DayilyTatiff";
-import OptionsButtons from "../../../components/renderer/electric/OptionsButtons";
-import ElectricGraphs from "../../../components/renderer/electric/ElectricGraphs";
-import AllElectricMeterDataTable from "../../../components/renderer/electric/AllElectricMeterDataTable";
+import DayilyTatiff from "@/components/renderer/electric/DayilyTatiff";
+import OptionsButtons from "@/components/renderer/electric/OptionsButtons";
+import ElectricGraphs from "@/components/renderer/electric/ElectricGraphs";
+import AllElectricMeterDataTable from "@/components/renderer/electric/AllElectricMeterDataTable";
 import {elMeterDashDataStore,initLoading} from "@/components/datastore/ElectricStore"
 import { Card } from "@/components/ui/card";
 import { useStore } from '@nanostores/react';
 import WeeklyEnergyChart from "@/components/renderer/dashboard/WeeklyEnergyChart"
-import Loading from "@/pages/workplace/init/InitLoading"
+import Loading from "@/components/renderer/workplace/init/InitLoading"
 
 const ElmeterDataComponent = () => {
   const data=useStore(elMeterDashDataStore)

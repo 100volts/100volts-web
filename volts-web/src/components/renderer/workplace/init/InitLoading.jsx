@@ -1,5 +1,4 @@
 import * as Progress from '@radix-ui/react-progress';
-import React from 'react';
 
 export default function InitLoading({progress}){
 

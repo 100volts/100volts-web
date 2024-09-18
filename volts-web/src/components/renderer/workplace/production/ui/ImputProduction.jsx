@@ -41,7 +41,7 @@ import { format } from "date-fns"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import pkg from "../../../../../package.json";
+import pkg from "../../../../../../package.json";
 import {userData } from "@/components/datastore/UserStore";
 import { useStore } from '@nanostores/react';
 

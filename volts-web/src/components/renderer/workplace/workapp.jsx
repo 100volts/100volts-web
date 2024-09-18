@@ -9,7 +9,7 @@ import {initElectricityData} from "./init/initElectrisityData";
 import {initProductiondDashData} from "./init/initProductionData";
 import GetReport from "./production/GetReport";
 import GetElectricReport from "./electric/GetReport";
-import DashboardWorkPlace from "../../components/renderer/dashboard/Dashboard";
+import DashboardWorkPlace from "@/components/renderer/dashboard/Dashboard";
 import ProductionSettingsComponent from "./production/Settings"; 
 import TokkenCheck from "./TokkenCheck";
 import InitWater from "./init/initWater";
