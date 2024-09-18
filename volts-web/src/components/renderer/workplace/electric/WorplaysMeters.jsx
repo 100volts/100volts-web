@@ -41,7 +41,6 @@ const ElmeterDataComponent = () => {
       steps: 1600,
     },
   ]
-   console.log("elmeter dash data",data)
   return (
     <div className="flex flex-col">
       {Object.entries(data).map(([key,elmeter], index) => (
@@ -56,7 +55,6 @@ const ElmeterDataComponent = () => {
             <Card className="flex  flex-wrap flex-row" style={{ padding: "10px", margin: "10px" }}>
               <div  className="flex flex-nowrap  items-center">
                   <div style={{ padding: "10px", margin: "10px" }} className=" w-full">
-                    {console.log(elmeter.name,elmeter.lastWeekEnergy)}
                   <WeeklyEnergyChart  data={elmeter.lastWeekEnergy}/>
                   </div>
                 <AllElectricMeterDataTable style={{ padding: "10px", margin: "10px" }} elmeterProp={elmeter} />
