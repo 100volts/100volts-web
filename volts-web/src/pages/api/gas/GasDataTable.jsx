@@ -181,7 +181,7 @@ export default function WatterDataTable() {
                       </TableCell>
                     ))}
                     <TableCell>
-                      <GetReport/>
+                      <GetReport meter={row.getVisibleCells()[0].getValue()}/>
                     </TableCell>
                   </TableRow>
                 ))

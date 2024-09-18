@@ -21,8 +21,6 @@ export default function DisplayGas(){
                 <AddDataToGasMeter/>
                 <h2>Sum of Gas meter data as per last read</h2>
                 <BlackgasMeter initialValue={gasDataSum.get()}/>
-                <h2>Sum of Gas meter data full</h2>
-                <BlackgasMeter initialValue={gasDataSum.get()}/>
             </div>
             <WatterDataTable/>
         </div>
