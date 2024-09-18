@@ -43,14 +43,6 @@ export default function Settings(){
     const dataEl=useStore(prodElMeterNames);
     const prod=useStore(selectedProduction);
     const form = useForm();
-/*
-    const form = useForm({
-        resolver: zodResolver(formSchema),
-        defaultValues: {
-          username: "",
-        },
-      })
-        */
       const handleSubmit = async (event) => {
         event.preventDefault()
         form.handleSubmit(onSubmit)(event);
@@ -88,15 +80,6 @@ export default function Settings(){
             window.location.reload();
         };
       }
-/*
-            <h2>Production: <br/>{prod.name}</h2>
-            <div>
-                <h3>Groups:</h3>
-            {prod.groups.map((group, index) => (
-                <p key={index}>{group.name}</p>
-            ))}
-            </div>
-*/
     return (
     <><br/>
         <div>
@@ -197,7 +180,7 @@ export default function Settings(){
                             </SelectContent>
                         </Select></FormItem>)}
          />
-        <Button type="submit">Submit</Button>
+        <Button type="submit">Update</Button>
       </form>
     </Form>
         </div>

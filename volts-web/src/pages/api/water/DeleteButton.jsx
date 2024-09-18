@@ -1,6 +1,6 @@
 import { CrossCircledIcon } from '@radix-ui/react-icons'
 import { Button } from "@/components/ui/button"
-import {userData } from "@/pages/store/UserStore";
+import { userData } from "@/pages/store/UserStore";
 import { useStore } from '@nanostores/react';
 import pkg from "../../../../../package.json";
 

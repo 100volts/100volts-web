@@ -36,6 +36,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { waterDataPack } from "@/pages/store/WaterStore";
 import { useStore } from '@nanostores/react';
 import GetReport from "./GetReport"
+import WaterSettings from "./Settings"
 
 
 import { format } from "date-fns"
@@ -186,6 +187,9 @@ export default function WatterDataTable() {
 
                     <TableCell> 
                       <GetReport meter={row.getVisibleCells()[0].getValue()}/>
+                    </TableCell>
+                    <TableCell>
+                      <WaterSettings meter={row.getVisibleCells()[0].getValue()}/>
                     </TableCell>
                   </TableRow>
                 ))
