@@ -128,7 +128,6 @@ export default function WatterDataTable() {
         columnFilters,
       },
     });
-  
     return (
       <div className="rounded-md border w-full">
                   <h1 className="p-4">Gas meters</h1>
@@ -137,10 +136,10 @@ export default function WatterDataTable() {
           <div className="flex items-center p-4">
             <Input
               placeholder="Filter date..."
-              value={table.getColumn("data.date")?.getFilterValue() ?? ""}
+              value={table.getColumn("name")?.getFilterValue() ?? ""}
               onChange={(event) =>
                 table
-                  .getColumn("data.date")
+                  .getColumn("sname")
                   ?.setFilterValue(event.target.value)
               }
               className="max-w-sm"
