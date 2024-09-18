@@ -1,5 +1,6 @@
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import { Plus } from "lucide-react"
 import {
   Select,
   SelectContent,
@@ -107,11 +108,13 @@ export default function ImputProduction({production}){
 
     return(
         <>
-        <Card>
-            <CardHeader>Input productiuon</CardHeader>
-            <CardContent>
             <Dialog>
-                    <DialogTrigger>Add new Production value</DialogTrigger>
+                    <DialogTrigger>
+                    <Button className="w-full justify-start">
+                    <Plus className="mr-2 h-4 w-4" />
+                    Add new Production value
+                    </Button>
+                      </DialogTrigger>
                     <DialogContent>
                     <DialogHeader>
                     <DialogTitle>Add new Production value</DialogTitle>
@@ -203,8 +206,6 @@ export default function ImputProduction({production}){
                     </DialogClose>
                     </DialogContent>
             </Dialog>
-            </CardContent>
-          </Card>
           </>
     )
 }
