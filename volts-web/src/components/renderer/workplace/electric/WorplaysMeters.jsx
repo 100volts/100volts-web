@@ -6,11 +6,12 @@ import {elMeterDashDataStore,initLoading} from "@/components/datastore/ElectricS
 import { Card } from "@/components/ui/card";
 import { useStore } from '@nanostores/react';
 import WeeklyEnergyChart from "@/components/renderer/dashboard/WeeklyEnergyChart"
+import CreateNewElectricMeter from "./CreateNewElectricMeter"
 import Loading from "@/components/renderer/workplace/init/InitLoading"
 
 const ElmeterDataComponent = () => {
   const data=useStore(elMeterDashDataStore)
-
+  console.log("data",data)
   const data1=[
     {
       date: "2024-01-01",
@@ -43,9 +44,10 @@ const ElmeterDataComponent = () => {
   ]
   return (
     <div className="flex flex-col">
+      <CreateNewElectricMeter/>
       {Object.entries(data).map(([key,elmeter], index) => (
         <div key={index} >
-          <div className="flex flex-row justify-between">
+          {elmeter?(<><div className="flex flex-row justify-between">
           <h2 style={{ padding: "10px" }}>
             {elmeter.name} - {elmeter.address} 
           </h2>
@@ -65,7 +67,11 @@ const ElmeterDataComponent = () => {
                 <DayilyTatiff elmeterProp={elmeter} />
             </Card>
             <div className="max-w-[50%]" style={{ padding: "10px" }}></div>
-        </div>
+        
+        </>):(
+          <></>
+        )}
+          </div>
       ))}
     </div>
   );
