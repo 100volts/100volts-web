@@ -36,10 +36,7 @@ const formSchema = z.object({
     })    
     .refine((val) => !/^\d/.test(val), {
         message: "electric meter name cannot start with a number.",
-      }),
-    electric_description: z.string().min(2, {
-      message: "electric meter description must be at least 2 characters.",
-    })
+      })
   })
 
   
@@ -47,7 +44,7 @@ const formSchema = z.object({
       resolver: zodResolver(formSchema),
       defaultValues: {
         electric_name: "",
-        electric_description:""
+        electric_address:""
       },
     })
 
@@ -64,8 +61,8 @@ const formSchema = z.object({
     try{
       const body = JSON.stringify({
         company_name:companyName,
-        electric_name: values.electric_name,
-        electric_description:values.electric_description,
+        meter_name: values.electric_name,
+        address:values.electric_address,
       });
       const response = await fetch(
         `http://${urladdress}:8081/electric`,
@@ -110,7 +107,7 @@ const formSchema = z.object({
           name="electric_name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Watter meter name</FormLabel>
+              <FormLabel>Electric meter name</FormLabel>
               <FormControl>
                 <Input placeholder="name" {...field} />
               </FormControl>
@@ -120,12 +117,12 @@ const formSchema = z.object({
         />
         <FormField
           control={form.control}
-          name="electric_description"
+          name="electric_address"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Watter meter desctription</FormLabel>
+              <FormLabel>Electric meter Address</FormLabel>
               <FormControl>
-                <Input placeholder="description" {...field} />
+                <Input type="number" placeholder="address" {...field} />
               </FormControl>
               <FormDescription>
               </FormDescription>
