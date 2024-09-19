@@ -29,8 +29,9 @@ export default function DisplayAllProductions(){
       return(
         <>
         <CreateNewProduction/>
+        <ImputProduction production={Object.values(data)}/>
           <div className="imput_production">
-            <ImputProduction production={Object.values(data)}/>
+           
         </div>
         <div className="max-w-10xl">
         {Object.entries(data).map(([key,production], index) => (
@@ -41,7 +42,7 @@ export default function DisplayAllProductions(){
                       <div className=" w-full h-full">
                         <a>Discription: {production.description}</a>
                         <br/>
-                        <a>Units: {production.units.name}</a>
+                        <a>Units: {production.units.name}</a><br/>
                         <a>Groups:</a>
                         {production.groups.map((group, index) => (
                             <div key={index}>
