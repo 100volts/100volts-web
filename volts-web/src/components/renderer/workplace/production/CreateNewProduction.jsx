@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
+import { Plus } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -94,7 +95,13 @@ export default function CreateNewProduction() {
   return (
     <>
     <Dialog>
-    <DialogTrigger>Create new Production</DialogTrigger>
+
+    <DialogTrigger>
+    <Button className="w-full justify-start">
+            <Plus className="mr-2 h-4 w-4" />
+            Create new Production
+            </Button>
+    </DialogTrigger>
     <DialogContent>
     <DialogHeader>
       <DialogTitle>Creating new production</DialogTitle>
