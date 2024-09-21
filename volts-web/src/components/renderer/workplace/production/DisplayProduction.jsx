@@ -7,21 +7,16 @@ import {
   } from "@/components/ui/card";
   import DeleteButton from "./ui/DeleteButton"
 import Last10DataTable from "./ui/Last10DataTable"
-import {initLoading} from "@/components/datastore/ProductionStore"
 import OptionsButtons from "./ui/OptionsButtons"
 import YearlyProductionChart from "./ui/YearlyProductionChart"
-import Loading from "@/components/renderer/workplace/init/InitLoading"
 
-
-export default function DisplayProductions({data}){
-    if(initLoading.get()<100){
-      return (<><Loading progress={progress}/></>)
-    }
+export default function DisplayProductions({production}){
+    console.log("production",production)
+    if(production){
       return(
         <>
-        <div className="max-w-10xl">
-        {Object.entries(data).map(([key,production], index) => (
-            <div key={index}>
+        <div className="flex w-full">
+            <div key={production.name}>
                 <Card >
                     <CardHeader>{production.name}</CardHeader>
                     <CardContent className="flex flex-col md:flex-row">
@@ -39,25 +34,21 @@ export default function DisplayProductions({data}){
                         <a>Electric Meters:</a>
                         {production.electricMeters.map((electricMeters, index) => (
                             <div key={index}>
-                              
                                 <a>Name:<br/> {electricMeters.meterName}</a>
-                              
                             </div>
                         ))}
                         </div>
-                        
-                        <Last10DataTable className="max-w-xs" data={production.last10}/>
-
-                        <YearlyProductionChart chartData={production.monthlyData}/>
-                        <div  key={index}>
+                        <Last10DataTable className="flex w-full" data={production.last10}/>
+                        <YearlyProductionChart className="w-full" chartData={production.monthlyData}/>
+                        <div  key={production.name}>
                           <OptionsButtons  production={production}/>
                           <DeleteButton production={production}/>
                         </div>
                     </CardContent>
                 </Card>
             </div>
-        ))}
         </div>
         </>
       );
-}//
+    }
+}

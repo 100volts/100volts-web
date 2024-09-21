@@ -46,4 +46,4 @@ export const prodElMeterNames = atom();
 export const selectedProduction = atom();
 export const reportProdData = atom();
 
-export const productionDashDataStore = map({});
+export const productionDashDataStore =atom();// map({});

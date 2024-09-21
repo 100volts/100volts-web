@@ -19,6 +19,7 @@ import CreateNewProduction from "./CreateNewProduction"
 import Loading from "@/components/renderer/workplace/init/InitLoading"
 import * as Progress from '@radix-ui/react-progress';
 import DisplayProductions from "./DisplayProduction"
+import ProductionNav from "./Production-nav"
 
 export default function DisplayAllProductions(){
     const data=useStore(productionDashDataStore);
@@ -29,11 +30,8 @@ export default function DisplayAllProductions(){
       return(
         <>
         <CreateNewProduction/>
-        <ImputProduction production={Object.values(data)}/>
-          <div className="imput_production">
-           
-        </div>
-        <DisplayProductions data={data}/>
+        <ImputProduction production={data}/>
+        <ProductionNav cardData={data}/>
         </>
       );
-}//
+}//        <DisplayProductions data={data}/>

@@ -7,11 +7,13 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { useState, useEffect }  from "react";
-import DisplayMeter from "@/components/renderer/workplace/electric/ElectricMeter"
+import DisplayProductions from "./DisplayProduction"
+import { ScrollArea } from "@/components/ui/scroll-area"
+
 
 export default function ProductionNav({cardData }) {
   const [dataState,setDataState]=  useState();
-  
+  console.log("cardData",cardData)
   async function onSubmit(values) {
     if(cardData){
       console.log("Clikerting",values.target.innerText)
@@ -32,22 +34,24 @@ export default function ProductionNav({cardData }) {
   return (
     <>
       <div className="flex flex-row m-1">
-        <div className="flex w-full flex-col ">
+        <div className="flex flex-col ">
         {cardData ? (
-          
+          <ScrollArea className="h-72 w-48 rounded-md border">
+            {
           cardData.map((data, index) => (
               <Card className="m-1" onClick={onSubmit}>
                 <CardHeader>{data.name}</CardHeader>
                 <CardDescription></CardDescription>
               </Card> 
-          ))
+          ))}
+          </ScrollArea>
         ) : (
           <a>No data</a>
         )}
         </div>
-        <div className="flex flex-col w-full">
+        <div className="flex w-full flex-start">
           {
-            cardData?(<DisplayMeter elmeter={dataState} index={1}/>)
+            cardData?(<DisplayProductions production={dataState}/>)
             :(<></>)
           }
         </div>
