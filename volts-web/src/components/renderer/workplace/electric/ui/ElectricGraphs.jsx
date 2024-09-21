@@ -21,25 +21,26 @@ export default function ElectricGraphs({ elmeterProp }) {
     <>
     <div className="flex flex-col md:flex-row">
         <div
-          className="pie_chart_with_needle"
+          className="pie_chart_with_needle flex flex-wrap"
           style={{
             display: "flex",
             justifyItems: "center",
             alignItems: "flex-start",
           }}
         >
-          
-          <Example
+          {elmeterProp.electric_meter_avr_data?(     
+            <>     
+            <Example
             niddleValue={elmeterProp.electric_meter_avr_data.voltage}
             data={dataVoltage}
             chartName={"Voltage"}
           />
+
           <Example
             niddleValue={elmeterProp.electric_meter_avr_data.current}
             data={dataCurent}
             chartName={"Curent"}
           />
-          
           <Example
             niddleValue={elmeterProp.electric_meter_avr_data.power / 1000}
             data={dataPower}
@@ -49,8 +50,8 @@ export default function ElectricGraphs({ elmeterProp }) {
             niddleValue={elmeterProp.electric_meter_avr_data.powerFactor}
             data={dataG}
             chartName={"Power Factor"}
-          />
-          
+          /></>
+        ):(<></>)}
         </div>
       </div>
     </>

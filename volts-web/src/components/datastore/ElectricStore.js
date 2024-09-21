@@ -50,4 +50,6 @@ export const initLoading = atom(0);
 
 export const reportElectricData = atom();
 
-export const elMeterDashDataStore = map({});
+export const elMetersNames =atom();
+
+export const elMeterDashDataStore =atom(); //map({});

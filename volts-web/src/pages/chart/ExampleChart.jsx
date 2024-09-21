@@ -64,7 +64,7 @@ class Examplec extends PureComponent {
             alignItems: "center",
           }}
         >
-          <PieChart width={270} height={120}>
+          <PieChart width={280} height={120}>
             <Pie
               dataKey="value"
               startAngle={180}
