@@ -20,13 +20,13 @@ export default function Last10DataTable({ data }) {
           <TableHead>Date</TableHead>
         </TableRow>
       </TableHeader>
-      <TableBody>
+      <TableBody className="w-full">
         {data && data.length > 0 ? (
           <>
             {data.map((prodData, index) => (
               <TableRow key={index}>
-                <TableCell>{prodData.values}</TableCell>
-                <TableCell>{prodData.date}</TableCell>
+                <TableCell className="w-full">{prodData.values}</TableCell>
+                <TableCell className="w-full">{prodData.date}</TableCell>
               </TableRow>
             ))}
           </>

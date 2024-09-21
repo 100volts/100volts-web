@@ -20,23 +20,23 @@ export default function DisplayProductions({production}){
                 <Card >
                     <CardHeader>{production.name}</CardHeader>
                     <CardContent className="flex flex-col md:flex-row">
-                      <div className=" w-full h-full">
-                        <a>Discription: {production.description}</a>
-                        <br/>
-                        <a>Units: {production.units.name}</a><br/>
-                        <a>Groups:</a>
-                        {production.groups.map((group, index) => (
-                            <div key={index}>
-                                <a>{group.name}</a>
-                            </div>
-                        ))}
-                        <br/>
-                        <a>Electric Meters:</a>
-                        {production.electricMeters.map((electricMeters, index) => (
-                            <div key={index}>
-                                <a>Name:<br/> {electricMeters.meterName}</a>
-                            </div>
-                        ))}
+                        <div className=" w-full h-full">
+                            <a>Discription:<br/> {production.description}</a>
+                            <br/>
+                            <a>Units: {production.units.name}</a><br/>
+                            <a>Groups:</a>
+                            {production.groups.map((group, index) => (
+                                <div key={index}>
+                                    <a>{group.name}</a>
+                                </div>
+                            ))}
+                            <br/>
+                            <a>Electric Meters:</a>
+                            {production.electricMeters.map((electricMeters, index) => (
+                                <div key={index}>
+                                    <a>Name:<br/> {electricMeters.meterName}</a>
+                                </div>
+                            ))}
                         </div>
                         <Last10DataTable className="flex w-full" data={production.last10}/>
                         <YearlyProductionChart className="w-full" chartData={production.monthlyData}/>
