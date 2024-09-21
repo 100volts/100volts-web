@@ -11,7 +11,7 @@ export default function ElectricMeter({ elmeter, index }) {
       <div key={index}>
         {elmeter ? (
           <>
-            <div className="flex w-full justify-start flex-wrap flex-col md:flex-row p-10 m-10">
+            <Card className="flex w-full justify-start flex-wrap flex-col md:flex-row p-10 m-10">
               <div>
                 <div className="flex flex-row justify-between">
                   <h2 style={{ padding: "10px" }}>
@@ -39,7 +39,7 @@ export default function ElectricMeter({ elmeter, index }) {
                   elmeterProp={elmeter}
                 />
               </Card>
-            </div>
+            </Card>
           </>
         ) : (
           <></>

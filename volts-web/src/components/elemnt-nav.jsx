@@ -12,7 +12,7 @@ export default function ElementNav({ cardData,meterdatatesm }) {
   return (
     <>
       <div className="flex flex-row m-1">
-        <div className="flex flex-col ">
+        <div className="flex w-full flex-col ">
         {cardData ? (
           <nav>
           {Object.entries(cardData).map(([key, data], index) => (
