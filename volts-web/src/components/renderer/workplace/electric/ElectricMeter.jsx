@@ -11,7 +11,7 @@ export default function ElectricMeter({ elmeter, index }) {
       <div key={index}>
         {elmeter ? (
           <>
-            <Card className="flex w-full justify-start flex-wrap flex-col md:flex-row p-10 m-10">
+            <Card className="flex w-full justify-start flex-wrap flex-col md:flex-row p-10">
               <div>
                 <div className="flex flex-row justify-between">
                   <h2 style={{ padding: "10px" }}>
@@ -20,14 +20,11 @@ export default function ElectricMeter({ elmeter, index }) {
                 </div>
                 <OptionsButtons address={elmeter.address} />
               </div>
-              <div className="flex flex-nowrap  items-center">
+              <div className="flex flex-rap  items-center">
                 <div className=" w-full">
                   <WeeklyEnergyChart data={elmeter.lastWeekEnergy} />
                 </div>
-                <AllElectricMeterDataTable
-                  style={{ padding: "10px", margin: "10px" }}
-                  elmeterProp={elmeter}
-                />
+                <AllElectricMeterDataTable elmeterProp={elmeter} />
               </div>
               <ElectricGraphs elmeterProp={elmeter} />
               <Card

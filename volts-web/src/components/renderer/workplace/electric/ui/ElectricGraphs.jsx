@@ -28,11 +28,14 @@ export default function ElectricGraphs({ elmeterProp }) {
             alignItems: "flex-start",
           }}
         >
-          <Example
+          {elmeterProp.electric_meter_avr_data?(     
+            <>     
+            <Example
             niddleValue={elmeterProp.electric_meter_avr_data.voltage}
             data={dataVoltage}
             chartName={"Voltage"}
           />
+
           <Example
             niddleValue={elmeterProp.electric_meter_avr_data.current}
             data={dataCurent}
@@ -47,7 +50,8 @@ export default function ElectricGraphs({ elmeterProp }) {
             niddleValue={elmeterProp.electric_meter_avr_data.powerFactor}
             data={dataG}
             chartName={"Power Factor"}
-          />
+          /></>
+        ):(<></>)}
         </div>
       </div>
     </>

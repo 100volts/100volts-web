@@ -1,8 +1,10 @@
-import { elMeterDashDataStore } from "@/components/datastore/ElectricStore";
+import {
+  elMeterDashDataStore,
+  elMetersNames,
+} from "@/components/datastore/ElectricStore";
 import { useStore } from "@nanostores/react";
 import CreateNewElectricMeter from "./CreateNewElectricMeter";
-import ElectricMeter from "./ElectricMeter";
-import SideNav from "@/components/elemnt-nav";
+import SideNav from "@/components/renderer/workplace/electric/elemnt-nav";
 
 const ElmeterDataComponent = () => {
   const data = useStore(elMeterDashDataStore);
@@ -41,18 +43,8 @@ const ElmeterDataComponent = () => {
     <div>
       <div className="flex flex-col">
         <CreateNewElectricMeter />
-        {Object.entries(data)[0] ? (
-          Object.entries(data)[0][1] ? (
-            <SideNav
-              cardData={data}
-              meterdatatesm={Object.entries(data)[0][1]}
-            />
-          ) : (
-            <></>
-          )
-        ) : (
-          <></>
-        )}
+
+        <SideNav cardData={data} />
       </div>
     </div>
   );
