@@ -38,16 +38,22 @@ const ElmeterDataComponent = () => {
     },
   ];
   return (
-    <div className="grid h-screen w-full pl-[53px]">
+    <div>
       <div className="flex flex-col">
         <CreateNewElectricMeter />
-        {Object.entries(data)[0][1] ? (
-          <SideNav cardData={data} meterdatatesm={Object.entries(data)[0][1]} />
+        {Object.entries(data)[0] ? (
+          Object.entries(data)[0][1] ? (
+            <SideNav
+              cardData={data}
+              meterdatatesm={Object.entries(data)[0][1]}
+            />
+          ) : (
+            <></>
+          )
         ) : (
           <></>
         )}
       </div>
-      <div className="flex flex-col w-full">Hello</div>
     </div>
   );
 };
