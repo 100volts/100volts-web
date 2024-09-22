@@ -11,10 +11,10 @@ export default function ElectricMeter({ elmeter, index }) {
       <div key={index}>
         {elmeter ? (
           <>
-            <Card className="flex w-full justify-start flex-wrap flex-col md:flex-row p-10">
+            <Card className="flex w-full  justify-start flex-wrap flex-col md:flex-row p-5">
               <div>
                 <div className="flex flex-row justify-between">
-                  <h2 style={{ padding: "10px" }}>
+                  <h2 style={{ padding: "5px" }}>
                     {elmeter.name} - {elmeter.address}
                   </h2>
                 </div>
@@ -27,10 +27,7 @@ export default function ElectricMeter({ elmeter, index }) {
                 <AllElectricMeterDataTable elmeterProp={elmeter} />
               </div>
               <ElectricGraphs elmeterProp={elmeter} />
-              <Card
-                className="flex w-full max-w-full "
-                style={{ margin: "10px" }}
-              >
+              <Card className="flex w-full max-w-full m-10">
                 <DayilyTatiff
                   className="flex w-full max-w-full "
                   elmeterProp={elmeter}

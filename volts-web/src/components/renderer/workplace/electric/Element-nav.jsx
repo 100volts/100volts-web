@@ -7,12 +7,13 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { useState, useEffect } from "react";
-import DisplayProductions from "./DisplayProduction";
+import ElectricSplashcreen from "@/components/renderer/workplace/electric/ElectricSplashScreen";
+import DisplayMeter from "@/components/renderer/workplace/electric/ElectricMeter";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
-export default function ProductionNav({ cardData }) {
+export default function ElementNav({ cardData }) {
   const [dataState, setDataState] = useState();
-  console.log("cardData", cardData);
+
   async function onSubmit(values) {
     if (cardData) {
       console.log("Clikerting", values.target.innerText);
@@ -39,21 +40,21 @@ export default function ProductionNav({ cardData }) {
     <>
       <div className="flex flex-row m-1">
         <div className="flex flex-col ">
-          {cardData ? (
-            <ScrollArea className="h-96 w-48 rounded-md border">
-              {cardData.map((data, index) => (
+          <ScrollArea className="h-96 w-48 rounded-md border">
+            {cardData ? (
+              cardData.map((data, index) => (
                 <Card className="m-1" onClick={onSubmit}>
                   <CardHeader>{data.name}</CardHeader>
                   <CardDescription></CardDescription>
                 </Card>
-              ))}
-            </ScrollArea>
-          ) : (
-            <a>No data</a>
-          )}
+              ))
+            ) : (
+              <a>No data</a>
+            )}
+          </ScrollArea>
         </div>
-        <div className="flex w-full flex-start">
-          {cardData ? <DisplayProductions production={dataState} /> : <></>}
+        <div className="flex flex-col w-full">
+          {cardData ? <DisplayMeter elmeter={dataState} index={1} /> : <></>}
         </div>
       </div>
     </>

@@ -60,11 +60,11 @@ class Examplec extends PureComponent {
             display: "flex",
             justifyItems: "center",
             flexDirection: "column",
-            padding: 10,
+            padding: 5,
             alignItems: "center",
           }}
         >
-          <PieChart width={280} height={120}>
+          <PieChart width={220} height={120}>
             <Pie
               dataKey="value"
               startAngle={180}
