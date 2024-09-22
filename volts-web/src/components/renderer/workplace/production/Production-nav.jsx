@@ -12,15 +12,9 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 
 export default function ProductionNav({ cardData }) {
   const [dataState, setDataState] = useState();
-  console.log("cardData", cardData);
   async function onSubmit(values) {
     if (cardData) {
-      console.log("Clikerting", values.target.innerText);
       setDataState(
-        cardData.filter((datag) => datag.name === values.target.innerText)[0]
-      );
-      console.log(
-        "Filtering",
         cardData.filter((datag) => datag.name === values.target.innerText)[0]
       );
     }

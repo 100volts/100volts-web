@@ -7,7 +7,6 @@ import OptionsButtons from "./ui/OptionsButtons";
 import YearlyProductionChart from "./ui/YearlyProductionChart";
 
 export default function DisplayProductions({ production }) {
-  console.log("production", production);
   if (production) {
     return (
       <>
