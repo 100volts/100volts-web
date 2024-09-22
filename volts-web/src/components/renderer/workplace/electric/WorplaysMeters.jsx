@@ -4,7 +4,7 @@ import {
 } from "@/components/datastore/ElectricStore";
 import { useStore } from "@nanostores/react";
 import CreateNewElectricMeter from "./CreateNewElectricMeter";
-import SideNav from "@/components/renderer/workplace/electric/elemnt-nav";
+import SideNav from "@/components/renderer/workplace/electric/Element-nav";
 
 const ElmeterDataComponent = () => {
   const data = useStore(elMeterDashDataStore);
