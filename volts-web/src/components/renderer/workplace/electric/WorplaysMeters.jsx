@@ -41,9 +41,8 @@ const ElmeterDataComponent = () => {
   ];
   return (
     <div>
-      <div className="flex flex-col">
+      <div>
         <CreateNewElectricMeter />
-
         <SideNav cardData={data} />
       </div>
     </div>

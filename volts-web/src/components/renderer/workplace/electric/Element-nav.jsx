@@ -38,8 +38,8 @@ export default function ElementNav({ cardData }) {
   }, []);
   return (
     <>
-      <div className="flex flex-row m-1">
-        <div className="flex flex-col ">
+      <div className="flex    flex-row m-1">
+        <div className=" ">
           <ScrollArea className="h-96 w-48 rounded-md border">
             {cardData ? (
               cardData.map((data, index) => (
@@ -53,7 +53,7 @@ export default function ElementNav({ cardData }) {
             )}
           </ScrollArea>
         </div>
-        <div className="flex flex-col w-full">
+        <div className="flex w-full max-w-full">
           {cardData ? <DisplayMeter elmeter={dataState} index={1} /> : <></>}
         </div>
       </div>
