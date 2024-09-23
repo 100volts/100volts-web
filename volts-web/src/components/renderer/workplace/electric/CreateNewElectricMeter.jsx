@@ -82,7 +82,7 @@ export default function CreateNewElectricMeter() {
     <>
       <Dialog>
         <DialogTrigger>
-          <Button className="w-full justify-start items-baseline">
+          <Button className="flex ">
             <Plus className="mr-2 h-4 w-4" />
             Create electric Meter
           </Button>
