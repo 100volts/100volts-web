@@ -13,28 +13,24 @@ export default function ElectricMeter({ elmeter, index }) {
         {elmeter ? (
           <>
             <ScrollArea className="h-96">
-              <Card className="flex w-full  justify-start flex-wrap flex-col md:flex-row p-5">
-                <div>
-                  <div className="flex flex-row justify-between">
-                    <h2 style={{ padding: "5px" }}>
-                      {elmeter.name} - {elmeter.address}
-                    </h2>
+              <Card className=" flex flex-wrap justify-start p-5">
+                <div className="first row">
+                  <div className="name-and-options">
+                    <div>
+                      <h2 style={{ padding: "5px" }}>
+                        {elmeter.name} - {elmeter.address}
+                      </h2>
+                    </div>
+                    <OptionsButtons address={elmeter.address} />
                   </div>
-                  <OptionsButtons address={elmeter.address} />
-                </div>
-                <div className="flex flex-rap  items-center">
-                  <div className=" w-full">
-                    <WeeklyEnergyChart data={elmeter.lastWeekEnergy} />
+                  <div className="flex flex-row">
+                    <div className="w-full">
+                      <WeeklyEnergyChart data={elmeter.lastWeekEnergy} />
+                    </div>
+                    <AllElectricMeterDataTable elmeterProp={elmeter} />
                   </div>
-                  <AllElectricMeterDataTable elmeterProp={elmeter} />
+                  <ElectricGraphs elmeterProp={elmeter} />
                 </div>
-                <ElectricGraphs elmeterProp={elmeter} />
-                <Card className="flex w-full max-w-full m-5">
-                  <DayilyTatiff
-                    className="flex w-full max-w-full "
-                    elmeterProp={elmeter}
-                  />
-                </Card>
               </Card>
             </ScrollArea>
           </>
@@ -45,3 +41,9 @@ export default function ElectricMeter({ elmeter, index }) {
     </>
   );
 }
+/*add after fixing 15 min read
+                <div className="max-w-full">
+                  <DayilyTatiff elmeterProp={elmeter} />
+                </div>
+
+                */

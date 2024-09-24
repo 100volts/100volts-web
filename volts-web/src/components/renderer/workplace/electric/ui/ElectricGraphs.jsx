@@ -19,7 +19,7 @@ export default function ElectricGraphs({ elmeterProp }) {
   ];
   return (
     <>
-    <div className="flex ">
+      <div className="flex ">
         <div
           className="pie_chart_with_needle flex d:flex-col flex-row"
           style={{
@@ -28,34 +28,33 @@ export default function ElectricGraphs({ elmeterProp }) {
             alignItems: "flex-start",
           }}
         >
-          {elmeterProp.electric_meter_avr_data?(     
-            <>     
-            <div>
-            <Example
-            niddleValue={elmeterProp.electric_meter_avr_data.voltage}
-            data={dataVoltage}
-            chartName={"Voltage"}
-          />
+          {elmeterProp.electric_meter_avr_data ? (
+            <>
+              <Example
+                niddleValue={elmeterProp.electric_meter_avr_data.voltage}
+                data={dataVoltage}
+                chartName={"Voltage"}
+              />
 
-          <Example
-            niddleValue={elmeterProp.electric_meter_avr_data.current}
-            data={dataCurent}
-            chartName={"Curent"}
-          />
-          </div>
-          <div>
-          <Example
-            niddleValue={elmeterProp.electric_meter_avr_data.power / 1000}
-            data={dataPower}
-            chartName={"Power"}
-          />
-          <Example
-            niddleValue={elmeterProp.electric_meter_avr_data.powerFactor}
-            data={dataG}
-            chartName={"Power Factor"}
-          />
-          </div></>
-        ):(<></>)}
+              <Example
+                niddleValue={elmeterProp.electric_meter_avr_data.current}
+                data={dataCurent}
+                chartName={"Curent"}
+              />
+              <Example
+                niddleValue={elmeterProp.electric_meter_avr_data.power / 1000}
+                data={dataPower}
+                chartName={"Power"}
+              />
+              <Example
+                niddleValue={elmeterProp.electric_meter_avr_data.powerFactor}
+                data={dataG}
+                chartName={"Power Factor"}
+              />
+            </>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     </>
