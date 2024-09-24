@@ -3,7 +3,7 @@ import { PieChart, Pie, Cell } from "recharts";
 
 const RADIAN = Math.PI / 180;
 
-const cx = 130;
+const cx = 105;
 const cy = 110;
 const iR = 50;
 const oR = 80;
@@ -41,11 +41,18 @@ class Examplec extends PureComponent {
       const ybb = y0 + r * cos;
       const xp = x0 + length * cos;
       const yp = y0 + length * sin;
-      const key=Math.floor(Math.random() * (100 - 2 + 1)) + 2+niddleValue
+      const key = Math.floor(Math.random() * (100 - 2 + 1)) + 2 + niddleValue;
       return [
-        <circle key={Math.round(key+niddleValue+Math.random()*12)} cx={x0} cy={y0} r={r} fill={color} stroke="none" />,
+        <circle
+          key={Math.round(key + niddleValue + Math.random() * 12)}
+          cx={x0}
+          cy={y0}
+          r={r}
+          fill={color}
+          stroke="none"
+        />,
         <path
-        key={Math.round(key+niddleValue+Math.random()*1321)}
+          key={Math.round(key + niddleValue + Math.random() * 1321)}
           d={`M${xba} ${yba}L${xbb} ${ybb} L${xp} ${yp} L${xba} ${yba}`}
           stroke="#none"
           fill={color}
@@ -54,8 +61,8 @@ class Examplec extends PureComponent {
     };
     return (
       <>
-        <div 
-        key={Math.round(Math.random()+niddleValue)}
+        <div
+          key={Math.round(Math.random() + niddleValue)}
           style={{
             display: "flex",
             justifyItems: "center",
@@ -76,7 +83,7 @@ class Examplec extends PureComponent {
               outerRadius={oR}
               fill="#8884d8"
               stroke="none"
-              label
+              //label
             >
               {data.map((entry, index) => (
                 <Cell key={index} fill={entry.color} />

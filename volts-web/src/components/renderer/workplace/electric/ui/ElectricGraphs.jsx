@@ -13,9 +13,9 @@ export default function ElectricGraphs({ elmeterProp }) {
     { name: "C", value: 15, color: "#F2A71B" },
   ];
   const dataG = [
-    { name: "A", value: 35, color: "#011F26" },
-    { name: "B", value: 35, color: "#025E73" },
-    { name: "C", value: 25, color: "#F2A71B" },
+    { name: "A", value: 0.4, color: "#011F26" },
+    { name: "B", value: 0.4, color: "#025E73" },
+    { name: "C", value: 0.1, color: "#F2A71B" },
   ];
   return (
     <>
