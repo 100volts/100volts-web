@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import pkg from "../../../../package.json";
 const urladdress = pkg["volts-server"];
-import { isLogedIn,userData, } from "../../datastore/UserStore";
+import { isLogedIn, userData } from "../../datastore/UserStore";
 
 export default function getUserData() {
   const [email, setEmail] = useState("");
@@ -57,22 +57,21 @@ export default function getUserData() {
       );
       const datatUD = await responseUD.json();
       isLogedIn.set(true);
-      userData.setKey("firstName",datatUD.first_name);
-      userData.setKey("lastName",datatUD.last_name);
-      userData.setKey("email",datatUD.email);
-      userData.setKey("tokken",access_token);
-      userData.setKey("companies",[company_name]);
-      
+      userData.setKey("firstName", datatUD.first_name);
+      userData.setKey("lastName", datatUD.last_name);
+      userData.setKey("email", datatUD.email);
+      userData.setKey("tokken", access_token);
+      userData.setKey("companies", [company_name]);
+
       setLoading(false);
-      localStorage.setItem("user_state",JSON.stringify(userData.get()));
-      localStorage.setItem("user_islogedIn",isLogedIn.get());
+      localStorage.setItem("user_state", JSON.stringify(userData.get()));
+      localStorage.setItem("user_islogedIn", isLogedIn.get());
 
       location.href = "/";
     } catch (err) {
       setError(err.message);
       setLoading(false);
     }
-
   };
   return (
     <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">

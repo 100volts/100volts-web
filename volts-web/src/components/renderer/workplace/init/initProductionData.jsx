@@ -32,9 +32,10 @@ export function initProductiondDashData(){
           );
           const datat = await response.json();
           const { production } = datat; 
-          
+          productionDashDataStore.set(production)
           production.map((prod,index)=> {
-            productionDashDataStore.setKey(index,prod);
+            //productionDashDataStore.setKey(index,prod);
+            dataArray.push(prod)
             initLoading.set(initLoading.get()+10)
         }) 
 

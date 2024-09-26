@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/table";
 
 export default function AllElectricMeterDataTable({ elmeterProp }) {
+  if(elmeterProp.electric_meter_data){
   return (
     <>
       <Table>
@@ -71,4 +72,5 @@ export default function AllElectricMeterDataTable({ elmeterProp }) {
       </Table>
     </>
   );
+}
 }
