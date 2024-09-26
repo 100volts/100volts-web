@@ -197,7 +197,7 @@ export default function AddDataToWaterMeter() {
               <Select onChange={handleNameChange} onValueChange={handleNameChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select production unit type" />
+                    <SelectValue placeholder="Select water meter" />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>

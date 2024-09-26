@@ -183,7 +183,7 @@ export default function AddDataTogasMeter() {
               <Select onChange={handleNameChange} onValueChange={handleNameChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select production unit type" />
+                    <SelectValue placeholder="Select gas meter" />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
