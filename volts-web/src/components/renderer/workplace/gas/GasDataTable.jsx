@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import pkg from "../../../../../../package.json";
+import pkg from "../../../../../package.json";
 import { Button } from "@/components/ui/button";
 import {
   flexRender,
@@ -35,26 +35,12 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { gasDataPack } from "@/components/datastore/GasStore";
 import { useStore } from '@nanostores/react';
-import GetReport from "../GetReport"
-import GasSettings from "../Settings"
+import GetReport from "./GetReport"
+import GasSettings from "./Settings"
 
 const urladdress = pkg["volts-server"];
 
 export const columns1 = [
-    {
-        accessorKey: "name",
-        header: ({ column }) => {
-          return (
-            <Button
-              variant="ghost"
-              onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-            >
-              Name
-              <ArrowUpDown className="ml-2 h-4 w-4" />
-            </Button>
-          );
-        },
-      },
     {
       accessorKey: "value",
       header: ({ column }) => {
@@ -70,7 +56,7 @@ export const columns1 = [
       },
     },
     {
-      accessorKey: "data.date",
+      accessorKey: "date",
       header: ({ column }) => {
         return (
           <Button
@@ -83,6 +69,7 @@ export const columns1 = [
         );
       },
     },
+    /*removed for now
     {
       accessorKey: "data.value",
       header: ({ column }) => {
@@ -97,10 +84,10 @@ export const columns1 = [
         );
       },
     },
+    */
 ];
   
-export default function WatterDataTable() {
-    const data= useStore(gasDataPack);
+export default function WatterDataTable({data}) {
     return (
       <>
         <div>
@@ -128,12 +115,9 @@ export default function WatterDataTable() {
         columnFilters,
       },
     });
-    return (
-      <div className="rounded-md border w-full">
-                  <h1 className="p-4">Gas meters</h1>
-
-        <div>
-          <div className="flex items-center p-4">
+    //<h1 className="p-4">Gas meters</h1>
+    /*
+              <div className="flex items-center p-4">
             <Input
               placeholder="Filter date..."
               value={table.getColumn("name")?.getFilterValue() ?? ""}
@@ -145,7 +129,20 @@ export default function WatterDataTable() {
               className="max-w-sm"
             />
           </div>
-          <div className="flex items-center py-4"></div>
+          
+                              <TableCell>
+                      <GetReport meter={row.getVisibleCells()[0].getValue()}/>
+                    </TableCell>
+                    <TableCell>
+                      <GasSettings meter={row.getVisibleCells()[0].getValue()}/>
+                    </TableCell>
+    */
+
+    return (
+      <div className="rounded-md border w-full">
+                        <div className="flex items-center">            <h2>Last 10 reads</h2></div>    
+        <div>
+
           <Table>
             <TableHeader className="bg-gray-100">
               {table.getHeaderGroups().map((headerGroup) => (
@@ -180,12 +177,7 @@ export default function WatterDataTable() {
                         )}
                       </TableCell>
                     ))}
-                    <TableCell>
-                      <GetReport meter={row.getVisibleCells()[0].getValue()}/>
-                    </TableCell>
-                    <TableCell>
-                      <GasSettings meter={row.getVisibleCells()[0].getValue()}/>
-                    </TableCell>
+
                   </TableRow>
                 ))
               ) : (

@@ -4,6 +4,7 @@ import Settings from "./Settings";
 import { Card } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useStore } from '@nanostores/react';
+import GasDataTable from "./GasDataTable"
 
 export default function gasMeter({ gasmeter, index }) {
     console.log("gasmeter",gasmeter)
@@ -25,8 +26,10 @@ export default function gasMeter({ gasmeter, index }) {
                     <ReportButton meter={gasmeter.name}/>
                     <Settings meter={gasmeter.name} />
                   </div>
-                  <div className="flex flex-row">
-
+                  <div className="flex w-full flex-row">
+                  <ScrollArea className="h-64">
+                    <GasDataTable data={gasmeter.data}/> 
+                    </ScrollArea>
                   </div>
                 </div>
               </Card>

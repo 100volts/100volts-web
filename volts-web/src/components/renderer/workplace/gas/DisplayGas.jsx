@@ -1,4 +1,4 @@
-import WatterDataTable from "./datatables/GasDataTable"
+import WatterDataTable from "./GasDataTable"
 import  BlackgasMeter  from '@/components/black-water-meter'
 import CreateNewGasMeter from "./CreateNewGasMeter"
 import AddDataToGasMeter from "./AddDataToGas"
