@@ -44,6 +44,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 
+
 export const columns1 = [
   {
     id: "select",
@@ -97,10 +98,11 @@ export const columns1 = [
 const urladdress = pkg["volts-server"];
 
 export default function Report({meter}){
+  console.log("meter report funk", meter)
   return(
   <Dialog className="flex"> 
   <DialogTrigger>
-      <Button variant="outline" onClick={() => handleRedirect(meter)}>
+      <Button variant="outline" >
           <a style={{ width: "25px" }}>i</a>
         </Button>
   </DialogTrigger>
@@ -157,6 +159,7 @@ export function GetReport({gasName}) {
 
   useEffect(() => {
     getElmeterData();
+    console.log("getElmeterData",data)
   }, []);
 
   if (loading) return <div>Loading...</div>;

@@ -1,9 +1,12 @@
 import DeleteButton from "./DeleteButton";
 import ReportButton from "./GetReport"
+import Settings from "./Settings";
 import { Card } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { useStore } from '@nanostores/react';
 
 export default function gasMeter({ gasmeter, index }) {
+    console.log("gasmeter",gasmeter)
   return (
     <>
       <div key={index}>
@@ -18,8 +21,9 @@ export default function gasMeter({ gasmeter, index }) {
                         {gasmeter.name} 
                       </h2>
                     </div>
-                    <DeleteButton gas={gasMeter}/>
-                    <ReportButton meter={gasMeter}/>
+                    <DeleteButton gas={gasmeter.name}/>
+                    <ReportButton meter={gasmeter.name}/>
+                    <Settings meter={gasmeter.name} />
                   </div>
                   <div className="flex flex-row">
 
