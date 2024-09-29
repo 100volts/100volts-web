@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import pkg from "../../../../../package.json";
+import pkg from "../../../../../../package.json";
 import { Button } from "@/components/ui/button";
 import {
   flexRender,
@@ -35,8 +35,8 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { gasDataPack } from "@/components/datastore/GasStore";
 import { useStore } from '@nanostores/react';
-import GetReport from "./GetReport"
-import GasSettings from "./Settings"
+import GetReport from "../GetReport"
+import GasSettings from "../Settings"
 
 const urladdress = pkg["volts-server"];
 

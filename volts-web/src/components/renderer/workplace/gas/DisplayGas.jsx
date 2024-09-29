@@ -1,9 +1,10 @@
-import WatterDataTable from "./GasDataTable"
+import WatterDataTable from "./datatables/GasDataTable"
 import  BlackgasMeter  from '@/components/black-water-meter'
 import CreateNewGasMeter from "./CreateNewGasMeter"
 import AddDataToGasMeter from "./AddDataToGas"
 import {gasDataPack,gasDataSum} from "@/components/datastore/GasStore"
 import { useStore } from '@nanostores/react';
+import ElementNav from "./Gas-nav"
 
 export default function DisplayGas(){
     const data=useStore(gasDataPack)
@@ -22,8 +23,9 @@ export default function DisplayGas(){
                 <h2>Sum of Gas meter data as per last read</h2>
                 <BlackgasMeter initialValue={gasDataSum.get()}/>
             </div>
-            <WatterDataTable/>
+            <ElementNav cardData={data} />
         </div>
     </>
     )
+    //<WatterDataTable/>
 }
