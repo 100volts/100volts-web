@@ -577,7 +577,7 @@ export function DataTable({ columns, data }) {
                       )}
                     </TableCell>
                   ))}
-                  <TableCell><Button onClick={buttClick(row)}>butt</Button></TableCell>
+                  
                 </TableRow>
               ))
             ) : (
@@ -687,3 +687,4 @@ export function DataTablePagination({ table }) {
     </div>
   );
 }
+//<TableCell><Button onClick={buttClick(row)}>butt</Button></TableCell>
