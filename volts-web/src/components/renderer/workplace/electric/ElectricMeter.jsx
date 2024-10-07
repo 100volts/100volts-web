@@ -13,8 +13,8 @@ export default function ElectricMeter({ elmeter, index }) {
         {elmeter ? (
           <>
             <ScrollArea className="h-96">
-              <Card className=" flex flex-wrap justify-start p-5">
-                <div className="first row">
+              <Card className=" flex w-full flex-wrap justify-start p-5">
+                <div className="first w-full row">
                   <div className="name-and-options">
                     <div>
                       <h2 style={{ padding: "5px" }}>

@@ -48,6 +48,20 @@ export default function HeaderMenu() {
       <>
         <a href="/wokrplace">Workplaces</a>
         <ProfileIconHeader />
+
+      </>
+    );
+  } else {
+    return (
+      <>
+        <a href="/login">Login</a>
+        
+      </>
+    );
+  }
+}
+//<langbutton /> removed for now for demo inforn of nenov
+/*
         <div>
           {Object.keys(langs).map((lng) => (
             <button
@@ -61,14 +75,4 @@ export default function HeaderMenu() {
             </button>
           ))}
         </div>
-      </>
-    );
-  } else {
-    return (
-      <>
-        <a href="/login">Login</a>
-        <langbutton />
-      </>
-    );
-  }
-}
+*/

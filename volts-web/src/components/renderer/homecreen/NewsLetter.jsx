@@ -8,7 +8,7 @@ export default function NewsLetter() {
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
           <div className="max-w-xl lg:max-w-lg">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Subscribe to our newsletter.</h2>
-            <p className="mt-4 text-lg leading-8 text-gray-800">
+            <p className="mt-4 text-lg leading-8 ">
             Join our newsletter and be the first to know about updates, patches, and exclusive early adopter benefits. Stay ahead with the latest innovations!
             </p>
             <div className="mt-6 flex max-w-md gap-x-4">
@@ -38,7 +38,7 @@ export default function NewsLetter() {
                 <CalendarDaysIcon aria-hidden="true" className="h-6 w-6 " />
               </div>
               <dt className="mt-4 font-semibold ">Weekly updates</dt>
-              <dd className="mt-2 leading-7 text-gray-800">
+              <dd className="mt-2 leading-7 ">
               Don’t miss out! Get our weekly updates for the latest features, improvements, and insider tips to maximize your software’s potential.
               </dd>
             </div>
@@ -47,7 +47,7 @@ export default function NewsLetter() {
                 <HandRaisedIcon aria-hidden="true" className="h-6 w-6 " />
               </div>
               <dt className="mt-4 font-semibold ">No spam</dt>
-              <dd className="mt-2 leading-7 text-gray-800">
+              <dd className="mt-2 leading-7 ">
               Don't worry, we hate spam too! You'll only receive important updates, tips, and offers that matter most to you.
               </dd>
             </div>

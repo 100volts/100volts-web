@@ -54,7 +54,7 @@ export default function ElementNav({ cardData }) {
           </ScrollArea>
         </div>
         <div className="flex w-full max-w-full">
-          {cardData ? <DisplayMeter elmeter={dataState} index={1} /> : <></>}
+          {cardData ? <DisplayMeter className="w-full" elmeter={dataState} index={1} /> : <></>}
         </div>
       </div>
     </>
