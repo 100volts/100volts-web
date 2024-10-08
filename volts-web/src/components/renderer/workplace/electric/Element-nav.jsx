@@ -43,7 +43,7 @@ export default function ElementNav({ cardData }) {
           <ScrollArea className="h-96 w-48 rounded-md border">
             {cardData ? (
               cardData.map((data, index) => (
-                <Card className="m-1" onClick={onSubmit}>
+                <Card key={index} className="m-1" onClick={onSubmit}>
                   <CardHeader>{data.name}</CardHeader>
                   <CardDescription></CardDescription>
                 </Card>

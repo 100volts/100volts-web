@@ -24,8 +24,10 @@ import {
 } from "@/components/ui/chart";
 
 export default function Charts({data}) {
+  console.log("wekkly data",data)
+  console.log("weekly graph data lenth",data.lengt)
   if(data){
-    if(data.length>7){
+    if(data.length>3){
       const avrage= Math.round(data.reduce((sum, obj) => sum + obj.energy, 0) / data.length);
 
     
