@@ -57,7 +57,7 @@ export default function Charts({data}) {
                         left: -4,
                         right: -4,
                       }}
-                      data={data}
+                      data={data.reverse()}
                     >
                       <Bar
                         dataKey="energy"
