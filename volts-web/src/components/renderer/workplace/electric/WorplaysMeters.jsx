@@ -49,12 +49,10 @@ const ElmeterDataComponent = () => {
     );
   }
   return (
-    <div>
-      <div>
+    <>
         <CreateNewElectricMeter />
         <SideNav cardData={data} />
-      </div>
-    </div>
+    </>
   );
 };
 

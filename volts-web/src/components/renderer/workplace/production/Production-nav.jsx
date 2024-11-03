@@ -31,6 +31,7 @@ import DisplayProductions from "./DisplayProduction";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 export default function ProductionNav({ cardData }) {
+  
   const [dataState, setDataState] = useState();
   async function onSubmit(values) {
     if (cardData) {
@@ -71,7 +72,7 @@ export default function ProductionNav({ cardData }) {
           minSize={15}
           maxSize={35}
       >
-        <div className="flex flex-col ">
+        <div className="flex flex-col">
           {cardData ? (
           <>
             <form className="m-1">
@@ -86,7 +87,7 @@ export default function ProductionNav({ cardData }) {
               </div>
             </form>
             <Separator className="m-1" />
-            <ScrollArea className="h-screen  max-h-[700px]">
+            <ScrollArea className="h-screen max-h-[700px]">
               {filteredData.length > 0 ? (
                 filteredData.map((data, index) => (
                   <Card key={index} className="m-1" onClick={onSubmit}>
