@@ -41,7 +41,7 @@ export function initElectricityData(){
       for (const element of address_list) {
         const elmeterData = await getElmeterDataFromAddress(element);
         dataArr.push(elmeterData)
-        
+        initLoading.set(initLoading.get()+1)
         //elMeterDashDataStore.setKey(element,elmeterData)
       }
       elMeterDashDataStore.set(dataArr)
@@ -52,7 +52,7 @@ export function initElectricityData(){
     } finally {
         localStorage.setItem("electricity_store",JSON.stringify(elMeterDashDataStore.get()));
       setLoading(false);
-      initLoading.set(100)
+      initLoading.set(initLoading.get()+100)
     }
   };
 
