@@ -15,7 +15,6 @@ export function initElectricityData(){
   
   const companyName = $userData.companies[0];//todo remove hard coded call
   const userToken =$userData.tokken
-  console.log("hello bofore call")
 
   const getElmeterData = async () => {
     try {
@@ -36,23 +35,19 @@ export function initElectricityData(){
       const datat = await response.json();
       const { address_list } = datat;
       const dataArr=[];
-      console.log("hello bofore call")
       elMetersNames.set(address_list)
       for (const element of address_list) {
         const elmeterData = await getElmeterDataFromAddress(element);
         dataArr.push(elmeterData)
-        
         //elMeterDashDataStore.setKey(element,elmeterData)
       }
       elMeterDashDataStore.set(dataArr)
-      console.log("all data after init",elMeterDashDataStore.get())
     } catch (error) {
       console.log(error);
       setError(error.message);
     } finally {
         localStorage.setItem("electricity_store",JSON.stringify(elMeterDashDataStore.get()));
       setLoading(false);
-      initLoading.set(100)
     }
   };
 
@@ -96,9 +91,8 @@ export function initElectricityData(){
     } 
   };
     useEffect(() => {
-      console.log("hello bofore call")
-
       getElmeterData();
+      
     }, []);
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;

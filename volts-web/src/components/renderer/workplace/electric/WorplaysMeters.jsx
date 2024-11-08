@@ -1,10 +1,11 @@
 import {
   elMeterDashDataStore,
-  elMetersNames,
+  elMetersNames,initLoading,
 } from "@/components/datastore/ElectricStore";
 import { useStore } from "@nanostores/react";
 import CreateNewElectricMeter from "./CreateNewElectricMeter";
 import SideNav from "@/components/renderer/workplace/electric/Element-nav";
+import Loading from "@/components/renderer/workplace/init/InitLoading";
 
 const ElmeterDataComponent = () => {
   const data = useStore(elMeterDashDataStore);
@@ -39,6 +40,15 @@ const ElmeterDataComponent = () => {
       steps: 1600,
     },
   ];
+
+  const progress = useStore(initLoading);
+  if (initLoading.get() < 100) {
+    return (
+      <>
+        <Loading progress={progress} />
+      </>
+    );
+  }
   return (
     <div>
       <div>

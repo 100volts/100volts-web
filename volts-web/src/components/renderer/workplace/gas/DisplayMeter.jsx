@@ -22,9 +22,11 @@ export default function gasMeter({ gasmeter, index }) {
                         {gasmeter.name} 
                       </h2>
                     </div>
+                    <div className="flex">
                     <DeleteButton gas={gasmeter.name}/>
                     <ReportButton meter={gasmeter.name}/>
                     <Settings meter={gasmeter.name} />
+                    </div>
                   </div>
                   <div className="flex w-full flex-row">
                   <ScrollArea className="h-64">
