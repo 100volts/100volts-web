@@ -9,7 +9,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 export default function ElectricMeter({ elmeter, index }) {
   return (
     <>
-      <div key={index}>
+      <div  className=" w-full" key={index}>
         {elmeter ? (
           <>
             <ScrollArea className="h-96">

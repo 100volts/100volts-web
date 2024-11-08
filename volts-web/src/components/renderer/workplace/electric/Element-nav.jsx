@@ -38,7 +38,7 @@ export default function ElementNav({ cardData }) {
   }, []);
   return (
     <>
-      <div className="flex    flex-row m-1">
+      <div className="flex flex-row m-1">
         <div className=" ">
           <ScrollArea className="h-96 w-48 rounded-md border">
             {cardData ? (
