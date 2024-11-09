@@ -12,6 +12,7 @@ export default function ElectricMeter({ elmeter, index }) {
       <div  className=" w-full" key={index}>
         {elmeter ? (
           <>
+          <div className="h-full">
             <ScrollArea className="h-96">
               <Card className=" flex w-full flex-wrap justify-start p-5">
                 <div className="first w-full row">
@@ -33,6 +34,7 @@ export default function ElectricMeter({ elmeter, index }) {
                 </div>
               </Card>
             </ScrollArea>
+            </div>
           </>
         ) : (
           <></>
