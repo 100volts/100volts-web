@@ -1,4 +1,4 @@
-import Example from "@/pages/chart/ExampleChart";
+import NeedleGraphics from "@/pages/chart/NeedleGraphic";
 
 export default function ElectricGraphs({ elmeterProp }) {
   const dataVoltage = [{ name: "A", value: 240, color: "#011F26" }];
@@ -30,23 +30,23 @@ export default function ElectricGraphs({ elmeterProp }) {
         >
           {elmeterProp.electric_meter_avr_data ? (
             <>
-              <Example
+              <NeedleGraphics
                 niddleValue={elmeterProp.electric_meter_avr_data.voltage}
                 data={dataVoltage}
                 chartName={"Voltage"}
               />
 
-              <Example
+              <NeedleGraphics
                 niddleValue={elmeterProp.electric_meter_avr_data.current}
                 data={dataCurent}
                 chartName={"Curent"}
               />
-              <Example
+              <NeedleGraphics
                 niddleValue={elmeterProp.electric_meter_avr_data.power / 1000}
                 data={dataPower}
                 chartName={"Power"}
               />
-              <Example
+              <NeedleGraphics
                 niddleValue={elmeterProp.electric_meter_avr_data.powerFactor}
                 data={dataG}
                 chartName={"Power Factor"}

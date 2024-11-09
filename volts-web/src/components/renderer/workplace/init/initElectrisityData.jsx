@@ -51,24 +51,8 @@ export function initElectricityData(){
     }
   };
 
-  const getElmeterDataFromAddress = async (elmeterAddress) => {
+  const getElmeterDataFromAddress = async (elmeter) => {
     try {
-      const response = await fetch(
-        `http://${urladdress}:8081/elmeter/data/last`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${userToken}`,
-          },
-          body: JSON.stringify({
-            company_name: companyName,
-            address: elmeterAddress,
-          }),
-        }
-      );
-
-      const datat = await response.json();
       const {
         name,
         address,
@@ -76,7 +60,7 @@ export function initElectricityData(){
         electric_meter_avr_data,
         daily_tariff_data,
         lastWeekEnergy
-      } = datat;
+      } = elmeter;
       initLoading.set(initLoading.get()+10)
       return {
         name,

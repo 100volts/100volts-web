@@ -5,6 +5,8 @@ import AllElectricMeterDataTable from "@/components/renderer/workplace/electric/
 import { Card } from "@/components/ui/card";
 import WeeklyEnergyChart from "@/components/renderer/dashboard/WeeklyEnergyChart";
 import { ScrollArea } from "@/components/ui/scroll-area";
+//            <ScrollArea className="h-96">            </ScrollArea>
+
 
 export default function ElectricMeter({ elmeter, index }) {
   return (
@@ -12,7 +14,7 @@ export default function ElectricMeter({ elmeter, index }) {
       <div  className=" w-full" key={index}>
         {elmeter ? (
           <>
-            <ScrollArea className="h-96">
+          <div className="h-full">
               <Card className=" flex w-full flex-wrap justify-start p-5">
                 <div className="first w-full row">
                   <div className="name-and-options">
@@ -32,7 +34,7 @@ export default function ElectricMeter({ elmeter, index }) {
                   <ElectricGraphs elmeterProp={elmeter} />
                 </div>
               </Card>
-            </ScrollArea>
+            </div>
           </>
         ) : (
           <></>
