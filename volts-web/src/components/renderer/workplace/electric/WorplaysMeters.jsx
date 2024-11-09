@@ -9,7 +9,6 @@ import Loading from "@/components/renderer/workplace/init/InitLoading";
 
 const ElmeterDataComponent = () => {
   const data = useStore(elMeterDashDataStore);
-  console.log("data", data);
   const data1 = [
     {
       date: "2024-01-01",

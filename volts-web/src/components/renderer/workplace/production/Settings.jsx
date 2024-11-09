@@ -32,7 +32,7 @@ const formSchema = z.object({
     message: "Description must be at least 2 characters.",
   }),
   production_group: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
+    message: "Group name must be at least 2 characters.",
   }),
 })
 

@@ -23,7 +23,7 @@ export default function ElectricMeter({ elmeter, index }) {
                         {elmeter.name} - {elmeter.address}
                       </h2>
                     </div>
-                    <OptionsButtons address={elmeter.address} />
+                    <OptionsButtons elmeter={elmeter} />
                   </div>
                   <div className="flex flex-row">
                     <div className="w-full">
