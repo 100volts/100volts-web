@@ -3,7 +3,7 @@ import { PieChart, Pie, Cell } from "recharts";
 
 const RADIAN = Math.PI / 180;
 
-const cx = 130;
+const cx = 110;
 const cy = 110;
 const iR = 50;
 const oR = 80;
@@ -64,7 +64,7 @@ class Examplec extends PureComponent {
             alignItems: "center",
           }}
         >
-          <PieChart width={220} height={120}>
+          <PieChart width={265} height={120}>
             <Pie
               dataKey="value"
               startAngle={180}
