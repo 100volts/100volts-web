@@ -30,7 +30,9 @@ export default function gasMeter({ gasmeter, index }) {
                   </div>
                   <div className="flex w-full flex-row">
                   <ScrollArea className="h-64">
-                    <GasDataTable data={gasmeter.data}/> 
+                    {gasmeter.data?(<GasDataTable data={gasmeter.data}/> )
+                    :(<a>No data</a>)}
+                    
                     </ScrollArea>
                   </div>
                 </div>
@@ -44,3 +46,4 @@ export default function gasMeter({ gasmeter, index }) {
     </>
   );
 }
+//<GasDataTable data={gasmeter.data}/> 

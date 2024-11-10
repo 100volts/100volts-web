@@ -7,7 +7,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { useState, useEffect } from "react";
-import DisplayMeter from "@/components/renderer/workplace/electric/ElectricMeter";
+
 import { ScrollArea } from "@/components/ui/scroll-area";
 import DisplayGas from "./DisplayMeter"
 
