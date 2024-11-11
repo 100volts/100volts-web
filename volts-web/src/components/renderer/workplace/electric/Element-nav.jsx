@@ -14,19 +14,20 @@ export default function ElementNav({ cardData }) {
   const [dataState, setDataState] = useState();
 
   async function onSubmit(values) {
-    //Only for debuging selecting meters
-    /*
     if (cardData) {
-      console.log("Clikerting", values.target.innerText);
+
+      //Only for debuging selecting names
+      //console.log("Clikerting", values.target.innerText);
       setDataState(
         cardData.filter((datag) => datag.name === values.target.innerText)[0]
       );
+      /*
       console.log(
         "Filtering",
         cardData.filter((datag) => datag.name === values.target.innerText)[0]
       );
-    }
       */
+    }
   }
   const handleDataChange = async (event) => {
     event.preventDefault();
