@@ -15,7 +15,7 @@ export default function ElectricMeter({ elmeter, index }) {
         {elmeter ? (
           <>
           <div className="h-full">
-              <Card className=" flex w-full flex-wrap justify-start p-5">
+              <div className=" flex w-full flex-wrap justify-start p-5">
                 <div className="first w-full row">
                   <div className="name-and-options">
                     <div>
@@ -33,7 +33,7 @@ export default function ElectricMeter({ elmeter, index }) {
                   </div>
                   <ElectricGraphs elmeterProp={elmeter} />
                 </div>
-              </Card>
+              </div>
             </div>
           </>
         ) : (
