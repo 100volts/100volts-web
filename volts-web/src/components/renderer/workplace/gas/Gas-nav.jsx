@@ -16,6 +16,8 @@ export default function ElementNav({ cardData }) {
 
   async function onSubmit(values) {
     if (cardData) {
+      //Only for debuging selecting meters
+      /*
       console.log("Clikerting", values.target.innerText);
       setDataState(
         cardData.filter((datag) => datag.name === values.target.innerText)[0]
@@ -24,6 +26,7 @@ export default function ElementNav({ cardData }) {
         "Filtering",
         cardData.filter((datag) => datag.name === values.target.innerText)[0]
       );
+      */
     }
   }
   const handleDataChange = async (event) => {

@@ -7,7 +7,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { useState, useEffect } from "react";
-import ElectricSplashcreen from "@/components/renderer/workplace/electric/ElectricSplashScreen";
 import DisplayMeter from "@/components/renderer/workplace/electric/ElectricMeter";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
@@ -15,6 +14,8 @@ export default function ElementNav({ cardData }) {
   const [dataState, setDataState] = useState();
 
   async function onSubmit(values) {
+    //Only for debuging selecting meters
+    /*
     if (cardData) {
       console.log("Clikerting", values.target.innerText);
       setDataState(
@@ -25,6 +26,7 @@ export default function ElementNav({ cardData }) {
         cardData.filter((datag) => datag.name === values.target.innerText)[0]
       );
     }
+      */
   }
   const handleDataChange = async (event) => {
     event.preventDefault();
