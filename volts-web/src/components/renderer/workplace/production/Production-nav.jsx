@@ -6,6 +6,21 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  AlertCircle,
+  Archive,
+  ArchiveX,
+  File,
+  Inbox,
+  MessagesSquare,
+  Search,
+  Send,
+  ShoppingCart,
+  Trash2,
+  Users2,
+} from "lucide-react"
+import { Input } from "@/components/ui/input";
+
 import { useState, useEffect } from "react";
 import DisplayProductions from "./DisplayProduction";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -29,24 +44,54 @@ export default function ProductionNav({ cardData }) {
       setDataState(cardData[0]);
     }
   }, []);
+
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  // Filter cardData based on searchQuery
+  const filteredData = cardData
+    ? cardData.filter((data) =>
+        data.name.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    : [];
   return (
     <>
-      <div className="flex flex-row m-1">
+      <div className="flex flex-row max-h-[700px] m-1">
         <div className="flex flex-col ">
           {cardData ? (
-            <ScrollArea className="h-96 w-48 rounded-md border">
-              {cardData.map((data, index) => (
-                <Card className="m-1" onClick={onSubmit}>
-                  <CardHeader>{data.name}</CardHeader>
-                  <CardDescription></CardDescription>
-                </Card>
-              ))}
+          <>
+            <form>
+              <div className="relative">
+                <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+                <Input
+                  placeholder="Search"
+                  className="pl-8"
+                  value={searchQuery}
+                  onChange={handleSearchChange}
+                />
+              </div>
+            </form>
+            <ScrollArea className="h-screen w-60 max-h-[700px]">
+              {filteredData.length > 0 ? (
+                filteredData.map((data, index) => (
+                  <Card key={index} className="m-1" onClick={onSubmit}>
+                    <CardHeader>{data.name}</CardHeader>
+                    <CardDescription>{/* Add description here if needed */}</CardDescription>
+                  </Card>
+                ))
+              ) : (
+                <p className="m-2 text-muted-foreground">No results found</p>
+              )}
             </ScrollArea>
-          ) : (
-            <a>No data</a>
-          )}
+          </>
+        ) : (
+          <p>No data</p>
+        )}
         </div>
-        <div className="flex w-full flex-start">
+        <div className="flex max-h-[700px]">
           {cardData ? <DisplayProductions production={dataState} /> : <></>}
         </div>
       </div>

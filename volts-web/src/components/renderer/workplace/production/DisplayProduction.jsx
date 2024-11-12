@@ -10,9 +10,9 @@ export default function DisplayProductions({ production }) {
   if (production) {
     return (
       <>
-        <div className="flex h-96 w-full">
+        <div className="flex h-full w-full">
           <div key={production.name}>
-            <Card className="h-96">
+            <Card className="h-full">
               <CardHeader>{production.name}</CardHeader>
               <CardContent className="flex flex-col md:flex-row">
                 <div className=" w-full h-full">
