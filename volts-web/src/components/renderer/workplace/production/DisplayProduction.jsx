@@ -9,12 +9,13 @@ import YearlyProductionChart from "./ui/YearlyProductionChart";
 export default function DisplayProductions({ production }) {
   if (production) {
     return (
+      
       <>
         <div className="flex h-full w-full">
           <div key={production.name}>
-            <Card className="h-full">
-              <CardHeader>{production.name}</CardHeader>
-              <CardContent className="flex flex-col md:flex-row">
+            <div className="h-full m-1 p-1">
+              <h1>{production.name}</h1>
+              <a className="flex flex-col md:flex-row">
                 <div className=" w-full h-full">
                   <a>
                     Discription:
@@ -52,8 +53,8 @@ export default function DisplayProductions({ production }) {
                   <OptionsButtons production={production} />
                   <DeleteButton production={production} />
                 </div>
-              </CardContent>
-            </Card>
+              </a>
+            </div>
           </div>
         </div>
       </>
