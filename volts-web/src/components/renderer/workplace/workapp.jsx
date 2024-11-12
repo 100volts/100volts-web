@@ -30,7 +30,7 @@ const Dashboard = () => (
 const Electric = () => (
   <>
     <TokkenCheck />
-    <h1>Electric</h1>
+    <h1>Electricity</h1>
     <div>
       <WorplaysMeters />
     </div>
