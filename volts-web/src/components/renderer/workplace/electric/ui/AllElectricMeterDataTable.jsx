@@ -13,7 +13,7 @@ export default function AllElectricMeterDataTable({ elmeterProp }) {
   if(elmeterProp.electric_meter_data){
   return (
     <>
-      <Table>
+      <Table className="mt-8">
         <TableCaption>Electric meter last read data.</TableCaption>
         <TableHeader>
           <TableRow>

@@ -1,24 +1,11 @@
 import {
   Card,
-  CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
-import {
-  AlertCircle,
-  Archive,
-  ArchiveX,
-  File,
-  Inbox,
-  MessagesSquare,
-  Search,
-  Send,
-  ShoppingCart,
-  Trash2,
-  Users2,
-} from "lucide-react"
+import {  Search,} from "lucide-react"
+import { cn } from "@/lib/utils"
+
 import { Input } from "@/components/ui/input";
 import {
   ResizableHandle,
@@ -31,7 +18,8 @@ import DisplayProductions from "./DisplayProduction";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 export default function ProductionNav({ cardData }) {
-  const [dataState, setDataState] = useState();
+  
+  const [dataState, setDataState] = useState(" ");
   async function onSubmit(values) {
     if (cardData) {
       setDataState(
@@ -66,12 +54,12 @@ export default function ProductionNav({ cardData }) {
     <>
     <ResizablePanelGroup direction="horizontal" > 
   
-      <div className="flex flex-row max-h-[700px] m-1">
+      <div className="flex h-screen flex-row max-h-[700px] m-1">
       <ResizablePanel defaultSize={20} 
           minSize={15}
           maxSize={35}
       >
-        <div className="flex flex-col ">
+        <div className="h-screen max-h-[700px] flex flex-col">
           {cardData ? (
           <>
             <form className="m-1">
@@ -86,10 +74,13 @@ export default function ProductionNav({ cardData }) {
               </div>
             </form>
             <Separator className="m-1" />
-            <ScrollArea className="h-screen  max-h-[700px]">
+            <ScrollArea className="h-screen max-h-[700px]">
               {filteredData.length > 0 ? (
                 filteredData.map((data, index) => (
-                  <Card key={index} className="m-1" onClick={onSubmit}>
+                  <Card key={index}                   className={cn(
+                    "m-1 cursor-pointer transition-colors",
+                    dataState.name === data.name && "bg-muted"
+                  )} onClick={onSubmit}>
                     <CardHeader>{data.name}</CardHeader>
                     <CardDescription>{/* Add description here if needed */}</CardDescription>
                   </Card>
@@ -110,7 +101,7 @@ export default function ProductionNav({ cardData }) {
                     maxSize={85}
 
         >
-        <div className="flex max-h-[700px]">
+        <div className="max-h-[700px]">
           {cardData ? <DisplayProductions production={dataState} /> : <></>}
         </div>
         </ResizablePanel>

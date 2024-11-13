@@ -46,6 +46,7 @@ export function initElectricityData(){
       console.log(error);
       setError(error.message);
     } finally {
+      initLoading.set(initLoading.get()+100)
         localStorage.setItem("electricity_store",JSON.stringify(elMeterDashDataStore.get()));
       setLoading(false);
     }
@@ -61,7 +62,6 @@ export function initElectricityData(){
         daily_tariff_data,
         lastWeekEnergy
       } = elmeter;
-      initLoading.set(initLoading.get()+10)
       return {
         name,
         address,
