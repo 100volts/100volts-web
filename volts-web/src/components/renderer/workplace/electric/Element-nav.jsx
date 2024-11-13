@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {Search} from "lucide-react"
 import {
   ResizableHandle,
   ResizablePanel,
@@ -14,6 +15,8 @@ import {
 import { useState, useEffect } from "react";
 import DisplayMeter from "@/components/renderer/workplace/electric/ElectricMeter";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Input } from "@/components/ui/input";
+import { Separator } from "@/components/ui/separator"
 
 export default function ElementNav({ cardData }) {
   const [dataState, setDataState] = useState();
@@ -34,6 +37,19 @@ export default function ElementNav({ cardData }) {
       setDataState(cardData[0]);
     }
   }, []);
+
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  // Filter cardData based on searchQuery
+  const filteredData = cardData
+    ? cardData.filter((data) =>
+        data.name.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    : [];
   return (
     <>
     <ResizablePanelGroup direction="horizontal" > 
@@ -44,16 +60,36 @@ export default function ElementNav({ cardData }) {
       >
         <div className="flex flex-col">
         <ScrollArea className="h-screen max-h-[700px]">
-            {cardData ? (
-              cardData.map((data, index) => (
-                <Card key={index} className="m-1" onClick={onSubmit}>
-                  <CardHeader>{data.name}</CardHeader>
-                  <CardDescription></CardDescription>
-                </Card>
-              ))
-            ) : (
-              <a>No data</a>
-            )}
+        {cardData ? (
+          <>
+            <form className="m-1">
+              <div className="relative">
+                <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+                <Input
+                  placeholder="Search"
+                  className="pl-8"
+                  value={searchQuery}
+                  onChange={handleSearchChange}
+                />
+              </div>
+            </form>
+            <Separator className="m-1" />
+            <ScrollArea className="h-screen max-h-[700px]">
+              {filteredData.length > 0 ? (
+                filteredData.map((data, index) => (
+                  <Card key={index} className="m-1" onClick={onSubmit}>
+                    <CardHeader>{data.name}</CardHeader>
+                    <CardDescription>{/* Add description here if needed */}</CardDescription>
+                  </Card>
+                ))
+              ) : (
+                <p className="m-2 text-muted-foreground">No results found</p>
+              )}
+            </ScrollArea>
+          </>
+        ) : (
+          <p>No data</p>
+        )}
           </ScrollArea>
         </div>
         </ResizablePanel>
