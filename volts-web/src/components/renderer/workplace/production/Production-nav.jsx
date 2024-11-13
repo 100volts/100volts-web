@@ -67,12 +67,12 @@ export default function ProductionNav({ cardData }) {
     <>
     <ResizablePanelGroup direction="horizontal" > 
   
-      <div className="flex flex-row max-h-[700px] m-1">
+      <div className="flex h-screen flex-row max-h-[700px] m-1">
       <ResizablePanel defaultSize={20} 
           minSize={15}
           maxSize={35}
       >
-        <div className="flex flex-col">
+        <div className="h-screen max-h-[700px] flex flex-col">
           {cardData ? (
           <>
             <form className="m-1">

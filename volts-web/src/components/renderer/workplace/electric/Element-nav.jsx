@@ -53,13 +53,12 @@ export default function ElementNav({ cardData }) {
   return (
     <>
     <ResizablePanelGroup direction="horizontal" > 
-      <div className="flex flex-row max-h-[700px]  m-1">
+      <div className="flex flex-row max-h-[700px] m-1">
       <ResizablePanel defaultSize={10} 
           minSize={15}
           maxSize={45}
       >
-        <div className="flex flex-col">
-        <ScrollArea className="h-screen max-h-[700px]">
+        <div className="h-screen max-h-[700px] flex flex-col">
         {cardData ? (
           <>
             <form className="m-1">
@@ -90,7 +89,6 @@ export default function ElementNav({ cardData }) {
         ) : (
           <p>No data</p>
         )}
-          </ScrollArea>
         </div>
         </ResizablePanel>
         <ResizableHandle  withHandle/>

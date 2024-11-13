@@ -4,6 +4,7 @@ import {
   Bar,
   BarChart,
   Label,
+  LabelList,
   Rectangle,
   ReferenceLine,
   XAxis,
@@ -65,7 +66,14 @@ export default function Charts({data}) {
                         radius={5}
                         fillOpacity={0.6}
                         activeBar={<Rectangle fillOpacity={0.8} />}
+                      >
+                      <LabelList
+                          position="mid"
+                          offset={12}
+                          className="fill-foreground"
+                          fontSize={12}
                       />
+                      </Bar>
                       <XAxis
                         dataKey="date"
                         tickLine={false}
