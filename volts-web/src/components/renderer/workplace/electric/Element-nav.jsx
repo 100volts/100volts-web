@@ -61,6 +61,7 @@ export default function ElementNav({ cardData }) {
         <div className="h-screen max-h-[700px] flex flex-col">
         {cardData ? (
           <>
+            <Separator />
             <form className="m-1">
               <div className="relative">
                 <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -96,12 +97,15 @@ export default function ElementNav({ cardData }) {
                     minSize={15}
                     maxSize={95}
         >
+          <Separator />
         <div className="flex max-h-[700px] ">
           {cardData ? <DisplayMeter elmeter={dataState} index={1} /> : <></>}
         </div>
         </ResizablePanel>
+        <Separator orientation="horisontal"/>
       </div>
       </ResizablePanelGroup>
+      <Separator/>
     </>
   );
 }

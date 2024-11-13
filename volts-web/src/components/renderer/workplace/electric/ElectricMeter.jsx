@@ -5,7 +5,7 @@ import AllElectricMeterDataTable from "@/components/renderer/workplace/electric/
 import { Card } from "@/components/ui/card";
 import WeeklyEnergyChart from "@/components/renderer/dashboard/WeeklyEnergyChart";
 import { ScrollArea } from "@/components/ui/scroll-area";
-//            <ScrollArea className="h-96">            </ScrollArea>
+import { Separator } from "@/components/ui/separator"
 
 
 export default function ElectricMeter({ elmeter, index }) {
@@ -22,6 +22,7 @@ export default function ElectricMeter({ elmeter, index }) {
                           {elmeter.name} - {elmeter.address}
                         </h2>
                       </div>
+                      <Separator className="m-1" />
                       <OptionsButtons elmeter={elmeter} />
                     </div>
                     <div className="flex flex-row">
@@ -30,10 +31,11 @@ export default function ElectricMeter({ elmeter, index }) {
                       </div>
                       <AllElectricMeterDataTable elmeterProp={elmeter} />
                     </div>
-                    <ElectricGraphs elmeterProp={elmeter} />
+                    <ElectricGraphs className="mr-2" elmeterProp={elmeter} />
                   </div>
                 </div>
               </div>
+              <Separator />
         </div>
       </>
     );

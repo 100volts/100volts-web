@@ -19,9 +19,9 @@ export default function ElectricGraphs({ elmeterProp }) {
   ];
   return (
     <>
-      <div className="flex ">
+      <div className="flex justify-center ml-3">
         <div
-          className="pie_chart_with_needle flex d:flex-col flex-row"
+          className="pie_chart_with_needle flex d:flex-col flex-row ml-8"
           style={{
             display: "flex",
             justifyItems: "center",
