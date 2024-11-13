@@ -9,7 +9,7 @@ export default function ElectricMeter({ elmeter, index }) {
   if (elmeter) {
     return (
       <>
-        <div  className=" w-full" key={index}>
+        <div  className="w-full" key={index}>
             <div className="h-full">
                 <div className=" flex w-full flex-wrap justify-start p-5">
                   <div className="first w-full row">

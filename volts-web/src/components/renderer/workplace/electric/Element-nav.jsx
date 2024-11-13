@@ -1,10 +1,7 @@
 import {
   Card,
-  CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 import {Search} from "lucide-react"
 import {
@@ -20,13 +17,12 @@ import { cn } from "@/lib/utils"
 import { Separator } from "@/components/ui/separator"
 
 export default function ElementNav({ cardData }) {
-  const [dataState, setDataState] = useState();
+  const [dataState, setDataState] = useState(" ");
   async function onSubmit(values) {
     if (cardData) {
       setDataState(
         cardData.filter((datag) => datag.name === values.target.innerText)[0]
       );
-      console.log("dataState",dataState)
     }
   }
   const handleDataChange = async (event) => {

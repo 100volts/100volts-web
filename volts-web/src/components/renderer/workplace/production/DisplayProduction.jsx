@@ -7,16 +7,18 @@ import OptionsButtons from "./ui/OptionsButtons";
 import YearlyProductionChart from "./ui/YearlyProductionChart";
 
 export default function DisplayProductions({ production }) {
-  if (production) {
+  if (production && production.units) {
     return (
-      
+      // /            <h1>{production.name}</h1>
+
       <>
-        <div className="flex h-full w-full">
+        <div className="h-full">
           <div key={production.name}>
+          <h1>{production.name}</h1>
+
             <div className="h-full m-1 p-1">
-              <h1>{production.name}</h1>
               <a className="flex flex-col md:flex-row">
-                <div className=" w-full h-full">
+                <div className="w-full h-full">
                   <a>
                     Discription:
                     <br /> {production.description}
@@ -42,11 +44,9 @@ export default function DisplayProductions({ production }) {
                   ))}
                 </div>
                 <Last10DataTable
-                  className="flex w-full"
                   data={production.last10}
                 />
                 <YearlyProductionChart
-                  className="w-full"
                   chartData={production.monthlyData}
                 />
                 <div key={production.name}>
