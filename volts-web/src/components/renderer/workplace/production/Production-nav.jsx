@@ -20,12 +20,18 @@ import {
   Users2,
 } from "lucide-react"
 import { Input } from "@/components/ui/input";
-
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "@/components/ui/resizable"
+import { Separator } from "@/components/ui/separator"
 import { useState, useEffect } from "react";
 import DisplayProductions from "./DisplayProduction";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 export default function ProductionNav({ cardData }) {
+  
   const [dataState, setDataState] = useState();
   async function onSubmit(values) {
     if (cardData) {
@@ -59,11 +65,17 @@ export default function ProductionNav({ cardData }) {
     : [];
   return (
     <>
+    <ResizablePanelGroup direction="horizontal" > 
+  
       <div className="flex flex-row max-h-[700px] m-1">
-        <div className="flex flex-col ">
+      <ResizablePanel defaultSize={20} 
+          minSize={15}
+          maxSize={35}
+      >
+        <div className="flex flex-col">
           {cardData ? (
           <>
-            <form>
+            <form className="m-1">
               <div className="relative">
                 <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
                 <Input
@@ -74,7 +86,8 @@ export default function ProductionNav({ cardData }) {
                 />
               </div>
             </form>
-            <ScrollArea className="h-screen w-60 max-h-[700px]">
+            <Separator className="m-1" />
+            <ScrollArea className="h-screen max-h-[700px]">
               {filteredData.length > 0 ? (
                 filteredData.map((data, index) => (
                   <Card key={index} className="m-1" onClick={onSubmit}>
@@ -91,10 +104,19 @@ export default function ProductionNav({ cardData }) {
           <p>No data</p>
         )}
         </div>
+        </ResizablePanel>
+        <ResizableHandle  withHandle/>
+        <ResizablePanel defaultSize={80}
+                    minSize={15}
+                    maxSize={85}
+
+        >
         <div className="flex max-h-[700px]">
           {cardData ? <DisplayProductions production={dataState} /> : <></>}
         </div>
+        </ResizablePanel>
       </div>
+      </ResizablePanelGroup>
     </>
   );
 }

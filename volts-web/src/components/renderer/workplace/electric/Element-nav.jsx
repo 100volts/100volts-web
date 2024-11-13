@@ -6,27 +6,22 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "@/components/ui/resizable"
 import { useState, useEffect } from "react";
 import DisplayMeter from "@/components/renderer/workplace/electric/ElectricMeter";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 export default function ElementNav({ cardData }) {
   const [dataState, setDataState] = useState();
-
   async function onSubmit(values) {
     if (cardData) {
-
-      //Only for debuging selecting names
-      //console.log("Clikerting", values.target.innerText);
       setDataState(
-        cardData.filter((datag) => datag.name === values.target.innerText)[0]
+        cardData.filter((datag) => datag.name === values.target.innerText)[1]
       );
-      /*
-      console.log(
-        "Filtering",
-        cardData.filter((datag) => datag.name === values.target.innerText)[0]
-      );
-      */
     }
   }
   const handleDataChange = async (event) => {
@@ -39,11 +34,15 @@ export default function ElementNav({ cardData }) {
       setDataState(cardData[0]);
     }
   }, []);
-  //max-h-svh 
   return (
     <>
+    <ResizablePanelGroup direction="horizontal" > 
       <div className="flex flex-row max-h-[700px]  m-1">
-        <div className=" ">
+      <ResizablePanel defaultSize={10} 
+          minSize={15}
+          maxSize={45}
+      >
+        <div className="flex flex-col">
         <ScrollArea className="h-screen max-h-[700px]">
             {cardData ? (
               cardData.map((data, index) => (
@@ -57,10 +56,18 @@ export default function ElementNav({ cardData }) {
             )}
           </ScrollArea>
         </div>
+        </ResizablePanel>
+        <ResizableHandle  withHandle/>
+        <ResizablePanel defaultSize={90}
+                    minSize={15}
+                    maxSize={95}
+        >
         <div className="flex max-h-[700px] ">
-          {cardData ? <DisplayMeter className="w-full max-h-[700px]" elmeter={dataState} index={1} /> : <></>}
+          {cardData ? <DisplayMeter elmeter={dataState} index={1} /> : <></>}
         </div>
+        </ResizablePanel>
       </div>
+      </ResizablePanelGroup>
     </>
   );
 }
