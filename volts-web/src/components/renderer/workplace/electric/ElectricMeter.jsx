@@ -1,10 +1,7 @@
-import DayilyTatiff from "@/components/renderer/workplace/electric/ui/DayilyTatiff";
 import OptionsButtons from "@/components/renderer/workplace/electric/ui/OptionsButtons";
 import ElectricGraphs from "@/components/renderer/workplace/electric/ui/ElectricGraphs";
 import AllElectricMeterDataTable from "@/components/renderer/workplace/electric/ui/AllElectricMeterDataTable";
-import { Card } from "@/components/ui/card";
 import WeeklyEnergyChart from "@/components/renderer/dashboard/WeeklyEnergyChart";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator"
 
 
