@@ -1,5 +1,5 @@
 import { PureComponent } from "react";
-import { PieChart, Pie, Cell } from "recharts";
+import { PieChart, Pie, Cell, Tooltip } from "recharts";
 
 const RADIAN = Math.PI / 180;
 
@@ -72,16 +72,17 @@ class Examplec extends PureComponent {
               data={data}
               cx={cx}
               cy={cy}
+              isAnimationActive={false}
               innerRadius={iR}
               outerRadius={oR}
               fill="#8884d8"
               stroke="none"
-              label
             >
               {data.map((entry, index) => (
                 <Cell key={index} fill={entry.color} />
               ))}
             </Pie>
+            <Tooltip />
             {needle(value, data, cx, cy, iR, oR, "#d0d000")}
           </PieChart>
           <a>{niddleValue}</a>

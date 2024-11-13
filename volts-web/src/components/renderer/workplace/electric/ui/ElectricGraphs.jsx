@@ -3,19 +3,19 @@ import NeedleGraphics from "@/pages/chart/NeedleGraphic";
 export default function ElectricGraphs({ elmeterProp }) {
   const dataVoltage = [{ name: "A", value: 240, color: "#011F26" }];
   const dataCurent = [
-    { name: "A", value: 100, color: "#011F26" },
-    { name: "B", value: 250, color: "#025E73" },
-    { name: "C", value: 50, color: "#F2A71B" },
+    { name: "Low value", value: 100, color: "#011F26" },
+    { name: "Operation value", value: 250, color: "#025E73" },
+    { name: "High value", value: 50, color: "#F2A71B" },
   ];
   const dataPower = [
-    { name: "A", value: 20, color: "#011F26" },
-    { name: "B", value: 65, color: "#025E73" },
-    { name: "C", value: 15, color: "#F2A71B" },
+    { name: "Low value", value: 20, color: "#011F26" },
+    { name: "Operation value", value: 65, color: "#025E73" },
+    { name: "High value", value: 15, color: "#F2A71B" },
   ];
   const dataG = [
-    { name: "A", value: 35, color: "#011F26" },
-    { name: "B", value: 35, color: "#025E73" },
-    { name: "C", value: 25, color: "#F2A71B" },
+    { name: "Low value", value: 35, color: "#011F26" },
+    { name: "Operation value", value: 35, color: "#025E73" },
+    { name: "High value", value: 25, color: "#F2A71B" },
   ];
   return (
     <>
