@@ -81,7 +81,7 @@ export default function ElementNav({ cardData }) {
                   <Card key={index} onClick={onSubmit}
                   className={cn(
                     "m-1 cursor-pointer transition-colors",
-                    dataState.name === data.name? "bg-gray-300 dark:bg-red-900" : ""
+                    dataState.name === data.name && "bg-muted"
                   )}
                   >
                     <CardHeader>{data.name}</CardHeader>
