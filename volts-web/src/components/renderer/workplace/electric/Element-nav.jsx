@@ -20,7 +20,7 @@ export default function ElementNav({ cardData }) {
   async function onSubmit(values) {
     if (cardData) {
       setDataState(
-        cardData.filter((datag) => datag.name === values.target.innerText)[1]
+        cardData.filter((datag) => datag.name === values.target.innerText)[0]
       );
     }
   }
