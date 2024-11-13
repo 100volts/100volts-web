@@ -1,7 +1,7 @@
 import NeedleGraphics from "@/pages/chart/NeedleGraphic";
 
 export default function ElectricGraphs({ elmeterProp }) {
-  const dataVoltage = [{ name: "A", value: 240, color: "#011F26" }];
+  const dataVoltage = [{ name: "Operation value", value: 240, color: "#011F26" }];
   const dataCurent = [
     { name: "Low value", value: 100, color: "#011F26" },
     { name: "Operation value", value: 250, color: "#025E73" },

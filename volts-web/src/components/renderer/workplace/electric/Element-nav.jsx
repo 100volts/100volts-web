@@ -16,6 +16,7 @@ import { useState, useEffect } from "react";
 import DisplayMeter from "@/components/renderer/workplace/electric/ElectricMeter";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils"
 import { Separator } from "@/components/ui/separator"
 
 export default function ElementNav({ cardData }) {
@@ -25,6 +26,7 @@ export default function ElementNav({ cardData }) {
       setDataState(
         cardData.filter((datag) => datag.name === values.target.innerText)[0]
       );
+      console.log("dataState",dataState)
     }
   }
   const handleDataChange = async (event) => {
@@ -44,7 +46,6 @@ export default function ElementNav({ cardData }) {
     setSearchQuery(e.target.value);
   };
 
-  // Filter cardData based on searchQuery
   const filteredData = cardData
     ? cardData.filter((data) =>
         data.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -77,7 +78,12 @@ export default function ElementNav({ cardData }) {
             <ScrollArea className="h-screen max-h-[700px]">
               {filteredData.length > 0 ? (
                 filteredData.map((data, index) => (
-                  <Card key={index} className="m-1" onClick={onSubmit}>
+                  <Card key={index} onClick={onSubmit}
+                  className={cn(
+                    "m-1 cursor-pointer transition-colors",
+                    dataState.name === data.name? "bg-gray-300 dark:bg-red-900" : ""
+                  )}
+                  >
                     <CardHeader>{data.name}</CardHeader>
                     <CardDescription>{/* Add description here if needed */}</CardDescription>
                   </Card>
