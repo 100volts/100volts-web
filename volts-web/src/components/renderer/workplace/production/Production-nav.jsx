@@ -30,6 +30,8 @@ import { Filter, Check } from 'lucide-react'
 export default function ProductionNav({ cardData }) {
   console.log("cardData",cardData)
   const [selectedUnits, setSelectedUnits] = useState([])
+  const [selectedGroups, setSelectedGroups] = useState([])
+  const [groups, setGroups] = useState([])
   const [dataState, setDataState] = useState(" ");
   async function onSubmit(values) {
     if (cardData) {
@@ -42,25 +44,39 @@ export default function ProductionNav({ cardData }) {
     event.preventDefault();
     form.handleSubmit(onSubmit)(event.target.key);
   };
-
+  console.log("groups",groups)
   useEffect(() => {
+    let updatedGroups = [];
     if (cardData) {
       setDataState(cardData[0]);
+      cardData.forEach(dataObj => {
+        dataObj.groups.forEach(groupObj => {
+         if (!updatedGroups.some(ggroup => ggroup.name === groupObj.name)) {
+            updatedGroups.push(groupObj); 
+          }
+        });
+      });
+      setGroups(updatedGroups)
+      console.log("selectedGroups",selectedGroups)
+
     }
-  }, []);
+  }, [cardData]);
 
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
   };
-console.log("selectedUnits",selectedUnits)
+console.log("selectedGroups",selectedGroups)
   // Filter cardData based on searchQuery
   const units = ["Unit", "kilogram", "liter"]
   const filteredData = cardData
     ? cardData.filter((data) =>
         data.name.toLowerCase().includes(searchQuery.toLowerCase())
         &&(selectedUnits.length === 0 || selectedUnits.includes(data.units.name)) 
+        &&(selectedGroups.length === 0 || selectedGroups.some(selectedGroup =>
+          data.groups.some(ggroup => ggroup.name === selectedGroup.name)
+        ))
       )
     : [];
 //&& data.groups.filter(pGroup=>pGroup.name==selectedUnits)
@@ -71,8 +87,14 @@ console.log("selectedUnits",selectedUnits)
           : [...prev, unit]
       )
     }
+    const toggleGroup = (unit) => {
+      setSelectedGroups(prev => 
+        prev.includes(unit) 
+          ? prev.filter(u => u !== unit) 
+          : [...prev, unit]
+      )
+    }
   
-    
   return (
     <>
     <ResizablePanelGroup direction="horizontal" > 
@@ -96,28 +118,52 @@ console.log("selectedUnits",selectedUnits)
                 />
               </div>
             </form>
-            <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="w-full justify-start">
-                <Filter className="mr-2 h-4 w-4" />
-                {selectedUnits.length > 0 ? `${selectedUnits.length} selected` : 'Filter Units'}
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-[180px]">
-              <DropdownMenuLabel>Select Units</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              {units.map((unit) => (
-                <DropdownMenuCheckboxItem
-                  key={unit}
-                  checked={selectedUnits.includes(unit)}
-                  onCheckedChange={() => toggleUnit(unit)}
-                >
-                  {unit}
-                  {selectedUnits.includes(unit) && <Check className="ml-auto h-4 w-4" />}
-                </DropdownMenuCheckboxItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
+            <div>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" className="w-full justify-start">
+                    <Filter className="mr-2 h-4 w-4" />
+                    {selectedUnits.length > 0 ? `${selectedUnits.length} selected` : 'Filter Units'}
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-[180px]">
+                  <DropdownMenuLabel>Select Units</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  {units.map((unit) => (
+                    <DropdownMenuCheckboxItem
+                      key={unit}
+                      checked={selectedUnits.includes(unit)}
+                      onCheckedChange={() => toggleUnit(unit)}
+                    >
+                      {unit}
+                      {selectedUnits.includes(unit) && <Check className="ml-auto h-4 w-4" />}
+                    </DropdownMenuCheckboxItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" className="w-full justify-start">
+                    <Filter className="mr-2 h-4 w-4" />
+                    {selectedGroups.length > 0 ? `${selectedGroups.length} selected` : 'Filter Group'}
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-[180px]">
+                  <DropdownMenuLabel>Select Group</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  {groups.map((group) => (
+                    <DropdownMenuCheckboxItem
+                      key={group.name}
+                      checked={selectedGroups.includes(group)}
+                      onCheckedChange={() => toggleGroup(group)}
+                    >
+                      {group.name}
+                      {selectedGroups.includes(group) && <Check className="ml-auto h-4 w-4" />}
+                    </DropdownMenuCheckboxItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
             <Separator className="m-1" />
             <ScrollArea className="h-screen max-h-[700px]">
               {filteredData.length > 0 ? (
