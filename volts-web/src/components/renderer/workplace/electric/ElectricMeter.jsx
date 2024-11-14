@@ -21,7 +21,6 @@ import {
 } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
-
 export default function ElectricMeter({ elmeter, index }) {
   if (elmeter) {
     return (

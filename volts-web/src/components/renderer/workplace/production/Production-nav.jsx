@@ -16,9 +16,20 @@ import { Separator } from "@/components/ui/separator"
 import { useState, useEffect } from "react";
 import DisplayProductions from "./DisplayProduction";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Button } from "@/components/ui/button"
+import { 
+  DropdownMenu, 
+  DropdownMenuCheckboxItem, 
+  DropdownMenuContent, 
+  DropdownMenuLabel, 
+  DropdownMenuSeparator, 
+  DropdownMenuTrigger 
+} from "@/components/ui/dropdown-menu"
+import { Filter, Check } from 'lucide-react'
 
 export default function ProductionNav({ cardData }) {
-  
+  console.log("cardData",cardData)
+  const [selectedUnits, setSelectedUnits] = useState([])
   const [dataState, setDataState] = useState(" ");
   async function onSubmit(values) {
     if (cardData) {
@@ -43,13 +54,25 @@ export default function ProductionNav({ cardData }) {
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
   };
-
+console.log("selectedUnits",selectedUnits)
   // Filter cardData based on searchQuery
+  const units = ["Unit", "kilogram", "liter"]
   const filteredData = cardData
     ? cardData.filter((data) =>
         data.name.toLowerCase().includes(searchQuery.toLowerCase())
+        &&(selectedUnits.length === 0 || selectedUnits.includes(data.units.name)) 
       )
     : [];
+//&& data.groups.filter(pGroup=>pGroup.name==selectedUnits)
+    const toggleUnit = (unit) => {
+      setSelectedUnits(prev => 
+        prev.includes(unit) 
+          ? prev.filter(u => u !== unit) 
+          : [...prev, unit]
+      )
+    }
+  
+    
   return (
     <>
     <ResizablePanelGroup direction="horizontal" > 
@@ -73,11 +96,34 @@ export default function ProductionNav({ cardData }) {
                 />
               </div>
             </form>
+            <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" className="w-full justify-start">
+                <Filter className="mr-2 h-4 w-4" />
+                {selectedUnits.length > 0 ? `${selectedUnits.length} selected` : 'Filter Units'}
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-[180px]">
+              <DropdownMenuLabel>Select Units</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              {units.map((unit) => (
+                <DropdownMenuCheckboxItem
+                  key={unit}
+                  checked={selectedUnits.includes(unit)}
+                  onCheckedChange={() => toggleUnit(unit)}
+                >
+                  {unit}
+                  {selectedUnits.includes(unit) && <Check className="ml-auto h-4 w-4" />}
+                </DropdownMenuCheckboxItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
             <Separator className="m-1" />
             <ScrollArea className="h-screen max-h-[700px]">
               {filteredData.length > 0 ? (
                 filteredData.map((data, index) => (
-                  <Card key={index}                   className={cn(
+                  <Card key={index}
+                  className={cn(
                     "m-1 cursor-pointer transition-colors",
                     dataState.name === data.name && "bg-muted"
                   )} onClick={onSubmit}>
