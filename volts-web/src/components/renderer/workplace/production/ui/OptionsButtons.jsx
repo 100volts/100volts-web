@@ -25,8 +25,8 @@ export default function OptionsButtons({ production }) {
 
   return (
     <>
-      <div>
-        <Dialog className="flex">
+      <div className="flex content-start">
+        <Dialog>
           <DialogTrigger>
             <Button
               variant="outline"
@@ -35,7 +35,7 @@ export default function OptionsButtons({ production }) {
               <a style={{ width: "25px" }}>i</a>
             </Button>
           </DialogTrigger>
-          <DialogContent style={{ width: "50%", maxWidth: "100%" }}>
+          <DialogContent>
             <DialogHeader>
               <DialogTitle>Peoduction reports</DialogTitle>
               <DialogDescription>Peoduction reports</DialogDescription>
@@ -44,7 +44,7 @@ export default function OptionsButtons({ production }) {
           </DialogContent>
         </Dialog>
 
-        <Dialog className="flex">
+        <Dialog>
           <DialogTrigger>
             <Button variant="outline" onClick={() => goToSettings(production)}>
               <svg

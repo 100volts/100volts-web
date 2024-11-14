@@ -2,13 +2,30 @@ import OptionsButtons from "@/components/renderer/workplace/electric/ui/OptionsB
 import ElectricGraphs from "@/components/renderer/workplace/electric/ui/ElectricGraphs";
 import AllElectricMeterDataTable from "@/components/renderer/workplace/electric/ui/AllElectricMeterDataTable";
 import WeeklyEnergyChart from "@/components/renderer/dashboard/WeeklyEnergyChart";
-import { Separator } from "@/components/ui/separator"
+import WeekklyElectricLineChrt from "@/components/renderer/dashboard/WeeklyElectricLineChart";
 
+import { Separator } from "@/components/ui/separator"
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 export default function ElectricMeter({ elmeter, index }) {
   if (elmeter) {
     return (
       <>
+      <ScrollArea className="h-screen max-h-[700px]">
         <div  className="w-full" key={index}>
             <div className="h-full">
                 <div className=" flex w-full flex-wrap justify-start p-5">
@@ -24,7 +41,18 @@ export default function ElectricMeter({ elmeter, index }) {
                     </div>
                     <div className="flex flex-row">
                       <div className="w-full">
-                        <WeeklyEnergyChart data={elmeter.lastWeekEnergy} />
+                        <Tabs defaultValue="barChart">
+                          <TabsList className="grid w-full grid-cols-2">
+                            <TabsTrigger value="barChart">Bar chart</TabsTrigger>
+                            <TabsTrigger value="lineChart">Line chart</TabsTrigger>
+                          </TabsList>
+                          <TabsContent value="barChart">
+                            <WeeklyEnergyChart data={elmeter.lastWeekEnergy} />
+                          </TabsContent>
+                          <TabsContent value="lineChart">
+                            <WeekklyElectricLineChrt data={elmeter.lastWeekEnergy} />
+                          </TabsContent>
+                        </Tabs>
                       </div>
                       <AllElectricMeterDataTable elmeterProp={elmeter} />
                     </div>
@@ -34,6 +62,7 @@ export default function ElectricMeter({ elmeter, index }) {
               </div>
               <Separator />
         </div>
+        </ScrollArea>
       </>
     );
   }
