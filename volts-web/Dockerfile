@@ -13,8 +13,6 @@ FROM base AS build-deps
 RUN npm install
 
 FROM build-deps AS build
-WORKDIR /app
-COPY . .
 RUN npm run build
 
 FROM base AS runtime
