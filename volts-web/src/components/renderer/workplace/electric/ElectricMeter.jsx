@@ -11,11 +11,22 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { ScrollArea } from "@/components/ui/scroll-area";
+
 
 export default function ElectricMeter({ elmeter, index }) {
   if (elmeter) {
     return (
       <>
+      <ScrollArea className="h-screen max-h-[700px]">
         <div  className="w-full" key={index}>
             <div className="h-full">
                 <div className=" flex w-full flex-wrap justify-start p-5">
@@ -52,6 +63,7 @@ export default function ElectricMeter({ elmeter, index }) {
               </div>
               <Separator />
         </div>
+        </ScrollArea>
       </>
     );
   }
