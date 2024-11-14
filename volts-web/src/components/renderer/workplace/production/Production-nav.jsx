@@ -53,7 +53,6 @@ export default function ProductionNav({ cardData }) {
   return (
     <>
     <ResizablePanelGroup direction="horizontal" > 
-  
       <div className="flex h-screen flex-row max-h-[700px] m-1">
       <ResizablePanel defaultSize={20} 
           minSize={15}
@@ -62,6 +61,7 @@ export default function ProductionNav({ cardData }) {
         <div className="h-screen max-h-[700px] flex flex-col">
           {cardData ? (
           <>
+          <Separator />
             <form className="m-1">
               <div className="relative">
                 <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -105,8 +105,10 @@ export default function ProductionNav({ cardData }) {
           {cardData ? <DisplayProductions production={dataState} /> : <></>}
         </div>
         </ResizablePanel>
+        <Separator orientation="horisontal"/>
       </div>
       </ResizablePanelGroup>
+      <Separator />
     </>
   );
 }

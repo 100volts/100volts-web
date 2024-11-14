@@ -5,6 +5,7 @@ import DeleteButton from "./ui/DeleteButton";
 import Last10DataTable from "./ui/Last10DataTable";
 import OptionsButtons from "./ui/OptionsButtons";
 import YearlyProductionChart from "./ui/YearlyProductionChart";
+import { Separator } from "@/components/ui/separator"
 
 export default function DisplayProductions({ production }) {
   if (production && production.units) {
@@ -12,10 +13,15 @@ export default function DisplayProductions({ production }) {
       // /            <h1>{production.name}</h1>
 
       <>
+      <Separator />
         <div className="h-full">
           <div key={production.name}>
-          <h1>{production.name}</h1>
-
+          <h1 className="m-4" >{production.name}</h1>
+            <Separator className="m-4" />
+            <div className="flex flex-row justify-cente  content-start justify-items-center" key={production.name}>
+                  <OptionsButtons production={production} />
+                  <DeleteButton production={production} />
+            </div>
             <div className="h-full m-1 p-1">
               <a className="flex flex-col md:flex-row">
                 <div className="w-full h-full">
@@ -49,10 +55,6 @@ export default function DisplayProductions({ production }) {
                 <YearlyProductionChart
                   chartData={production.monthlyData}
                 />
-                <div key={production.name}>
-                  <OptionsButtons production={production} />
-                  <DeleteButton production={production} />
-                </div>
               </a>
             </div>
           </div>
