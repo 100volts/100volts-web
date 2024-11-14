@@ -2,8 +2,15 @@ import OptionsButtons from "@/components/renderer/workplace/electric/ui/OptionsB
 import ElectricGraphs from "@/components/renderer/workplace/electric/ui/ElectricGraphs";
 import AllElectricMeterDataTable from "@/components/renderer/workplace/electric/ui/AllElectricMeterDataTable";
 import WeeklyEnergyChart from "@/components/renderer/dashboard/WeeklyEnergyChart";
-import { Separator } from "@/components/ui/separator"
+import WeekklyElectricLineChrt from "@/components/renderer/dashboard/WeeklyElectricLineChart";
 
+import { Separator } from "@/components/ui/separator"
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs"
 
 export default function ElectricMeter({ elmeter, index }) {
   if (elmeter) {
@@ -24,7 +31,18 @@ export default function ElectricMeter({ elmeter, index }) {
                     </div>
                     <div className="flex flex-row">
                       <div className="w-full">
-                        <WeeklyEnergyChart data={elmeter.lastWeekEnergy} />
+                        <Tabs defaultValue="barChart">
+                          <TabsList className="grid w-full grid-cols-2">
+                            <TabsTrigger value="barChart">Bar chart</TabsTrigger>
+                            <TabsTrigger value="lineChart">Line chart</TabsTrigger>
+                          </TabsList>
+                          <TabsContent value="barChart">
+                            <WeeklyEnergyChart data={elmeter.lastWeekEnergy} />
+                          </TabsContent>
+                          <TabsContent value="lineChart">
+                            <WeekklyElectricLineChrt data={elmeter.lastWeekEnergy} />
+                          </TabsContent>
+                        </Tabs>
                       </div>
                       <AllElectricMeterDataTable elmeterProp={elmeter} />
                     </div>
