@@ -6,18 +6,48 @@ import Last10DataTable from "./ui/Last10DataTable";
 import OptionsButtons from "./ui/OptionsButtons";
 import YearlyProductionChart from "./ui/YearlyProductionChart";
 import { Separator } from "@/components/ui/separator"
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Badge } from "@/components/ui/badge"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+
 
 export default function DisplayProductions({ production }) {
   if (production && production.units) {
     return (
       // /            <h1>{production.name}</h1>
-
+      //Groups:  
       <>
+      <ScrollArea className="h-screen max-h-[700px]">
       <Separator />
-        <div className="h-full">
-          <div key={production.name}>
-          <h1 className="m-4" >{production.name}</h1>
-            <Separator className="m-4" />
+        <div className="h-full flex w-full flex-wrap justify-start p-5">
+          <div  className="w-full" key={production.name}>
+          <h2 style={{ padding: "5px" }}>{production.name}</h2>
+          <div className="flex flex-row justify-cente  content-start justify-items-center" key={production.name}>
+
+              {production.groups.map((group, index) => (
+                          <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                    <div key={index}>
+                      <Badge variant="outline">{group.name}</Badge>
+                    </div>
+                                  </TooltipTrigger>
+                                  <TooltipContent>
+                                    <p>Group</p>
+                                  </TooltipContent>
+                                </Tooltip>
+                                </TooltipProvider>
+                  ))}
+
+          
+                 
+                  </div>
+            <Separator className="m-1" />
             <div className="flex flex-row justify-cente  content-start justify-items-center" key={production.name}>
                   <OptionsButtons production={production} />
                   <DeleteButton production={production} />
@@ -32,12 +62,6 @@ export default function DisplayProductions({ production }) {
                   <br />
                   <a>Units: {production.units.name}</a>
                   <br />
-                  <a>Groups:</a>
-                  {production.groups.map((group, index) => (
-                    <div key={index}>
-                      <a>{group.name}</a>
-                    </div>
-                  ))}
                   <br />
                   <a>Electric Meters:</a>
                   {production.electricMeters.map((electricMeters, index) => (
@@ -59,6 +83,7 @@ export default function DisplayProductions({ production }) {
             </div>
           </div>
         </div>
+        </ScrollArea>
       </>
     );
   }
