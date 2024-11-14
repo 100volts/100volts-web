@@ -3,9 +3,7 @@ import ReportButton from "./GetReport"
 import Settings from "./Settings";
 import { Card } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { useStore } from '@nanostores/react';
 import GasDataTable from "./GasDataTable"
-import stars from "@/../public/images/no_data.png";
 
 export default function gasMeter({ gasmeter, index }) {
     console.log("gasmeter",gasmeter)
@@ -35,7 +33,6 @@ export default function gasMeter({ gasmeter, index }) {
                     :(
                       <>
                         <a>No data</a>
-                        <img src={stars.src} alt="A starry night sky." />
                       </>)}
                     
                     </ScrollArea>

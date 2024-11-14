@@ -1,4 +1,4 @@
-import { ArrowPathIcon, ChartPieIcon, FingerPrintIcon, LockClosedIcon,BoltIcon,FireIcon,IdentificationIcon,CloudIcon } from '@heroicons/react/24/outline'
+import {  ChartPieIcon, FingerPrintIcon, BoltIcon,CloudIcon } from '@heroicons/react/24/outline'
 
 const features = [
   {

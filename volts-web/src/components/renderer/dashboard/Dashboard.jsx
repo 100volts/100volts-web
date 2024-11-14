@@ -1,22 +1,12 @@
 "use client";
 
 import {
-  Area,
-  AreaChart,
   Bar,
   BarChart,
-  CartesianGrid,
   Label,
-  LabelList,
-  Line,
-  LineChart,
-  PolarAngleAxis,
-  RadialBar,
-  RadialBarChart,
   Rectangle,
   ReferenceLine,
   XAxis,
-  YAxis,
 } from "recharts";
 
 import {
@@ -32,40 +22,9 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { Separator } from "@/components/ui/separator";
 
 export default function Charts() {
 
-  const data=[
-    {
-      date: "2024-01-01",
-      steps: 2000,
-    },
-    {
-      date: "2024-01-02",
-      steps: 2100,
-    },
-    {
-      date: "2024-01-03",
-      steps: 2200,
-    },
-    {
-      date: "2024-01-04",
-      steps: 1300,
-    },
-    {
-      date: "2024-01-05",
-      steps: 1400,
-    },
-    {
-      date: "2024-01-06",
-      steps: 2500,
-    },
-    {
-      date: "2024-01-07",
-      steps: 1600,
-    },
-  ]
   return(<></>);
   
   return (

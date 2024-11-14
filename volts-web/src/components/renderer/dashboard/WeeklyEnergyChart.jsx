@@ -4,7 +4,6 @@ import {
   Bar,
   BarChart,
   Label,
-  LabelList,
   Rectangle,
   ReferenceLine,
   XAxis,
