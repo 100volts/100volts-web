@@ -88,7 +88,8 @@
 
 @font-face {
   font-family: "Kanit";
-  src: url("/fonts/Kanit/Kanit-Regular.ttf") format("truetype");
+  src: url("/fonts/Kanit/Kanit-Regular.ttf")
+    format("truetype");
   font-weight: normal;
   font-style: normal;
 }
