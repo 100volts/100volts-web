@@ -60,7 +60,7 @@ export default function ElectricMeterSlider({electricMeters}:any) {
               <div key={meter.id} className="w-full flex-shrink-0">
 
                       <ElectricMeterGraph chartData={
-                        [{ month: meter.month, read: meter.reading, max: 1260, name:meter.name, lastUpdated:meter.lastUpdated }]
+                        [{ month: meter.month, read: meter.value, max: meter.max, name:meter.name, lastUpdated:formatDate(meter.lastUpdated) }]
                       }></ElectricMeterGraph>
               </div>
             ))}
@@ -78,5 +78,16 @@ export default function ElectricMeterSlider({electricMeters}:any) {
     </div>
   )
 }
+
+const formatDate = (dateString:any) => {
+  const date = new Date(dateString);
+  return date.toLocaleString("en-US", {
+    year: "numeric",
+    month: "long", // Full month name
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+};
 
 //<p className="text-3xl font-bold mb-2">{meter.reading} kWh</p>

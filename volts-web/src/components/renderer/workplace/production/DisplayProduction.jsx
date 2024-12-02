@@ -55,7 +55,7 @@ export default function DisplayProductions({ production }) {
             </div>
             <div className="h-full m-1 p-1">
               <a className="flex flex-col md:flex-row">
-                <ElectricMeterSlider electricMeters={testDataElectricMeters123}></ElectricMeterSlider>
+                <ElectricMeterSlider electricMeters={production.elMeterWithData}></ElectricMeterSlider>
                 <Last10DataTable
                   data={production.last10}
                 />
