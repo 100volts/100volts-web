@@ -100,6 +100,9 @@ export default function ElectricMeterGraph({chartData}:any) {
         <div className="leading-none text-muted-foreground">
           Showing total kwh for {chartData[0].month}
         </div>
+        <div className="flex items-center gap-2 font-medium leading-none">
+          last read on: {chartData[0].lastUpdated} <TrendingUp className="h-4 w-4" />
+        </div>
       </CardFooter>
     </Card>
   )

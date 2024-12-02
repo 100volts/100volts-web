@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/tooltip"
 
 const testDataElectricMeters123 = [
-  { id: 1, reading: 45678, lastUpdated: "2023-05-15" },
+  { id: 1,name:"TRAFO", reading: 45678, lastUpdated: "2023-05-15",month:"dec" },
 ]
 
 export default function DisplayProductions({ production }) {

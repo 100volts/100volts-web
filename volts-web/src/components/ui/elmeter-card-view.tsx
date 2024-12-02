@@ -12,14 +12,6 @@ interface ElectricMeterProps {
   lastUpdated: string
 }
 
-const electricMeters123: ElectricMeterProps[] = [
-  { id: 1, reading: 45678, lastUpdated: "2023-05-15" },
-  { id: 2, reading: 34567, lastUpdated: "2023-05-14" },
-  { id: 3, reading: 56789, lastUpdated: "2023-05-13" },
-  { id: 4, reading: 23456, lastUpdated: "2023-05-12" },
-  { id: 5, reading: 78901, lastUpdated: "2023-05-11" },
-  { id: 6, reading: 12345, lastUpdated: "2023-05-10" },
-]
 
 /*
 old card
@@ -32,13 +24,6 @@ old card
     </CardContent>
   </Card>
 */
-
-
-const ElectricMeterCard: React.FC<ElectricMeterProps> = ({ id, reading, lastUpdated }) => (
-  <>
-
-  </>
-)
 
 export default function ElectricMeterSlider({electricMeters}:any) {
 
@@ -75,7 +60,7 @@ export default function ElectricMeterSlider({electricMeters}:any) {
               <div key={meter.id} className="w-full flex-shrink-0">
 
                       <ElectricMeterGraph chartData={
-                        [{ month: "january", read: meter.reading, max: 1260, name:"UHT" }]
+                        [{ month: meter.month, read: meter.reading, max: 1260, name:meter.name, lastUpdated:meter.lastUpdated }]
                       }></ElectricMeterGraph>
               </div>
             ))}
@@ -94,4 +79,4 @@ export default function ElectricMeterSlider({electricMeters}:any) {
   )
 }
 
-//                      <p className="text-3xl font-bold mb-2">{meter.reading} kWh</p>
+//<p className="text-3xl font-bold mb-2">{meter.reading} kWh</p>
