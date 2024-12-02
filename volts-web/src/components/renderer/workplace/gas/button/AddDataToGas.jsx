@@ -162,7 +162,7 @@ export default function AddDataTogasMeter() {
     <DialogTrigger>
         <Button className="w-full justify-start">
             <Plus className="mr-2 h-4 w-4" />
-                Add gas Data
+                Add Data
             </Button>
         </DialogTrigger>
     <DialogContent>

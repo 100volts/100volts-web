@@ -176,7 +176,7 @@ export default function AddDataToWaterMeter() {
     <DialogTrigger>
         <Button className="w-full justify-start">
             <Plus className="mr-2 h-4 w-4" />
-                Add Water Data
+                Add Data
             </Button>
         </DialogTrigger>
     <DialogContent>

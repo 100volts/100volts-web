@@ -8,6 +8,7 @@ import YearlyProductionChart from "./ui/YearlyProductionChart";
 import { Separator } from "@/components/ui/separator"
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge"
+import ElectricMeterSlider from "@/components/ui/elmeter-card-view"
 import {
   Tooltip,
   TooltipContent,
@@ -15,6 +16,15 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 
+
+const testDataElectricMeters123 = [
+  { id: 1, reading: 45678, lastUpdated: "2023-05-15" },
+  { id: 2, reading: 34567, lastUpdated: "2023-05-14" },
+  { id: 3, reading: 56789, lastUpdated: "2023-05-13" },
+  { id: 4, reading: 23456, lastUpdated: "2023-05-12" },
+  { id: 5, reading: 78901, lastUpdated: "2023-05-11" },
+  { id: 6, reading: 12345, lastUpdated: "2023-05-10" },
+]
 
 export default function DisplayProductions({ production }) {
   if (production && production.units) {
@@ -54,6 +64,27 @@ export default function DisplayProductions({ production }) {
             </div>
             <div className="h-full m-1 p-1">
               <a className="flex flex-col md:flex-row">
+                <div>
+                  <ElectricMeterSlider electricMeters={testDataElectricMeters123}></ElectricMeterSlider>
+                </div>
+                <Last10DataTable
+                  data={production.last10}
+                />
+                <YearlyProductionChart
+                  chartData={production.monthlyData}
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+        </ScrollArea>
+      </>
+    );
+  }
+}
+
+/*
+Old display description and electric meters 
                 <div className="w-full h-full">
                   <a>
                     Discription:
@@ -73,18 +104,5 @@ export default function DisplayProductions({ production }) {
                     </div>
                   ))}
                 </div>
-                <Last10DataTable
-                  data={production.last10}
-                />
-                <YearlyProductionChart
-                  chartData={production.monthlyData}
-                />
-              </a>
-            </div>
-          </div>
-        </div>
-        </ScrollArea>
-      </>
-    );
-  }
-}
+
+*/
