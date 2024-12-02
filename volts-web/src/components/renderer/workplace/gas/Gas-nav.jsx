@@ -11,6 +11,7 @@ import { useState, useEffect } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import DisplayGas from "./DisplayMeter"
 
+const noData = "/public/images/no_data.png";
 export default function ElementNav({ cardData }) {
   const [dataState, setDataState] = useState();
 
@@ -52,7 +53,7 @@ export default function ElementNav({ cardData }) {
                 </Card>
               ))
             ) : (
-              <a>No data</a>
+              <img src={noData} alt="Dynamic Example" />
             )}
           </ScrollArea>
         </div>

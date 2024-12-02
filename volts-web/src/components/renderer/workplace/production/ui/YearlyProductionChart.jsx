@@ -23,7 +23,7 @@ const chartConfig = {
 
 export default function YearlyProductionChart({chartData}){            
 return(
-<Card className=" w-full h-full">
+<Card className=" w-full h-80">
       <CardHeader>
         <CardTitle>Yearly production</CardTitle>
         <CardDescription>All production for th epst 6 months.</CardDescription>

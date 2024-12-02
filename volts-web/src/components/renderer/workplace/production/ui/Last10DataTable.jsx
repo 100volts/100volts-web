@@ -13,13 +13,13 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 export default function Last10DataTable({ data }) {
   const prodSum = data.reduce((sum, prod) => sum + prod.values, 0);
   return (
-    <ScrollArea className="h-72 w-full rounded-md border">
+    <ScrollArea className=" w-full  max-h-80 rounded-md border">
       <Table className="w-full">
         <TableCaption>All entries.</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead>Value</TableHead>
             <TableHead>Date</TableHead>
+            <TableHead>Value</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody className="w-full">
@@ -27,8 +27,9 @@ export default function Last10DataTable({ data }) {
             <>
               {data.map((prodData, index) => (
                 <TableRow key={index}>
-                  <TableCell className="w-full">{prodData.values}</TableCell>
-                  <TableCell className="w-full">{prodData.date}</TableCell>
+                  <TableCell>{prodData.date}</TableCell>
+                  <TableCell>{prodData.values}</TableCell>
+                  
                 </TableRow>
               ))}
             </>
@@ -42,8 +43,8 @@ export default function Last10DataTable({ data }) {
         </TableBody>
         <TableFooter>
           <TableRow>
-            <TableCell colSpan={3}>Total</TableCell>
-            <TableCell className="text-right">{prodSum}</TableCell>
+            <TableCell colSpan={0.5}>Total</TableCell>
+            <TableCell className="text-left">{prodSum}</TableCell>
           </TableRow>
         </TableFooter>
       </Table>
