@@ -8,6 +8,7 @@ import YearlyProductionChart from "./ui/YearlyProductionChart";
 import { Separator } from "@/components/ui/separator"
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge"
+import ElectricMeterSlider from "@/components/ui/elmeter-card-view"
 import {
   Tooltip,
   TooltipContent,
@@ -15,6 +16,9 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 
+const testDataElectricMeters123 = [
+  { id: 1,name:"TRAFO", reading: 45678, lastUpdated: "2023-05-15",month:"dec" },
+]
 
 export default function DisplayProductions({ production }) {
   if (production && production.units) {
@@ -43,9 +47,6 @@ export default function DisplayProductions({ production }) {
                                 </Tooltip>
                                 </TooltipProvider>
                   ))}
-
-          
-                 
                   </div>
             <Separator className="m-1" />
             <div className="flex flex-row justify-cente  content-start justify-items-center" key={production.name}>
@@ -54,6 +55,26 @@ export default function DisplayProductions({ production }) {
             </div>
             <div className="h-full m-1 p-1">
               <a className="flex flex-col md:flex-row">
+                <ElectricMeterSlider electricMeters={testDataElectricMeters123}></ElectricMeterSlider>
+                <Last10DataTable
+                  data={production.last10}
+                />
+                <div  className="p-1 m-1"></div>
+                <YearlyProductionChart
+                  chartData={production.monthlyData}
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+        </ScrollArea>
+      </>
+    );
+  }
+}
+
+/*
+Old display description and electric meters 
                 <div className="w-full h-full">
                   <a>
                     Discription:
@@ -73,18 +94,5 @@ export default function DisplayProductions({ production }) {
                     </div>
                   ))}
                 </div>
-                <Last10DataTable
-                  data={production.last10}
-                />
-                <YearlyProductionChart
-                  chartData={production.monthlyData}
-                />
-              </a>
-            </div>
-          </div>
-        </div>
-        </ScrollArea>
-      </>
-    );
-  }
-}
+
+*/

@@ -92,14 +92,14 @@ const formSchema = z.object({
     <DialogTrigger>
         <Button className="w-full justify-start">
             <Plus className="mr-2 h-4 w-4" />
-                Create Water Meter
+                Create Meter
             </Button>
         </DialogTrigger>
     <DialogContent>
     <DialogHeader>
-      <DialogTitle>Creating new Water Meter</DialogTitle>
+      <DialogTitle>Creating new Meter</DialogTitle>
       <DialogDescription>
-        Creating a new Water Meter.
+        Creating a new Meter.
       </DialogDescription>
     </DialogHeader>
 

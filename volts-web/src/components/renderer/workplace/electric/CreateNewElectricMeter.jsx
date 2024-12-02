@@ -32,13 +32,13 @@ export default function CreateNewWaterMeter() {
   
 const formSchema = z.object({
     electric_name: z.string().min(2, {
-      message: "Water meter name must be at least 2 characters.",
+      message: "Meter name must be at least 2 characters.",
     })    
     .refine((val) => !/^\d/.test(val), {
-        message: "Water meter name cannot start with a number.",
+        message: "Meter name cannot start with a number.",
       }),
     electric_description: z.string().min(2, {
-      message: "Water meter description must be at least 2 characters.",
+      message: "Meter description must be at least 2 characters.",
     })
   })
 
@@ -92,14 +92,14 @@ const formSchema = z.object({
     <DialogTrigger>
         <Button className="w-full justify-start">
             <Plus className="mr-2 h-4 w-4" />
-                Create Water Meter
+                Create Meter
             </Button>
         </DialogTrigger>
     <DialogContent>
     <DialogHeader>
-      <DialogTitle>Creating new Water Meter</DialogTitle>
+      <DialogTitle>Creating Meter</DialogTitle>
       <DialogDescription>
-        Creating a new Water Meter.
+        Creating a Meter.
       </DialogDescription>
     </DialogHeader>
 
