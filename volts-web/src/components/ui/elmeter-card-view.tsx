@@ -55,7 +55,7 @@ export default function ElectricMeterSlider({electricMeters}:any) {
   }, [])
 
   return (
-    <div className="relative w-full max-w-sm mx-auto px-4 py-8">
+    <div className="relative w-full max-w-sm mx-auto px-4">
       
       <div className="relative">
         <Button

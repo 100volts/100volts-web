@@ -18,11 +18,6 @@ import {
 
 const testDataElectricMeters123 = [
   { id: 1, reading: 45678, lastUpdated: "2023-05-15" },
-  { id: 2, reading: 34567, lastUpdated: "2023-05-14" },
-  { id: 3, reading: 56789, lastUpdated: "2023-05-13" },
-  { id: 4, reading: 23456, lastUpdated: "2023-05-12" },
-  { id: 5, reading: 78901, lastUpdated: "2023-05-11" },
-  { id: 6, reading: 12345, lastUpdated: "2023-05-10" },
 ]
 
 export default function DisplayProductions({ production }) {
@@ -60,10 +55,7 @@ export default function DisplayProductions({ production }) {
             </div>
             <div className="h-full m-1 p-1">
               <a className="flex flex-col md:flex-row">
-                <div>
-                  <ElectricMeterSlider electricMeters={testDataElectricMeters123}></ElectricMeterSlider>
-                </div>
-                <div  className="p-1 m-1"></div>
+                <ElectricMeterSlider electricMeters={testDataElectricMeters123}></ElectricMeterSlider>
                 <Last10DataTable
                   data={production.last10}
                 />

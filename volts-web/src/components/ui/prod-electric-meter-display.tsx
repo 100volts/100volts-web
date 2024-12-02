@@ -33,7 +33,7 @@ export default function ElectricMeterGraph({chartData}:any) {
   const totalVisitors = chartData[0].read + chartData[0].max
 
   return (
-    <Card className="flex flex-col">
+    <Card className="w-full flex-shrink-0 snap-center">
       <CardHeader className="items-center pb-0">
         <CardTitle>Electric Meter: {chartData[0].name}</CardTitle>
         <CardDescription>{chartData[0].month}</CardDescription>
