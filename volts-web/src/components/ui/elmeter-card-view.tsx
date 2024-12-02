@@ -4,6 +4,7 @@ import React, { useRef, useCallback } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import ElectricMeterGraph from "./prod-electric-meter-display"
 
 interface ElectricMeterProps {
   id: number
@@ -20,17 +21,27 @@ const electricMeters123: ElectricMeterProps[] = [
   { id: 6, reading: 12345, lastUpdated: "2023-05-10" },
 ]
 
-const ElectricMeterCard: React.FC<ElectricMeterProps> = ({ id, reading, lastUpdated }) => (
-  <Card className="w-full flex-shrink-0 snap-center">
+/*
+old card
+<Card className="w-full flex-shrink-0 snap-center">
     <CardContent className="p-6">
       <h3 className="text-lg font-semibold mb-2">Meter #{id}</h3>
       <p className="text-3xl font-bold mb-2">{reading} kWh</p>
+      <ElectricMeterGraph></ElectricMeterGraph>
       <p className="text-sm text-gray-500">Last updated: {lastUpdated}</p>
     </CardContent>
   </Card>
+*/
+
+
+const ElectricMeterCard: React.FC<ElectricMeterProps> = ({ id, reading, lastUpdated }) => (
+  <>
+
+  </>
 )
 
 export default function ElectricMeterSlider({electricMeters}:any) {
+
   const sliderRef = useRef<HTMLDivElement>(null)
 
   const scroll = useCallback((direction: 'left' | 'right') => {
@@ -45,7 +56,7 @@ export default function ElectricMeterSlider({electricMeters}:any) {
 
   return (
     <div className="relative w-full max-w-sm mx-auto px-4 py-8">
-      <h2 className="text-2xl font-bold mb-6 text-center">Electric Meter Readings</h2>
+      
       <div className="relative">
         <Button
           variant="outline"
@@ -62,7 +73,10 @@ export default function ElectricMeterSlider({electricMeters}:any) {
           <div className="flex">
             {electricMeters.map((meter:any) => (
               <div key={meter.id} className="w-full flex-shrink-0">
-                <ElectricMeterCard {...meter} />
+
+                      <ElectricMeterGraph chartData={
+                        [{ month: "january", read: meter.reading, max: 1260, name:"UHT" }]
+                      }></ElectricMeterGraph>
               </div>
             ))}
           </div>
@@ -80,3 +94,4 @@ export default function ElectricMeterSlider({electricMeters}:any) {
   )
 }
 
+//                      <p className="text-3xl font-bold mb-2">{meter.reading} kWh</p>

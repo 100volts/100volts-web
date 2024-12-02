@@ -16,7 +16,6 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 
-
 const testDataElectricMeters123 = [
   { id: 1, reading: 45678, lastUpdated: "2023-05-15" },
   { id: 2, reading: 34567, lastUpdated: "2023-05-14" },
@@ -53,9 +52,6 @@ export default function DisplayProductions({ production }) {
                                 </Tooltip>
                                 </TooltipProvider>
                   ))}
-
-          
-                 
                   </div>
             <Separator className="m-1" />
             <div className="flex flex-row justify-cente  content-start justify-items-center" key={production.name}>
@@ -67,9 +63,11 @@ export default function DisplayProductions({ production }) {
                 <div>
                   <ElectricMeterSlider electricMeters={testDataElectricMeters123}></ElectricMeterSlider>
                 </div>
+                <div  className="p-1 m-1"></div>
                 <Last10DataTable
                   data={production.last10}
                 />
+                <div  className="p-1 m-1"></div>
                 <YearlyProductionChart
                   chartData={production.monthlyData}
                 />
