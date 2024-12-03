@@ -20,13 +20,13 @@ import {
 } from "@/components/ui/card"
 import {  ChartContainer, ChartLegend, ChartLegendContent, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 const chartData = [
-  { browser: "Dis month",label: "Dis month", energy: 200, fill: "var(--color-safari)" },
+  { browser: "This month",label: "This month", energy: 200, fill: "var(--color-safari)" },
   { browser: "lathMonth", energy: 400, fill: "var(--color-lathMonth)" },
 ]
 
 const chartConfig = {
   safari: {
-    label: "Dis month",
+    label: "This month",
     color: "hsl(var(--chart-2))",
   },
   lathMonth: {
