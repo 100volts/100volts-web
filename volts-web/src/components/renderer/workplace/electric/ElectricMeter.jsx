@@ -3,6 +3,7 @@ import ElectricGraphs from "@/components/renderer/workplace/electric/ui/Electric
 import AllElectricMeterDataTable from "@/components/renderer/workplace/electric/ui/AllElectricMeterDataTable";
 import WeeklyEnergyChart from "@/components/renderer/dashboard/WeeklyEnergyChart";
 import WeekklyElectricLineChrt from "@/components/renderer/dashboard/WeeklyElectricLineChart";
+import MonthlyPowerChart from "./ui/MonthlyPowerChart"
 
 import { Separator } from "@/components/ui/separator"
 import {
@@ -57,6 +58,7 @@ export default function ElectricMeter({ elmeter, index }) {
                       <AllElectricMeterDataTable elmeterProp={elmeter} />
                     </div>
                     <ElectricGraphs className="mr-2" elmeterProp={elmeter} />
+                    <MonthlyPowerChart/>
                   </div>
                 </div>
               </div>

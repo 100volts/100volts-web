@@ -57,18 +57,30 @@ export default function AllElectricMeterDataTable({ elmeterProp }) {
             <TableCell>{elmeterProp.electric_meter_data.pfl2}</TableCell>
             <TableCell>{elmeterProp.electric_meter_data.pfl3}</TableCell>
           </TableRow>
-          <TableRow>
-            <TableCell>Total Active Power: </TableCell>
-            <TableCell>
-              {elmeterProp.electric_meter_data.totalActivePpower}
-            </TableCell>
-            <TableCell>Total Active Energy: </TableCell>
-            <TableCell>
-              {elmeterProp.electric_meter_data.totalActiveEnergyImportTariff1}
-            </TableCell>
-          </TableRow>
           <TableRow></TableRow>
         </TableBody>
+        <TableFooter>
+        <TableRow  >
+            <TableCell >Total Active Power: 
+            </TableCell>
+            <TableCell>
+            {elmeterProp.electric_meter_data.totalActivePpower}
+            </TableCell>
+            <TableCell></TableCell>
+            <TableCell></TableCell>
+            <TableCell>kWh</TableCell>
+            </TableRow>
+            <TableRow>
+          <TableCell >Total Energy:  
+            </TableCell>
+            <TableCell>
+            {elmeterProp.electric_meter_data.totalActiveEnergyImportTariff1}
+            </TableCell>
+            <TableCell></TableCell>
+            <TableCell></TableCell>
+            <TableCell>kWh</TableCell>
+          </TableRow>
+      </TableFooter>
       </Table>
     </>
   );
