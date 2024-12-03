@@ -68,7 +68,7 @@ export default function Charts({ data }) {
                               dot={false}
                 />
                             <XAxis
-              dataKey="data"
+              dataKey="date"
               tickLine={false}
               axisLine={false}
               tickMargin={8}
