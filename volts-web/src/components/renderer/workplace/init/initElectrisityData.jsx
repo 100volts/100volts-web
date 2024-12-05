@@ -60,7 +60,8 @@ export function initElectricityData(){
         electric_meter_data,
         electric_meter_avr_data,
         daily_tariff_data,
-        lastWeekEnergy
+        lastWeekEnergy,
+        energyMonthPairDTOS
       } = elmeter;
       return {
         name,
@@ -68,7 +69,8 @@ export function initElectricityData(){
         electric_meter_data,
         electric_meter_avr_data,
         daily_tariff_data,
-        lastWeekEnergy
+        lastWeekEnergy,
+        energyMonthPairDTOS
       };
     } catch (error) {
       return null;

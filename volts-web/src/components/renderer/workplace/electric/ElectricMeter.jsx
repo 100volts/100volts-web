@@ -12,14 +12,6 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 export default function ElectricMeter({ elmeter, index }) {
@@ -58,7 +50,7 @@ export default function ElectricMeter({ elmeter, index }) {
                       <AllElectricMeterDataTable elmeterProp={elmeter} />
                     </div>
                     <ElectricGraphs className="mr-2" elmeterProp={elmeter} />
-                    <MonthlyPowerChart/>
+                    <MonthlyPowerChart elmeterProp={elmeter}/>
                   </div>
                 </div>
               </div>

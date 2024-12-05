@@ -20,23 +20,35 @@ import {
 } from "@/components/ui/card"
 import {  ChartContainer, ChartLegend, ChartLegendContent, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 const chartData = [
-  { browser: "This month",label: "This month", energy: 200, fill: "var(--color-safari)" },
-  { browser: "lathMonth", energy: 400, fill: "var(--color-lathMonth)" },
+  { month: "This month",label: "This month", energy: 200, fill: "var(--color-safari)" },
+  { month: "lathMonth", energy: 400, fill: "var(--color-lathMonth)" },
 ]
 
 const chartConfig = {
-  safari: {
-    label: "This month",
+  DECEMBER: {
+    month: "DECEMBER",
     color: "hsl(var(--chart-2))",
-  },
-  lathMonth: {
-    label: "Lath Month",
+  }, 
+  NOVEMBER: {
+    month: "NOVEMBER",
     color: "hsl(var(--chart-3))",
   },
 }
 
-export default function MonthlyPowerChart() {
+export default function MonthlyPowerChart({ elmeterProp }:any) {
     const lasthMoth=400;
+   
+    if(elmeterProp.energyMonthPairDTOS ){
+      elmeterProp.energyMonthPairDTOS.forEach((obj:any)=>{
+          if(obj.month==="DECEMBER"){
+            obj.fill="hsl(var(--chart-2))"
+          }
+          if(obj.month==="NOVEMBER"){
+            obj.fill="hsl(var(--chart-3))"
+          }
+      });
+       console.log("energy",elmeterProp.energyMonthPairDTOS.energy)
+    console.log(elmeterProp.energyMonthPairDTOS)
   return (
     <Card className="flex flex-col">
     <CardHeader className="items-center pb-0">
@@ -49,7 +61,7 @@ export default function MonthlyPowerChart() {
         className="mx-auto aspect-square max-h-[250px]"
       >
         <RadialBarChart
-          data={chartData}
+          data={elmeterProp.energyMonthPairDTOS}
           startAngle={-90}
           endAngle={360}
           innerRadius={80}
@@ -64,12 +76,12 @@ export default function MonthlyPowerChart() {
             />
           <ChartTooltip
             cursor={false}
-            content={<ChartTooltipContent hideLabel nameKey="browser" />}
+            content={<ChartTooltipContent hideLabel nameKey="month" />}
           />
           <RadialBar dataKey="energy" background cornerRadius={10} >
             <LabelList
               position="insideStart"
-              dataKey="browser"
+              dataKey="month"
               className="fill-white capitalize mix-blend-luminosity"
               fontSize={11}
             />
@@ -90,7 +102,7 @@ export default function MonthlyPowerChart() {
                           y={viewBox.cy}
                           className="fill-foreground text-4xl font-bold"
                         >
-                          {chartData[0].energy.toLocaleString()}
+                          {elmeterProp.energyMonthPairDTOS[0].energy}
                         </tspan>
                         <tspan
                           x={viewBox.cx}
@@ -115,6 +127,7 @@ export default function MonthlyPowerChart() {
       </CardFooter>
   </Card>
   )
+}
 }
 /* Add dis later
         <div className="flex items-center gap-2 font-medium leading-none">
