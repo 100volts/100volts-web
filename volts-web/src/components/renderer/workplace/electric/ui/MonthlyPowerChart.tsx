@@ -35,17 +35,45 @@ const chartConfig = {
   },
 }
 
+const monthColors: { [key: string]: string } = {
+  JANUARY: "hsl(210, 70%, 85%)", // Soft icy blue
+  FEBRUARY: "hsl(330, 70%, 85%)", // Light romantic pink
+  MARCH: "hsl(120, 50%, 80%)", // Gentle green for spring
+  APRIL: "hsl(60, 70%, 85%)", // Pale yellow for bloom
+  MAY: "hsl(140, 60%, 85%)", // Light leafy green
+  JUNE: "hsl(200, 70%, 85%)", // Sky blue
+  JULY: "hsl(240, 60%, 85%)", // Lavender blue
+  AUGUST: "hsl(50, 70%, 85%)", // Warm golden yellow
+  SEPTEMBER: "hsl(30, 60%, 85%)", // Peachy orange
+  OCTOBER: "hsl(20, 50%, 75%)", // Autumnal muted orange
+  NOVEMBER: "hsl(10, 50%, 70%)", // Soft brick red
+  DECEMBER: "hsl(190, 50%, 80%)",
+};
+
+const monthColors2: { [key: string]: string } = {
+  JANUARY: "hsl(210, 70%, 85%)", // Cool pastel blue
+  FEBRUARY: "hsl(290, 60%, 85%)", // Soft lavender
+  MARCH: "hsl(120, 50%, 80%)", // Light green for spring
+  APRIL: "hsl(60, 70%, 85%)", // Pale yellow for spring
+  MAY: "hsl(140, 55%, 85%)", // Soft lime green
+  JUNE: "hsl(200, 60%, 85%)", // Light sky blue
+  JULY: "hsl(300, 50%, 85%)", // Gentle pink-purple
+  AUGUST: "hsl(40, 65%, 85%)", // Soft peach
+  SEPTEMBER: "hsl(30, 60%, 80%)", // Warm golden
+  OCTOBER: "hsl(15, 55%, 80%)", // Autumn orange
+  NOVEMBER: "hsl(25, 50%, 75%)", // Muted amber
+  DECEMBER: "hsl(240, 60%, 85%)", // Cool winter blue
+};
+
 export default function MonthlyPowerChart({ elmeterProp }:any) {
     const lasthMoth=400;
    
     if(elmeterProp.energyMonthPairDTOS ){
-      elmeterProp.energyMonthPairDTOS.forEach((obj:any)=>{
-          if(obj.month==="DECEMBER"){
-            obj.fill="hsl(var(--chart-2))"
-          }
-          if(obj.month==="NOVEMBER"){
-            obj.fill="hsl(var(--chart-3))"
-          }
+      elmeterProp.energyMonthPairDTOS.forEach((obj: any) => {
+        const color = monthColors[obj.month.toUpperCase()];
+        if (color) {
+          obj.fill = color;
+        }
       });
        console.log("energy",elmeterProp.energyMonthPairDTOS.energy)
     console.log(elmeterProp.energyMonthPairDTOS)
@@ -109,7 +137,7 @@ export default function MonthlyPowerChart({ elmeterProp }:any) {
                           y={(viewBox.cy || 0) + 24}
                           className="fill-muted-foreground"
                         >
-                          kWh November
+                          kWh {elmeterProp.energyMonthPairDTOS[0].month}
                         </tspan>
                       </text>
                     )
