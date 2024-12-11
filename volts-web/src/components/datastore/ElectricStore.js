@@ -52,6 +52,6 @@ export const reportElectricData = atom();
 
 export const selectedElectricMeter = atom();
 
-export const elMetersNames =atom();
+export const elMetersNames = atom();
 
-export const elMeterDashDataStore =atom(); //map({});
+export const elMeterDashDataStore = atom();

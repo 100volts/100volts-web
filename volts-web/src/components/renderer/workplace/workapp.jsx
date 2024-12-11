@@ -7,17 +7,16 @@ import WorplaysMeters from "./electric/WorplaysMeters";
 import DisplayAllProductions from "./production/DisplayAllProductions";
 import { initElectricityData } from "./init/initElectrisityData";
 import { initProductiondDashData } from "./init/initProductionData";
+import { initKPIData } from "./init/initKPI";
 import GetReport from "./production/GetReport";
 import GetElectricReport from "./electric/GetReport";
-import DashboardWorkPlace from "@/components/renderer/dashboard/Dashboard";
+import DashboardWorkPlace from "@/components/renderer/workplace/dashboard/Dashboard";
 import ProductionSettingsComponent from "./production/Settings";
 import TokkenCheck from "./TokkenCheck";
 import InitWater from "./init/initWater";
 import InitGas from "./init/initGas";
 import DisplayWater from "./water/DisplayWater";
 import DisplayGas from "./gas/DisplayGas";
-import { useTranslation } from "react-i18next";
-import i18n from "@/i18n";
 
 const Dashboard = () => (
   <>
@@ -81,12 +80,12 @@ const ProductionReport = () => (
 
 const Navbar = () => {
   return (
-    <nav className="p-4 bg-background shadow-md rounded-lg mb-4">
+    <nav className="mb-4 rounded-lg bg-background p-4 shadow-md">
       <ul className="flex flex-wrap justify-center gap-4">
         <li>
           <Button
             variant="ghost"
-            className="flex-1 min-w-[200px] justify-between"
+            className="min-w-[200px] flex-1 justify-between"
             asChild
           >
             <Link to="/wokrplace/">
@@ -100,7 +99,7 @@ const Navbar = () => {
         <li>
           <Button
             variant="ghost"
-            className="flex-1 min-w-[200px] justify-between"
+            className="min-w-[200px] flex-1 justify-between"
             asChild
           >
             <Link to="/wokrplace/elesctric">
@@ -115,7 +114,7 @@ const Navbar = () => {
         <li>
           <Button
             variant="ghost"
-            className="flex-1 min-w-[200px] justify-between"
+            className="min-w-[200px] flex-1 justify-between"
             asChild
           >
             <Link to="/wokrplace/production">
@@ -130,7 +129,7 @@ const Navbar = () => {
         <li>
           <Button
             variant="ghost"
-            className="flex-1 min-w-[200px] justify-between"
+            className="min-w-[200px] flex-1 justify-between"
             asChild
           >
             <Link to="/wokrplace/water">
@@ -145,7 +144,7 @@ const Navbar = () => {
         <li>
           <Button
             variant="ghost"
-            className="flex-1 min-w-[200px] justify-between"
+            className="min-w-[200px] flex-1 justify-between"
             asChild
           >
             <Link to="/wokrplace/gas">
@@ -194,6 +193,7 @@ export const App = () => {
   InitWater();
   TokkenCheck();
   InitGas();
+  initKPIData();
   //</React.StrictMode>
   return <RouterProvider router={router} />;
 };
