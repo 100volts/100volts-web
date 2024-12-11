@@ -2,12 +2,14 @@
   "name": "volts-web",
   "type": "module",
   "version": "0.0.1",
-  "volts-server": "192.168.0.102",
+  "volts-server": "localhost",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "format:check": "prettier --check .",
+    "format::write": "prettier --write .",
     "astro": "astro"
   },
   "dependencies": {
@@ -67,6 +69,9 @@
   "devDependencies": {
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",
+    "prettier": "^3.4.2",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.6.9",
     "tailwindcss": "^3.4.15"
   }
 }
