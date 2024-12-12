@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { userData } from "@/components/datastore/UserStore";
 import { useStore } from "@nanostores/react";
-import { KPIDataStore } from "@/components/datastore/KPIStore";
+import { KPIDataStore, initLoading } from "@/components/datastore/KPIStore";
 import pkg from "../../../../../package.json";
 
 const urladdress = pkg["volts-server"];
@@ -44,6 +44,7 @@ export function initKPIData() {
       localStorage.setItem("kpi_store", JSON.stringify(KPIDataStore.get()));
       setLoading(false);
       console.log("kpi_store", KPIDataStore.get());
+      initLoading.set(100);
     }
   };
 
