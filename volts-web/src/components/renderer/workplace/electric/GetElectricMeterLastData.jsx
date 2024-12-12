@@ -1,12 +1,11 @@
 import pkg from "../../../../../package.json";
 const urladdress = pkg["volts-server"];
 import { userData } from "@/components/datastore/UserStore";
-import { useStore } from '@nanostores/react';
-
+import { useStore } from "@nanostores/react";
 
 export default async function getElmeterData() {
-  const $userData=useStore(userData);
-  const userToken =$userData.tokken
+  const $userData = useStore(userData);
+  const userToken = $userData.tokken;
   try {
     const companyName = localStorage.getItem("company_name");
     const response = await fetch(
@@ -20,7 +19,7 @@ export default async function getElmeterData() {
         body: JSON.stringify({
           company_name: companyName,
         }),
-      }
+      },
     );
     const datat = await response.json();
     const { address_list } = datat;
@@ -48,7 +47,7 @@ async function getElmeterDataFromAddress(elmeterAddress) {
           company_name: companyName,
           address: elmeterAddress,
         }),
-      }
+      },
     );
     const datat = await response.json();
     const { name, address, electric_meter_data } = datat;

@@ -1,20 +1,24 @@
-import React, { useState, useEffect }  from "react";
-import {userData } from "@/components/datastore/UserStore";
-import { useStore } from '@nanostores/react';
-import {elMeterDashDataStore,initLoading,elMetersNames} from "@/components/datastore/ElectricStore"
+import React, { useState, useEffect } from "react";
+import { userData } from "@/components/datastore/UserStore";
+import { useStore } from "@nanostores/react";
+import {
+  elMeterDashDataStore,
+  initLoading,
+  elMetersNames,
+} from "@/components/datastore/ElectricStore";
 import pkg from "../../../../../package.json";
 
 const urladdress = pkg["volts-server"];
 
-export function initElectricityData(){
+export function initElectricityData() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const $userData=useStore(userData);
-  const $elMeterDashDataStore=useStore(elMeterDashDataStore);
-  
-  const companyName = $userData.companies[0];//todo remove hard coded call
-  const userToken =$userData.tokken
+  const $userData = useStore(userData);
+  const $elMeterDashDataStore = useStore(elMeterDashDataStore);
+
+  const companyName = $userData.companies[0]; //todo remove hard coded call
+  const userToken = $userData.tokken;
 
   const getElmeterData = async () => {
     try {
@@ -30,24 +34,26 @@ export function initElectricityData(){
             Authorization: `Bearer ${userToken}`,
           },
           body,
-        }
+        },
       );
       const datat = await response.json();
       const { address_list } = datat;
-      const dataArr=[];
-      elMetersNames.set(address_list)
+      const dataArr = [];
+      elMetersNames.set(address_list);
       for (const element of address_list) {
         const elmeterData = await getElmeterDataFromAddress(element);
-        dataArr.push(elmeterData)
-        //elMeterDashDataStore.setKey(element,elmeterData)
+        dataArr.push(elmeterData);
       }
-      elMeterDashDataStore.set(dataArr)
+      elMeterDashDataStore.set(dataArr);
     } catch (error) {
       console.log(error);
       setError(error.message);
     } finally {
-      initLoading.set(initLoading.get()+100)
-        localStorage.setItem("electricity_store",JSON.stringify(elMeterDashDataStore.get()));
+      initLoading.set(initLoading.get() + 100);
+      localStorage.setItem(
+        "electricity_store",
+        JSON.stringify(elMeterDashDataStore.get()),
+      );
       setLoading(false);
     }
   };
@@ -61,7 +67,7 @@ export function initElectricityData(){
         electric_meter_avr_data,
         daily_tariff_data,
         lastWeekEnergy,
-        energyMonthPairDTOS
+        energyMonthPairDTOS,
       } = elmeter;
       return {
         name,
@@ -70,17 +76,15 @@ export function initElectricityData(){
         electric_meter_avr_data,
         daily_tariff_data,
         lastWeekEnergy,
-        energyMonthPairDTOS
+        energyMonthPairDTOS,
       };
     } catch (error) {
       return null;
-    } 
+    }
   };
-    useEffect(() => {
-      getElmeterData();
-      
-    }, []);
-    if (loading) return <div>Loading...</div>;
-    if (error) return <div>Error: {error}</div>;
-  
+  useEffect(() => {
+    getElmeterData();
+  }, []);
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 }
