@@ -1,5 +1,6 @@
 import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import KpiChart from "./kpiChart";
 
 export default function DisplayKPI({ kpiData, index }) {
   if (elmeter) {
@@ -13,6 +14,9 @@ export default function DisplayKPI({ kpiData, index }) {
                   <div className="name-and-options">
                     <h1>{kpiData.name}</h1>
                     <p>{kpiData.description}</p>
+                    <div className="w-full">
+                      <KpiChart />
+                    </div>
                   </div>
                 </div>
               </div>

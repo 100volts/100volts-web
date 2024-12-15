@@ -42,29 +42,7 @@ import DashboardKPI from "./DashboardKPI";
 export default function Charts() {
   const cardData = useStore(KPIDataStore);
   const progress = useStore(initLoading);
-  const [dataState, setDataState] = useState(" ");
-  const [searchQuery, setSearchQuery] = useState("");
 
-  const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value);
-  };
-  useEffect(() => {
-    if (cardData) {
-      setDataState(cardData[0]);
-    }
-  }, []);
-  const filteredData = cardData
-    ? cardData.filter((data) =>
-        data.name.toLowerCase().includes(searchQuery.toLowerCase()),
-      )
-    : [];
-  async function onSubmit(values) {
-    if (cardData) {
-      setDataState(
-        cardData.filter((datag) => datag.name === values.target.innerText)[0],
-      );
-    }
-  }
   if (initLoading.get() < 100) {
     return (
       <>
