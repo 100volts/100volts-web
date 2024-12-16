@@ -15,9 +15,9 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-
+/*
 const chartData = [
-  { date: "2024-04-01", desktop: 222, mobile: 150 },
+  { date: "2024-04-01", desktop: 222, mobile: 150, value: 0.020821407 },
   { date: "2024-04-02", desktop: 97, mobile: 180 },
   { date: "2024-04-03", desktop: 167, mobile: 120 },
   { date: "2024-04-04", desktop: 242, mobile: 260 },
@@ -109,25 +109,27 @@ const chartData = [
   { date: "2024-06-29", desktop: 103, mobile: 160 },
   { date: "2024-06-30", desktop: 446, mobile: 400 },
 ];
-
+*/
 const chartConfig = {
   //tuka se dobavqt poveche prozercheta
-  test: { label: "test", color: "hsl(188.7 94.5% 42.7%)" },
-  desktop: { label: "Montly", color: "hsl(188.7 94.5% 42.7%)" },
-  mobile: { label: "Yearly", color: "hsl(var(--chart-2))" },
+  // desktop: { label: "test", color: "hsl(188.7 94.5% 42.7%)" },
+  value: { label: "Montly", color: "hsl(188.7 94.5% 42.7%)" },
+  // productionDataDTO: { label: "Yearly", color: "hsl(var(--chart-2))" },
+  // mobile: { label: "Yearly", color: "hsl(var(--chart-2))" },
 };
 
-export default function Component() {
-  const [activeChart, setActiveChart] = React.useState("desktop");
-
+export default function Component({ chartData }) {
+  const [activeChart, setActiveChart] = React.useState("value");
+  console.log("chartData for kpi chart", chartData);
   const total = React.useMemo(() => {
     return chartData.reduce(
       (acc, curr) => {
-        acc.desktop += curr.desktop;
-        acc.mobile += curr.mobile;
+        //acc.desktop += curr.desktop;
+        //acc.mobile += curr.mobile;
+        acc.value += curr.value;
         return acc;
       },
-      { desktop: 0, mobile: 0 },
+      { desktop: 0, mobile: 0, value: 0 },
     );
   }, []);
 
@@ -168,7 +170,7 @@ export default function Component() {
           >
             <CartesianGrid vertical={false} />
             <XAxis
-              dataKey="date"
+              dataKey="ts"
               tickLine={false}
               axisLine={false}
               tickMargin={8}

@@ -50,8 +50,15 @@ export function initKPIData() {
 
   const mapData = async (elmeter) => {
     try {
-      const { name, description, group, currentTarget, energy, productionDTO } =
-        elmeter;
+      const {
+        name,
+        description,
+        group,
+        currentTarget,
+        energy,
+        productionDTO,
+        kpiDataDTOS,
+      } = elmeter;
       return {
         name,
         description,
@@ -59,6 +66,7 @@ export function initKPIData() {
         currentTarget,
         energy,
         productionDTO,
+        kpiDataDTOS,
       };
     } catch (error) {
       return null;
