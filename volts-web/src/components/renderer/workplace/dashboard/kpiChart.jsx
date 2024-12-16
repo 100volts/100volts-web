@@ -129,7 +129,7 @@ export default function Component({ chartData }) {
         acc.value += curr.value;
         return acc;
       },
-      { desktop: 0, mobile: 0, value: 0 },
+      { value: 0 },
     );
   }, []);
 
@@ -137,8 +137,8 @@ export default function Component({ chartData }) {
     <Card>
       <CardHeader className="flex w-full flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
         <div className="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
-          <CardTitle>UHT</CardTitle>
-          <CardDescription>Примерна диаграма за кпи</CardDescription>
+          <CardTitle>Energy-Production KPI Chart </CardTitle>
+          <CardDescription>{}</CardDescription>
         </div>
         <div className="flex">
           {Object.keys(chartConfig).map((key) => (
