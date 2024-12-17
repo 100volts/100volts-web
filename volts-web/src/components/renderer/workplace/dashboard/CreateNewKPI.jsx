@@ -103,8 +103,8 @@ export default function CreateNewKPI() {
   return (
     <>
       <Dialog>
-        <DialogTrigger>
-          <Button className="w-full justify-start">
+        <DialogTrigger disabled>
+          <Button disabled className="w-full justify-start">
             <Plus className="mr-2 h-4 w-4" />
             Create new KPI
           </Button>
