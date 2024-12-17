@@ -76,6 +76,7 @@ export default function Component({ chartData }) {
               content={
                 <ChartTooltipContent
                   className="w-[150px]"
+                  formatter={(value) => value.toFixed(4)}
                   nameKey="views"
                   labelFormatter={(value) =>
                     new Date(value).toLocaleDateString("en-US", {
