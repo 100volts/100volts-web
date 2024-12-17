@@ -77,8 +77,6 @@ export default function CreateNewKPI() {
       KPI_target: 1,
       description: "",
       KPI_group: "",
-      production_name: [],
-      electric_name: [],
     },
   });
   const dataEl = useStore(prodElMeterNames);
@@ -87,8 +85,6 @@ export default function CreateNewKPI() {
   const pordData = useStore(productionDashDataStore);
 
   async function onSubmit(values) {
-    console.log("testis", "tests");
-    console.log("values", values);
     const companyName = $userData.companies[0]; //todo remove hard coded call
     const userToken = $userData.tokken;
     const urladdress = pkg["volts-server"];
@@ -96,20 +92,20 @@ export default function CreateNewKPI() {
     try {
       const body = JSON.stringify({
         company: companyName,
-        KPIName: values.KPI_name,
-        description: values.KPI_discription,
-        target: values.target,
-        group: values.group,
+        KPIName: values.KPIName,
+        description: values.description,
+        target: values.KPI_target,
+        group: { name: values.KPI_group, description: values.KPI_group },
         energy: {
-          index: values.index,
-          electricEnergy: [values.electric_name],
+          index: 1,
+          electricEnergyName: values.electric_name,
         },
         settings: {
-          name: values.setting_name,
+          name: values.KPI_settings,
         },
-        prodNames: [values.prod_names],
+        prodNames: values.production_name,
       });
-      const response = await fetch(`http://${urladdress}:8081/create`, {
+      const response = await fetch(`http://${urladdress}:8081/kpi/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -118,18 +114,11 @@ export default function CreateNewKPI() {
         body,
       });
       const datat = await response.json();
-      const { success } = datat;
     } catch (error) {
     } finally {
       window.location.reload();
     }
   }
-
-  const handleSubmit = async (event) => {
-    // event.preventDefault();
-    console.log("eho");
-    form.handleSubmit(onSubmit)(event);
-  };
 
   return (
     <>
@@ -150,10 +139,16 @@ export default function CreateNewKPI() {
             </DialogDescription>
           </DialogHeader>
           <Form {...form}>
-            <form onSubmit={handleSubmit} className="space-y-8">
+            <form
+              onSubmit={(event) => {
+                event.preventDefault();
+                onSubmit(form.getValues());
+              }}
+              className="space-y-8"
+            >
               <FormField
                 control={form.control}
-                name="KPI_name"
+                name="KPIName"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>KPI name</FormLabel>
@@ -166,7 +161,7 @@ export default function CreateNewKPI() {
               />
               <FormField
                 control={form.control}
-                name="KPI_discription"
+                name="description"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>KPI description</FormLabel>
@@ -186,13 +181,13 @@ export default function CreateNewKPI() {
                     <FormLabel>KPI target</FormLabel>
                     <FormControl>
                       <Input
-                        type="number" // Ensure the input is numeric
-                        value={field.value || ""} // Default to empty string if undefined
+                        type="number"
+                        value={field.value || ""}
                         onChange={(e) => {
                           const value = e.target.value;
                           field.onChange(
                             value === "" ? undefined : Number(value),
-                          ); // Convert to number
+                          );
                         }}
                       />
                     </FormControl>
