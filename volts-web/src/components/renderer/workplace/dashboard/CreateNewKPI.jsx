@@ -1,12 +1,9 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { Check, ChevronsUpDown } from "lucide-react";
 import { z } from "zod";
-
 import { cn } from "@/lib/utils";
-//import useToast from "@/components/hooks/use-toast";
 import {
   Command,
   CommandEmpty,
@@ -53,6 +50,7 @@ import { useStore } from "@nanostores/react";
 import {
   prodGroup,
   prodElMeterNames,
+  productionDashDataStore,
 } from "@/components/datastore/ProductionStore";
 
 const languages = [
@@ -89,6 +87,8 @@ export default function CreateNewKPI() {
   const dataEl = useStore(prodElMeterNames);
   const dataKPIGroup = useStore(prodGroup); //todo replase dis
   const $userData = useStore(userData);
+  const pordData = useStore(productionDashDataStore);
+  console.log("productionDashDataStore", pordData);
   const handleSubmit = async (event) => {
     event.preventDefault();
     form.handleSubmit(onSubmit)(event);
@@ -98,6 +98,8 @@ export default function CreateNewKPI() {
     const companyName = $userData.companies[0]; //todo remove hard coded call
     const userToken = $userData.tokken;
     const urladdress = pkg["volts-server"];
+    console.log("values", values);
+    /*
     try {
       const body = JSON.stringify({
         company: companyName,
@@ -128,6 +130,7 @@ export default function CreateNewKPI() {
     } finally {
       window.location.reload();
     }
+      */
   }
   return (
     <>
@@ -152,10 +155,10 @@ export default function CreateNewKPI() {
             <form onSubmit={handleSubmit} className="space-y-8">
               <FormField
                 control={form.control}
-                name="language"
+                name="production_name"
                 render={({ field }) => (
                   <FormItem className="flex flex-col">
-                    <FormLabel>Language</FormLabel>
+                    <FormLabel>Production</FormLabel>
                     <Popover>
                       <PopoverTrigger asChild>
                         <FormControl>
@@ -167,16 +170,9 @@ export default function CreateNewKPI() {
                               !field.value?.length && "text-muted-foreground",
                             )}
                           >
-                            {field.value?.length
-                              ? field.value
-                                  .map(
-                                    (value) =>
-                                      languages.find(
-                                        (language) => language.value === value,
-                                      )?.label,
-                                  )
-                                  .join(", ")
-                              : "Select languages"}
+                            {field.value?.length > 0
+                              ? `${field.value.length} production${field.value.length > 1 ? "s" : ""} selected`
+                              : "Select productions"}
                             <ChevronsUpDown className="opacity-50" />
                           </Button>
                         </FormControl>
@@ -184,33 +180,33 @@ export default function CreateNewKPI() {
                       <PopoverContent className="w-[200px] p-0">
                         <Command>
                           <CommandInput
-                            placeholder="Search language..."
+                            placeholder="Search production..."
                             className="h-9"
                           />
                           <CommandList>
-                            <CommandEmpty>No language found.</CommandEmpty>
+                            <CommandEmpty>No production found.</CommandEmpty>
                             <CommandGroup>
-                              {languages.map((language) => {
+                              {pordData.map((prod) => {
                                 const isSelected = field.value?.includes(
-                                  language.value,
+                                  prod.name,
                                 );
                                 return (
                                   <CommandItem
-                                    value={language.label}
-                                    key={language.value}
+                                    value={prod.name}
+                                    key={prod.name}
                                     onSelect={() => {
                                       const newValue = isSelected
                                         ? field.value.filter(
-                                            (val) => val !== language.value,
+                                            (val) => val !== prod.name,
                                           )
-                                        : [
-                                            ...(field.value || []),
-                                            language.value,
-                                          ];
-                                      form.setValue("language", newValue);
+                                        : [...(field.value || []), prod.name];
+                                      form.setValue(
+                                        "production_name",
+                                        newValue,
+                                      );
                                     }}
                                   >
-                                    {language.label}
+                                    {prod.name}
                                     <Check
                                       className={cn(
                                         "ml-auto",
@@ -228,13 +224,13 @@ export default function CreateNewKPI() {
                       </PopoverContent>
                     </Popover>
                     <FormDescription>
-                      These are the languages that will be used in the
-                      dashboard.
+                      These are the productions that will be used in the KPI.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
               />
+
               <FormField
                 control={form.control}
                 name="KPI_name"
