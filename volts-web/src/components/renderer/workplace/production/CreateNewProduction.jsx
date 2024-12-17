@@ -87,7 +87,7 @@ export default function CreateNewProduction() {
             Authorization: `Bearer ${userToken}`,
           },
           body,
-        }
+        },
       );
       const datat = await response.json();
       const { success } = datat;
@@ -134,7 +134,7 @@ export default function CreateNewProduction() {
                 name="prod_discription"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Production desctription</FormLabel>
+                    <FormLabel>Production description</FormLabel>
                     <FormControl>
                       <Input placeholder="description" {...field} />
                     </FormControl>

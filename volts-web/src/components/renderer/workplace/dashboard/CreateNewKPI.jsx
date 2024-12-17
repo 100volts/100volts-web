@@ -1,8 +1,25 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Check, ChevronsUpDown } from "lucide-react";
 import { z } from "zod";
+
+import { cn } from "@/lib/utils";
+//import useToast from "@/components/hooks/use-toast";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import {
@@ -37,6 +54,18 @@ import {
   prodGroup,
   prodElMeterNames,
 } from "@/components/datastore/ProductionStore";
+
+const languages = [
+  { label: "English", value: "en" },
+  { label: "French", value: "fr" },
+  { label: "German", value: "de" },
+  { label: "Spanish", value: "es" },
+  { label: "Portuguese", value: "pt" },
+  { label: "Russian", value: "ru" },
+  { label: "Japanese", value: "ja" },
+  { label: "Korean", value: "ko" },
+  { label: "Chinese", value: "zh" },
+];
 
 const formSchema = z.object({
   KPIName: z
@@ -103,26 +132,115 @@ export default function CreateNewKPI() {
   return (
     <>
       <Dialog>
-        <DialogTrigger disabled>
-          <Button disabled className="w-full justify-start">
+        <DialogTrigger>
+          <Button className="w-full justify-start">
             <Plus className="mr-2 h-4 w-4" />
             Create new KPI
           </Button>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Creating new KPIuction</DialogTitle>
-            <DialogDescription></DialogDescription>
+            <DialogTitle>Creating new KPI</DialogTitle>
+            <DialogDescription>
+              Creating a new Key Performance Indicator (KPI) is essential for
+              measuring and tracking the success of specific goals within an
+              organization or project.
+            </DialogDescription>
           </DialogHeader>
 
           <Form {...form}>
             <form onSubmit={handleSubmit} className="space-y-8">
               <FormField
                 control={form.control}
+                name="language"
+                render={({ field }) => (
+                  <FormItem className="flex flex-col">
+                    <FormLabel>Language</FormLabel>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <FormControl>
+                          <Button
+                            variant="outline"
+                            role="combobox"
+                            className={cn(
+                              "w-[200px] justify-between",
+                              !field.value?.length && "text-muted-foreground",
+                            )}
+                          >
+                            {field.value?.length
+                              ? field.value
+                                  .map(
+                                    (value) =>
+                                      languages.find(
+                                        (language) => language.value === value,
+                                      )?.label,
+                                  )
+                                  .join(", ")
+                              : "Select languages"}
+                            <ChevronsUpDown className="opacity-50" />
+                          </Button>
+                        </FormControl>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-[200px] p-0">
+                        <Command>
+                          <CommandInput
+                            placeholder="Search language..."
+                            className="h-9"
+                          />
+                          <CommandList>
+                            <CommandEmpty>No language found.</CommandEmpty>
+                            <CommandGroup>
+                              {languages.map((language) => {
+                                const isSelected = field.value?.includes(
+                                  language.value,
+                                );
+                                return (
+                                  <CommandItem
+                                    value={language.label}
+                                    key={language.value}
+                                    onSelect={() => {
+                                      const newValue = isSelected
+                                        ? field.value.filter(
+                                            (val) => val !== language.value,
+                                          )
+                                        : [
+                                            ...(field.value || []),
+                                            language.value,
+                                          ];
+                                      form.setValue("language", newValue);
+                                    }}
+                                  >
+                                    {language.label}
+                                    <Check
+                                      className={cn(
+                                        "ml-auto",
+                                        isSelected
+                                          ? "opacity-100"
+                                          : "opacity-0",
+                                      )}
+                                    />
+                                  </CommandItem>
+                                );
+                              })}
+                            </CommandGroup>
+                          </CommandList>
+                        </Command>
+                      </PopoverContent>
+                    </Popover>
+                    <FormDescription>
+                      These are the languages that will be used in the
+                      dashboard.
+                    </FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
                 name="KPI_name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>KPIuction name</FormLabel>
+                    <FormLabel>KPI name</FormLabel>
                     <FormControl>
                       <Input placeholder="name" {...field} />
                     </FormControl>
@@ -135,7 +253,7 @@ export default function CreateNewKPI() {
                 name="KPI_discription"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>KPIuction desctription</FormLabel>
+                    <FormLabel>KPI description</FormLabel>
                     <FormControl>
                       <Input placeholder="description" {...field} />
                     </FormControl>
@@ -144,13 +262,12 @@ export default function CreateNewKPI() {
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={form.control}
                 name="KPI_unit"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Unit type</FormLabel>
+                    <FormLabel>Group </FormLabel>
                     <Select
                       onValueChange={field.onChange}
                       defaultValue={field.value}
@@ -183,11 +300,39 @@ export default function CreateNewKPI() {
                   </FormItem>
                 )}
               />
+
               <FormField
                 control={form.control}
                 name="electric_name"
                 render={({ field }) => (
                   <FormItem>
+                    <FormLabel>KPI Calculation settings</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select Electric meter witch connects to the KPIuction" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {dataEl.map((el, index) => (
+                          <SelectItem key={index} value={el}>
+                            {el}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="electric_name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>KPI Electric Energy</FormLabel>
                     <Select
                       onValueChange={field.onChange}
                       defaultValue={field.value}
