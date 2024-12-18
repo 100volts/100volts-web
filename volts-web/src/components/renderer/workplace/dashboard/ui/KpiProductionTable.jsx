@@ -10,12 +10,12 @@ import {
 } from "@/components/ui/table";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
-export default function EnergyTable({ data }) {
+export default function ProductionTable({ data }) {
   const prodSum = data.reduce((sum, prod) => sum + prod.values, 0);
   return (
     <ScrollArea className="m-5 max-h-80 w-full rounded-md border">
       <Table className="w-full">
-        <TableCaption>Electric energy</TableCaption>
+        <TableCaption>Production</TableCaption>
         <TableHeader>
           <TableRow>
             <TableHead>Name</TableHead>
