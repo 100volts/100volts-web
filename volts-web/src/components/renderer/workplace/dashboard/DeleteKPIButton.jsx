@@ -33,7 +33,11 @@ export default function DeleteButton({ kpi }) {
   }
   return (
     <>
-      <Button variant="destructive" onClick={() => deleteKpi(`${kpi.name}`)}>
+      <Button
+        disabled
+        variant="destructive"
+        onClick={() => deleteKpi(`${kpi.name}`)}
+      >
         <CrossCircledIcon
           key={kpi}
           style={{ width: "25px" }}

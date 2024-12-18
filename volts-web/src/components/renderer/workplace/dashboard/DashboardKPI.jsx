@@ -18,11 +18,46 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
 import { useState, useEffect } from "react";
+import { KPIGroups } from "@/components/datastore/KPIStore";
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
+import { useStore } from "@nanostores/react";
+import { Filter, Check } from "lucide-react";
 
 export default function DashboardKPI({ cardData }) {
   const [dataState, setDataState] = useState(" ");
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedUnits, setSelectedUnits] = useState([]);
+  const [selectedGroups, setSelectedGroups] = useState([]);
+  const [groups, setGroups] = useState([]);
+  const kpiGroups = useStore(KPIGroups);
 
+  //select filtering
+  const toggleGroup = (unit) => {
+    setSelectedGroups((prev) =>
+      prev.includes(unit) ? prev.filter((u) => u !== unit) : [...prev, unit],
+    );
+  };
+  groups;
+  const filteredData = cardData
+    ? cardData.filter(
+        (data) =>
+          data.name.toLowerCase().includes(searchQuery.toLowerCase()) &&
+          (selectedGroups.length === 0 ||
+            selectedGroups.some(
+              (selectedGroup) => data.group === selectedGroup.name,
+            )),
+      )
+    : [];
+
+  //form
   async function onSubmit(values) {
     if (cardData) {
       setDataState(
@@ -32,23 +67,22 @@ export default function DashboardKPI({ cardData }) {
   }
 
   useEffect(() => {
+    let updatedGroups = [];
     if (cardData) {
-      setDataState(cardData[0]);
+      setGroups(kpiGroups);
+      console.log("selectedGroups", selectedGroups);
     }
-  }, []);
+    setDataState(cardData[0]);
+  }, [cardData]);
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
   };
-  const filteredData = cardData
-    ? cardData.filter((data) =>
-        data.name.toLowerCase().includes(searchQuery.toLowerCase()),
-      )
-    : [];
+
   return (
     <>
       <ResizablePanelGroup direction="horizontal">
         <div className="m-1 flex max-h-[700px] w-max flex-row">
-          <ResizablePanel defaultSize={15} minSize={15} maxSize={95}>
+          <ResizablePanel defaultSize={20} minSize={20} maxSize={95}>
             <div className="flex h-screen max-h-[700px] flex-col">
               {cardData ? (
                 <>
@@ -64,17 +98,48 @@ export default function DashboardKPI({ cardData }) {
                       />
                     </div>
                   </form>
+                  <div>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button
+                          variant="outline"
+                          className="w-full justify-start"
+                        >
+                          <Filter className="mr-2 h-4 w-4" />
+                          {selectedGroups.length > 0
+                            ? `${selectedGroups.length} selected`
+                            : "Filter Group"}
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="w-[180px]">
+                        <DropdownMenuLabel>Select Group</DropdownMenuLabel>
+                        <DropdownMenuSeparator />
+                        {groups.map((group) => (
+                          <DropdownMenuCheckboxItem
+                            key={group.name}
+                            checked={selectedGroups.includes(group)}
+                            onCheckedChange={() => toggleGroup(group)}
+                          >
+                            {group.name}
+                            {selectedGroups.includes(group) && (
+                              <Check className="ml-auto h-4 w-4" />
+                            )}
+                          </DropdownMenuCheckboxItem>
+                        ))}
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
                   <Separator className="m-1" />
                   <ScrollArea className="h-screen max-h-[700px]">
                     {filteredData.length > 0 ? (
                       filteredData.map((data, index) => (
                         <Card
                           key={index}
-                          onClick={onSubmit}
                           className={cn(
                             "m-1 cursor-pointer transition-colors",
                             dataState.name === data.name && "bg-muted",
                           )}
+                          onClick={onSubmit}
                         >
                           <CardHeader>{data.name}</CardHeader>
                           <CardDescription>

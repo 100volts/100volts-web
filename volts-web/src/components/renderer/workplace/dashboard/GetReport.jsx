@@ -32,10 +32,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import { Checkbox } from "@/components/ui/checkbox";
-import { userData } from "@/components/datastore/UserStore";
-import { useStore } from "@nanostores/react";
-import { selectedProduction } from "@/components/datastore/ProductionStore";
+import { Checkbox } from "@/components/ui/checkbox"
+import {userData } from "@/components/datastore/UserStore";
+import { useStore } from '@nanostores/react';
+import {selectedProduction} from "@/components/datastore/ProductionStore"
+
 
 export const columns1 = [
   {
@@ -94,10 +95,10 @@ export default function GetReport() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const $userData = useStore(userData);
-  const companyName = $userData.companies[0]; //todo remove hard coded call
-  const userToken = $userData.tokken;
-  const prod = useStore(selectedProduction);
+  const $userData=useStore(userData);
+  const companyName = $userData.companies[0];//todo remove hard coded call
+  const userToken =$userData.tokken;
+  const prod=useStore(selectedProduction);
   const getElmeterData = async () => {
     try {
       const body = JSON.stringify({
@@ -113,7 +114,7 @@ export default function GetReport() {
             Authorization: `Bearer ${userToken}`,
           },
           body,
-        },
+        }
       );
       const datat = await response.json();
       const { productionData } = datat;
@@ -140,26 +141,29 @@ export default function GetReport() {
   );
 }
 
-async function buttClick(row) {
-  try {
+async function buttClick(row){
+  try{
     const body = JSON.stringify({
       id: row.id,
     });
-    const response = await fetch(`http://${urladdress}:8081/production/data`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${userToken}`,
-      },
-      body,
-    });
+        const response = await fetch(
+      `http://${urladdress}:8081/production/data`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userToken}`,
+        },
+        body,
+      }
+    );
     const datat = await response.json();
     const { success } = datat;
-  } catch (error) {
-    //todo handle error
-  } finally {
+}catch (error) {
+ //todo handle error
+} finally {
     window.location.reload();
-  }
+};
 }
 
 export function DataTable({ columns, data }) {
@@ -180,15 +184,19 @@ export function DataTable({ columns, data }) {
     },
   });
 
+  
+
   return (
-    <div className="w-full rounded-md border">
+    <div className="rounded-md border w-full">
       <div>
         <div className="flex items-center py-4">
           <Input
             placeholder="Filter date..."
             value={table.getColumn("date")?.getFilterValue() ?? ""}
             onChange={(event) =>
-              table.getColumn("date")?.setFilterValue(event.target.value)
+              table
+                .getColumn("date")
+                ?.setFilterValue(event.target.value)
             }
             className="max-w-sm"
           />
@@ -205,7 +213,7 @@ export function DataTable({ columns, data }) {
                         ? null
                         : flexRender(
                             header.column.columnDef.header,
-                            header.getContext(),
+                            header.getContext()
                           )}
                     </TableHead>
                   );
@@ -224,15 +232,11 @@ export function DataTable({ columns, data }) {
                     <TableCell key={cell.id}>
                       {flexRender(
                         cell.column.columnDef.cell,
-                        cell.getContext(),
+                        cell.getContext()
                       )}
                     </TableCell>
                   ))}
-                  <TableCell>
-                    <Button onClick={() => buttClick(row.original)}>
-                      Delete
-                    </Button>
-                  </TableCell>
+                  <TableCell><Button onClick={()=> buttClick(row.original)}>Delete</Button></TableCell>
                 </TableRow>
               ))
             ) : (
