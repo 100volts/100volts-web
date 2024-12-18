@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/tooltip";
 import { Badge } from "@/components/ui/badge";
 import OptionsButtons from "./OptionsButtons";
+import EnergyTable from "./ui/KpiEnergyTable";
 
 export default function DisplayKPI({ kpiData, index }) {
   console.log("kpiData for displayKIPI", kpiData);
@@ -45,7 +46,10 @@ export default function DisplayKPI({ kpiData, index }) {
                     </div>
                     <div className="w-full">
                       {kpiData.kpiDataDTOS ? (
-                        <KpiChart chartData={kpiData.kpiDataDTOS} />
+                        <div className="justify-cente flex flex-row content-start justify-items-center">
+                          <KpiChart chartData={kpiData.kpiDataDTOS} />
+                          <EnergyTable data={kpiData.productionDTO} />
+                        </div>
                       ) : (
                         <></>
                       )}
