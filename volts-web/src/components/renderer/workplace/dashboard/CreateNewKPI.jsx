@@ -53,6 +53,7 @@ import {
   prodElMeterNames,
   productionDashDataStore,
 } from "@/components/datastore/ProductionStore";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const formSchema = z.object({
   KPIName: z
@@ -138,281 +139,288 @@ export default function CreateNewKPI() {
               organization or project.
             </DialogDescription>
           </DialogHeader>
-          <Form {...form}>
-            <form
-              onSubmit={(event) => {
-                event.preventDefault();
-                onSubmit(form.getValues());
-              }}
-              className="space-y-8"
-            >
-              <FormField
-                control={form.control}
-                name="KPIName"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>KPI name</FormLabel>
-                    <FormControl>
-                      <Input placeholder="name" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="description"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>KPI description</FormLabel>
-                    <FormControl>
-                      <Input placeholder="description" {...field} />
-                    </FormControl>
-                    <FormDescription></FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="KPI_target"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>KPI target</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="number"
-                        value={field.value || ""}
-                        onChange={(e) => {
-                          const value = e.target.value;
-                          field.onChange(
-                            value === "" ? undefined : Number(value),
-                          );
-                        }}
-                      />
-                    </FormControl>
-                    <FormDescription></FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="KPI_settings"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Calculate setting </FormLabel>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
+          <ScrollArea className="h-screen max-h-[600px]">
+            <Form {...form}>
+              <form
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  onSubmit(form.getValues());
+                }}
+                className="space-y-8"
+              >
+                <FormField
+                  control={form.control}
+                  name="KPIName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>KPI name</FormLabel>
                       <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select calculation period" />
-                        </SelectTrigger>
+                        <Input placeholder="name" {...field} />
                       </FormControl>
-                      <SelectContent>
-                        <SelectItem key="One_day" value="One day">
-                          One day
-                        </SelectItem>
-                        <SelectItem key="One_week" value="One week">
-                          One week
-                        </SelectItem>
-                        <SelectItem key="One_month" value="One month">
-                          One month
-                        </SelectItem>
-                      </SelectContent>
-                    </Select>
-                    <FormDescription>
-                      <a href="/examples/forms">
-                        For what period of time will the calculations take plase
-                      </a>
-                      .
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="production_name"
-                render={({ field }) => (
-                  <FormItem className="flex flex-col">
-                    <FormLabel>Production</FormLabel>
-                    <Popover>
-                      <PopoverTrigger asChild>
-                        <FormControl>
-                          <Button
-                            variant="outline"
-                            role="combobox"
-                            className={cn(
-                              "w-full justify-between",
-                              !field.value?.length && "text-muted-foreground",
-                            )}
-                          >
-                            {field.value?.length > 0
-                              ? `${field.value.length} production${field.value.length > 1 ? "s" : ""} selected`
-                              : "Select productions"}
-                            <ChevronsUpDown className="opacity-50" />
-                          </Button>
-                        </FormControl>
-                      </PopoverTrigger>
-                      <PopoverContent className="w-full p-0">
-                        <Command>
-                          <CommandInput
-                            placeholder="Search production..."
-                            className="h-9"
-                          />
-                          <CommandList>
-                            <CommandEmpty>No production found.</CommandEmpty>
-                            <CommandGroup>
-                              {pordData.map((prod) => {
-                                const isSelected = field.value?.includes(
-                                  prod.name,
-                                );
-                                return (
-                                  <CommandItem
-                                    value={prod.name}
-                                    key={prod.name}
-                                    onSelect={() => {
-                                      const newValue = isSelected
-                                        ? field.value.filter(
-                                            (val) => val !== prod.name,
-                                          )
-                                        : [...(field.value || []), prod.name];
-                                      form.setValue(
-                                        "production_name",
-                                        newValue,
-                                      );
-                                    }}
-                                  >
-                                    {prod.name}
-                                    <Check
-                                      className={cn(
-                                        "ml-auto",
-                                        isSelected
-                                          ? "opacity-100"
-                                          : "opacity-0",
-                                      )}
-                                    />
-                                  </CommandItem>
-                                );
-                              })}
-                            </CommandGroup>
-                          </CommandList>
-                        </Command>
-                      </PopoverContent>
-                    </Popover>
-                    <FormDescription>
-                      These are the productions that will be used in the KPI.
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="electric_name"
-                render={({ field }) => (
-                  <FormItem className="flex flex-col">
-                    <FormLabel>Electric energy</FormLabel>
-                    <Popover>
-                      <PopoverTrigger asChild>
-                        <FormControl>
-                          <Button
-                            variant="outline"
-                            role="combobox"
-                            className={cn(
-                              "w-full justify-between",
-                              !field.value?.length && "text-muted-foreground",
-                            )}
-                          >
-                            {field.value?.length > 0
-                              ? `${field.value.length}  meter${field.value.length > 1 ? "s" : ""} selected`
-                              : "Select Electric energy"}
-                            <ChevronsUpDown className="opacity-50" />
-                          </Button>
-                        </FormControl>
-                      </PopoverTrigger>
-                      <PopoverContent className="w-full p-0">
-                        <Command>
-                          <CommandInput
-                            placeholder="Search eletric meter..."
-                            className="h-9"
-                          />
-                          <CommandList>
-                            <CommandEmpty>No meter found.</CommandEmpty>
-                            <CommandGroup>
-                              {dataEl.map((prod) => {
-                                const isSelected = field.value?.includes(prod);
-                                return (
-                                  <CommandItem
-                                    value={prod}
-                                    key={prod}
-                                    onSelect={() => {
-                                      const newValue = isSelected
-                                        ? field.value.filter(
-                                            (val) => val !== prod,
-                                          )
-                                        : [...(field.value || []), prod];
-                                      form.setValue("electric_name", newValue);
-                                    }}
-                                  >
-                                    {prod}
-                                    <Check
-                                      className={cn(
-                                        "ml-auto",
-                                        isSelected
-                                          ? "opacity-100"
-                                          : "opacity-0",
-                                      )}
-                                    />
-                                  </CommandItem>
-                                );
-                              })}
-                            </CommandGroup>
-                          </CommandList>
-                        </Command>
-                      </PopoverContent>
-                    </Popover>
-                    <FormDescription>
-                      These are the eletric meteres with are going to be used
-                      for calculationg lectric energy for KPI.
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="KPI_group"
-                render={({ field }) => (
-                  <FormItem>
-                    <Input placeholder="New group name" {...field} />
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="description"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>KPI description</FormLabel>
                       <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select Electric group" />
-                        </SelectTrigger>
+                        <Input placeholder="description" {...field} />
                       </FormControl>
-                      <SelectContent>
-                        {dataKPIGroup.map((el, index) => (
-                          <SelectItem key={index} value={el}>
-                            {el}
+                      <FormDescription></FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="KPI_target"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>KPI target</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="number"
+                          value={field.value || ""}
+                          onChange={(e) => {
+                            const value = e.target.value;
+                            field.onChange(
+                              value === "" ? undefined : Number(value),
+                            );
+                          }}
+                        />
+                      </FormControl>
+                      <FormDescription></FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="KPI_settings"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Calculate setting </FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select calculation period" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem key="One_day" value="One day">
+                            One day
                           </SelectItem>
-                        ))}
-                        <SelectItem key="Crete_new">Crete new</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </FormItem>
-                )}
-              />
-              <Button type="submit">Submit</Button>
-            </form>
-          </Form>
+                          <SelectItem key="One_week" value="One week">
+                            One week
+                          </SelectItem>
+                          <SelectItem key="One_month" value="One month">
+                            One month
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormDescription>
+                        <a href="/examples/forms">
+                          For what period of time will the calculations take
+                          plase
+                        </a>
+                        .
+                      </FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="production_name"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-col">
+                      <FormLabel>Production</FormLabel>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <FormControl>
+                            <Button
+                              variant="outline"
+                              role="combobox"
+                              className={cn(
+                                "w-full justify-between",
+                                !field.value?.length && "text-muted-foreground",
+                              )}
+                            >
+                              {field.value?.length > 0
+                                ? `${field.value.length} production${field.value.length > 1 ? "s" : ""} selected`
+                                : "Select productions"}
+                              <ChevronsUpDown className="opacity-50" />
+                            </Button>
+                          </FormControl>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-full p-0">
+                          <Command>
+                            <CommandInput
+                              placeholder="Search production..."
+                              className="h-9"
+                            />
+                            <CommandList>
+                              <CommandEmpty>No production found.</CommandEmpty>
+                              <CommandGroup>
+                                {pordData.map((prod) => {
+                                  const isSelected = field.value?.includes(
+                                    prod.name,
+                                  );
+                                  return (
+                                    <CommandItem
+                                      value={prod.name}
+                                      key={prod.name}
+                                      onSelect={() => {
+                                        const newValue = isSelected
+                                          ? field.value.filter(
+                                              (val) => val !== prod.name,
+                                            )
+                                          : [...(field.value || []), prod.name];
+                                        form.setValue(
+                                          "production_name",
+                                          newValue,
+                                        );
+                                      }}
+                                    >
+                                      {prod.name}
+                                      <Check
+                                        className={cn(
+                                          "ml-auto",
+                                          isSelected
+                                            ? "opacity-100"
+                                            : "opacity-0",
+                                        )}
+                                      />
+                                    </CommandItem>
+                                  );
+                                })}
+                              </CommandGroup>
+                            </CommandList>
+                          </Command>
+                        </PopoverContent>
+                      </Popover>
+                      <FormDescription>
+                        These are the productions that will be used in the KPI.
+                      </FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="electric_name"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-col">
+                      <FormLabel>Electric energy</FormLabel>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <FormControl>
+                            <Button
+                              variant="outline"
+                              role="combobox"
+                              className={cn(
+                                "w-full justify-between",
+                                !field.value?.length && "text-muted-foreground",
+                              )}
+                            >
+                              {field.value?.length > 0
+                                ? `${field.value.length}  meter${field.value.length > 1 ? "s" : ""} selected`
+                                : "Select Electric energy"}
+                              <ChevronsUpDown className="opacity-50" />
+                            </Button>
+                          </FormControl>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-full p-0">
+                          <Command>
+                            <CommandInput
+                              placeholder="Search eletric meter..."
+                              className="h-9"
+                            />
+                            <CommandList>
+                              <CommandEmpty>No meter found.</CommandEmpty>
+                              <CommandGroup>
+                                {dataEl.map((prod) => {
+                                  const isSelected =
+                                    field.value?.includes(prod);
+                                  return (
+                                    <CommandItem
+                                      value={prod}
+                                      key={prod}
+                                      onSelect={() => {
+                                        const newValue = isSelected
+                                          ? field.value.filter(
+                                              (val) => val !== prod,
+                                            )
+                                          : [...(field.value || []), prod];
+                                        form.setValue(
+                                          "electric_name",
+                                          newValue,
+                                        );
+                                      }}
+                                    >
+                                      {prod}
+                                      <Check
+                                        className={cn(
+                                          "ml-auto",
+                                          isSelected
+                                            ? "opacity-100"
+                                            : "opacity-0",
+                                        )}
+                                      />
+                                    </CommandItem>
+                                  );
+                                })}
+                              </CommandGroup>
+                            </CommandList>
+                          </Command>
+                        </PopoverContent>
+                      </Popover>
+                      <FormDescription>
+                        These are the eletric meteres with are going to be used
+                        for calculationg lectric energy for KPI.
+                      </FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="KPI_group"
+                  render={({ field }) => (
+                    <FormItem>
+                      <Input placeholder="New group name" {...field} />
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select Electric group" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {dataKPIGroup.map((el, index) => (
+                            <SelectItem key={index} value={el}>
+                              {el}
+                            </SelectItem>
+                          ))}
+                          <SelectItem key="Crete_new">Crete new</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </FormItem>
+                  )}
+                />
+                <Button type="submit">Submit</Button>
+              </form>
+            </Form>
+          </ScrollArea>
         </DialogContent>
       </Dialog>
     </>
