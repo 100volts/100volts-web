@@ -54,6 +54,11 @@ import {
   productionDashDataStore,
 } from "@/components/datastore/ProductionStore";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import {
+  KPIDataStore,
+  initLoading,
+  KPIGroups,
+} from "@/components/datastore/KPIStore";
 
 const formSchema = z.object({
   KPIName: z
@@ -81,7 +86,7 @@ export default function CreateNewKPI() {
     },
   });
   const dataEl = useStore(prodElMeterNames);
-  const dataKPIGroup = useStore(prodGroup); //todo replase dis
+  const dataKPIGroup = useStore(KPIGroups); //todo replase dis
   const $userData = useStore(userData);
   const pordData = useStore(productionDashDataStore);
 
@@ -217,10 +222,14 @@ export default function CreateNewKPI() {
                           <SelectItem key="One_day" value="One day">
                             One day
                           </SelectItem>
-                          <SelectItem key="One_week" value="One week">
+                          <SelectItem disabled key="One_week" value="One week">
                             One week
                           </SelectItem>
-                          <SelectItem key="One_month" value="One month">
+                          <SelectItem
+                            disabled
+                            key="One_month"
+                            value="One month"
+                          >
                             One month
                           </SelectItem>
                         </SelectContent>
@@ -402,13 +411,13 @@ export default function CreateNewKPI() {
                       >
                         <FormControl>
                           <SelectTrigger>
-                            <SelectValue placeholder="Select Electric group" />
+                            <SelectValue placeholder="Select group" />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
                           {dataKPIGroup.map((el, index) => (
-                            <SelectItem key={index} value={el}>
-                              {el}
+                            <SelectItem key={index} value={el.name}>
+                              {el.name}
                             </SelectItem>
                           ))}
                           <SelectItem key="Crete_new">Crete new</SelectItem>

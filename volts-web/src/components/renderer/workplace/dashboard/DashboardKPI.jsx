@@ -30,10 +30,7 @@ export default function DashboardKPI({ cardData }) {
       );
     }
   }
-  const handleDataChange = async (event) => {
-    event.preventDefault();
-    form.handleSubmit(onSubmit)(event.target.key);
-  };
+
   useEffect(() => {
     if (cardData) {
       setDataState(cardData[0]);
@@ -47,7 +44,6 @@ export default function DashboardKPI({ cardData }) {
         data.name.toLowerCase().includes(searchQuery.toLowerCase()),
       )
     : [];
-  //      <h1>KPI</h1>
   return (
     <>
       <ResizablePanelGroup direction="horizontal">

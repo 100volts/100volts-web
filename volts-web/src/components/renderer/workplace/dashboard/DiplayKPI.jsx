@@ -1,6 +1,7 @@
 import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import KpiChart from "./kpiChart";
+import DeleteButton from "./DeleteKPIButton";
 
 export default function DisplayKPI({ kpiData, index }) {
   console.log("kpiData for displayKIPI", kpiData);
@@ -15,6 +16,7 @@ export default function DisplayKPI({ kpiData, index }) {
                   <div className="name-and-options">
                     <h1>{kpiData.name}</h1>
                     <p>{kpiData.description}</p>
+                    <DeleteButton kpi={kpiData} />
                     <div className="w-full">
                       {kpiData.kpiDataDTOS ? (
                         <KpiChart chartData={kpiData.kpiDataDTOS} />
