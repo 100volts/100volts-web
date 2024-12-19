@@ -25,7 +25,7 @@ export default function DisplayKPI({ kpiData, index }) {
                   <div className="name-and-options">
                     <h1>{kpiData.name}</h1>
                     <p>{kpiData.description}</p>
-                    <div>
+                    <div className="pb-2">
                       {" "}
                       <TooltipProvider>
                         <Tooltip>
@@ -40,7 +40,8 @@ export default function DisplayKPI({ kpiData, index }) {
                         </Tooltip>
                       </TooltipProvider>
                     </div>
-                    <div className="justify-cente flex flex-row content-start justify-items-center">
+                    <Separator />
+                    <div className="justify-cente flex flex-row content-start justify-items-center pt-2">
                       <DeleteButton kpi={kpiData} />
                       <OptionsButtons kpi={kpiData} />
                     </div>
