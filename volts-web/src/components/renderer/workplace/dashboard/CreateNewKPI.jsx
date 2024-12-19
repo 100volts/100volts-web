@@ -54,11 +54,7 @@ import {
   productionDashDataStore,
 } from "@/components/datastore/ProductionStore";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import {
-  KPIDataStore,
-  initLoading,
-  KPIGroups,
-} from "@/components/datastore/KPIStore";
+import { KPIGroups } from "@/components/datastore/KPIStore";
 
 const formSchema = z.object({
   KPIName: z
@@ -86,7 +82,7 @@ export default function CreateNewKPI() {
     },
   });
   const dataEl = useStore(prodElMeterNames);
-  const dataKPIGroup = useStore(KPIGroups); //todo replase dis
+  const dataKPIGroup = useStore(KPIGroups);
   const $userData = useStore(userData);
   const pordData = useStore(productionDashDataStore);
 
