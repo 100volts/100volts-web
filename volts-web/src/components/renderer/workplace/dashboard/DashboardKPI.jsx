@@ -67,10 +67,8 @@ export default function DashboardKPI({ cardData }) {
   }
 
   useEffect(() => {
-    let updatedGroups = [];
     if (cardData) {
       setGroups(kpiGroups);
-      console.log("selectedGroups", selectedGroups);
     }
     setDataState(cardData[0]);
   }, [cardData]);

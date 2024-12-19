@@ -29,14 +29,17 @@ import {
 import { Input } from "@/components/ui/input";
 
 const formSchema = z.object({
-  prod_name: z.string().min(2, {
-    message: "Production name must be at least 2 characters.",
-  }),
-  prod_discription: z.string().min(2, {
-    message: "Description must be at least 2 characters.",
-  }),
-  production_group: z.string().min(2, {
-    message: "Group name must be at least 2 characters.",
+  KPIName: z
+    .string()
+    .min(2, {
+      message: "KPI name must be at least 2 characters.",
+    })
+    .refine((val) => !/^\d/.test(val), {
+      message: "KPI name cannot start with a number.",
+    }),
+  KPI_target: z.number(),
+  description: z.string().min(2, {
+    message: "KPI description must be at least 2 characters.",
   }),
 });
 
@@ -44,7 +47,15 @@ export default function Settings({ kpi }) {
   const $userData = useStore(userData);
   const dataProdGroup = useStore(prodGroup);
   const dataEl = useStore(prodElMeterNames);
-  const form = useForm();
+  const form = useForm({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      KPIName: kpi.name,
+      KPI_target: kpi.target,
+      description: kpi.description,
+      KPI_group: kpi.group,
+    },
+  });
   const handleSubmit = async (event) => {
     event.preventDefault();
     form.handleSubmit(onSubmit)(event);

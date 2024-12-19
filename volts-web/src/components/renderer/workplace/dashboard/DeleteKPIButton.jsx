@@ -10,7 +10,6 @@ export default function DeleteButton({ kpi }) {
   const companyName = $userData.companies[0]; //todo remove hard coded call
   async function deleteKpi(prod_name) {
     const userToken = $userData.tokken;
-    console.log("prod_name", prod_name);
     try {
       const body = JSON.stringify({
         company: companyName,

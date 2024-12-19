@@ -14,7 +14,6 @@ import ProductionTable from "./ui/KpiProductionTable";
 import EnergyTable from "./ui/KpiEnergyTable";
 
 export default function DisplayKPI({ kpiData, index }) {
-  console.log("kpiData for displayKIPI", kpiData);
   if (kpiData) {
     return (
       <>

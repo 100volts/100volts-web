@@ -11,7 +11,6 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 export default function EnergyTable({ data }) {
-  console.log("data", data);
   return (
     <>
       <ScrollArea className="m-5 max-h-80 w-full rounded-md border">
