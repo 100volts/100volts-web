@@ -11,6 +11,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import OptionsButtons from "./OptionsButtons";
 import ProductionTable from "./ui/KpiProductionTable";
+import EnergyTable from "./ui/KpiEnergyTable";
 
 export default function DisplayKPI({ kpiData, index }) {
   console.log("kpiData for displayKIPI", kpiData);
@@ -42,13 +43,14 @@ export default function DisplayKPI({ kpiData, index }) {
                     </div>
                     <div className="justify-cente flex flex-row content-start justify-items-center">
                       <DeleteButton kpi={kpiData} />
-                      <OptionsButtons />
+                      <OptionsButtons kpi={kpiData} />
                     </div>
                     <div className="w-full">
                       {kpiData.kpiDataDTOS ? (
                         <div className="justify-cente flex flex-row content-start justify-items-center">
                           <KpiChart chartData={kpiData.kpiDataDTOS} />
                           <ProductionTable data={kpiData.productionDTO} />
+                          <EnergyTable data={kpiData.energy} />
                         </div>
                       ) : (
                         <></>

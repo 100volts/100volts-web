@@ -18,6 +18,9 @@ export default function ProductionTable({ data }) {
         <TableCaption>Production</TableCaption>
         <TableHeader>
           <TableRow>
+            <h2>Production</h2>
+          </TableRow>
+          <TableRow>
             <TableHead>Name</TableHead>
             <TableHead>Description</TableHead>
             <TableHead>Units</TableHead>

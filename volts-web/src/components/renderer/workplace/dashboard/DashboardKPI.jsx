@@ -82,7 +82,7 @@ export default function DashboardKPI({ cardData }) {
     <>
       <ResizablePanelGroup direction="horizontal">
         <div className="m-1 flex max-h-[700px] w-max flex-row">
-          <ResizablePanel defaultSize={20} minSize={20} maxSize={95}>
+          <ResizablePanel defaultSize={10} minSize={15} maxSize={95}>
             <div className="flex h-screen max-h-[700px] flex-col">
               {cardData ? (
                 <>

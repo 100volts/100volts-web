@@ -11,47 +11,30 @@ import {
 } from "@/components/ui/dialog";
 import Reports from "./GetReport";
 import ProductionSettings from "./Settings";
+import { KPIGroups } from "@/components/datastore/KPIStore";
 
-export default function OptionsButtons({ production }) {
-  const navigate = useNavigate();
-  const handleRedirect = (production) => {
-    selectedProduction.set(production);
-    //navigate("/wokrplace/production/productionReport")
-  };
-  const goToSettings = (production) => {
-    selectedProduction.set(production);
-    //navigate("/wokrplace/production/settings")
-  };
-
+export default function OptionsButtons({ kpi }) {
   return (
     <>
       <div className="flex content-start">
         <Dialog>
-          <DialogTrigger disabled>
-            <Button
-              disabled
-              variant="outline"
-              onClick={() => handleRedirect(production)}
-            >
+          <DialogTrigger>
+            <Button variant="outline">
               <a style={{ width: "25px" }}>i</a>
             </Button>
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Peoduction reports</DialogTitle>
-              <DialogDescription>Peoduction reports</DialogDescription>
+              <DialogTitle>KPI reports</DialogTitle>
+              <DialogDescription>KPI reports</DialogDescription>
             </DialogHeader>
             <Reports />
           </DialogContent>
         </Dialog>
 
         <Dialog>
-          <DialogTrigger disabled>
-            <Button
-              disabled
-              variant="outline"
-              onClick={() => goToSettings(production)}
-            >
+          <DialogTrigger>
+            <Button variant="outline">
               <svg
                 style={{ width: "25px" }}
                 height="25px"
@@ -79,9 +62,9 @@ export default function OptionsButtons({ production }) {
           <DialogContent style={{ width: "50%", maxWidth: "100%" }}>
             <DialogHeader>
               <DialogTitle></DialogTitle>
-              <DialogDescription>Production settings</DialogDescription>
+              <DialogDescription>KPI settings</DialogDescription>
             </DialogHeader>
-            <ProductionSettings />
+            <ProductionSettings kpi={kpi} />
           </DialogContent>
         </Dialog>
       </div>
