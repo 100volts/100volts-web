@@ -18,8 +18,8 @@ export default function OptionsButtons({ kpi }) {
     <>
       <div className="flex content-start">
         <Dialog>
-          <DialogTrigger>
-            <Button variant="outline">
+          <DialogTrigger disabled>
+            <Button disabled variant="outline">
               <a style={{ width: "25px" }}>i</a>
             </Button>
           </DialogTrigger>
