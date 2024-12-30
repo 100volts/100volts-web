@@ -6,7 +6,8 @@
   "main": "main.cjs",
   "build": {
     "appId": "com.yourapp.name",
-    "productName": "YourAppName",
+    "productName": "Volts",
+    "icon": "public/favicon",
     "files": [
       "dist/**/*",  
       "main.cjs"     
