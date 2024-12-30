@@ -2,14 +2,32 @@
   "name": "volts-web",
   "type": "module",
   "version": "0.0.1",
-  "volts-server": "192.168.0.102",
+  "volts-server": "localhost",
+  "main": "main.cjs",
+  "build": {
+    "appId": "com.yourapp.name",
+    "productName": "Volts",
+    "icon": "public/favicon",
+    "files": [
+      "dist/**/*",  
+      "main.cjs"     
+    ],
+    "directories": {
+      "output": "dist"  
+    },
+    "win": {
+      "target": "nsis"  
+    }
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
+    "estart": "electron .",  
     "build": "astro build",
+    "package": "electron-builder",  
     "preview": "astro preview",
     "format:check": "prettier --check .",
-    "format::write": "prettier --write .",
+    "format:write": "prettier --write .",
     "astro": "astro"
   },
   "dependencies": {
@@ -45,12 +63,14 @@
     "clsx": "^2.1.1",
     "cmdk": "^1.0.4",
     "date-fns": "^3.6.0",
+    "express": "^4.21.2",
     "i18next": "^23.15.1",
     "i18next-browser-languagedetector": "^8.0.0",
     "jwt-decode": "^4.0.0",
     "lucide": "^0.456.0",
     "lucide-react": "^0.436.0",
     "nanostores": "^0.11.3",
+    "punycode": "^2.3.1",
     "react": "^18.3.1",
     "react-day-picker": "^8.10.1",
     "react-dom": "^18.3.1",
@@ -69,6 +89,8 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8",
     "postcss": "^8.4.49",
     "prettier": "^3.4.2",
     "prettier-plugin-astro": "^0.14.1",
