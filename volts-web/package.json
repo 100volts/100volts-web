@@ -9,22 +9,22 @@
     "productName": "Volts",
     "icon": "public/favicon",
     "files": [
-      "dist/**/*",  
-      "main.cjs"     
+      "dist/**/*",
+      "main.cjs"
     ],
     "directories": {
-      "output": "dist"  
+      "output": "dist"
     },
     "win": {
-      "target": "nsis"  
+      "target": "nsis"
     }
   },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "estart": "electron .",  
+    "estart": "electron .",
     "build": "astro build",
-    "package": "electron-builder",  
+    "package": "electron-builder",
     "preview": "astro preview",
     "format:check": "prettier --check .",
     "format:write": "prettier --write .",
@@ -34,6 +34,7 @@
     "@astrojs/check": "^0.9.4",
     "@astrojs/react": "^3.6.3",
     "@astrojs/tailwind": "^5.1.2",
+    "@astrojs/vercel": "^8.1.3",
     "@headlessui/react": "^2.1.5",
     "@heroicons/react": "^2.1.5",
     "@hookform/resolvers": "^3.9.0",
