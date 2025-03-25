@@ -68,7 +68,7 @@ const formSchema = z.object({
         address:values.electric_description,
       });
       const response = await fetch(
-        `http://${urladdress}:8081/elmeter`,
+        `http://${urladdress}/elmeter`,
         {
           method: "PUT",
           headers: {

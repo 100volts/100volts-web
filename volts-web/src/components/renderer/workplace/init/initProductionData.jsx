@@ -20,7 +20,7 @@ export function initProductiondDashData(){
             company_name: companyName,
           });
           const response = await fetch(
-            `http://${urladdress}:8081/production/company/all`,
+            `http://${urladdress}/production/company/all`,
             {
               method: "POST",
               headers: {
@@ -47,7 +47,7 @@ export function initProductiondDashData(){
             company_name: companyName,
           });
           const responseb = await fetch(
-            `http://${urladdress}:8081/production/company/group`,
+            `http://${urladdress}/production/company/group`,
             {
               method: "POST",
               headers: {

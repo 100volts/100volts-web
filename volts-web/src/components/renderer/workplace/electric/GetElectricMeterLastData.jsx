@@ -9,7 +9,7 @@ export default async function getElmeterData() {
   try {
     const companyName = localStorage.getItem("company_name");
     const response = await fetch(
-      `http://${urladdress}:8081/elmeter/company/address/list`,
+      `http://${urladdress}/elmeter/company/address/list`,
       {
         method: "POST",
         headers: {
@@ -36,7 +36,7 @@ async function getElmeterDataFromAddress(elmeterAddress) {
   try {
     const companyName = localStorage.getItem("company_name");
     const response = await fetch(
-      `http://${urladdress}:8081/elmeter/data/last`,
+      `http://${urladdress}/elmeter/data/last`,
       {
         method: "POST",
         headers: {

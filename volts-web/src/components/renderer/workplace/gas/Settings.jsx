@@ -80,7 +80,7 @@ export function SettingsForm({gas}){
         gas_description:values.gas_description,
       });
       const response = await fetch(
-        `http://${urladdress}:8081/gas`,
+        `http://${urladdress}/gas`,
         {
           method: "PUT",
           headers: {

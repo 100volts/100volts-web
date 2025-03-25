@@ -474,7 +474,7 @@ export default function GetReport() {
         pages: 1,
       });
       const response = await fetch(
-        `http://${urladdress}:8081/elmeter/data/report`,
+        `http://${urladdress}/elmeter/data/report`,
         {
           method: "POST",
           headers: {

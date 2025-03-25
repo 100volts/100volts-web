@@ -20,7 +20,7 @@ export default function initWater(){
             company_name: companyName,
           });
           const response = await fetch(
-            `http://${urladdress}:8081/water/all`,
+            `http://${urladdress}/water/all`,
             {
               method: "POST",
               headers: {

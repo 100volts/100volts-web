@@ -11,7 +11,7 @@ const ComapanyUserData = () => {
     try {
       const userToken = localStorage.getItem("volts_token");
       const response = await fetch(
-        `http://${urladdress}:8081/api/v1/company/user`,
+        `http://${urladdress}/api/v1/company/user`,
         {
           method: "GET",
           headers: {

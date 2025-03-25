@@ -79,7 +79,7 @@ export default function CreateNewProduction() {
         el_name: [values.electric_name],
       });
       const response = await fetch(
-        `http://${urladdress}:8081/production/company/create`,
+        `http://${urladdress}/production/company/create`,
         {
           method: "POST",
           headers: {

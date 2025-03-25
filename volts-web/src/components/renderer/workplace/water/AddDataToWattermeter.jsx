@@ -122,7 +122,7 @@ export default function AddDataToWaterMeter() {
           date:values.doe
         });
         const response = await fetch(
-          `http://${urladdress}:8081/water/data`,
+          `http://${urladdress}/water/data`,
           {
             method: "PUT",
             headers: {

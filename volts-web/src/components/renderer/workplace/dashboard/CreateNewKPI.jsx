@@ -107,7 +107,7 @@ export default function CreateNewKPI() {
         },
         prodNames: values.production_name,
       });
-      const response = await fetch(`http://${urladdress}:8081/kpi/create`, {
+      const response = await fetch(`http://${urladdress}/kpi/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

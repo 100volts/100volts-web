@@ -26,7 +26,7 @@ export function initElectricityData() {
         company_name: companyName,
       });
       const response = await fetch(
-        `http://${urladdress}:8081/elmeter/company/address/list`,
+        `http://${urladdress}/elmeter/company/address/list`,
         {
           method: "POST",
           headers: {

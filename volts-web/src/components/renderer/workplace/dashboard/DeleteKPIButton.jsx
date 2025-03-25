@@ -15,7 +15,7 @@ export default function DeleteButton({ kpi }) {
         company: companyName,
         kpi_name: prod_name,
       });
-      const response = await fetch(`http://${urladdress}:8081/kpi`, {
+      const response = await fetch(`http://${urladdress}/kpi`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

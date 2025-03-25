@@ -15,7 +15,7 @@ export default function DeleteButton({ production }) {
         company_name: companyName,
         production_name: prod_name,
       });
-      const response = await fetch(`http://${urladdress}:8081/production`, {
+      const response = await fetch(`http://${urladdress}/production`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

@@ -17,7 +17,7 @@ async function deleteProd(prod_name){
         production_name:prod_name,
       });
       const response = await fetch(
-        `http://${urladdress}:8081/water`,
+        `http://${urladdress}/water`,
         {
           method: "DELETE",
           headers: {

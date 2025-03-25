@@ -137,7 +137,7 @@ export function GetReport({gasName}) {
         gas_name: gasName,
       });
       const response = await fetch(
-        `http://${urladdress}:8081/gas/report`,
+        `http://${urladdress}/gas/report`,
         {
           method: "POST",
           headers: {
@@ -200,7 +200,7 @@ export function DataTable({ columns, data ,meter,companyName,userToken }) {
         value: row.value,
       });
           const response = await fetch(
-        `http://${urladdress}:8081/gas/data`,
+        `http://${urladdress}/gas/data`,
         {
           method: "DELETE",
           headers: {

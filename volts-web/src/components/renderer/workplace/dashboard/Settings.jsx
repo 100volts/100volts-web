@@ -99,7 +99,7 @@ export default function Settings({ kpi }) {
         },
         prodNames: values.production_name,
       });
-      const response = await fetch(`http://${urladdress}:8081/kpi`, {
+      const response = await fetch(`http://${urladdress}/kpi`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

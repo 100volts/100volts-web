@@ -32,7 +32,7 @@ async function getElmeterData() {
     const userToken = localStorage.getItem("volts_token");
     const companyName = localStorage.getItem("company_name");
     const response = await fetch(
-      `http://${urladdress}:8081/elmeter/company/address/list`,
+      `http://${urladdress}/elmeter/company/address/list`,
       {
         method: "POST",
         headers: {
@@ -62,7 +62,7 @@ async function getElmeterDataFromAddress(elmeterAddress) {
     const userToken = localStorage.getItem("volts_token");
     const companyName = localStorage.getItem("company_name");
     const response = await fetch(
-      `http://${urladdress}:8081/elmeter/data/last`,
+      `http://${urladdress}/elmeter/data/last`,
       {
         method: "POST",
         headers: {

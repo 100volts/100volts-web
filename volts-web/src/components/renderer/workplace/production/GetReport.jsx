@@ -105,7 +105,7 @@ export default function GetReport() {
         production_name: prod.name,
       });
       const response = await fetch(
-        `http://${urladdress}:8081/production/company/data/report`,
+        `http://${urladdress}/production/company/data/report`,
         {
           method: "POST",
           headers: {
@@ -145,7 +145,7 @@ async function buttClick(row) {
     const body = JSON.stringify({
       id: row.id,
     });
-    const response = await fetch(`http://${urladdress}:8081/production/data`, {
+    const response = await fetch(`http://${urladdress}/production/data`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

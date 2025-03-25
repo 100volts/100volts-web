@@ -24,7 +24,7 @@ export function initKPIData() {
       const body = JSON.stringify({
         company: companyName,
       });
-      const response = await fetch(`http://${urladdress}:8081/kpi/all`, {
+      const response = await fetch(`http://${urladdress}/kpi/all`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

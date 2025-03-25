@@ -108,7 +108,7 @@ export default function AddDataTogasMeter() {
           date:values.doe
         });
         const response = await fetch(
-          `http://${urladdress}:8081/gas/data`,
+          `http://${urladdress}/gas/data`,
           {
             method: "PUT",
             headers: {

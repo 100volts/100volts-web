@@ -59,7 +59,7 @@ export default function Settings(){
             address_new:values.elmeter_address
             });
             const response = await fetch(
-              `http://${urladdress}:8081/elmeter`,
+              `http://${urladdress}/elmeter`,
               {
                 method: "PUT",
                 headers: {
