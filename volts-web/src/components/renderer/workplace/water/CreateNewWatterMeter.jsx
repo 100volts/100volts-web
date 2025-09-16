@@ -68,7 +68,7 @@ const formSchema = z.object({
         water_description:values.water_description,
       });
       const response = await fetch(
-        `http://${urladdress}:8081/water`,
+        `http://${urladdress}/water`,
         {
           method: "PUT",
           headers: {

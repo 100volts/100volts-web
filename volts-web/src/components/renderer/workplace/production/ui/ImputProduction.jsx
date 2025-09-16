@@ -80,7 +80,7 @@ export default function ImputProduction({production}){
                 date:values.date.toISOString()
               });
               const response = await fetch(
-                `http://${urladdress}:8081/production/company/data`,
+                `http://${urladdress}/production/company/data`,
                 {
                   method: "POST",
                   headers: {

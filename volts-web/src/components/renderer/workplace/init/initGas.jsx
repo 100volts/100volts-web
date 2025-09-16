@@ -20,7 +20,7 @@ export default function initgas(){
             company_name: companyName,
           });
           const response = await fetch(
-            `http://${urladdress}:8081/gas/all`,
+            `http://${urladdress}/gas/all`,
             {
               method: "POST",
               headers: {

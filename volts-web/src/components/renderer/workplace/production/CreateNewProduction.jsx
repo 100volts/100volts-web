@@ -79,7 +79,7 @@ export default function CreateNewProduction() {
         el_name: [values.electric_name],
       });
       const response = await fetch(
-        `http://${urladdress}:8081/production/company/create`,
+        `http://${urladdress}/production/company/create`,
         {
           method: "POST",
           headers: {
@@ -87,7 +87,7 @@ export default function CreateNewProduction() {
             Authorization: `Bearer ${userToken}`,
           },
           body,
-        }
+        },
       );
       const datat = await response.json();
       const { success } = datat;
@@ -134,7 +134,7 @@ export default function CreateNewProduction() {
                 name="prod_discription"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Production desctription</FormLabel>
+                    <FormLabel>Production description</FormLabel>
                     <FormControl>
                       <Input placeholder="description" {...field} />
                     </FormControl>

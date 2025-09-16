@@ -136,7 +136,7 @@ export function GetReport({waterName}) {
         water_name: waterName,
       });
       const response = await fetch(
-        `http://${urladdress}:8081/water/report`,
+        `http://${urladdress}/water/report`,
         {
           method: "POST",
           headers: {
@@ -198,7 +198,7 @@ export function DataTable({ columns, data ,meter,companyName,userToken }) {
         value: row.value,
       });
           const response = await fetch(
-        `http://${urladdress}:8081/water/data`,
+        `http://${urladdress}/water/data`,
         {
           method: "DELETE",
           headers: {

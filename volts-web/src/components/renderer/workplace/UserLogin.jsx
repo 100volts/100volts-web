@@ -16,7 +16,7 @@ export default function getUserData() {
     setLoading(true);
     try {
       const response = await fetch(
-        `http://${urladdress}:8081/api/vi/auth/authenticate`,
+        `http://${urladdress}/api/vi/auth/authenticate`,
         {
           method: "POST",
           headers: {
@@ -34,7 +34,7 @@ export default function getUserData() {
       const datat = await response.json();
       const { access_token } = datat;
       const responseU = await fetch(
-        `http://${urladdress}:8081/api/v1/company/by/user`,
+        `http://${urladdress}/api/v1/company/by/user`,
         {
           method: "GET",
           headers: {
@@ -46,7 +46,7 @@ export default function getUserData() {
       const datatU = await responseU.json();
       const { company_name } = datatU;
       const responseUD = await fetch(
-        `http://${urladdress}:8081/api/v1/company/user`,
+        `http://${urladdress}/api/v1/company/user`,
         {
           method: "GET",
           headers: {

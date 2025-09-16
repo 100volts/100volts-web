@@ -62,7 +62,7 @@ export default function Settings(){
             el_name:[values.electric_name]
             });
             const response = await fetch(
-              `http://${urladdress}:8081/production/company`,
+              `http://${urladdress}/production/company`,
               {
                 method: "PUT",
                 headers: {

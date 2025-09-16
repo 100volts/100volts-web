@@ -2,20 +2,20 @@ import { CrossCircledIcon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
 import { userData } from "@/components/datastore/UserStore";
 import { useStore } from "@nanostores/react";
-import pkg from "../../../../../../package.json";
+import pkg from "../../../../../package.json";
 
-export default function DeleteButton({ production }) {
+export default function DeleteButton({ kpi }) {
   const urladdress = pkg["volts-server"];
   const $userData = useStore(userData);
   const companyName = $userData.companies[0]; //todo remove hard coded call
-  async function deleteProd(prod_name) {
+  async function deleteKpi(prod_name) {
     const userToken = $userData.tokken;
     try {
       const body = JSON.stringify({
-        company_name: companyName,
-        production_name: prod_name,
+        company: companyName,
+        kpi_name: prod_name,
       });
-      const response = await fetch(`http://${urladdress}/production`, {
+      const response = await fetch(`http://${urladdress}/kpi`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -32,12 +32,9 @@ export default function DeleteButton({ production }) {
   }
   return (
     <>
-      <Button
-        variant="destructive"
-        onClick={() => deleteProd(`${production.name}`)}
-      >
+      <Button variant="destructive" onClick={() => deleteKpi(`${kpi.name}`)}>
         <CrossCircledIcon
-          key={production}
+          key={kpi}
           style={{ width: "25px" }}
         ></CrossCircledIcon>
       </Button>
