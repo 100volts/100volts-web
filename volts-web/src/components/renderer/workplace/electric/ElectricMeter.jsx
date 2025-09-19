@@ -8,6 +8,8 @@ import MonthlyPowerChart from "./ui/MonthlyPowerChart";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { noData } from "../gas/DisplayMeter";
+import EnergyDataTable from "./ElectricEnergyDataTable";
 
 export default function ElectricMeter({ elmeter, index }) {
   if (elmeter) {
@@ -29,6 +31,16 @@ export default function ElectricMeter({ elmeter, index }) {
                   </div>
                   <div className="flex flex-row">
                     <div className="w-full">
+                    <ScrollArea className="h-64">
+                    {elmeter.energy_data?(<EnergyDataTable data={elmeter.energy_data}/> )
+                    :(
+                      <>
+                      <a>No data</a>
+                      <img src={noData} alt="Dynamic Example" />
+                        
+                      </>)}
+                    
+                    </ScrollArea>
                       <Tabs defaultValue="barChart">
                         <TabsList className="grid w-full grid-cols-2">
                           <TabsTrigger value="barChart">Bar chart</TabsTrigger>

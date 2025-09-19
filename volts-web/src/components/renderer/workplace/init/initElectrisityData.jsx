@@ -68,6 +68,7 @@ export function initElectricityData() {
         daily_tariff_data,
         lastWeekEnergy,
         energyMonthPairDTOS,
+        energy_data
       } = elmeter;
       return {
         name,
@@ -77,6 +78,7 @@ export function initElectricityData() {
         daily_tariff_data,
         lastWeekEnergy,
         energyMonthPairDTOS,
+        energy_data
       };
     } catch (error) {
       return null;

@@ -4,7 +4,7 @@ import Settings from "./Settings";
 import { Card } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import GasDataTable from "./GasDataTable"
-const noData = "/public/images/no_data.png";
+export const noData = "/public/images/no_data.png";
 
 export default function gasMeter({ gasmeter, index }) {
     console.log("gasmeter",gasmeter)

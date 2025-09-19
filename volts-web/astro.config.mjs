@@ -6,7 +6,6 @@ import tailwind from "@astrojs/tailwind";
 // https://astro.build/config
 export default defineConfig({
   output: 'server', // or 'static' for static sites
-  adapter: vercel(),
   integrations: [react(), tailwind({applyBaseStyles: false,})],
   i18n: {
     defaultLocale: "en",
