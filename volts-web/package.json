@@ -9,22 +9,22 @@
     "productName": "Volts",
     "icon": "public/favicon",
     "files": [
-      "dist/**/*",  
-      "main.cjs"     
+      "dist/**/*",
+      "main.cjs"
     ],
     "directories": {
-      "output": "dist"  
+      "output": "dist"
     },
     "win": {
-      "target": "nsis"  
+      "target": "nsis"
     }
   },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "estart": "electron .",  
+    "estart": "electron .",
     "build": "astro build",
-    "package": "electron-builder",  
+    "package": "electron-builder",
     "preview": "astro preview",
     "format:check": "prettier --check .",
     "format:write": "prettier --write .",
